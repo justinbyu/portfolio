@@ -1,0 +1,83 @@
+/* css */
+header {
+    background-color: #003366;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    /* GRID REQUIREMENT */
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 20px;
+}
+
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* CARD STYLES */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.card h2 {
+    background-color: #003366;
+    color: white;
+    margin: 0;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+}
+
+/* ABOUT CONTENT - FLEXBOX REQUIREMENT (Passed) */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.about-content img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* RESOURCES - HOVER REQUIREMENT (Passed) */
+.resources {
+    list-style-position: inside;
+    padding: 20px;
+}
+
+.resources a {
+    color: #003366;
+    text-decoration: none;
+}
+
+.resources a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+#lastModified {
+    color: #ffd700;
+    margin-top: 10px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 600px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
