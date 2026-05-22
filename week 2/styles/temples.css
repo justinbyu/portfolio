@@ -1,0 +1,142 @@
+/* ==========================================
+   RESET & BASE STYLES
+   ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333333;
+    background-color: #fcfcfc;
+}
+
+/* ==========================================
+   HEADER & NAVIGATION (Mobile-First)
+   ========================================== */
+header {
+    background-color: #4a148c; /* Deep Purple */
+    color: #ffffff;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#menu-toggle {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+}
+
+/* Hide navigation menu by default on mobile */
+#nav-menu {
+    display: none;
+    background-color: #38006b; /* Darker tint for contrast */
+}
+
+/* Show class toggled via JavaScript */
+#nav-menu.show {
+    display: block;
+}
+
+#nav-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+#nav-menu a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+#nav-menu a:hover, 
+#nav-menu a:focus {
+    background-color: #6a1b9a;
+}
+
+/* ==========================================
+   MAIN CONTENT & GALLERY
+   ========================================== */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+main h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333333;
+}
+
+/* Mobile Layout: Strict 1-Column Grid layout */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+figure {
+    background-color: #ffffff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+figcaption {
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    color: #4a148c;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+footer {
+    background-color: #4a148c;
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0.25rem 0;
+}
+
+.last-modified {
+    color: #e0e0e0;
+}

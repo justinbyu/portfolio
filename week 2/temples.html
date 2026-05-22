@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore a beautiful gallery featuring nine magnificent temples located throughout the Philippines, complete with architecture and location details.">
+    <meta name="author" content="Justin Diaz">
+    <title>Temples Gallery</title>
+
+    <script src="scripts/temples.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/temples.css">
+
+    <link rel="stylesheet" href="styles/temples-large.css" media="(min-width: 768px)">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h1>Temple Album</h1>
+            <button id="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Old</a></li>
+                <li><a href="#">New</a></li>
+                <li><a href="#">Large</a></li>
+                <li><a href="#">Small</a></li>
+            </ul>
+        </nav>
+    </header>
+
+<main>
+    <h2>Home</h2>
+    
+    <div class="gallery-grid">
+        <figure>
+            <img src="images/cebutemple.jpg" alt="Cebu City Philippines Temple" width="600" height="400" loading="lazy">
+            <figcaption>Cebu Temple</figcaption>
+        </figure>
+
+        <figure>
+            <img src="images/urdanetatemple.jpg" alt="Urdaneta Temple surrounded by green trees" width="600" height="400" loading="lazy">
+            <figcaption>Urdaneta Temple</figcaption>
+        </figure>
+
+        <figure>
+            <img src="images/taclobantemple.jpg" alt="Tacloban Philippines Temple majestic front architecture" width="600" height="400" loading="lazy">
+            <figcaption>Tacloban Temple</figcaption>
+        </figure>
+
+        <figure>
+            <img src="images/manilatemple.jpg" alt="Manila Philippines Temple view from the garden" width="600" height="400" loading="lazy">
+            <figcaption>Manila Temple</figcaption>
+        </figure>
+
+        <figure>
+            <img src="images/alabangtemple.jpg" alt="Alabang Philippines Temple bright daytime setting" width="600" height="400" loading="lazy">
+            <figcaption>Alabang Temple</figcaption>
+        </figure>
+        
+        <figure>
+            <img src="images/bacolodtemple.jpg" alt="Bacolod City Philippines Temple architectural spires details" width="600" height="400" loading="lazy">
+            <figcaption>Bacolod Temple</figcaption>
+        </figure>
+
+        <figure>
+            <img src="images/davao.jpg" alt="Davao Philippines Temple beautiful exterior grounds" width="600" height="400" loading="lazy">
+            <figcaption>Davao Temple</figcaption>
+        </figure>
+
+        <figure>
+            <img src="images/cagayandeorotemple.jpg" alt="Cagayan de Oro Philippines Temple daytime view" width="600" height="400" loading="lazy">
+            <figcaption>Cagayan de Oro Temple</figcaption>
+        </figure>
+
+        <figure>
+            <img src="images/nagatemple.jpg" alt="Naga Philippines Temple stunning architecture" width="600" height="400" loading="lazy">
+            <figcaption>Naga Temple</figcaption>
+        </figure>
+    </div>
+</main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> | Temple Album Project</p>
+        <p class="last-modified">Last Modified: <span id="last-modified-date"></span></p>
+    </footer>
+
+</body>
+</html>

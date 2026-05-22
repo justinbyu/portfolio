@@ -1,0 +1,37 @@
+/* ==========================================
+   DESKTOP VIEW STYLES
+   ========================================== */
+@media (min-width: 768px) {
+
+    /* Hide the hamburger icon button */
+    #menu-toggle {
+        display: none;
+    }
+
+    /* Force show the navbar inline horizontally */
+    #nav-menu {
+        display: block !important;
+        background-color: transparent;
+    }
+
+    #nav-menu ul {
+        flex-direction: row;
+        justify-content: flex-end;
+        padding-right: 1rem;
+    }
+
+    #nav-menu a {
+        padding: 0.75rem 1.2rem;
+    }
+
+    .header-container {
+        padding-bottom: 0.5rem;
+    }
+
+    /* Desktop View Grid Layout: 3 Columns */
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+
+}
