@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Justin Diaz">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madagascar - Country Information</title>
+    <meta name="description" content="An informational page about Madagascar featuring local facts, weather data, and custom metrics.">
+    <!-- Google Fonts for typography principles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/place.css">
+    <!-- Reference JavaScript with defer attribute -->
+    <script src="scripts/place.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>Madagascar</h1>
+    </header>
+
+    <main>
+        <!-- Hero Section utilizing responsive picture element with WebP images -->
+        <div class="hero-container">
+            <picture>
+               <source src="images/hero-large.webp copy" media="(min-width: 800px)">
+                <img src="images/hero-small.webp" alt="A beautiful ring-tailed lemur climbing a tree branch in Madagascar" class="hero-image" loading="eager">
+            </picture>
+        </div>
+
+        <!-- Data Presentation Card -->
+        <section class="card data-card">
+            <h2>Data</h2>
+            <dl class="data-list">
+                <div class="data-row">
+                    <dt>Area:</dt>
+                    <dd>587,041 sq km</dd>
+                </div>
+                <div class="data-row">
+                    <dt>Population:</dt>
+                    <dd>27,691,018</dd>
+                </div>
+                <div class="data-row">
+                    <dt>Capital:</dt>
+                    <dd>Antananarivo</dd>
+                </div>
+                <div class="data-row">
+                    <dt>Languages:</dt>
+                    <dd>Malagasy, French</dd>
+                </div>
+                <div class="data-row">
+                    <dt>Currency:</dt>
+                    <dd>Malagasy Ariary</dd>
+                </div>
+                <div class="data-row">
+                    <dt>Time Zone:</dt>
+                    <dd>UTC+3</dd>
+                </div>
+                <div class="data-row">
+                    <dt>Calling Code:</dt>
+                    <dd>+261</dd>
+                </div>
+                <div class="data-row">
+                    <dt>Internet TLD:</dt>
+                    <dd>.mg</dd>
+                </div>
+            </dl>
+        </section>
+
+        <!-- Weather Section Card -->
+        <section class="card weather-card">
+            <h2 class="weather-heading">Weather</h2>
+            
+            <!-- SVG Weather Icon (Visible only in mobile layout via CSS) -->
+            <div class="weather-icon-container">
+                <img src="images/cloud-sun-rain.svg" alt="Partly cloudy with rain icon" class="weather-svg">
+            </div>
+
+            <dl class="data-list">
+                <div class="data-row">
+                    <dt>Temperature:</dt>
+                    <dd><span id="current-temp">10</span>°C</dd>
+                </div>
+                <div class="data-row">
+                    <dt>Conditions:</dt>
+                    <dd>Partly Cloudy</dd>
+                </div>
+                <div class="data-row">
+                    <dt>Wind:</dt>
+                    <dd><span id="wind-speed">5</span> km/h</dd>
+                </div>
+                <div class="data-row">
+                    <dt>Wind Chill:</dt><dd id="wind-chill-value">Calculating...</dd>
+                </div>
+            </dl>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy;<span id="current-year"></span> 🌺 Justin Diaz 🌺 Madagascar</p>
+        <p class="last-modified">Last Modification: <span id="last-modified-date"></span></p>
+    </footer>
+
+</body>
+</html>

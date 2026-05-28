@@ -1,0 +1,192 @@
+/* ==========================================================================
+   GLOBAL VARIABLES & RESET
+   ========================================================================== */
+:root {
+    --primary-color: #c8102e;    /* Madagascar Flag Red */
+    --secondary-color: #007a3d;  /* Madagascar Flag Green */
+    --light-bg: #f4f9f5;         /* Soft white/green tint for accessibility */
+    --card-bg: #ffffff;
+    --text-color: #212529;
+    --text-muted: #495057;
+    --border-color: #dee2e6;
+    
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   MOBILE WIREFRAME LAYOUT (Default Viewport Architecture)
+   ========================================================================== */
+header {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+}
+
+header h1 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    width: 100%;
+}
+
+.hero-container {
+    width: 100%;
+    border-bottom: 4px solid var(--secondary-color);
+    line-height: 0; /* Clear inline whitespace gaps below image layout */
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 450px;
+}
+
+.card {
+    background: var(--card-bg);
+    margin: 1.2rem;
+    padding: 1.5rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+}
+
+.card h2 {
+    font-family: var(--font-heading);
+    text-align: center;
+    margin-bottom: 1.2rem;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.3rem;
+}
+
+/* Weather Icon Box - Visible on Mobile Setup */
+.weather-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.weather-svg {
+    width: 64px;
+    height: 64px;
+}
+
+/* Definition List Scannable Architecture */
+.data-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 0.3rem;
+}
+
+.data-row dt {
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.data-row dd {
+    text-align: right;
+    font-weight: 500;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0.3rem 0;
+}
+
+.last-modified {
+    color: #ffd1d6;
+    font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   WIDER VIEWPORTS LAYOUT (Desktop Grid Framework)
+   ========================================================================== */
+@media (min-width: 800px) {
+    main {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        grid-template-rows: auto auto;
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+    }
+
+    .hero-container {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        border: 4px solid var(--secondary-color);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .hero-image {
+        max-height: 500px;
+    }
+
+    .data-card {
+        grid-column: 1;
+        grid-row: 2;
+        margin: 0;
+    }
+
+    .weather-card {
+        grid-column: 2;
+        grid-row: 2;
+        margin: 0;
+        height: min-content;
+    }
+
+    /* Requirement: SVG hidden in desktop/wider viewports */
+    .weather-icon-container {
+        display: none;
+    }
+
+    /* Requirement: Inject Emoticon inline via CSS pseudo-element after desktop heading */
+    .weather-heading::after {
+        content: " ⛅";
+        font-size: 1.4rem;
+        vertical-align: middle;
+    }
+    
+    .card h2 {
+        text-align: left;
+    }
+}
