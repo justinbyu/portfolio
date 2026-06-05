@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W04: Enhanced Temple Picture Album</title>
+    <meta name="description" content="Dynamic Temple Picture Album with JavaScript array filtering, lazy-loaded images, and fully accessible interface.">
+    <meta name="author" content="Justin Diaz">
+    <link rel="stylesheet" href="styles/temples.css">
+    <link rel="stylesheet" href="styles/temples-large.css" media="(min-width: 600px)">
+    <script src="scripts/filtered-temple.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Temple Album</h1>
+        <button id="menu" aria-label="Toggle Menu"></button>
+        <nav class="navigation">
+            <a href="#" id="home-nav" class="active">Home</a>
+            <a href="#" id="old-nav">Old</a>
+            <a href="#" id="new-nav">New</a>
+            <a href="#" id="large-nav">Large</a>
+            <a href="#" id="small-nav">Small</a>
+</nav>
+    </header>
+
+    <main>
+        <h2 id="gallery-title">Home</h2>
+        <div class="temple-grid"></div>
+    </main>
+
+    <footer>
+        <p>&copy;<span id="currentyear"></span> | Enhanced Temple Album | Justin Diaz </p>
+        <p class="last-modified">Last Modified: <span id="lastModified"></span></p>
+    </footer>
+</body>
+</html>

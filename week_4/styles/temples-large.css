@@ -1,0 +1,6 @@
+@media (min-width: 600px) {
+    /* Transitions columns to support multi-column view on larger viewport widths */
+    .temple-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
