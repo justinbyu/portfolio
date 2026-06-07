@@ -1,0 +1,160 @@
+/* ==========================================================================
+   CSS Color Scheme & Typography Realization (As specified in Rubric items 7-10)
+   ========================================================================== */
+
+/* Variables matching the color choices */
+:root {
+    --primary-color: #2C5E3B; /* Forest Green */
+    --secondary-color: #A3704C; /* Earth Brown */
+    --bg-color: #F4F6F4; /* Off-White */
+    --text-color: #1E2522; /* Charcoal */
+    --card-bg: #ffffff;
+}
+
+/* Base resets & typography definitions */
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+}
+
+header {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 2.5rem 1rem;
+}
+
+header h1 {
+    color: #ffffff;
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.subtitle {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0.5rem 0 0 0;
+    font-size: 1.1rem;
+    color: #e2ebe4;
+}
+
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.plan-section {
+    margin-bottom: 3rem;
+}
+
+.plan-section h2 {
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 0.3rem;
+    font-size: 1.6rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 6px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-top: 1rem;
+}
+
+.highlight {
+    color: var(--secondary-color);
+}
+
+.scenarios-list li {
+    margin-bottom: 0.8rem;
+}
+
+/* Data Presentation Table */
+.color-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.color-table th, .color-table td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.color-table th {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.color-preview {
+    width: 60px;
+    height: 30px;
+    border-radius: 4px;
+}
+
+/* Wireframe Visualizations */
+.wireframe-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.wireframe-box {
+    flex: 1;
+    min-width: 280px;
+    background: #fafafa;
+    border: 1px dashed #aaa;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.mock-wireframe {
+    background-color: #eee;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    font-size: 0.85rem;
+    font-family: monospace;
+}
+
+.mobile-wf {
+    max-width: 240px;
+    margin: 0 auto;
+}
+
+.wf-block {
+    background-color: #fff;
+    border: 1px solid #999;
+    margin: 0.4rem 0;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.wf-grid {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.wf-grid .wf-block {
+    flex: 1;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--text-color);
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin-top: 4rem;
+}
