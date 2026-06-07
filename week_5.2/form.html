@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to our official client feedback portal. This comprehensive Product Review Form is designed to collect authentic user experiences, high-quality ratings, and specific feature assessments for our latest tech releases, including the flux capacitor, power laces, time circuits, low voltage reactor, and warp equalizer. By filling out this clean, accessible, and fully responsive form, you provide our engineering and design teams with invaluable data regarding installation dates, overall performance, structural durability, and general ease of use. Your personal insights directly impact our future product updates, manufacturing standards, and customer support adjustments. Whether you want to leave a quick five-star rating or a detailed written testimonial with your name attached, our structured review system ensures your voice is heard securely and efficiently. Take a few moments to share your thoughts, help fellow community members make informed purchasing decisions, and contribute to our ongoing commitment to exceptional product design and long-term performance excellence.">
+    <meta name="author" content="Justin Diaz">
+    <title>Product Review Form</title>
+    <link rel="stylesheet" href="styles/form.css">
+    <script src="scripts/form.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Product Review</h1>
+    </header>
+
+    <main>
+        <form method="get" action="review.html">
+            <div class="form-group">
+                <label for="product-name">Product Name <span class="required">*</span></label>
+                <select id="product-name" name="productName" required>
+                    <option value="" disabled selected>Select a Product ...</option>
+                </select>
+            </div>
+
+            <fieldset class="rating-fieldset">
+                <legend>Overall Rating <span class="required">*</span></legend>
+                <div class="stars">
+                    <input type="radio" id="star5" name="rating" value="5" required>
+                    <label for="star5" title="5 stars">☆</label>
+                    
+                    <input type="radio" id="star4" name="rating" value="4" required>
+                    <label for="star4" title="4 stars">☆</label>
+                    
+                    <input type="radio" id="star3" name="rating" value="3" required>
+                    <label for="star3" title="3 stars">☆</label>
+                    
+                    <input type="radio" id="star2" name="rating" value="2" required>
+                    <label for="star2" title="2 stars">☆</label>
+                    
+                    <input type="radio" id="star1" name="rating" value="1" required>
+                    <label for="star1" title="1 star">☆</label>
+                </div>
+            </fieldset>
+
+            <div class="form-group">
+                <label for="install-date">Date of Installation <span class="required">*</span></label>
+                <input type="date" id="install-date" name="installDate" required>
+            </div>
+
+            <fieldset>
+                <legend>Which features did you find useful? (Check all that apply)</legend>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="features" value="durability"> Durability</label>
+                    <label><input type="checkbox" name="features" value="ease-of-use"> Ease of Use</label>
+                    <label><input type="checkbox" name="features" value="performance"> High Performance</label>
+                    <label><input type="checkbox" name="features" value="design"> Modern Design</label>
+                </div>
+            </fieldset>
+
+            <div class="form-group">
+                <label for="written-review">Written Review (Optional)</label>
+                <textarea id="written-review" name="writtenReview" rows="5" placeholder="Share your experience with the product..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="user-name"> Your Name (Optional)</label>
+                <input type="text" id="user-name" name="userName" placeholder="e.g., Marty McFly">
+            </div>
+
+            <input type="submit" value="Post Review" class="submit-btn">
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> | Product Review Project | Justin Diaz</p>
+        <p>Last Modified: <span id="last-modified"></span></p>
+    </footer>
+</body>
+</html>
