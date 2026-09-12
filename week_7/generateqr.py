@@ -2,11 +2,11 @@ import qrcode
 from pathlib import Path
 
 # ==========================================
-# ALLANESE AESTHETICS FACEBOOK REVIEW QR
+# ALLANESE AESTHETICS GOOGLE REVIEW QR
 # ==========================================
 
-# Facebook Reviews URL
-url = "https://www.facebook.com/allaneseyeshivabeautyclinic.ctac/reviews"
+# Google Reviews URL
+url = "https://search.google.com/local/writereview?placeid=ChIJsTv1brm1lzMRRXmOlxxSSqc"
 
 # Create QR code
 qr = qrcode.QRCode(
@@ -28,7 +28,7 @@ img = qr.make_image(
 
 # Save QR code in the same folder as this Python file
 folder = Path(__file__).parent
-file_path = folder / "allanesse_facebook_reviews.png"
+file_path = folder / "allanesse_google_reviews.png"
 
 img.save(file_path)
 
@@ -41,7 +41,7 @@ print()
 print(f"Saved to:")
 print(file_path)
 print()
-print("Facebook Reviews:")
+print("Google Reviews:")
 print(url)
 print()
 print("This is a STATIC QR code.")

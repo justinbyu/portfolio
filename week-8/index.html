@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Home page for WDD 231 showcasing certificate courses, credits, and responsive navigation built with HTML, CSS, and JavaScript.">
+  <meta name="author" content="Justin Diaz">
+  <title>Home | WDD 231</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/main.css">
+
+  <!-- JS -->
+  <script src="scripts/main.js" defer></script>
+</head>
+<body>
+  <header>
+    <img src="images/logo.jpg" alt="Site Logo">
+    <span>Justin</span>
+    <button id="menu-toggle" aria-label="Toggle navigation">☰</button>
+  </header>
+
+  <nav id="nav-menu">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="chamber.html">Chamber</a>
+    <a href="final.html">Final</a>
+  </nav>
+
+  <main>
+    <h1>Home</h1>
+
+    <section>
+      <h2>Certificate Courses</h2>
+      <div id="course-filters">
+        <button data-subject="all">All</button>
+        <button data-subject="WDD">Web Dev</button>
+        <button data-subject="CSE">Computer Science</button>
+      </div>
+      <div id="course-list"></div>
+      <p>Total Credits: <span id="total-credits"></span></p>
+    </section>
+
+    <section>
+      <h2>About This Site</h2>
+      <p>This page demonstrates responsive design, semantic HTML, and dynamic JavaScript features required for WDD 231.</p>
+    </section>
+
+    <section>
+      <h2>Contact & Links</h2>
+      <p>Find me on GitHub and LinkedIn for more projects and professional connections.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="socials">
+      <a href="https://github.com/yourusername">GitHub</a>
+      <a href="https://linkedin.com/in/yourprofile">LinkedIn</a>
+    </div>
+    <p>&copy; <span id="year"></span> | <span id="lastModified"></span></p>
+    <p>Justin Diaz | Philippines</p>
+  </footer>
+</body>
+</html>
