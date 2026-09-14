@@ -95,7 +95,7 @@ while True:
 
     elif choice == "2":
 
-        url = "https://www.facebook.com/allaneseyeshivabeautyclinic.ctac/reviews"
+        url = "https://www.facebook.com/brothersramen.mainbranch/reviews"
 
         if url:
             create_qr("facebook", url)
