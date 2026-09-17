@@ -21,16 +21,16 @@ const CARD = {
     // PROFILE PHOTO
     // ==========================================
 
-    photo: "images/justin.jpg",
+    photo: "images/profile.jpg",
 
 
     // ==========================================
     // CONTACT INFORMATION
     // ==========================================
 
-    phone: "+63 912 345 6789",
+    phone: "+63 962 301 7609",
 
-    email: "you@email.com",
+    email: "justinriverodiaz@email.com",
 
     address: "Manila, Philippines",
 
@@ -39,11 +39,11 @@ const CARD = {
     // SOCIAL MEDIA
     // ==========================================
 
-    facebook: "https://facebook.com/",
+    facebook: "https://www.facebook.com/justin.meee",
 
-    instagram: "https://instagram.com/",
+    instagram: "https://www.instagram.com/justin.ai.studio_/",
 
-    tiktok: "https://tiktok.com/",
+    tiktok: "https://www.tiktok.com/@justinlds?lang=en",
 
     linkedin: "",
 
