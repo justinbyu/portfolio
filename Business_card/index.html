@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Business Card</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- =========================
+             CUSTOMIZER
+        ========================== -->
+
+        <section class="customizer">
+
+            <h1>Digital Card Builder</h1>
+            <p class="subtitle">
+                Customize your digital business card
+            </p>
+
+            <!-- PHOTO -->
+            <div class="form-section">
+
+                <label>Profile Photo</label>
+
+                <input
+                    type="file"
+                    id="photoInput"
+                    accept="image/*"
+                >
+
+            </div>
+
+
+            <!-- PERSONAL INFORMATION -->
+            <div class="form-section">
+
+                <h2>Personal Information</h2>
+
+                <label>Name</label>
+                <input
+                    type="text"
+                    id="nameInput"
+                    placeholder="John Doe"
+                >
+
+                <label>Title</label>
+                <input
+                    type="text"
+                    id="titleInput"
+                    placeholder="Entrepreneur / Influencer"
+                >
+
+                <label>Bio</label>
+                <textarea
+                    id="bioInput"
+                    placeholder="Tell people a little about yourself..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- CONTACT -->
+            <div class="form-section">
+
+                <h2>Contact Information</h2>
+
+                <label>
+                    <i class="fa-solid fa-phone"></i>
+                    Phone
+                </label>
+
+                <input
+                    type="tel"
+                    id="phoneInput"
+                    placeholder="+63 912 345 6789"
+                >
+
+
+                <label>
+                    <i class="fa-solid fa-envelope"></i>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="emailInput"
+                    placeholder="you@email.com"
+                >
+
+
+                <label>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Address
+                </label>
+
+                <input
+                    type="text"
+                    id="addressInput"
+                    placeholder="Manila, Philippines"
+                >
+
+            </div>
+
+
+            <!-- SOCIAL MEDIA -->
+            <div class="form-section">
+
+                <h2>Social Media</h2>
+
+                <!-- FACEBOOK -->
+                <div class="social-input">
+
+                    <label>
+                        <i class="fa-brands fa-facebook"></i>
+                        Facebook
+                    </label>
+
+                    <input
+                        type="url"
+                        id="facebookInput"
+                        placeholder="https://facebook.com/username"
+                    >
+
+                    <label class="switch-row">
+
+                        <input
+                            type="checkbox"
+                            id="facebookToggle"
+                            checked
+                        >
+
+                        <span>Show Facebook</span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- INSTAGRAM -->
+                <div class="social-input">
+
+                    <label>
+                        <i class="fa-brands fa-instagram"></i>
+                        Instagram
+                    </label>
+
+                    <input
+                        type="url"
+                        id="instagramInput"
+                        placeholder="https://instagram.com/username"
+                    >
+
+                    <label class="switch-row">
+
+                        <input
+                            type="checkbox"
+                            id="instagramToggle"
+                            checked
+                        >
+
+                        <span>Show Instagram</span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- TIKTOK -->
+                <div class="social-input">
+
+                    <label>
+                        <i class="fa-brands fa-tiktok"></i>
+                        TikTok
+                    </label>
+
+                    <input
+                        type="url"
+                        id="tiktokInput"
+                        placeholder="https://tiktok.com/@username"
+                    >
+
+                    <label class="switch-row">
+
+                        <input
+                            type="checkbox"
+                            id="tiktokToggle"
+                            checked
+                        >
+
+                        <span>Show TikTok</span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- LINKEDIN -->
+                <div class="social-input">
+
+                    <label>
+                        <i class="fa-brands fa-linkedin"></i>
+                        LinkedIn
+                    </label>
+
+                    <input
+                        type="url"
+                        id="linkedinInput"
+                        placeholder="https://linkedin.com/in/username"
+                    >
+
+                    <label class="switch-row">
+
+                        <input
+                            type="checkbox"
+                            id="linkedinToggle"
+                        >
+
+                        <span>Show LinkedIn</span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- WEBSITE -->
+                <div class="social-input">
+
+                    <label>
+                        <i class="fa-solid fa-globe"></i>
+                        Website
+                    </label>
+
+                    <input
+                        type="url"
+                        id="websiteInput"
+                        placeholder="https://yourwebsite.com"
+                    >
+
+                    <label class="switch-row">
+
+                        <input
+                            type="checkbox"
+                            id="websiteToggle"
+                        >
+
+                        <span>Show Website</span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="buttons">
+
+                <button
+                    class="save-button"
+                    id="saveButton"
+                >
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Card
+                </button>
+
+                <button
+                    class="reset-button"
+                    id="resetButton"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CARD PREVIEW
+        ========================== -->
+
+        <section class="preview-area">
+
+            <p class="preview-label">
+                LIVE PREVIEW
+            </p>
+
+            <div class="phone-frame">
+
+                <div class="card">
+
+                    <!-- PROFILE IMAGE -->
+
+                    <div class="profile-image-container">
+
+                        <img
+                            id="profileImage"
+                            src="https://via.placeholder.com/500x350?text=Your+Photo"
+                            alt="Profile"
+                        >
+
+                    </div>
+
+
+                    <!-- NAME -->
+
+                    <div class="profile-info">
+
+                        <h2 id="previewName">
+                            Your Name
+                        </h2>
+
+                        <p
+                            class="profile-title"
+                            id="previewTitle"
+                        >
+                            Your Title
+                        </p>
+
+                        <p
+                            class="bio"
+                            id="previewBio"
+                        >
+                            Your short bio will appear here.
+                        </p>
+
+                    </div>
+
+
+                    <!-- CONTACT INFORMATION -->
+
+                    <div class="contact-list">
+
+                        <a
+                            id="phoneLink"
+                            class="contact-item"
+                            href="#"
+                        >
+
+                            <span class="icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </span>
+
+                            <span id="previewPhone">
+                                Phone
+                            </span>
+
+                        </a>
+
+
+                        <a
+                            id="emailLink"
+                            class="contact-item"
+                            href="#"
+                        >
+
+                            <span class="icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </span>
+
+                            <span id="previewEmail">
+                                Email
+                            </span>
+
+                        </a>
+
+
+                        <div
+                            id="addressItem"
+                            class="contact-item"
+                        >
+
+                            <span class="icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+
+                            <span id="previewAddress">
+                                Address
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SOCIAL MEDIA -->
+
+                    <div
+                        id="socialLinks"
+                        class="social-links"
+                    >
+
+                    </div>
+
+
+                    <!-- ACTION BUTTONS -->
+
+                    <div class="card-actions">
+
+                        <button id="copyButton">
+
+                            <i class="fa-solid fa-copy"></i>
+
+                            Copy Details
+
+                        </button>
+
+
+                        <button id="contactButton">
+
+                            <i class="fa-solid fa-address-book"></i>
+
+                            Save to Phone
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div
+        id="toast"
+        class="toast"
+    >
+        Saved!
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

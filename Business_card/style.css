@@ -1,0 +1,371 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f1f3;
+    color: #222;
+}
+
+.app {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 420px 1fr;
+}
+
+
+/* =================================
+   CUSTOMIZER
+================================= */
+
+.customizer {
+    background: white;
+    padding: 35px;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.customizer h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.form-section {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+}
+
+.form-section h2 {
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 14px 0 7px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    background: #fafafa;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #c78ca9;
+    background: white;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+
+/* SOCIAL INPUT */
+
+.social-input {
+    margin-bottom: 22px;
+}
+
+.social-input label:first-child {
+    margin-top: 0;
+}
+
+.social-input i {
+    margin-right: 5px;
+}
+
+.switch-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+    margin-top: 8px;
+}
+
+.switch-row input {
+    width: auto;
+}
+
+
+/* BUTTONS */
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 13px 18px;
+    font-weight: bold;
+}
+
+.save-button {
+    background: #222;
+    color: white;
+    flex: 1;
+}
+
+.reset-button {
+    background: #eee;
+}
+
+
+/* =================================
+   PREVIEW
+================================= */
+
+.preview-area {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.preview-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+
+/* PHONE */
+
+.phone-frame {
+    width: 390px;
+    max-width: 100%;
+    background: #111;
+    padding: 10px;
+    border-radius: 38px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+
+/* CARD */
+
+.card {
+    background: #fff5f8;
+    border-radius: 30px;
+    overflow: hidden;
+    min-height: 700px;
+    padding-bottom: 25px;
+}
+
+
+/* IMAGE */
+
+.profile-image-container {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.profile-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* PROFILE */
+
+.profile-info {
+    background: white;
+    width: 88%;
+    margin: -20px auto 0;
+    position: relative;
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+}
+
+.profile-info h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.profile-title {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.bio {
+    color: #555;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* CONTACT */
+
+.contact-list {
+    padding: 25px 20px 10px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: #555;
+    margin-bottom: 14px;
+    font-size: 14px;
+    word-break: break-word;
+}
+
+.icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+
+/* SOCIAL */
+
+.social-links {
+    padding: 0 20px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px;
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    color: #333;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.social-link:hover {
+    transform: translateY(-2px);
+}
+
+.social-link i {
+    width: 25px;
+    font-size: 20px;
+}
+
+.social-link span {
+    font-size: 14px;
+}
+
+
+/* ACTIONS */
+
+.card-actions {
+    padding: 15px 20px 0;
+    display: grid;
+    gap: 10px;
+}
+
+.card-actions button {
+    width: 100%;
+    background: #222;
+    color: white;
+}
+
+.card-actions button:last-child {
+    background: #fff;
+    color: #222;
+    border: 1px solid #ddd;
+}
+
+
+/* TOAST */
+
+.toast {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #222;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 999;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 850px) {
+
+    .app {
+        display: block;
+    }
+
+    .customizer {
+        height: auto;
+    }
+
+    .preview-area {
+        min-height: auto;
+        padding: 40px 15px;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .customizer {
+        padding: 25px 20px;
+    }
+
+    .phone-frame {
+        width: 100%;
+        padding: 6px;
+        border-radius: 30px;
+    }
+
+    .card {
+        border-radius: 25px;
+    }
+
+}
