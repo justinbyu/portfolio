@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Digital Business Card</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <main class="card-page">
+
+        <div class="card">
+
+            <!-- =========================
+                 PROFILE PHOTO
+            ========================== -->
+
+            <div class="hero">
+
+                <img
+                    id="profilePhoto"
+                    src=""
+                    alt="Profile Photo"
+                >
+
+            </div>
+
+
+            <!-- =========================
+                 PROFILE INFORMATION
+            ========================== -->
+
+            <section class="profile-box">
+
+                <h1 id="name"></h1>
+
+                <p
+                    class="title"
+                    id="title"
+                ></p>
+
+                <p
+                    class="bio"
+                    id="bio"
+                ></p>
+
+            </section>
+
+
+            <!-- =========================
+                 CONTACT INFORMATION
+            ========================== -->
+
+            <section class="contact-list">
+
+                <!-- PHONE -->
+
+                <a
+                    id="phoneRow"
+                    class="contact-row"
+                >
+
+                    <div class="circle-icon">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+
+                    <span id="phone"></span>
+
+                </a>
+
+
+                <!-- EMAIL -->
+
+                <a
+                    id="emailRow"
+                    class="contact-row"
+                >
+
+                    <div class="circle-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+
+                    <span id="email"></span>
+
+                </a>
+
+
+                <!-- ADDRESS -->
+
+                <div
+                    id="addressRow"
+                    class="contact-row"
+                >
+
+                    <div class="circle-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+
+                    <span id="address"></span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 SOCIAL MEDIA
+            ========================== -->
+
+            <section
+                id="socialLinks"
+                class="social-links"
+            >
+
+            </section>
+
+
+            <!-- =========================
+                 ACTIONS
+            ========================== -->
+
+            <section class="actions">
+
+                <button id="copyButton">
+
+                    <i class="fa-regular fa-copy"></i>
+
+                    Copy Details
+
+                </button>
+
+
+                <button
+                    id="saveButton"
+                    class="save-button"
+                >
+
+                    <i class="fa-regular fa-address-book"></i>
+
+                    Save to Phone
+
+                </button>
+
+            </section>
+
+
+            <!-- FOOTER -->
+
+            <div class="footer">
+
+                Digital Business Card
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <div
+        id="toast"
+        class="toast"
+    >
+        Copied!
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
