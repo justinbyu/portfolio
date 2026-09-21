@@ -29,7 +29,7 @@ const defaultData = {
 
         email: "justinriverodiaz@gmail.com",
 
-        address: "Metro Manila, Philippines"
+        address: "26 B. Lopez Karuhatan, Valenzuela City, Philippines"
 
     },
 
@@ -143,7 +143,7 @@ const defaultData = {
 
             accountName: "Justin Diaz",
 
-            accountNumber: "1234567890",
+            accountNumber: "002090774114",
 
             accountType: "Savings",
 
