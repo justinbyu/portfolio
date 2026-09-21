@@ -1,711 +1,796 @@
-// ==========================================
-// DIGITAL BUSINESS CARD
-// ==========================================
+/* =====================================================
+   DIGITAL BUSINESS CARD
+   PROFILE + CONTACT + SOCIAL + PAYMENTS
+===================================================== */
 
 
-// ==========================================
-// GET ELEMENTS
-// ==========================================
-
-const photoInput = document.getElementById("photoInput");
-
-const nameInput = document.getElementById("nameInput");
-const titleInput = document.getElementById("titleInput");
-const bioInput = document.getElementById("bioInput");
-
-const phoneInput = document.getElementById("phoneInput");
-const emailInput = document.getElementById("emailInput");
-const addressInput = document.getElementById("addressInput");
-
-const facebookInput = document.getElementById("facebookInput");
-const instagramInput = document.getElementById("instagramInput");
-const tiktokInput = document.getElementById("tiktokInput");
-const linkedinInput = document.getElementById("linkedinInput");
-const websiteInput = document.getElementById("websiteInput");
-
-const facebookToggle = document.getElementById("facebookToggle");
-const instagramToggle = document.getElementById("instagramToggle");
-const tiktokToggle = document.getElementById("tiktokToggle");
-const linkedinToggle = document.getElementById("linkedinToggle");
-const websiteToggle = document.getElementById("websiteToggle");
-
-
-// PREVIEW
-
-const profileImage = document.getElementById("profileImage");
-
-const previewName = document.getElementById("previewName");
-const previewTitle = document.getElementById("previewTitle");
-const previewBio = document.getElementById("previewBio");
-
-const previewPhone = document.getElementById("previewPhone");
-const previewEmail = document.getElementById("previewEmail");
-const previewAddress = document.getElementById("previewAddress");
-
-const phoneLink = document.getElementById("phoneLink");
-const emailLink = document.getElementById("emailLink");
-
-const addressItem = document.getElementById("addressItem");
-
-const socialLinks = document.getElementById("socialLinks");
-
-
-// BUTTONS
-
-const saveButton = document.getElementById("saveButton");
-const resetButton = document.getElementById("resetButton");
-
-const copyButton = document.getElementById("copyButton");
-const contactButton = document.getElementById("contactButton");
-
-const toast = document.getElementById("toast");
-
-
-// ==========================================
-// DEFAULT DATA
-// ==========================================
+/* =====================================================
+   CLIENT DATA
+===================================================== */
 
 const defaultData = {
 
-    name: "Your Name",
+    profile: {
 
-    title: "Model / Entrepreneur / Influencer",
+        name: "Justin Diaz",
 
-    bio: "Welcome to my digital business card.",
+        title: "CEO / Business Owner",
 
-    phone: "+63 912 345 6789",
+        bio: "Digital business solutions, QR products and more.",
 
-    email: "you@email.com",
+        photo: ""
 
-    address: "Manila, Philippines",
+    },
 
-    facebook: "https://facebook.com/",
 
-    instagram: "https://instagram.com/",
+    contact: {
 
-    tiktok: "https://tiktok.com/",
+        phone: "09623017609",
 
-    linkedin: "https://linkedin.com/",
+        email: "justin@example.com",
 
-    website: "https://example.com/",
+        address: "Metro Manila, Philippines"
 
-    facebookShow: true,
+    },
 
-    instagramShow: true,
 
-    tiktokShow: true,
+    social: {
 
-    linkedinShow: false,
+        facebook: "https://facebook.com/",
 
-    websiteShow: false,
+        instagram: "https://instagram.com/",
 
-    photo: ""
+        tiktok: "https://tiktok.com/",
+
+        messenger: ""
+
+    },
+
+
+    /* =================================================
+       PAYMENT METHODS
+    ================================================= */
+
+    payments: [
+
+        {
+
+            id: "gcash",
+
+            enabled: true,
+
+            name: "GCash",
+
+            accountName: "Justin Diaz",
+
+            accountNumber: "09623017609",
+
+            icon: "fa-mobile-screen-button",
+
+            iconClass: "gcash",
+
+            link: "https://gcash.com/"
+
+        },
+
+
+        {
+
+            id: "maya",
+
+            enabled: true,
+
+            name: "Maya",
+
+            accountName: "Justin Diaz",
+
+            accountNumber: "09181234567",
+
+            icon: "fa-wallet",
+
+            iconClass: "maya",
+
+            link: "https://www.maya.ph/"
+
+        },
+
+
+        {
+
+            id: "bdo",
+
+            enabled: true,
+
+            name: "BDO",
+
+            accountName: "Justin Diaz",
+
+            accountNumber: "1234567890",
+
+            icon: "fa-building-columns",
+
+            iconClass: "bank",
+
+            link: "#"
+
+        },
+
+
+        {
+
+            id: "bpi",
+
+            enabled: false,
+
+            name: "BPI",
+
+            accountName: "Justin Diaz",
+
+            accountNumber: "1234567890",
+
+            icon: "fa-building-columns",
+
+            iconClass: "bpi",
+
+            link: "#"
+
+        },
+
+
+        {
+
+            id: "gotyme",
+
+            enabled: false,
+
+            name: "GoTyme",
+
+            accountName: "Justin Diaz",
+
+            accountNumber: "09191234567",
+
+            icon: "fa-building-columns",
+
+            iconClass: "gotyme",
+
+            link: "#"
+
+        },
+
+
+        {
+
+            id: "paypal",
+
+            enabled: false,
+
+            name: "PayPal",
+
+            accountName: "Justin Diaz",
+
+            accountNumber: "justin@example.com",
+
+            icon: "fa-paypal",
+
+            iconClass: "paypal",
+
+            brandIcon: true,
+
+            link: "https://www.paypal.com/"
+
+        }
+
+    ]
 
 };
 
 
-// ==========================================
-// UPDATE PREVIEW
-// ==========================================
+/* =====================================================
+   LOAD CLIENT DATA
+===================================================== */
 
-function updatePreview() {
-
-    // PERSONAL INFORMATION
-
-    previewName.textContent =
-        nameInput.value || "Your Name";
-
-    previewTitle.textContent =
-        titleInput.value || "Your Title";
-
-    previewBio.textContent =
-        bioInput.value || "Your short bio will appear here.";
+let cardData = loadCardData();
 
 
-    // PHONE
+function loadCardData() {
 
-    if (phoneInput.value.trim() !== "") {
+    const savedData = localStorage.getItem(
+        "digitalBusinessCard"
+    );
 
-        previewPhone.textContent = phoneInput.value;
+    if (!savedData) {
 
-        phoneLink.href =
-            "tel:" + phoneInput.value;
-
-        phoneLink.style.display = "flex";
-
-    } else {
-
-        phoneLink.style.display = "none";
+        return defaultData;
 
     }
 
+    try {
 
-    // EMAIL
+        return JSON.parse(savedData);
 
-    if (emailInput.value.trim() !== "") {
+    } catch (error) {
 
-        previewEmail.textContent = emailInput.value;
+        console.error(
+            "Could not load saved card data:",
+            error
+        );
 
-        emailLink.href =
-            "mailto:" + emailInput.value;
-
-        emailLink.style.display = "flex";
-
-    } else {
-
-        emailLink.style.display = "none";
+        return defaultData;
 
     }
-
-
-    // ADDRESS
-
-    if (addressInput.value.trim() !== "") {
-
-        previewAddress.textContent =
-            addressInput.value;
-
-        addressItem.style.display = "flex";
-
-    } else {
-
-        addressItem.style.display = "none";
-
-    }
-
-
-    // SOCIAL MEDIA
-
-    renderSocialLinks();
 
 }
 
 
-// ==========================================
-// SOCIAL MEDIA
-// ==========================================
+/* =====================================================
+   SAVE CLIENT DATA
+===================================================== */
+
+function saveCardData() {
+
+    localStorage.setItem(
+        "digitalBusinessCard",
+        JSON.stringify(cardData)
+    );
+
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+function renderProfile() {
+
+    document.getElementById("name").textContent =
+        cardData.profile.name || "";
+
+    document.getElementById("title").textContent =
+        cardData.profile.title || "";
+
+    document.getElementById("bio").textContent =
+        cardData.profile.bio || "";
+
+
+    const photo =
+        document.getElementById("profilePhoto");
+
+    if (cardData.profile.photo) {
+
+        photo.src =
+            cardData.profile.photo;
+
+        photo.style.display =
+            "block";
+
+    } else {
+
+        photo.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =====================================================
+   CONTACT INFORMATION
+===================================================== */
+
+function renderContact() {
+
+    const phoneRow =
+        document.getElementById("phoneRow");
+
+    const emailRow =
+        document.getElementById("emailRow");
+
+    const addressRow =
+        document.getElementById("addressRow");
+
+
+    /* PHONE */
+
+    if (cardData.contact.phone) {
+
+        document.getElementById("phone").textContent =
+            cardData.contact.phone;
+
+        phoneRow.href =
+            `tel:${cardData.contact.phone}`;
+
+        phoneRow.style.display =
+            "flex";
+
+    } else {
+
+        phoneRow.style.display =
+            "none";
+
+    }
+
+
+    /* EMAIL */
+
+    if (cardData.contact.email) {
+
+        document.getElementById("email").textContent =
+            cardData.contact.email;
+
+        emailRow.href =
+            `mailto:${cardData.contact.email}`;
+
+        emailRow.style.display =
+            "flex";
+
+    } else {
+
+        emailRow.style.display =
+            "none";
+
+    }
+
+
+    /* ADDRESS */
+
+    if (cardData.contact.address) {
+
+        document.getElementById("address").textContent =
+            cardData.contact.address;
+
+        addressRow.style.display =
+            "flex";
+
+    } else {
+
+        addressRow.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =====================================================
+   SOCIAL MEDIA
+===================================================== */
 
 function renderSocialLinks() {
 
-    socialLinks.innerHTML = "";
+    const container =
+        document.getElementById("socialLinks");
+
+    container.innerHTML = "";
 
 
-    const socialMedia = [
+    const socialIcons = {
 
-        {
-            name: "Facebook",
-            icon: "fa-brands fa-facebook",
-            url: facebookInput.value,
-            show: facebookToggle.checked
-        },
+        facebook: "fa-facebook-f",
 
-        {
-            name: "Instagram",
-            icon: "fa-brands fa-instagram",
-            url: instagramInput.value,
-            show: instagramToggle.checked
-        },
+        instagram: "fa-instagram",
 
-        {
-            name: "TikTok",
-            icon: "fa-brands fa-tiktok",
-            url: tiktokInput.value,
-            show: tiktokToggle.checked
-        },
+        tiktok: "fa-tiktok",
 
-        {
-            name: "LinkedIn",
-            icon: "fa-brands fa-linkedin",
-            url: linkedinInput.value,
-            show: linkedinToggle.checked
-        },
+        messenger: "fa-facebook-messenger"
 
-        {
-            name: "Website",
-            icon: "fa-solid fa-globe",
-            url: websiteInput.value,
-            show: websiteToggle.checked
-        }
-
-    ];
+    };
 
 
-    socialMedia.forEach(social => {
+    Object.entries(cardData.social)
+        .forEach(([platform, url]) => {
 
-        if (
-            social.show &&
-            social.url.trim() !== ""
-        ) {
+            if (!url) return;
 
-            const link = document.createElement("a");
 
-            link.className = "social-link";
+            const link =
+                document.createElement("a");
 
-            link.href = social.url;
+            link.href = url;
 
             link.target = "_blank";
 
             link.rel = "noopener noreferrer";
 
-
-            link.innerHTML = `
-
-                <i class="${social.icon}"></i>
-
-                <span>
-                    ${social.name}
-                </span>
-
-            `;
+            link.title = platform;
 
 
-            socialLinks.appendChild(link);
+            const icon =
+                document.createElement("i");
 
-        }
+            icon.className =
+                `fa-brands ${socialIcons[platform] || "fa-link"}`;
 
-    });
+
+            link.appendChild(icon);
+
+            container.appendChild(link);
+
+        });
 
 }
 
 
-// ==========================================
-// PHOTO UPLOAD
-// ==========================================
+/* =====================================================
+   PAYMENT METHODS
+===================================================== */
 
-photoInput.addEventListener(
-    "change",
-    function () {
+function renderPayments() {
 
-        const file = this.files[0];
+    const section =
+        document.getElementById("paymentSection");
 
-        if (!file) {
-            return;
-        }
+    const container =
+        document.getElementById("paymentList");
 
 
-        const reader = new FileReader();
+    container.innerHTML = "";
 
 
-        reader.onload = function (event) {
+    /* Get only enabled payment methods */
 
-            profileImage.src =
-                event.target.result;
-
-        };
-
-
-        reader.readAsDataURL(file);
-
-    }
-);
-
-
-// ==========================================
-// INPUT LISTENERS
-// ==========================================
-
-const allInputs = document.querySelectorAll(
-    "input, textarea"
-);
-
-
-allInputs.forEach(input => {
-
-    input.addEventListener(
-        "input",
-        updatePreview
-    );
-
-    input.addEventListener(
-        "change",
-        updatePreview
-    );
-
-});
-
-
-// ==========================================
-// SAVE CARD
-// ==========================================
-
-saveButton.addEventListener(
-    "click",
-    function () {
-
-        const data = {
-
-            name: nameInput.value,
-
-            title: titleInput.value,
-
-            bio: bioInput.value,
-
-            phone: phoneInput.value,
-
-            email: emailInput.value,
-
-            address: addressInput.value,
-
-            facebook: facebookInput.value,
-
-            instagram: instagramInput.value,
-
-            tiktok: tiktokInput.value,
-
-            linkedin: linkedinInput.value,
-
-            website: websiteInput.value,
-
-            facebookShow:
-                facebookToggle.checked,
-
-            instagramShow:
-                instagramToggle.checked,
-
-            tiktokShow:
-                tiktokToggle.checked,
-
-            linkedinShow:
-                linkedinToggle.checked,
-
-            websiteShow:
-                websiteToggle.checked,
-
-            photo:
-                profileImage.src
-
-        };
-
-
-        localStorage.setItem(
-            "digitalBusinessCard",
-            JSON.stringify(data)
+    const enabledPayments =
+        cardData.payments.filter(
+            payment => payment.enabled === true
         );
 
 
-        showToast(
-            "Card saved successfully!"
-        );
+    /* Hide entire payment section
+       if there are no payments */
 
-    }
-);
+    if (enabledPayments.length === 0) {
 
-
-// ==========================================
-// LOAD SAVED CARD
-// ==========================================
-
-function loadCard() {
-
-    const saved =
-        localStorage.getItem(
-            "digitalBusinessCard"
-        );
-
-
-    if (!saved) {
-
-        loadData(defaultData);
+        section.style.display =
+            "none";
 
         return;
 
     }
 
 
-    try {
+    section.style.display =
+        "block";
 
-        const data =
-            JSON.parse(saved);
 
-        loadData(data);
+    enabledPayments.forEach(payment => {
 
-    } catch (error) {
+        const row =
+            document.createElement("a");
 
-        console.log(
-            "Could not load saved card."
-        );
 
-        loadData(defaultData);
+        row.className =
+            "payment-row";
 
-    }
+
+        row.href =
+            payment.link || "#";
+
+
+        /* Only open external links
+           in a new tab */
+
+        if (
+            payment.link &&
+            payment.link !== "#"
+        ) {
+
+            row.target =
+                "_blank";
+
+            row.rel =
+                "noopener noreferrer";
+
+        }
+
+
+        /* ICON */
+
+        const iconContainer =
+            document.createElement("div");
+
+
+        iconContainer.className =
+            `payment-icon ${payment.iconClass || ""}`;
+
+
+        const icon =
+            document.createElement("i");
+
+
+        if (payment.brandIcon) {
+
+            icon.className =
+                `fa-brands ${payment.icon}`;
+
+        } else {
+
+            icon.className =
+                `fa-solid ${payment.icon}`;
+
+        }
+
+
+        iconContainer.appendChild(icon);
+
+
+        /* INFORMATION */
+
+        const info =
+            document.createElement("div");
+
+
+        info.className =
+            "payment-info";
+
+
+        const name =
+            document.createElement("strong");
+
+
+        name.textContent =
+            payment.name;
+
+
+        const account =
+            document.createElement("span");
+
+
+        /*
+            Displays:
+
+            Justin Diaz
+            09171234567
+
+            OR
+
+            Justin Diaz
+            justin@email.com
+        */
+
+        if (payment.accountName) {
+
+            account.textContent =
+                `${payment.accountName} • ${payment.accountNumber || ""}`;
+
+        } else {
+
+            account.textContent =
+                payment.accountNumber || "";
+
+        }
+
+
+        info.appendChild(name);
+
+        info.appendChild(account);
+
+
+        /* CHEVRON */
+
+        const arrow =
+            document.createElement("i");
+
+
+        arrow.className =
+            "fa-solid fa-chevron-right chevron";
+
+
+        /* BUILD ROW */
+
+        row.appendChild(iconContainer);
+
+        row.appendChild(info);
+
+        row.appendChild(arrow);
+
+
+        container.appendChild(row);
+
+    });
 
 }
 
 
-// ==========================================
-// LOAD DATA INTO FORM
-// ==========================================
+/* =====================================================
+   COPY DETAILS
+===================================================== */
 
-function loadData(data) {
+function copyDetails() {
 
-    nameInput.value =
-        data.name || "";
+    const profile =
+        cardData.profile;
 
-    titleInput.value =
-        data.title || "";
-
-    bioInput.value =
-        data.bio || "";
-
-    phoneInput.value =
-        data.phone || "";
-
-    emailInput.value =
-        data.email || "";
-
-    addressInput.value =
-        data.address || "";
+    const contact =
+        cardData.contact;
 
 
-    facebookInput.value =
-        data.facebook || "";
+    let text = "";
 
-    instagramInput.value =
-        data.instagram || "";
+    text += `${profile.name}\n`;
 
-    tiktokInput.value =
-        data.tiktok || "";
+    text += `${profile.title}\n\n`;
 
-    linkedinInput.value =
-        data.linkedin || "";
+    if (profile.bio) {
 
-    websiteInput.value =
-        data.website || "";
-
-
-    facebookToggle.checked =
-        data.facebookShow !== false;
-
-    instagramToggle.checked =
-        data.instagramShow !== false;
-
-    tiktokToggle.checked =
-        data.tiktokShow !== false;
-
-    linkedinToggle.checked =
-        data.linkedinShow === true;
-
-    websiteToggle.checked =
-        data.websiteShow === true;
-
-
-    if (
-        data.photo &&
-        data.photo.startsWith("data:")
-    ) {
-
-        profileImage.src =
-            data.photo;
+        text += `${profile.bio}\n\n`;
 
     }
 
 
-    updatePreview();
+    if (contact.phone) {
 
-}
-
-
-// ==========================================
-// RESET
-// ==========================================
-
-resetButton.addEventListener(
-    "click",
-    function () {
-
-        localStorage.removeItem(
-            "digitalBusinessCard"
-        );
-
-
-        loadData(defaultData);
-
-
-        profileImage.src =
-            "https://via.placeholder.com/500x350?text=Your+Photo";
-
-
-        showToast(
-            "Card reset."
-        );
+        text += `Phone: ${contact.phone}\n`;
 
     }
-);
 
 
-// ==========================================
-// COPY DETAILS
-// ==========================================
+    if (contact.email) {
 
-copyButton.addEventListener(
-    "click",
-    async function () {
+        text += `Email: ${contact.email}\n`;
 
-        const details = `
-
-${nameInput.value}
-
-${titleInput.value}
-
-${bioInput.value}
-
-Phone:
-${phoneInput.value}
-
-Email:
-${emailInput.value}
-
-Address:
-${addressInput.value}
-
-Facebook:
-${facebookInput.value}
-
-Instagram:
-${instagramInput.value}
-
-TikTok:
-${tiktokInput.value}
-
-LinkedIn:
-${linkedinInput.value}
-
-Website:
-${websiteInput.value}
-
-        `.trim();
+    }
 
 
-        try {
+    if (contact.address) {
 
-            await navigator.clipboard.writeText(
-                details
-            );
+        text += `Address: ${contact.address}\n`;
+
+    }
+
+
+    navigator.clipboard
+        .writeText(text)
+        .then(() => {
 
             showToast(
                 "Details copied!"
             );
 
-        } catch (error) {
+        })
+        .catch(error => {
 
-            showToast(
-                "Copy failed. Try again."
+            console.error(
+                "Copy failed:",
+                error
             );
 
-        }
+        });
 
-    }
-);
-
-
-// ==========================================
-// SAVE TO PHONE
-// ==========================================
-
-contactButton.addEventListener(
-    "click",
-    function () {
-
-        const name =
-            nameInput.value || "Contact";
+}
 
 
-        const vcard = [
+/* =====================================================
+   SAVE CONTACT TO PHONE
+===================================================== */
 
-            "BEGIN:VCARD",
+function saveContact() {
 
-            "VERSION:3.0",
+    const profile =
+        cardData.profile;
 
-            `FN:${name}`,
-
-            `TITLE:${titleInput.value}`,
-
-            `TEL:${phoneInput.value}`,
-
-            `EMAIL:${emailInput.value}`,
-
-            `ADR:;;${addressInput.value}`,
-
-            `URL:${websiteInput.value}`,
-
-            `NOTE:${bioInput.value}`,
-
-            "END:VCARD"
-
-        ].join("\n");
+    const contact =
+        cardData.contact;
 
 
-        const blob =
-            new Blob(
-                [vcard],
-                {
-                    type: "text/vcard"
-                }
-            );
+    const vCard = [
+
+        "BEGIN:VCARD",
+
+        "VERSION:3.0",
+
+        `FN:${profile.name}`,
+
+        `TITLE:${profile.title}`,
+
+        `TEL:${contact.phone}`,
+
+        `EMAIL:${contact.email}`,
+
+        `ADR:;;${contact.address}`,
+
+        "END:VCARD"
+
+    ].join("\n");
 
 
-        const url =
-            URL.createObjectURL(blob);
-
-
-        const link =
-            document.createElement("a");
-
-
-        link.href = url;
-
-        link.download =
-            `${name.replace(/\s+/g, "_")}.vcf`;
-
-
-        document.body.appendChild(link);
-
-        link.click();
-
-        document.body.removeChild(link);
-
-
-        URL.revokeObjectURL(url);
-
-
-        showToast(
-            "Contact file created!"
+    const blob =
+        new Blob(
+            [vCard],
+            {
+                type:
+                    "text/vcard"
+            }
         );
 
-    }
-);
+
+    const url =
+        URL.createObjectURL(blob);
 
 
-// ==========================================
-// TOAST
-// ==========================================
+    const link =
+        document.createElement("a");
+
+
+    link.href = url;
+
+    link.download =
+        `${profile.name || "contact"}.vcf`;
+
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+
+    URL.revokeObjectURL(url);
+
+
+    showToast(
+        "Contact downloaded!"
+    );
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
 
 function showToast(message) {
 
+    const toast =
+        document.getElementById("toast");
+
+
     toast.textContent =
         message;
+
 
     toast.classList.add(
         "show"
     );
 
 
-    setTimeout(
-        function () {
+    setTimeout(() => {
 
-            toast.classList.remove(
-                "show"
-            );
+        toast.classList.remove(
+            "show"
+        );
 
-        },
-        2500
-    );
+    }, 2500);
 
 }
 
 
-// ==========================================
-// START
-// ==========================================
+/* =====================================================
+   BUTTON EVENTS
+===================================================== */
 
-loadCard();
+document
+    .getElementById("copyButton")
+    .addEventListener(
+        "click",
+        copyDetails
+    );
+
+
+document
+    .getElementById("saveButton")
+    .addEventListener(
+        "click",
+        saveContact
+    );
+
+
+/* =====================================================
+   INITIALIZE CARD
+===================================================== */
+
+renderProfile();
+
+renderContact();
+
+renderSocialLinks();
+
+renderPayments();
