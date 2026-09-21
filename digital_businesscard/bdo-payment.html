@@ -12,16 +12,40 @@
 
     <title>Pay via BDO</title>
 
+
+    <!-- Font Awesome -->
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
+
+
+    <!-- Google Font -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
 
     <style>
 
         * {
             box-sizing: border-box;
         }
+
 
         body {
 
@@ -30,18 +54,21 @@
             min-height: 100vh;
 
             font-family:
+                "Inter",
                 Arial,
-                Helvetica,
                 sans-serif;
 
             background:
-                linear-gradient(
-                    135deg,
-                    #f4f4f4,
-                    #ffffff
-                );
+                #f7f7f7;
 
             color: #222;
+
+        }
+
+
+        .page {
+
+            min-height: 100vh;
 
             display: flex;
 
@@ -60,34 +87,41 @@
 
             max-width: 400px;
 
-            background: #ffffff;
+            background: white;
 
-            border-radius: 25px;
+            border-radius: 24px;
 
-            padding: 28px 22px;
+            padding: 28px 22px 22px;
 
             text-align: center;
 
             box-shadow:
-                0 15px 45px
-                rgba(0, 0, 0, 0.10);
+                0 10px 35px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.08
+                );
 
         }
 
 
         /* =========================
            BDO ICON
-        ========================== */
+        ========================= */
 
         .bdo-icon {
 
-            width: 65px;
+            width: 66px;
 
-            height: 65px;
+            height: 66px;
 
-            margin: 0 auto 15px;
+            margin: 0 auto 14px;
 
             border-radius: 18px;
+
+            background: #f0f0f0;
 
             display: flex;
 
@@ -95,77 +129,72 @@
 
             justify-content: center;
 
-            background: #f1f1f1;
-
             color: #222;
 
-            font-size: 28px;
+            font-size: 30px;
 
         }
 
+
+        /* =========================
+           TITLE
+        ========================= */
 
         h1 {
 
             margin: 0;
 
-            font-size: 25px;
+            font-size: 27px;
+
+            font-weight: 500;
+
+            color: #292929;
 
         }
 
 
         .subtitle {
 
-            margin: 8px 0 20px;
+            margin:
+                10px
+                0
+                22px;
 
-            color: #777;
-
-            font-size: 14px;
+            font-size: 13px;
 
             line-height: 1.5;
+
+            color: #888;
 
         }
 
 
         /* =========================
-           ACCOUNT BOX
-        ========================== */
+           ACCOUNT DETAILS
+        ========================= */
 
         .account-box {
 
-            background: #f7f7f7;
+            background: #f6f6f6;
 
-            border-radius: 15px;
+            border-radius: 17px;
 
-            padding: 18px;
-
-            margin-bottom: 20px;
+            padding:
+                18px
+                18px;
 
             text-align: left;
 
-        }
-
-
-        .account-row {
-
-            margin-bottom: 13px;
-
-        }
-
-
-        .account-row:last-child {
-
-            margin-bottom: 0;
+            margin-bottom: 18px;
 
         }
 
 
         .label {
 
-            display: block;
+            font-size: 11px;
 
             color: #888;
-
-            font-size: 12px;
 
             margin-bottom: 4px;
 
@@ -176,112 +205,184 @@
 
             font-size: 16px;
 
-            font-weight: 600;
+            font-weight: 500;
 
-            word-break: break-word;
+            color: #222;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .value:last-child {
+
+            margin-bottom: 0;
 
         }
 
 
         /* =========================
            COPY BUTTON
-        ========================== */
+        ========================= */
 
         .copy-button {
 
             width: 100%;
 
-            padding: 13px;
+            height: 43px;
 
             border: none;
 
-            border-radius: 12px;
+            border-radius: 13px;
 
             background: #222;
 
-            color: #ffffff;
+            color: white;
 
-            font-size: 14px;
+            font-family: inherit;
+
+            font-size: 13px;
 
             cursor: pointer;
 
-            margin-bottom: 18px;
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
 
         }
 
 
         .copy-button:hover {
 
-            opacity: 0.9;
+            background: #333;
+
+        }
+
+
+        /* =========================
+           OPEN BDO APP BUTTON
+        ========================= */
+
+        .open-bdo-button {
+
+            width: 100%;
+
+            height: 43px;
+
+            margin-top: 10px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background: #0756a8;
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+        }
+
+
+        .open-bdo-button:hover {
+
+            background: #064b91;
 
         }
 
 
         /* =========================
            QR
-        ========================== */
-
-        .qr-container {
-
-            background: #ffffff;
-
-            border: 1px solid #eeeeee;
-
-            border-radius: 18px;
-
-            padding: 15px;
-
-            width: fit-content;
-
-            margin: 0 auto 18px;
-
-        }
-
-
-        .qr-container img {
-
-            width: 220px;
-
-            height: 220px;
-
-            object-fit: contain;
-
-            display: block;
-
-        }
-
+        ========================= */
 
         .qr-title {
 
-            font-size: 14px;
+            margin-top: 18px;
 
-            font-weight: bold;
+            margin-bottom: 10px;
 
-            margin-bottom: 12px;
+            font-size: 13px;
+
+            font-weight: 600;
 
         }
 
 
-        .instruction {
+        .qr-box {
 
-            font-size: 13px;
+            width: 252px;
 
-            color: #666;
+            height: 252px;
 
-            line-height: 1.6;
+            margin: 0 auto;
 
-            margin: 10px auto 20px;
+            padding: 12px;
 
-            max-width: 300px;
+            border:
+                1px solid
+                #e5e5e5;
+
+            border-radius: 18px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .qr-box img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+        }
+
+
+        .qr-description {
+
+            margin:
+                18px
+                25px
+                0;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            color: #777;
 
         }
 
 
         /* =========================
            BACK
-        ========================== */
+        ========================= */
 
-        .back-button {
+        .back-link {
 
             display: inline-flex;
 
@@ -289,48 +390,52 @@
 
             gap: 7px;
 
+            margin-top: 22px;
+
             color: #777;
 
             text-decoration: none;
 
-            font-size: 14px;
+            font-size: 13px;
 
         }
 
 
-        .back-button:hover {
+        .back-link:hover {
 
-            color: #222;
+            color: #333;
 
         }
 
 
         /* =========================
            NOTICE
-        ========================== */
+        ========================= */
 
         .notice {
 
             margin-top: 20px;
 
-            padding: 12px;
+            padding:
+                12px
+                14px;
 
-            background: #f8f8f8;
+            background: #f7f7f7;
 
-            border-radius: 10px;
+            border-radius: 12px;
 
-            font-size: 11px;
+            font-size: 10px;
 
             line-height: 1.5;
 
-            color: #888;
+            color: #999;
 
         }
 
 
         /* =========================
            TOAST
-        ========================== */
+        ========================= */
 
         .toast {
 
@@ -341,22 +446,28 @@
             bottom: 25px;
 
             transform:
-                translateX(-50%)
-                translateY(100px);
+                translate(
+                    -50%,
+                    20px
+                );
 
             background: #222;
 
-            color: #fff;
+            color: white;
 
-            padding: 12px 18px;
+            padding:
+                10px
+                18px;
 
-            border-radius: 10px;
+            border-radius: 25px;
 
-            font-size: 13px;
+            font-size: 12px;
 
             opacity: 0;
 
-            transition: 0.3s ease;
+            pointer-events: none;
+
+            transition: 0.25s;
 
         }
 
@@ -366,27 +477,35 @@
             opacity: 1;
 
             transform:
-                translateX(-50%)
-                translateY(0);
+                translate(
+                    -50%,
+                    0
+                );
 
         }
 
 
-        @media (max-width: 480px) {
+        /* =========================
+           MOBILE
+        ========================= */
 
-            .payment-card {
+        @media (
+            max-width: 500px
+        ) {
 
-                border-radius: 22px;
+            .page {
 
-                padding: 25px 18px;
+                padding: 12px;
+
+                align-items:
+                    flex-start;
 
             }
 
-            .qr-container img {
 
-                width: 200px;
+            .payment-card {
 
-                height: 200px;
+                margin-top: 15px;
 
             }
 
@@ -400,6 +519,9 @@
 <body>
 
 
+<div class="page">
+
+
     <main class="payment-card">
 
 
@@ -407,134 +529,127 @@
 
         <div class="bdo-icon">
 
-            <i class="fa-solid fa-building-columns"></i>
+            <i
+                class="fa-solid fa-building-columns"
+            ></i>
 
         </div>
 
 
+        <!-- TITLE -->
+
         <h1>
-
             Pay via BDO
-
         </h1>
 
 
         <p class="subtitle">
-
-            Use the account details below
-            to send your payment through BDO.
-
+            Use the account details below to send your payment through BDO.
         </p>
 
 
-        <!-- ACCOUNT INFORMATION -->
+        <!-- ACCOUNT DETAILS -->
 
         <div class="account-box">
 
 
-            <div class="account-row">
+            <div class="label">
+                Account Name
+            </div>
 
-                <span class="label">
-
-                    Account Name
-
-                </span>
-
-                <span
-                    id="accountName"
-                    class="value"
-                >
-
-                    Justin Diaz
-
-                </span>
-
+            <div
+                class="value"
+                id="accountName"
+            >
+                Justin Diaz
             </div>
 
 
-            <div class="account-row">
+            <div class="label">
+                Account Number
+            </div>
 
-                <span class="label">
-
-                    Account Number
-
-                </span>
-
-                <span
-                    id="accountNumber"
-                    class="value"
-                >
-
-                    1234567890
-
-                </span>
-
+            <div
+                class="value"
+                id="accountNumber"
+            >
+                1234567890
             </div>
 
 
-            <div class="account-row">
+            <div class="label">
+                Account Type
+            </div>
 
-                <span class="label">
-
-                    Account Type
-
-                </span>
-
-                <span
-                    id="accountType"
-                    class="value"
-                >
-
-                    Savings
-
-                </span>
-
+            <div
+                class="value"
+                id="accountType"
+            >
+                Savings
             </div>
 
 
         </div>
 
 
-        <!-- COPY DETAILS -->
+        <!-- COPY -->
 
         <button
-            id="copyDetails"
-            class="copy-button"
             type="button"
+            class="copy-button"
+            id="copyButton"
         >
 
-            <i class="fa-regular fa-copy"></i>
+            <i
+                class="fa-regular fa-copy"
+            ></i>
 
             Copy BDO Account Details
 
         </button>
 
 
-        <!-- QR -->
+        <!-- OPEN BDO APP -->
+
+        <button
+            type="button"
+            class="open-bdo-button"
+            id="openBdoButton"
+        >
+
+            <i
+                class="fa-solid fa-mobile-screen-button"
+            ></i>
+
+            Open BDO App
+
+        </button>
+
+
+        <!-- QR TITLE -->
 
         <div class="qr-title">
-
             Scan BDO QR
-
         </div>
 
 
-        <div class="qr-container">
+        <!-- QR -->
+
+        <div class="qr-box">
 
             <img
+                id="qrImage"
                 src="images/bdo-qr.png"
-                alt="BDO Payment QR Code"
+                alt="BDO QR Code"
             >
 
         </div>
 
 
-        <p class="instruction">
+        <!-- DESCRIPTION -->
 
-            Scan the QR code using the appropriate
-            BDO app feature, or use the account
-            details above to make your transfer.
-
+        <p class="qr-description">
+            Scan the QR code using the appropriate BDO app feature, or use the account details above to make your transfer.
         </p>
 
 
@@ -542,10 +657,12 @@
 
         <a
             href="index.html"
-            class="back-button"
+            class="back-link"
         >
 
-            <i class="fa-solid fa-arrow-left"></i>
+            <i
+                class="fa-solid fa-arrow-left"
+            ></i>
 
             Back to Digital Card
 
@@ -556,124 +673,203 @@
 
         <div class="notice">
 
-            Payments are processed directly through
-            BDO. This page is only a payment
-            information page and is not an official
-            BDO website.
+            Payments are processed directly through BDO.
+            This page is only a payment information page
+            and is not an official BDO website.
 
         </div>
 
 
     </main>
 
-
-    <div
-        id="toast"
-        class="toast"
-    >
-        Copied!
-    </div>
+</div>
 
 
-    <script>
+<!-- TOAST -->
 
-        const accountName =
-            document.getElementById(
-                "accountName"
-            ).textContent.trim();
-
-
-        const accountNumber =
-            document.getElementById(
-                "accountNumber"
-            ).textContent.trim();
+<div
+    class="toast"
+    id="toast"
+>
+    BDO account details copied!
+</div>
 
 
-        const accountType =
-            document.getElementById(
-                "accountType"
-            ).textContent.trim();
+<script>
+
+    /* ==========================================
+       GET DATA FROM URL
+    ========================================== */
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
 
 
-        document
-            .getElementById(
-                "copyDetails"
-            )
-            .addEventListener(
-                "click",
-                async function () {
-
-                    const details =
-`BDO Account
-
-Account Name:
-${accountName}
-
-Account Number:
-${accountNumber}
-
-Account Type:
-${accountType}`;
+    const accountName =
+        params.get("accountName")
+        || "Justin Diaz";
 
 
-                    try {
-
-                        await navigator
-                            .clipboard
-                            .writeText(
-                                details
-                            );
+    const accountNumber =
+        params.get("accountNumber")
+        || "1234567890";
 
 
-                        showToast(
-                            "BDO details copied!"
-                        );
+    const accountType =
+        params.get("accountType")
+        || "Savings";
 
 
-                    } catch (error) {
+    /* ==========================================
+       DISPLAY DATA
+    ========================================== */
 
-                        console.error(
-                            "Copy failed:",
-                            error
-                        );
-
-                    }
-
-                }
-            );
+    document
+        .getElementById("accountName")
+        .textContent =
+            accountName;
 
 
-        function showToast(message) {
-
-            const toast =
-                document.getElementById(
-                    "toast"
-                );
+    document
+        .getElementById("accountNumber")
+        .textContent =
+            accountNumber;
 
 
-            toast.textContent =
-                message;
+    document
+        .getElementById("accountType")
+        .textContent =
+            accountType;
 
 
-            toast.classList.add(
-                "show"
-            );
+    /* ==========================================
+       COPY BDO DETAILS
+    ========================================== */
+
+    document
+        .getElementById("copyButton")
+        .addEventListener(
+            "click",
+            async function() {
+
+                const details =
+`BDO Account Name: ${accountName}
+BDO Account Number: ${accountNumber}
+Account Type: ${accountType}`;
 
 
-            setTimeout(
-                () => {
+                try {
 
-                    toast.classList.remove(
-                        "show"
+                    await navigator.clipboard.writeText(
+                        details
                     );
 
-                },
-                2500
+                    showToast(
+                        "BDO account details copied!"
+                    );
+
+                }
+
+                catch (error) {
+
+                    const textarea =
+                        document.createElement(
+                            "textarea"
+                        );
+
+                    textarea.value =
+                        details;
+
+                    textarea.style.position =
+                        "fixed";
+
+                    textarea.style.opacity =
+                        "0";
+
+                    document.body.appendChild(
+                        textarea
+                    );
+
+                    textarea.select();
+
+                    document.execCommand(
+                        "copy"
+                    );
+
+                    textarea.remove();
+
+                    showToast(
+                        "BDO account details copied!"
+                    );
+
+                }
+
+            }
+        );
+
+
+    /* ==========================================
+       OPEN BDO APP
+    ========================================== */
+
+    document
+        .getElementById("openBdoButton")
+        .addEventListener(
+            "click",
+            function() {
+
+                /*
+                 * Try to open BDO Online.
+                 *
+                 * BDO does not currently publish
+                 * a public bdo:// deep-link format,
+                 * so this is a best-effort attempt.
+                 */
+
+                window.location.href =
+                    "bdo://";
+
+            }
+        );
+
+
+    /* ==========================================
+       TOAST
+    ========================================== */
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById(
+                "toast"
             );
 
-        }
 
-    </script>
+        toast.textContent =
+            message;
+
+
+        toast.classList.add(
+            "show"
+        );
+
+
+        setTimeout(
+            function() {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2200
+        );
+
+    }
+
+</script>
 
 
 </body>
