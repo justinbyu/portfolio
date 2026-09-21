@@ -12,16 +12,51 @@
 
     <title>Pay via GCash</title>
 
-    <!-- Font Awesome -->
+
+    <!-- =========================
+         GOOGLE FONT
+    ========================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================
+         FONT AWESOME
+    ========================== -->
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
+
     <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
 
         * {
             box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
         }
 
 
@@ -32,18 +67,37 @@
             min-height: 100vh;
 
             font-family:
+                "Inter",
                 Arial,
-                Helvetica,
                 sans-serif;
 
             background:
-                linear-gradient(
-                    135deg,
-                    #eef8ff,
-                    #ffffff
-                );
+                radial-gradient(
+                    circle at 90% 0%,
+                    #e3f1ff 0%,
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 0% 100%,
+                    #eaf5ff 0%,
+                    transparent 35%
+                ),
+                #f3f8fd;
 
-            color: #172b4d;
+            color: #1d1d1f;
+
+        }
+
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .page {
+
+            min-height: 100vh;
+
+            width: 100%;
 
             display: flex;
 
@@ -51,208 +105,221 @@
 
             align-items: center;
 
-            padding: 20px;
+            padding: 40px 20px;
 
         }
 
 
-        /* =========================
+        /* =====================================================
            PAYMENT CARD
-        ========================== */
+        ===================================================== */
 
         .payment-card {
 
             width: 100%;
 
-            max-width: 400px;
+            max-width: 950px;
 
             background: #ffffff;
 
-            border-radius: 25px;
+            border-radius: 34px;
 
-            padding: 28px 22px 25px;
+            padding:
+                55px
+                45px
+                45px;
 
             text-align: center;
 
             box-shadow:
-                0 15px 45px
-                rgba(0, 0, 0, 0.10);
+                0 25px 60px
+                rgba(
+                    35,
+                    75,
+                    120,
+                    0.12
+                );
 
         }
 
 
-        /* =========================
-           ICON
-        ========================== */
+        /* =====================================================
+           GCASH LOGO
+        ===================================================== */
 
-        .gcash-icon {
+        .gcash-logo {
 
-            width: 65px;
+            width: 105px;
 
-            height: 65px;
+            height: 105px;
 
-            margin: 0 auto 15px;
+            object-fit: contain;
 
-            border-radius: 18px;
+            display: block;
 
-            display: flex;
+            margin:
+                0 auto
+                18px;
+
+        }
+
+
+        /*
+         * If you don't have gcash-logo.png yet,
+         * this fallback will appear.
+         */
+
+        .logo-fallback {
+
+            width: 105px;
+
+            height: 105px;
+
+            margin:
+                0 auto
+                18px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087df5,
+                    #0066e6
+                );
+
+            color: white;
+
+            display: none;
 
             align-items: center;
 
             justify-content: center;
 
-            background: #e8f7ff;
+            font-size: 48px;
 
-            color: #007cff;
-
-            font-size: 28px;
+            font-weight: 600;
 
         }
 
 
-        /* =========================
+        /* =====================================================
            TITLE
-        ========================== */
+        ===================================================== */
 
         h1 {
 
             margin: 0;
 
-            font-size: 25px;
+            font-size: 46px;
 
-            color: #172b4d;
+            line-height: 1.15;
+
+            font-weight: 700;
+
+            letter-spacing: -1.5px;
+
+            color: #123d91;
 
         }
 
 
         .subtitle {
 
-            margin: 8px 0 20px;
+            margin:
+                15px
+                0
+                42px;
 
-            color: #777;
-
-            font-size: 14px;
+            font-size: 21px;
 
             line-height: 1.5;
 
+            font-weight: 400;
+
+            color: #71809b;
+
         }
 
 
-        /* =========================
-           ACCOUNT
-        ========================== */
+        /* =====================================================
+           ACCOUNT INFORMATION
+        ===================================================== */
 
         .account-box {
 
-            background: #f5f9fc;
+            width: 100%;
 
-            border-radius: 15px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #f1f8ff,
+                    #eaf4ff
+                );
 
-            padding: 15px;
+            border-radius: 24px;
 
-            margin-bottom: 20px;
+            padding:
+                34px
+                25px;
+
+            margin-bottom: 28px;
 
         }
 
 
-        .account-name {
+        .account-label {
+
+            margin-bottom: 8px;
 
             font-size: 17px;
 
-            font-weight: bold;
+            line-height: 1.4;
 
-            margin-bottom: 5px;
+            font-weight: 400;
 
-        }
-
-
-        .account-number {
-
-            font-size: 15px;
-
-            color: #6f7d8c;
+            color: #72819a;
 
         }
 
 
-        /* =========================
-           QR
-        ========================== */
+        .account-value {
 
-        .qr-container {
+            margin-bottom: 27px;
 
-            background: #ffffff;
+            font-size: 29px;
 
-            border: 1px solid #eeeeee;
+            line-height: 1.3;
 
-            border-radius: 18px;
+            font-weight: 400;
 
-            padding: 15px;
+            color: #172033;
 
-            width: fit-content;
-
-            margin: 0 auto 18px;
+            letter-spacing: 0;
 
         }
 
 
-        .qr-container img {
+        .account-value:last-child {
 
-            width: 240px;
-
-            height: 240px;
-
-            max-width: 100%;
-
-            display: block;
-
-            object-fit: contain;
+            margin-bottom: 0;
 
         }
 
 
-        /* =========================
-           INSTRUCTION
-        ========================== */
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
 
-        .instruction {
-
-            font-size: 14px;
-
-            color: #555;
-
-            line-height: 1.6;
-
-            margin: 10px auto 20px;
-
-            max-width: 300px;
-
-        }
-
-
-        /* =========================
-           OPEN GCASH
-        ========================== */
-
-        .gcash-button {
+        .payment-button {
 
             width: 100%;
 
+            min-height: 74px;
+
             border: none;
 
-            border-radius: 13px;
-
-            padding: 15px;
-
-            background: #007cff;
-
-            color: #ffffff;
-
-            font-size: 16px;
-
-            font-weight: bold;
-
-            cursor: pointer;
+            border-radius: 20px;
 
             display: flex;
 
@@ -260,102 +327,479 @@
 
             justify-content: center;
 
-            gap: 9px;
+            gap: 16px;
 
-            transition: 0.2s ease;
+            font-family:
+                "Inter",
+                Arial,
+                sans-serif;
+
+            font-size: 21px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.15s ease,
+                box-shadow 0.15s ease,
+                opacity 0.15s ease;
 
         }
 
 
-        .gcash-button:hover {
+        .payment-button:hover {
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        .payment-button:active {
+
+            transform:
+                translateY(0);
 
             opacity: 0.9;
 
-            transform: translateY(-1px);
+        }
+
+
+        .payment-button i {
+
+            font-size: 24px;
 
         }
 
 
-        /* =========================
-           BACK BUTTON
-        ========================== */
+        /* =====================================================
+           COPY BUTTON
+        ===================================================== */
 
-        .back-button {
+        .copy-button {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087ff5,
+                    #0875ed
+                );
+
+            color: #ffffff;
+
+            box-shadow:
+                0 10px 25px
+                rgba(
+                    0,
+                    125,
+                    255,
+                    0.20
+                );
+
+        }
+
+
+        /* =====================================================
+           OPEN GCASH BUTTON
+        ===================================================== */
+
+        .open-button {
+
+            margin-top: 18px;
+
+            background:
+                #17202d;
+
+            color: #ffffff;
+
+            box-shadow:
+                0 10px 25px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.12
+                );
+
+        }
+
+
+        /* =====================================================
+           QR SECTION
+        ===================================================== */
+
+        .qr-section {
+
+            margin-top: 38px;
+
+            padding-top: 32px;
+
+            border-top:
+                1px solid
+                #e7edf5;
+
+        }
+
+
+        .qr-title {
+
+            margin: 0;
+
+            font-size: 21px;
+
+            line-height: 1.4;
+
+            font-weight: 600;
+
+            color: #26354d;
+
+        }
+
+
+        .qr-subtitle {
+
+            margin:
+                8px
+                0
+                20px;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            font-weight: 400;
+
+            color: #7a879b;
+
+        }
+
+
+        .qr-box {
+
+            width: 250px;
+
+            height: 250px;
+
+            margin: 0 auto;
+
+            padding: 14px;
+
+            background: #ffffff;
+
+            border-radius: 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow:
+                0 8px 25px
+                rgba(
+                    40,
+                    70,
+                    110,
+                    0.08
+                );
+
+        }
+
+
+        .qr-image {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+            display: block;
+
+        }
+
+
+        .qr-error {
+
+            color: #777;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =====================================================
+           BACK LINK
+        ===================================================== */
+
+        .back-link {
 
             display: inline-flex;
 
             align-items: center;
 
-            gap: 7px;
+            justify-content: center;
 
-            margin-top: 18px;
+            gap: 12px;
 
-            color: #777;
+            margin-top: 38px;
+
+            color: #71809b;
 
             text-decoration: none;
 
+            font-size: 17px;
+
+            font-weight: 400;
+
+            transition:
+                color 0.2s ease;
+
+        }
+
+
+        .back-link:hover {
+
+            color: #123d91;
+
+        }
+
+
+        .back-link i {
+
+            font-size: 17px;
+
+        }
+
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
+
+        .toast {
+
+            position: fixed;
+
+            left: 50%;
+
+            bottom: 30px;
+
+            transform:
+                translate(
+                    -50%,
+                    20px
+                );
+
+            background: #17202d;
+
+            color: #ffffff;
+
+            padding:
+                13px
+                22px;
+
+            border-radius: 30px;
+
             font-size: 14px;
 
-        }
+            font-weight: 500;
 
+            opacity: 0;
 
-        .back-button:hover {
+            pointer-events: none;
 
-            color: #222;
+            transition:
+                opacity 0.25s ease,
+                transform 0.25s ease;
 
-        }
+            z-index: 9999;
 
-
-        /* =========================
-           NOTICE
-        ========================== */
-
-        .notice {
-
-            margin-top: 20px;
-
-            padding: 12px;
-
-            background: #f8f8f8;
-
-            border-radius: 10px;
-
-            font-size: 11px;
-
-            line-height: 1.5;
-
-            color: #888;
+            white-space: nowrap;
 
         }
 
 
-        /* =========================
+        .toast.show {
+
+            opacity: 1;
+
+            transform:
+                translate(
+                    -50%,
+                    0
+                );
+
+        }
+
+
+        /* =====================================================
            MOBILE
-        ========================== */
+        ===================================================== */
 
-        @media (max-width: 480px) {
+        @media (
+            max-width: 600px
+        ) {
 
-            body {
+            .page {
 
-                padding: 15px;
+                padding:
+                    20px
+                    14px;
+
+                align-items:
+                    flex-start;
 
             }
 
 
             .payment-card {
 
-                padding: 25px 18px;
+                margin-top: 10px;
 
-                border-radius: 22px;
+                padding:
+                    35px
+                    18px
+                    30px;
+
+                border-radius: 26px;
 
             }
 
 
-            .qr-container img {
+            .gcash-logo {
 
-                width: 220px;
+                width: 78px;
 
-                height: 220px;
+                height: 78px;
+
+                margin-bottom: 15px;
+
+            }
+
+
+            .logo-fallback {
+
+                width: 78px;
+
+                height: 78px;
+
+                border-radius: 22px;
+
+                font-size: 38px;
+
+            }
+
+
+            h1 {
+
+                font-size: 31px;
+
+                letter-spacing: -0.8px;
+
+            }
+
+
+            .subtitle {
+
+                font-size: 15px;
+
+                margin:
+                    12px
+                    0
+                    28px;
+
+            }
+
+
+            .account-box {
+
+                padding:
+                    25px
+                    18px;
+
+                border-radius: 18px;
+
+            }
+
+
+            .account-label {
+
+                font-size: 13px;
+
+            }
+
+
+            .account-value {
+
+                font-size: 22px;
+
+                margin-bottom: 22px;
+
+            }
+
+
+            .payment-button {
+
+                min-height: 58px;
+
+                border-radius: 15px;
+
+                font-size: 16px;
+
+                gap: 11px;
+
+            }
+
+
+            .payment-button i {
+
+                font-size: 19px;
+
+            }
+
+
+            .qr-section {
+
+                margin-top: 28px;
+
+                padding-top: 25px;
+
+            }
+
+
+            .qr-title {
+
+                font-size: 17px;
+
+            }
+
+
+            .qr-box {
+
+                width: 210px;
+
+                height: 210px;
+
+                border-radius: 18px;
+
+            }
+
+
+            .back-link {
+
+                font-size: 14px;
+
+                margin-top: 28px;
+
+            }
+
+
+            .back-link i {
+
+                font-size: 14px;
 
             }
 
@@ -369,166 +813,428 @@
 <body>
 
 
+<div class="page">
+
+
     <main class="payment-card">
 
 
-        <!-- =========================
-             GCASH ICON
-        ========================== -->
+        <!-- =================================================
+             GCASH LOGO
+        ================================================== -->
 
-        <div class="gcash-icon">
+        <img
+            src="images/gcash-logo.png"
+            alt="GCash"
+            class="gcash-logo"
+            id="gcashLogo"
+        >
 
-            <i class="fa-solid fa-mobile-screen-button"></i>
 
+        <!-- Fallback if logo is missing -->
+
+        <div
+            class="logo-fallback"
+            id="logoFallback"
+        >
+            G
         </div>
 
 
-        <!-- =========================
+        <!-- =================================================
              TITLE
-        ========================== -->
+        ================================================== -->
 
         <h1>
-
             Pay via GCash
-
         </h1>
 
 
         <p class="subtitle">
-
-            Scan the QR code below using your
-            GCash app to send your payment.
-
+            Send money using GCash Express Send
         </p>
 
 
-        <!-- =========================
+        <!-- =================================================
              ACCOUNT INFORMATION
-        ========================== -->
+        ================================================== -->
 
-        <div class="account-box">
+        <section class="account-box">
 
-            <div class="account-name">
 
-                Justin Diaz
-
+            <div class="account-label">
+                Account Name
             </div>
 
 
-            <div class="account-number">
-
-                0917 XXX XXXX
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             QR CODE
-        ========================== -->
-
-        <div class="qr-container">
-
-            <img
-                src="images/gcash-qr.png"
-                alt="GCash Payment QR Code"
+            <div
+                class="account-value"
+                id="accountName"
             >
-
-        </div>
-
-
-        <!-- =========================
-             INSTRUCTIONS
-        ========================== -->
-
-        <p class="instruction">
-
-            Open GCash, choose
-            <strong>Send Money</strong>,
-            then scan this QR code to send
-            your payment.
-
-        </p>
+                Justin Diaz
+            </div>
 
 
-        <!-- =========================
-             OPEN GCASH BUTTON
-        ========================== -->
+            <div class="account-label">
+                GCash Number
+            </div>
+
+
+            <div
+                class="account-value"
+                id="accountNumber"
+            >
+                09171234567
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             COPY NUMBER
+        ================================================== -->
 
         <button
-            id="openGcash"
-            class="gcash-button"
             type="button"
+            class="payment-button copy-button"
+            id="copyButton"
         >
 
-            <i class="fa-solid fa-mobile-screen-button"></i>
+            <i
+                class="fa-regular fa-copy"
+            ></i>
 
-            Open GCash
+            <span>
+                Copy GCash Number
+            </span>
 
         </button>
 
 
-        <!-- =========================
+        <!-- =================================================
+             OPEN GCASH
+        ================================================== -->
+
+        <button
+            type="button"
+            class="payment-button open-button"
+            id="openButton"
+        >
+
+            <i
+                class="fa-solid fa-mobile-screen-button"
+            ></i>
+
+            <span>
+                Open GCash App
+            </span>
+
+        </button>
+
+
+        <!-- =================================================
+             QR CODE
+        ================================================== -->
+
+        <section class="qr-section">
+
+
+            <h2 class="qr-title">
+                Or Scan My GCash QR
+            </h2>
+
+
+            <p class="qr-subtitle">
+                Scan the QR code using the GCash app
+            </p>
+
+
+            <div class="qr-box">
+
+                <img
+                    src="images/gcash-qr.png"
+                    alt="GCash QR Code"
+                    class="qr-image"
+                    id="qrImage"
+                >
+
+                <div
+                    class="qr-error"
+                    id="qrError"
+                    style="display: none;"
+                >
+                    GCash QR code not found.
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
              BACK
-        ========================== -->
+        ================================================== -->
 
         <a
             href="index.html"
-            class="back-button"
+            class="back-link"
         >
 
-            <i class="fa-solid fa-arrow-left"></i>
+            <i
+                class="fa-solid fa-arrow-left"
+            ></i>
 
-            Back to Digital Card
+            <span>
+                Back to Digital Card
+            </span>
 
         </a>
 
 
-        <!-- =========================
-             NOTICE
-        ========================== -->
-
-        <div class="notice">
-
-            Payments are processed directly through
-            GCash. This page is only a payment
-            information page and is not an official
-            GCash website.
-
-        </div>
-
-
     </main>
 
+</div>
 
-    <script>
 
-        /* =================================================
-           GCASH APP
-        ================================================= */
+<!-- =====================================================
+     TOAST
+====================================================== -->
 
-        document
-            .getElementById("openGcash")
-            .addEventListener(
-                "click",
-                function () {
+<div
+    class="toast"
+    id="toast"
+>
+    GCash number copied!
+</div>
 
-                    /*
-                     * Attempt to open the GCash app.
-                     *
-                     * If the phone does not recognize
-                     * the app link, the user can simply
-                     * close the prompt and scan the QR.
-                     */
 
-                    window.location.href =
-                        "gcash://";
+<script>
+
+    /* =====================================================
+       GET DATA FROM URL
+    ===================================================== */
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const accountName =
+        params.get("accountName")
+        || "Justin Diaz";
+
+
+    const accountNumber =
+        params.get("accountNumber")
+        || "09171234567";
+
+
+    const appLink =
+        params.get("appLink")
+        || "gcash://";
+
+
+    /* =====================================================
+       DISPLAY ACCOUNT NAME
+    ===================================================== */
+
+    document
+        .getElementById("accountName")
+        .textContent =
+            accountName;
+
+
+    /* =====================================================
+       DISPLAY GCASH NUMBER
+    ===================================================== */
+
+    document
+        .getElementById("accountNumber")
+        .textContent =
+            accountNumber;
+
+
+    /* =====================================================
+       GCASH LOGO FALLBACK
+    ===================================================== */
+
+    const gcashLogo =
+        document.getElementById(
+            "gcashLogo"
+        );
+
+
+    const logoFallback =
+        document.getElementById(
+            "logoFallback"
+        );
+
+
+    gcashLogo.addEventListener(
+        "error",
+        function() {
+
+            gcashLogo.style.display =
+                "none";
+
+            logoFallback.style.display =
+                "flex";
+
+        }
+    );
+
+
+    /* =====================================================
+       QR ERROR HANDLER
+    ===================================================== */
+
+    const qrImage =
+        document.getElementById(
+            "qrImage"
+        );
+
+
+    const qrError =
+        document.getElementById(
+            "qrError"
+        );
+
+
+    qrImage.addEventListener(
+        "error",
+        function() {
+
+            qrImage.style.display =
+                "none";
+
+            qrError.style.display =
+                "block";
+
+        }
+    );
+
+
+    /* =====================================================
+       COPY GCASH NUMBER
+    ===================================================== */
+
+    document
+        .getElementById("copyButton")
+        .addEventListener(
+            "click",
+            async function() {
+
+                try {
+
+                    await navigator.clipboard.writeText(
+                        accountNumber
+                    );
+
+                    showToast(
+                        "GCash number copied!"
+                    );
 
                 }
+
+                catch (error) {
+
+                    /*
+                     * Backup copy method
+                     */
+
+                    const textarea =
+                        document.createElement(
+                            "textarea"
+                        );
+
+                    textarea.value =
+                        accountNumber;
+
+                    textarea.style.position =
+                        "fixed";
+
+                    textarea.style.opacity =
+                        "0";
+
+                    document.body.appendChild(
+                        textarea
+                    );
+
+                    textarea.focus();
+
+                    textarea.select();
+
+                    document.execCommand(
+                        "copy"
+                    );
+
+                    textarea.remove();
+
+                    showToast(
+                        "GCash number copied!"
+                    );
+
+                }
+
+            }
+        );
+
+
+    /* =====================================================
+       OPEN GCASH APP
+    ===================================================== */
+
+    document
+        .getElementById("openButton")
+        .addEventListener(
+            "click",
+            function() {
+
+                window.location.href =
+                    appLink;
+
+            }
+        );
+
+
+    /* =====================================================
+       TOAST
+    ===================================================== */
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById(
+                "toast"
             );
 
-    </script>
+
+        toast.textContent =
+            message;
+
+
+        toast.classList.add(
+            "show"
+        );
+
+
+        setTimeout(
+            function() {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2200
+        );
+
+    }
+
+</script>
 
 
 </body>
