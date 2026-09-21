@@ -12,7 +12,7 @@ const defaultData = {
 
     profile: {
 
-        name: "YOUR_NAME",
+        name: "Justin Diaz",
 
         title: "CEO / Business Owner",
 
@@ -25,22 +25,26 @@ const defaultData = {
 
     contact: {
 
-        phone: "YOUR_PHONE",
+        phone: "09623017609",
 
-        email: "YOUR_EMAIL",
+        email: "justinriverodiaz@gmail.com",
 
-        address: "YOUR_ADDRESS"
+        address: "26 B. Lopez Karuhatan, Valenzuela City, Philippines"
 
     },
 
 
+    /* =================================================
+       SOCIAL MEDIA
+    ================================================= */
+
     social: {
 
-        facebook: "YOUR_FACEBOOK_URL",
+        facebook: "https://www.facebook.com/justin.meee/",
 
-        instagram: "YOUR_INSTAGRAM_URL",
+        instagram: "https://www.instagram.com/justin.ai.studio_/",
 
-        tiktok: "YOUR_TIKTOK_URL",
+        tiktok: "https://www.tiktok.com/@justinlds",
 
         messenger: ""
 
@@ -66,34 +70,27 @@ const defaultData = {
 
             name: "GCash",
 
-            accountName: "YOUR_ACCOUNT_NAME",
+            accountName: "Justin Diaz",
 
-            accountNumber: "YOUR_GCASH_NUMBER",
+            accountNumber: "09623017609",
 
             icon: "fa-mobile-screen-button",
 
             iconClass: "gcash",
 
             /*
-             * This is ONLY used by the
-             * Open GCash button.
-             *
-             * The main GCash payment row
-             * will NOT automatically launch it.
+             * GCash app link
              */
-
             appLink: "gcash://",
 
             /*
              * GCash payment page
              */
-
             fallbackUrl: "gcash-payment.html",
 
             /*
              * GCash QR
              */
-
             qrImage: "images/gcash-qr.png"
 
         },
@@ -111,13 +108,23 @@ const defaultData = {
 
             name: "Maya",
 
-            accountName: "YOUR_ACCOUNT_NAME",
+            accountName: "Justin Diaz",
 
-            accountNumber: "YOUR_MAYA_NUMBER",
+            accountNumber: "09623017609",
 
             icon: "fa-wallet",
 
             iconClass: "maya",
+
+            /*
+             * Maya payment page
+             */
+            fallbackUrl: "maya-payment.html",
+
+            /*
+             * Maya website
+             */
+            appLink: "https://www.maya.ph/",
 
             link: "https://www.maya.ph/"
 
@@ -136,9 +143,9 @@ const defaultData = {
 
             name: "BDO",
 
-            accountName: "YOUR_ACCOUNT_NAME",
+            accountName: "Justin Diaz",
 
-            accountNumber: "YOUR_BDO_ACCOUNT_NUMBER",
+            accountNumber: "002090774114",
 
             accountType: "Savings",
 
@@ -147,16 +154,20 @@ const defaultData = {
             iconClass: "bank",
 
             /*
-             * BDO PAYMENT PAGE
+             * BDO payment page
              */
-
             fallbackUrl: "bdo-payment.html",
 
             /*
              * BDO QR
              */
+            qrImage: "images/bdo-qr.png",
 
-            qrImage: "images/bdo-qr.png"
+            /*
+             * Official BDO Online page
+             */
+            bdoOnlineUrl:
+                "https://www.bdo.com.ph/personal/digital/bdo-online"
 
         },
 
@@ -173,9 +184,9 @@ const defaultData = {
 
             name: "BPI",
 
-            accountName: "YOUR_ACCOUNT_NAME",
+            accountName: "Justin Diaz",
 
-            accountNumber: "YOUR_BPI_ACCOUNT_NUMBER",
+            accountNumber: "1234567890",
 
             icon: "fa-building-columns",
 
@@ -198,9 +209,9 @@ const defaultData = {
 
             name: "GoTyme",
 
-            accountName: "YOUR_ACCOUNT_NAME",
+            accountName: "Justin Diaz",
 
-            accountNumber: "YOUR_GOTYME_NUMBER",
+            accountNumber: "09623017609",
 
             icon: "fa-building-columns",
 
@@ -223,9 +234,9 @@ const defaultData = {
 
             name: "PayPal",
 
-            accountName: "YOUR_ACCOUNT_NAME",
+            accountName: "Justin Diaz",
 
-            accountNumber: "YOUR_PAYPAL_EMAIL",
+            accountNumber: "justin@example.com",
 
             icon: "fa-paypal",
 
@@ -250,14 +261,12 @@ const defaultData = {
 let cardData = loadCardData();
 
 
+
 function loadCardData() {
 
     const savedData =
-
         localStorage.getItem(
-
             "digitalBusinessCard"
-
         );
 
 
@@ -277,11 +286,8 @@ function loadCardData() {
     catch (error) {
 
         console.error(
-
             "Could not load saved card data:",
-
             error
-
         );
 
         return defaultData;
@@ -299,11 +305,8 @@ function loadCardData() {
 function saveCardData() {
 
     localStorage.setItem(
-
         "digitalBusinessCard",
-
         JSON.stringify(cardData)
-
     );
 
 }
@@ -316,74 +319,36 @@ function saveCardData() {
 
 function renderProfile() {
 
-    const nameElement =
-
-        document.getElementById("name");
-
-
-    const titleElement =
-
-        document.getElementById("title");
+    document.getElementById("name").textContent =
+        cardData.profile.name || "";
 
 
-    const bioElement =
+    document.getElementById("title").textContent =
+        cardData.profile.title || "";
 
-        document.getElementById("bio");
+
+    document.getElementById("bio").textContent =
+        cardData.profile.bio || "";
 
 
     const photo =
-
         document.getElementById("profilePhoto");
 
 
-    if (nameElement) {
+    if (cardData.profile.photo) {
 
-        nameElement.textContent =
+        photo.src =
+            cardData.profile.photo;
 
-            cardData.profile.name || "";
-
-    }
-
-
-    if (titleElement) {
-
-        titleElement.textContent =
-
-            cardData.profile.title || "";
+        photo.style.display =
+            "block";
 
     }
 
+    else {
 
-    if (bioElement) {
-
-        bioElement.textContent =
-
-            cardData.profile.bio || "";
-
-    }
-
-
-    if (photo) {
-
-        if (cardData.profile.photo) {
-
-            photo.src =
-
-                cardData.profile.photo;
-
-            photo.style.display =
-
-                "block";
-
-        }
-
-        else {
-
-            photo.style.display =
-
-                "none";
-
-        }
+        photo.style.display =
+            "none";
 
     }
 
@@ -398,151 +363,86 @@ function renderProfile() {
 function renderContact() {
 
     const phoneRow =
-
         document.getElementById("phoneRow");
 
 
     const emailRow =
-
         document.getElementById("emailRow");
 
 
     const addressRow =
-
         document.getElementById("addressRow");
 
 
 
-    /* =========================
-       PHONE
-    ========================== */
+    /* PHONE */
 
-    if (
+    if (cardData.contact.phone) {
 
-        phoneRow &&
-
-        cardData.contact.phone
-
-    ) {
-
-        const phone =
-
-            document.getElementById("phone");
-
-
-        if (phone) {
-
-            phone.textContent =
-
-                cardData.contact.phone;
-
-        }
+        document.getElementById("phone").textContent =
+            cardData.contact.phone;
 
 
         phoneRow.href =
-
             `tel:${cardData.contact.phone}`;
 
 
         phoneRow.style.display =
-
             "flex";
 
     }
 
-    else if (phoneRow) {
+    else {
 
         phoneRow.style.display =
-
             "none";
 
     }
 
 
 
-    /* =========================
-       EMAIL
-    ========================== */
+    /* EMAIL */
 
-    if (
+    if (cardData.contact.email) {
 
-        emailRow &&
-
-        cardData.contact.email
-
-    ) {
-
-        const email =
-
-            document.getElementById("email");
-
-
-        if (email) {
-
-            email.textContent =
-
-                cardData.contact.email;
-
-        }
+        document.getElementById("email").textContent =
+            cardData.contact.email;
 
 
         emailRow.href =
-
             `mailto:${cardData.contact.email}`;
 
 
         emailRow.style.display =
-
             "flex";
 
     }
 
-    else if (emailRow) {
+    else {
 
         emailRow.style.display =
-
             "none";
 
     }
 
 
 
-    /* =========================
-       ADDRESS
-    ========================== */
+    /* ADDRESS */
 
-    if (
+    if (cardData.contact.address) {
 
-        addressRow &&
-
-        cardData.contact.address
-
-    ) {
-
-        const address =
-
-            document.getElementById("address");
-
-
-        if (address) {
-
-            address.textContent =
-
-                cardData.contact.address;
-
-        }
+        document.getElementById("address").textContent =
+            cardData.contact.address;
 
 
         addressRow.style.display =
-
             "flex";
 
     }
 
-    else if (addressRow) {
+    else {
 
         addressRow.style.display =
-
             "none";
 
     }
@@ -558,19 +458,9 @@ function renderContact() {
 function renderSocialLinks() {
 
     const container =
-
         document.getElementById(
-
             "socialLinks"
-
         );
-
-
-    if (!container) {
-
-        return;
-
-    }
 
 
     container.innerHTML = "";
@@ -578,13 +468,17 @@ function renderSocialLinks() {
 
     const socialIcons = {
 
-        facebook: "fa-facebook-f",
+        facebook:
+            "fa-facebook-f",
 
-        instagram: "fa-instagram",
+        instagram:
+            "fa-instagram",
 
-        tiktok: "fa-tiktok",
+        tiktok:
+            "fa-tiktok",
 
-        messenger: "fa-facebook-messenger"
+        messenger:
+            "fa-facebook-messenger"
 
     };
 
@@ -593,61 +487,48 @@ function renderSocialLinks() {
 
         .forEach(([platform, url]) => {
 
-            if (
-
-                !url ||
-
-                url.startsWith("YOUR_")
-
-            ) {
-
-                return;
-
-            }
+            if (!url) return;
 
 
             const link =
-
                 document.createElement("a");
 
 
             link.href =
-
                 url;
 
 
             link.target =
-
                 "_blank";
 
 
             link.rel =
-
                 "noopener noreferrer";
 
 
             link.title =
-
                 platform;
 
 
             const icon =
-
                 document.createElement("i");
 
 
             icon.className =
-
                 `fa-brands ${
                     socialIcons[platform] ||
                     "fa-link"
                 }`;
 
 
-            link.appendChild(icon);
+            link.appendChild(
+                icon
+            );
 
 
-            container.appendChild(link);
+            container.appendChild(
+                link
+            );
 
         });
 
@@ -662,57 +543,37 @@ function renderSocialLinks() {
 function renderPayments() {
 
     const section =
-
         document.getElementById(
-
             "paymentSection"
-
         );
 
 
     const container =
-
         document.getElementById(
-
             "paymentList"
-
         );
-
-
-    if (!section || !container) {
-
-        return;
-
-    }
 
 
     container.innerHTML = "";
 
 
     const enabledPayments =
-
         cardData.payments.filter(
-
             payment =>
-
                 payment.enabled === true
-
         );
 
 
     /*
      * Hide payment section
-     * when no payment is enabled.
+     * if nothing is enabled.
      */
 
     if (
-
         enabledPayments.length === 0
-
     ) {
 
         section.style.display =
-
             "none";
 
         return;
@@ -721,23 +582,19 @@ function renderPayments() {
 
 
     section.style.display =
-
         "block";
 
 
 
     enabledPayments.forEach(
-
         payment => {
 
 
             const row =
-
                 document.createElement("a");
 
 
             row.className =
-
                 "payment-row";
 
 
@@ -747,46 +604,43 @@ function renderPayments() {
             ================================================= */
 
             if (
-
                 payment.id === "gcash"
-
             ) {
 
                 /*
-                 * IMPORTANT:
+                 * Main GCash row opens
+                 * the GCash payment page.
                  *
-                 * GCash NO LONGER automatically
-                 * launches the GCash application.
-                 *
-                 * It opens the payment page first.
+                 * It does NOT automatically
+                 * launch the GCash app.
                  */
 
-                const params =
+                row.href =
+                    createGcashPaymentUrl(
+                        payment
+                    );
 
-                    new URLSearchParams({
+            }
 
-                        accountName:
 
-                            payment.accountName || "",
 
-                        accountNumber:
+            /* =================================================
+               MAYA
+            ================================================= */
 
-                            payment.accountNumber || "",
+            else if (
+                payment.id === "maya"
+            ) {
 
-                        appLink:
-
-                            payment.appLink || "",
-
-                        qrImage:
-
-                            payment.qrImage || ""
-
-                    });
-
+                /*
+                 * Main Maya row opens
+                 * the Maya payment page.
+                 */
 
                 row.href =
-
-                    `gcash-payment.html?${params.toString()}`;
+                    createMayaPaymentUrl(
+                        payment
+                    );
 
             }
 
@@ -797,21 +651,17 @@ function renderPayments() {
             ================================================= */
 
             else if (
-
                 payment.id === "bdo"
-
             ) {
 
                 /*
-                 * BDO opens the BDO payment page.
+                 * Main BDO row opens
+                 * the BDO payment page.
                  */
 
                 row.href =
-
                     createBdoPaymentUrl(
-
                         payment
-
                     );
 
             }
@@ -825,25 +675,19 @@ function renderPayments() {
             else {
 
                 row.href =
-
                     payment.link || "#";
 
 
                 if (
-
                     payment.link &&
-
                     payment.link !== "#"
-
                 ) {
 
                     row.target =
-
                         "_blank";
 
 
                     row.rel =
-
                         "noopener noreferrer";
 
                 }
@@ -857,26 +701,22 @@ function renderPayments() {
             ========================== */
 
             const iconContainer =
-
                 document.createElement("div");
 
 
             iconContainer.className =
-
                 `payment-icon ${
                     payment.iconClass || ""
                 }`;
 
 
             const icon =
-
                 document.createElement("i");
 
 
             if (payment.brandIcon) {
 
                 icon.className =
-
                     `fa-brands ${payment.icon}`;
 
             }
@@ -884,16 +724,13 @@ function renderPayments() {
             else {
 
                 icon.className =
-
                     `fa-solid ${payment.icon}`;
 
             }
 
 
             iconContainer.appendChild(
-
                 icon
-
             );
 
 
@@ -903,38 +740,30 @@ function renderPayments() {
             ========================== */
 
             const info =
-
                 document.createElement("div");
 
 
             info.className =
-
                 "payment-info";
 
 
             const name =
-
                 document.createElement("strong");
 
 
             name.textContent =
-
                 payment.name;
 
 
             const account =
-
                 document.createElement("span");
 
 
             if (
-
                 payment.accountName
-
             ) {
 
                 account.textContent =
-
                     `${payment.accountName} • ${
                         payment.accountNumber || ""
                     }`;
@@ -944,15 +773,19 @@ function renderPayments() {
             else {
 
                 account.textContent =
-
                     payment.accountNumber || "";
 
             }
 
 
-            info.appendChild(name);
+            info.appendChild(
+                name
+            );
 
-            info.appendChild(account);
+
+            info.appendChild(
+                account
+            );
 
 
 
@@ -961,50 +794,101 @@ function renderPayments() {
             ========================== */
 
             const arrow =
-
                 document.createElement("i");
 
 
             arrow.className =
-
                 "fa-solid fa-chevron-right chevron";
 
 
 
             /* =========================
-               BUILD PAYMENT ROW
+               BUILD
             ========================== */
 
             row.appendChild(
-
                 iconContainer
-
             );
 
 
             row.appendChild(
-
                 info
-
             );
 
 
             row.appendChild(
-
                 arrow
-
             );
 
 
             container.appendChild(
-
                 row
-
             );
 
         }
-
     );
+
+}
+
+
+
+/* =====================================================
+   GCASH PAYMENT PAGE
+===================================================== */
+
+function createGcashPaymentUrl(
+    payment
+) {
+
+    const params =
+        new URLSearchParams({
+
+            accountName:
+                payment.accountName || "",
+
+            accountNumber:
+                payment.accountNumber || "",
+
+            appLink:
+                payment.appLink || "",
+
+            qrImage:
+                payment.qrImage || ""
+
+        });
+
+
+    return `gcash-payment.html?${params.toString()}`;
+
+}
+
+
+
+/* =====================================================
+   MAYA PAYMENT PAGE
+===================================================== */
+
+function createMayaPaymentUrl(
+    payment
+) {
+
+    const params =
+        new URLSearchParams({
+
+            accountName:
+                payment.accountName || "",
+
+            accountNumber:
+                payment.accountNumber || "",
+
+            appLink:
+                payment.appLink ||
+                "https://www.maya.ph/"
+
+        });
+
+
+    return `maya-payment.html?${params.toString()}`;
 
 }
 
@@ -1014,27 +898,28 @@ function renderPayments() {
    BDO PAYMENT PAGE
 ===================================================== */
 
-function createBdoPaymentUrl(payment) {
+function createBdoPaymentUrl(
+    payment
+) {
 
     const params =
-
         new URLSearchParams({
 
             accountName:
-
                 payment.accountName || "",
 
             accountNumber:
-
                 payment.accountNumber || "",
 
             accountType:
-
                 payment.accountType || "",
 
             qrImage:
+                payment.qrImage || "",
 
-                payment.qrImage || ""
+            bdoOnlineUrl:
+                payment.bdoOnlineUrl ||
+                "https://www.bdo.com.ph/personal/digital/bdo-online"
 
         });
 
@@ -1046,19 +931,99 @@ function createBdoPaymentUrl(payment) {
 
 
 /* =====================================================
-   GCASH PAYMENT FALLBACK
+   GCASH PAYMENT HANDLER
 ===================================================== */
 
-/*
- * This function is kept for compatibility with
- * the existing project.
- *
- * The main GCash payment row DOES NOT call this.
- */
+function openGcashPayment(
+    payment
+) {
 
-function openGcashPayment(payment) {
+    /*
+     * Check if we're on mobile.
+     */
 
-    openGcashFallback(payment);
+    const isMobile =
+        /Android|iPhone|iPad|iPod/i.test(
+            navigator.userAgent
+        );
+
+
+    /*
+     * Desktop:
+     * Go directly to the payment page.
+     */
+
+    if (!isMobile) {
+
+        openGcashFallback(
+            payment
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Mobile:
+     * Try opening GCash.
+     */
+
+    let appOpened = false;
+
+
+    const handleVisibility =
+        () => {
+
+            if (
+                document.hidden
+            ) {
+
+                appOpened =
+                    true;
+
+            }
+
+        };
+
+
+    document.addEventListener(
+        "visibilitychange",
+        handleVisibility
+    );
+
+
+    /*
+     * Try opening GCash.
+     */
+
+    window.location.href =
+        payment.appLink ||
+        "gcash://";
+
+
+    /*
+     * If GCash doesn't open,
+     * return to the payment page.
+     */
+
+    setTimeout(() => {
+
+        document.removeEventListener(
+            "visibilitychange",
+            handleVisibility
+        );
+
+
+        if (!appOpened) {
+
+            openGcashFallback(
+                payment
+            );
+
+        }
+
+    }, 1800);
 
 }
 
@@ -1068,18 +1033,15 @@ function openGcashPayment(payment) {
    GCASH FALLBACK
 ===================================================== */
 
-function openGcashFallback(payment) {
+function openGcashFallback(
+    payment
+) {
 
     if (
-
-        payment &&
-
         payment.fallbackUrl
-
     ) {
 
         window.location.href =
-
             payment.fallbackUrl;
 
         return;
@@ -1087,11 +1049,9 @@ function openGcashFallback(payment) {
     }
 
 
-    if (payment) {
-
-        showGcashQrModal(payment);
-
-    }
+    showGcashQrModal(
+        payment
+    );
 
 }
 
@@ -1101,14 +1061,17 @@ function openGcashFallback(payment) {
    GCASH QR MODAL
 ===================================================== */
 
-function showGcashQrModal(payment) {
+function showGcashQrModal(
+    payment
+) {
+
+    /*
+     * Remove old modal.
+     */
 
     const oldModal =
-
         document.getElementById(
-
             "gcashQrModal"
-
         );
 
 
@@ -1119,13 +1082,15 @@ function showGcashQrModal(payment) {
     }
 
 
-    const modal =
+    /*
+     * Create modal.
+     */
 
+    const modal =
         document.createElement("div");
 
 
     modal.id =
-
         "gcashQrModal";
 
 
@@ -1136,17 +1101,11 @@ function showGcashQrModal(payment) {
             <div class="gcash-modal">
 
                 <button
-
                     class="gcash-close"
-
                     id="gcashClose"
-
                     type="button"
-
                 >
-
                     ×
-
                 </button>
 
 
@@ -1158,18 +1117,14 @@ function showGcashQrModal(payment) {
 
 
                 <h2>
-
                     Send via GCash
-
                 </h2>
 
 
                 <p class="gcash-account-name">
 
                     ${escapeHtml(
-
                         payment.accountName || ""
-
                     )}
 
                 </p>
@@ -1178,9 +1133,7 @@ function showGcashQrModal(payment) {
                 <p class="gcash-account-number">
 
                     ${escapeHtml(
-
                         payment.accountNumber || ""
-
                     )}
 
                 </p>
@@ -1194,17 +1147,11 @@ function showGcashQrModal(payment) {
                     `
 
                     <img
-
                         class="gcash-qr"
-
                         src="${escapeHtml(
-
                             payment.qrImage
-
                         )}"
-
                         alt="GCash QR Code"
-
                     >
 
                     `
@@ -1226,20 +1173,15 @@ function showGcashQrModal(payment) {
                 <p class="gcash-instruction">
 
                     Scan this QR code using the
-
                     GCash app to send money.
 
                 </p>
 
 
                 <button
-
                     id="openGcashAppButton"
-
                     class="gcash-open-button"
-
                     type="button"
-
                 >
 
                     <i class="fa-solid fa-mobile-screen-button"></i>
@@ -1256,73 +1198,42 @@ function showGcashQrModal(payment) {
 
 
     document.body.appendChild(
-
         modal
-
     );
 
 
+    /*
+     * Close button.
+     */
 
-    /* =========================
-       CLOSE BUTTON
-    ========================== */
-
-    const closeButton =
-
-        document.getElementById(
-
+    document
+        .getElementById(
             "gcashClose"
-
-        );
-
-
-    if (closeButton) {
-
-        closeButton.addEventListener(
-
+        )
+        .addEventListener(
             "click",
-
             () => {
-
                 modal.remove();
-
             }
-
         );
 
-    }
 
+    /*
+     * Click outside.
+     */
 
-
-    /* =========================
-       CLICK OUTSIDE
-    ========================== */
-
-    const overlay =
-
-        modal.querySelector(
-
+    modal
+        .querySelector(
             ".gcash-modal-overlay"
-
-        );
-
-
-    if (overlay) {
-
-        overlay.addEventListener(
-
+        )
+        .addEventListener(
             "click",
-
             event => {
 
                 if (
-
                     event.target.classList.contains(
-
                         "gcash-modal-overlay"
-
                     )
-
                 ) {
 
                     modal.remove();
@@ -1330,83 +1241,42 @@ function showGcashQrModal(payment) {
                 }
 
             }
-
         );
 
-    }
 
+    /*
+     * Open GCash button.
+     */
 
-
-    /* =========================
-       OPEN GCASH BUTTON
-    ========================== */
-
-    const openButton =
-
-        document.getElementById(
-
+    document
+        .getElementById(
             "openGcashAppButton"
-
-        );
-
-
-    if (openButton) {
-
-        openButton.addEventListener(
-
+        )
+        .addEventListener(
             "click",
-
             () => {
 
                 tryOpenGcashApp(
-
                     payment
-
                 );
 
             }
-
         );
-
-    }
 
 }
 
 
 
 /* =====================================================
-   OPEN GCASH APP
+   TRY OPEN GCASH APP
 ===================================================== */
 
-function tryOpenGcashApp(payment) {
-
-    /*
-     * This function ONLY runs when the
-     * user explicitly presses "Open GCash".
-     *
-     * It does NOT run when the user taps
-     * GCash on the main digital card.
-     */
-
-    if (
-
-        payment &&
-
-        payment.appLink
-
-    ) {
-
-        window.location.href =
-
-            payment.appLink;
-
-        return;
-
-    }
-
+function tryOpenGcashApp(
+    payment
+) {
 
     window.location.href =
-
+        payment.appLink ||
         "gcash://";
 
 }
@@ -1417,19 +1287,17 @@ function tryOpenGcashApp(payment) {
    ESCAPE HTML
 ===================================================== */
 
-function escapeHtml(value) {
+function escapeHtml(
+    value
+) {
 
     const div =
-
         document.createElement(
-
             "div"
-
         );
 
 
     div.textContent =
-
         value;
 
 
@@ -1446,12 +1314,10 @@ function escapeHtml(value) {
 function copyDetails() {
 
     const profile =
-
         cardData.profile;
 
 
     const contact =
-
         cardData.contact;
 
 
@@ -1459,102 +1325,72 @@ function copyDetails() {
 
 
     text +=
-
         `${profile.name}\n`;
 
 
     text +=
-
         `${profile.title}\n\n`;
 
 
     if (
-
         profile.bio
-
     ) {
 
         text +=
-
             `${profile.bio}\n\n`;
 
     }
 
 
     if (
-
         contact.phone
-
     ) {
 
         text +=
-
             `Phone: ${contact.phone}\n`;
 
     }
 
 
     if (
-
         contact.email
-
     ) {
 
         text +=
-
             `Email: ${contact.email}\n`;
 
     }
 
 
     if (
-
         contact.address
-
     ) {
 
         text +=
-
             `Address: ${contact.address}\n`;
 
     }
 
 
-    if (
+    navigator.clipboard
+        .writeText(text)
 
-        navigator.clipboard &&
+        .then(() => {
 
-        navigator.clipboard.writeText
+            showToast(
+                "Details copied!"
+            );
 
-    ) {
+        })
 
-        navigator.clipboard
+        .catch(error => {
 
-            .writeText(text)
+            console.error(
+                "Copy failed:",
+                error
+            );
 
-            .then(() => {
-
-                showToast(
-
-                    "Details copied!"
-
-                );
-
-            })
-
-            .catch(error => {
-
-                console.error(
-
-                    "Copy failed:",
-
-                    error
-
-                );
-
-            });
-
-    }
+        });
 
 }
 
@@ -1567,12 +1403,10 @@ function copyDetails() {
 function saveContact() {
 
     const profile =
-
         cardData.profile;
 
 
     const contact =
-
         cardData.contact;
 
 
@@ -1598,54 +1432,37 @@ function saveContact() {
 
 
     const blob =
-
         new Blob(
-
             [vCard],
-
             {
-
                 type:
-
                     "text/vcard"
-
             }
-
         );
 
 
     const url =
-
         URL.createObjectURL(
-
             blob
-
         );
 
 
     const link =
-
         document.createElement(
-
             "a"
-
         );
 
 
     link.href =
-
         url;
 
 
     link.download =
-
         `${profile.name || "contact"}.vcf`;
 
 
     document.body.appendChild(
-
         link
-
     );
 
 
@@ -1653,23 +1470,17 @@ function saveContact() {
 
 
     document.body.removeChild(
-
         link
-
     );
 
 
     URL.revokeObjectURL(
-
         url
-
     );
 
 
     showToast(
-
         "Contact downloaded!"
-
     );
 
 }
@@ -1680,42 +1491,29 @@ function saveContact() {
    TOAST
 ===================================================== */
 
-function showToast(message) {
+function showToast(
+    message
+) {
 
     const toast =
-
         document.getElementById(
-
             "toast"
-
         );
 
 
-    if (!toast) {
-
-        return;
-
-    }
-
-
     toast.textContent =
-
         message;
 
 
     toast.classList.add(
-
         "show"
-
     );
 
 
     setTimeout(() => {
 
         toast.classList.remove(
-
             "show"
-
         );
 
     }, 2500);
@@ -1728,49 +1526,24 @@ function showToast(message) {
    BUTTON EVENTS
 ===================================================== */
 
-const copyButton =
-
-    document.getElementById(
-
+document
+    .getElementById(
         "copyButton"
-
-    );
-
-
-if (copyButton) {
-
-    copyButton.addEventListener(
-
+    )
+    .addEventListener(
         "click",
-
         copyDetails
-
     );
 
-}
 
-
-
-const saveButton =
-
-    document.getElementById(
-
+document
+    .getElementById(
         "saveButton"
-
-    );
-
-
-if (saveButton) {
-
-    saveButton.addEventListener(
-
+    )
+    .addEventListener(
         "click",
-
         saveContact
-
     );
-
-}
 
 
 
