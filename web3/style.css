@@ -1,0 +1,1347 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050505;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =====================================
+   HERO
+===================================== */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    padding: 70px 20px;
+
+    overflow: hidden;
+}
+
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 700px;
+
+    left: 50%;
+    top: 45%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(70, 170, 255, .12),
+            transparent 70%
+        );
+
+    filter: blur(50px);
+
+    pointer-events: none;
+}
+
+
+.hero-content {
+    width: 100%;
+    max-width: 1200px;
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.eyebrow {
+    color: #777;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 20px;
+}
+
+
+h1 {
+    font-size:
+        clamp(
+            55px,
+            8vw,
+            100px
+        );
+
+    line-height: .9;
+
+    letter-spacing: -5px;
+
+    margin-bottom: 25px;
+}
+
+
+h1 span {
+    color: #4db8ff;
+}
+
+
+.hero-description {
+    max-width: 550px;
+
+    margin: auto;
+
+    color: #888;
+
+    line-height: 1.6;
+
+    font-size: 16px;
+}
+
+
+/* =====================================
+   DEMO
+===================================== */
+
+.demo {
+    width: 900px;
+
+    max-width: 95vw;
+
+    height: 440px;
+
+    margin: 70px auto 30px;
+
+    position: relative;
+
+    perspective: 1400px;
+}
+
+
+/* =====================================
+   TAPIND BUSINESS CARD
+===================================== */
+
+.card-container {
+    position: absolute;
+
+    left: 80px;
+    top: 110px;
+
+    width: 380px;
+    height: 240px;
+
+    perspective: 1200px;
+
+    z-index: 4;
+
+    cursor: pointer;
+}
+
+
+.business-card {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 1s
+        cubic-bezier(.2, .8, .2, 1);
+}
+
+
+.business-card.flipped {
+    transform:
+        rotateY(180deg);
+}
+
+
+.card-face {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    backface-visibility: hidden;
+
+    background: #050505;
+
+    border: 1px solid #333;
+
+    box-shadow:
+        0 35px 80px rgba(0, 0, 0, .8),
+        inset 0 1px 0
+        rgba(255, 255, 255, .08);
+}
+
+
+.card-face img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+}
+
+
+.card-front {
+    transform:
+        rotateY(0deg);
+}
+
+
+.card-back {
+    transform:
+        rotateY(180deg);
+}
+
+
+/* =====================================
+   IPHONE
+===================================== */
+
+.phone-container {
+    position: absolute;
+
+    right: 90px;
+    top: 20px;
+
+    width: 210px;
+    height: 405px;
+
+    z-index: 6;
+
+    transform:
+        rotate(-7deg);
+
+    cursor: pointer;
+
+    transition:
+        transform 1.2s
+        cubic-bezier(.2, .8, .2, 1),
+        right 1.2s
+        cubic-bezier(.2, .8, .2, 1);
+}
+
+
+.demo.phone-tapping
+.phone-container {
+    right: 330px;
+
+    transform:
+        rotate(0deg)
+        translateX(-25px);
+}
+
+
+/* =====================================
+   IPHONE BODY
+===================================== */
+
+.iphone {
+    width: 100%;
+    height: 100%;
+
+    border-radius: 42px;
+
+    padding: 7px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #4b4b4b,
+            #121212 35%,
+            #050505
+        );
+
+    border: 1px solid #555;
+
+    box-shadow:
+        0 40px 100px rgba(0, 0, 0, .9),
+        inset 1px 1px
+        rgba(255, 255, 255, .15);
+
+    position: relative;
+}
+
+
+/* =====================================
+   PHONE SCREEN
+===================================== */
+
+.iphone-screen {
+    width: 100%;
+    height: 100%;
+
+    border-radius: 36px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            160deg,
+            #172331,
+            #030508 65%
+        );
+
+    border: 2px solid #090909;
+}
+
+
+/* =====================================
+   DYNAMIC ISLAND
+===================================== */
+
+.dynamic-island {
+    position: absolute;
+
+    z-index: 20;
+
+    top: 12px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 88px;
+    height: 25px;
+
+    border-radius: 20px;
+
+    background: #000;
+
+    box-shadow:
+        inset 0 1px 2px
+        rgba(255, 255, 255, .08);
+}
+
+
+/* =====================================
+   PHONE BUTTONS
+===================================== */
+
+.volume-up,
+.volume-down {
+    position: absolute;
+
+    left: -5px;
+
+    width: 4px;
+
+    background: #333;
+
+    border-radius: 5px;
+}
+
+
+.volume-up {
+    top: 90px;
+    height: 35px;
+}
+
+
+.volume-down {
+    top: 135px;
+    height: 55px;
+}
+
+
+.power-button {
+    position: absolute;
+
+    right: -5px;
+
+    top: 120px;
+
+    width: 4px;
+    height: 70px;
+
+    background: #333;
+
+    border-radius: 5px;
+}
+
+
+/* =====================================
+   PHONE HOME
+===================================== */
+
+.phone-home {
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding-top: 60px;
+
+    transition: .4s;
+}
+
+
+.phone-time {
+    font-size: 43px;
+
+    font-weight: 300;
+
+    letter-spacing: -2px;
+}
+
+
+.phone-date {
+    color: #aaa;
+
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+
+.phone-nfc-area {
+    margin-top: 70px;
+
+    text-align: center;
+}
+
+
+.phone-nfc-icon {
+    color: #4db8ff;
+
+    font-size: 30px;
+
+    letter-spacing: -8px;
+
+    margin-bottom: 20px;
+
+    animation:
+        phoneNfcPulse 1.5s infinite;
+}
+
+
+@keyframes phoneNfcPulse {
+
+    0%,
+    100% {
+        opacity: .4;
+
+        transform:
+            scale(.9);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            scale(1.1);
+    }
+}
+
+
+.phone-nfc-area strong {
+    display: block;
+
+    font-size: 14px;
+}
+
+
+.phone-nfc-area span {
+    display: block;
+
+    color: #777;
+
+    font-size: 9px;
+
+    margin-top: 8px;
+}
+
+
+/* =====================================
+   NFC DETECTED
+===================================== */
+
+.phone-detected {
+    position: absolute;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    background:
+        rgba(3, 5, 8, .96);
+}
+
+
+.iphone.detected
+.phone-home {
+    display: none;
+}
+
+
+.iphone.detected
+.phone-detected {
+    display: flex;
+}
+
+
+.check-circle {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+
+    background: #4db8ff;
+
+    color: #000;
+
+    font-size: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 0 40px
+        rgba(77, 184, 255, .4);
+}
+
+
+.phone-detected h3 {
+    font-size: 16px;
+}
+
+
+.phone-detected p {
+    color: #777;
+
+    font-size: 10px;
+
+    margin-top: 8px;
+}
+
+
+.loading {
+    width: 100px;
+    height: 3px;
+
+    background: #222;
+
+    margin-top: 25px;
+
+    border-radius: 5px;
+
+    overflow: hidden;
+}
+
+
+.loading span {
+    display: block;
+
+    height: 100%;
+
+    width: 40%;
+
+    background: #4db8ff;
+
+    animation:
+        loadingMove 1.2s infinite;
+}
+
+
+@keyframes loadingMove {
+
+    from {
+        transform:
+            translateX(-100px);
+    }
+
+    to {
+        transform:
+            translateX(150px);
+    }
+}
+
+
+/* =====================================
+   NFC WAVES
+===================================== */
+
+.nfc-waves {
+    position: absolute;
+
+    left: 51%;
+    top: 54%;
+
+    width: 35px;
+    height: 35px;
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+.nfc-waves span {
+    position: absolute;
+
+    inset: 0;
+
+    border: 2px solid #4db8ff;
+
+    border-radius: 50%;
+
+    opacity: 0;
+}
+
+
+.demo.phone-tapping
+.nfc-waves span {
+    animation:
+        nfcWave 1.5s infinite;
+}
+
+
+.demo.phone-tapping
+.nfc-waves span:nth-child(2) {
+    animation-delay: .35s;
+}
+
+
+.demo.phone-tapping
+.nfc-waves span:nth-child(3) {
+    animation-delay: .7s;
+}
+
+
+@keyframes nfcWave {
+
+    0% {
+        transform:
+            scale(.3);
+
+        opacity: .9;
+    }
+
+    100% {
+        transform:
+            scale(5);
+
+        opacity: 0;
+    }
+}
+
+
+/* =====================================
+   INSTRUCTIONS
+===================================== */
+
+.instructions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 35px;
+
+    color: #666;
+
+    font-size: 11px;
+
+    margin-top: 20px;
+}
+
+
+.instructions div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.instructions span {
+    color: #4db8ff;
+
+    font-weight: bold;
+}
+
+
+/* =====================================
+   RESET
+===================================== */
+
+.reset-button {
+    margin-top: 25px;
+
+    padding: 10px 20px;
+
+    border: 1px solid #333;
+
+    background: transparent;
+
+    color: #777;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    transition: .3s;
+}
+
+
+.reset-button:hover {
+    color: white;
+
+    border-color: #4db8ff;
+}
+
+
+/* =====================================
+   DIGITAL PROFILE
+===================================== */
+
+.digital-profile {
+    display: none;
+
+    padding: 100px 20px;
+
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            #050505,
+            #0b0b0b
+        );
+}
+
+
+.digital-profile.show {
+    display: block;
+
+    animation:
+        profileAppear 1s ease;
+}
+
+
+@keyframes profileAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(60px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+.profile-card {
+    width: 100%;
+
+    max-width: 500px;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+
+.profile-logo {
+    font-size: 20px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 35px;
+}
+
+
+.profile-avatar {
+    width: 90px;
+    height: 90px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    background: #151515;
+
+    border: 1px solid #333;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #4db8ff;
+
+    font-size: 25px;
+
+    font-weight: bold;
+}
+
+
+.profile-card h2 {
+    margin-top: 20px;
+
+    font-size: 32px;
+}
+
+
+.profile-title {
+    color: #777;
+
+    margin-top: 5px;
+}
+
+
+.profile-badge {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    color: #4db8ff;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+
+.profile-links {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 40px;
+}
+
+
+.profile-links a {
+    padding: 18px;
+
+    background: #111;
+
+    border: 1px solid #222;
+
+    border-radius: 12px;
+
+    color: white;
+
+    text-decoration: none;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    transition: .3s;
+}
+
+
+.profile-links a:hover {
+    border-color: #4db8ff;
+
+    transform:
+        translateX(5px);
+}
+
+
+/* =====================================
+   TAPIND PRE-ORDER
+===================================== */
+
+.preorder-section {
+    padding: 120px 20px;
+
+    background:
+        linear-gradient(
+            #050505,
+            #080808
+        );
+
+    border-top: 1px solid #151515;
+}
+
+
+.preorder-container {
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: auto;
+}
+
+
+.preorder-heading {
+    text-align: center;
+
+    margin-bottom: 60px;
+}
+
+
+.preorder-eyebrow {
+    color: #777;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 20px;
+}
+
+
+.preorder-heading h2 {
+    font-size:
+        clamp(
+            45px,
+            7vw,
+            75px
+        );
+
+    letter-spacing: -4px;
+
+    line-height: .95;
+
+    margin-bottom: 25px;
+}
+
+
+.preorder-heading h2 span {
+    color: #4db8ff;
+}
+
+
+.preorder-heading p {
+    max-width: 550px;
+
+    margin: auto;
+
+    color: #777;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}
+
+
+/* =====================================
+   PRE-ORDER FORM
+===================================== */
+
+.preorder-form {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    gap: 20px;
+}
+
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+
+.form-group.full-width {
+    grid-column:
+        1 / -1;
+}
+
+
+.form-group label {
+    color: #aaa;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: 16px;
+
+    background: #0d0d0d;
+
+    border: 1px solid #242424;
+
+    border-radius: 10px;
+
+    color: white;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: .3s;
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #555;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color:
+        #4db8ff;
+
+    box-shadow:
+        0 0 20px
+        rgba(
+            77,
+            184,
+            255,
+            .08
+        );
+}
+
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+.form-group textarea {
+    resize: vertical;
+
+    min-height: 120px;
+}
+
+
+/* =====================================
+   SUBMIT BUTTON
+===================================== */
+
+.form-submit {
+    grid-column:
+        1 / -1;
+
+    margin-top: 15px;
+}
+
+
+.form-submit button {
+    width: 100%;
+
+    padding: 18px 25px;
+
+    border: 1px solid
+        #4db8ff;
+
+    background:
+        #4db8ff;
+
+    color: #000;
+
+    border-radius: 10px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+
+.form-submit button span {
+    margin-left: 10px;
+
+    font-size: 18px;
+}
+
+
+.form-submit button:hover {
+    background:
+        transparent;
+
+    color:
+        #4db8ff;
+
+    transform:
+        translateY(-2px);
+}
+
+
+.form-submit button:disabled {
+    opacity: .5;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =====================================
+   FORM MESSAGE
+===================================== */
+
+.form-message {
+    grid-column:
+        1 / -1;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    min-height: 20px;
+
+    margin-top: 10px;
+}
+
+
+.form-message.success {
+    color:
+        #4db8ff;
+}
+
+
+.form-message.error {
+    color:
+        #ff6b6b;
+}
+
+
+/* =====================================
+   FOOTER
+===================================== */
+
+footer {
+    text-align: center;
+
+    padding: 40px;
+
+    border-top: 1px solid #151515;
+
+    color: #555;
+}
+
+
+footer strong {
+    color: white;
+
+    letter-spacing: 4px;
+}
+
+
+.footer-email {
+    margin-top: 8px;
+
+    color: #444;
+
+    font-size: 11px;
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 750px) {
+
+    .demo {
+        height: 550px;
+    }
+
+
+    /* CARD */
+
+    .card-container {
+        width: 300px;
+
+        height: 190px;
+
+        left: 50%;
+
+        top: 270px;
+
+        transform:
+            translateX(-50%);
+    }
+
+
+    /* PHONE */
+
+    .phone-container {
+        width: 165px;
+
+        height: 320px;
+
+        right: 50%;
+
+        top: 0;
+
+        transform:
+            translateX(50%)
+            rotate(-5deg);
+    }
+
+
+    /* PHONE MOVES TO CARD */
+
+    .demo.phone-tapping
+    .phone-container {
+
+        right: 50%;
+
+        transform:
+            translateX(50%)
+            translateY(130px)
+            rotate(0);
+    }
+
+
+    .phone-time {
+        font-size: 30px;
+    }
+
+
+    .phone-nfc-area {
+        margin-top: 50px;
+    }
+
+
+    .instructions {
+        flex-direction: column;
+
+        gap: 10px;
+
+        align-items: center;
+    }
+
+
+    h1 {
+        font-size: 58px;
+
+        letter-spacing: -4px;
+    }
+
+
+    /* PRE-ORDER MOBILE */
+
+    .preorder-section {
+        padding:
+            80px 20px;
+    }
+
+
+    .preorder-heading {
+        margin-bottom: 40px;
+    }
+
+
+    .preorder-heading h2 {
+        font-size: 48px;
+
+        letter-spacing:
+            -3px;
+    }
+
+
+    .preorder-form {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .form-group.full-width {
+        grid-column:
+            auto;
+    }
+
+
+    .form-submit {
+        grid-column:
+            auto;
+    }
+
+}
