@@ -25,11 +25,11 @@ const defaultData = {
 
     contact: {
 
-        phone: "09623017609",
+        phone: "xxxxxxxxxxx",
 
-        email: "justinriverodiaz@gmail.com",
+        email: "xxxx@gmail.com",
 
-        address: "26 B. Lopez Karuhatan, Valenzuela City, Philippines"
+        address: "xxxxxxxxxxxx"
 
     },
 
@@ -72,7 +72,7 @@ const defaultData = {
 
             accountName: "Justin Diaz",
 
-            accountNumber: "09623017609",
+            accountNumber: "xxxxxxxx",
 
             icon: "fa-mobile-screen-button",
 
@@ -110,7 +110,7 @@ const defaultData = {
 
             accountName: "Justin Diaz",
 
-            accountNumber: "09623017609",
+            accountNumber: "xxxxxxxx",
 
             icon: "fa-wallet",
 
@@ -145,7 +145,7 @@ const defaultData = {
 
             accountName: "Justin Diaz",
 
-            accountNumber: "002090774114",
+            accountNumber: "xxxxxxxx",
 
             accountType: "Savings",
 
@@ -186,7 +186,7 @@ const defaultData = {
 
             accountName: "Justin Diaz",
 
-            accountNumber: "1234567890",
+            accountNumber: "xxxxxxxx",
 
             icon: "fa-building-columns",
 
@@ -211,7 +211,7 @@ const defaultData = {
 
             accountName: "Justin Diaz",
 
-            accountNumber: "09623017609",
+            accountNumber: "xxxxxxxx",
 
             icon: "fa-building-columns",
 
@@ -236,7 +236,7 @@ const defaultData = {
 
             accountName: "Justin Diaz",
 
-            accountNumber: "justin@example.com",
+            accountNumber: "xxxxxxxx",
 
             icon: "fa-paypal",
 
