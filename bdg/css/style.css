@@ -1,7 +1,7 @@
 /* =====================================================
    TAPIND DIGITAL BUSINESS CARD
    GLASS UI
-   PROFILE BACKGROUND INSIDE CARD
+   MULTI-PHOTO BUSINESS NICHE CAROUSEL
 ===================================================== */
 
 
@@ -99,6 +99,8 @@ a {
     filter: blur(110px);
 
     opacity: 0.25;
+
+    transition: transform 0.2s ease-out;
 }
 
 
@@ -301,38 +303,37 @@ a {
 
 /* =====================================================
    PROFILE BACKGROUND PHOTO
-   INSIDE CARD — RIGHT SIDE
 ===================================================== */
 
 .profile-background {
     position: absolute;
 
     top: 0;
-    right: 0;
+    left: 0;
 
-    width: 58%;
+    width: 100%;
     height: 100%;
 
     z-index: 0;
 
-    background-image:
-        url("../assets/background.jpg");
-
-    background-size: cover;
-
-    background-position: center;
-
-    background-repeat: no-repeat;
-
-    opacity: 0.95;
+    overflow: hidden;
 
     pointer-events: none;
 }
 
 
+.profile-background img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
 /* =====================================================
-   BACKGROUND PHOTO OVERLAY
-   DARKER ON LEFT SIDE
+   PROFILE BACKGROUND OVERLAY
 ===================================================== */
 
 .profile-background-overlay {
@@ -986,14 +987,17 @@ a {
 
     flex-direction: column;
 
-    gap: 10px;
+    gap: 14px;
 }
 
 
 .niche-item {
-    display: flex;
+    position: relative;
 
-    align-items: center;
+    display: grid;
+
+    grid-template-columns:
+        auto 1fr;
 
     gap: 14px;
 
@@ -1003,12 +1007,14 @@ a {
         1px solid
         rgba(255,255,255,0.07);
 
-    border-radius: 17px;
+    border-radius: 19px;
 
     background:
         rgba(255,255,255,0.03);
 
     transition: 0.25s ease;
+
+    overflow: hidden;
 }
 
 
@@ -1049,12 +1055,16 @@ a {
 }
 
 
-.niche-item div:last-child {
+.niche-content {
     display: flex;
 
     flex-direction: column;
 
+    justify-content: center;
+
     gap: 4px;
+
+    min-width: 0;
 }
 
 
@@ -1068,6 +1078,241 @@ a {
         rgba(255,255,255,0.42);
 
     font-size: 11px;
+}
+
+
+/* =====================================================
+   NICHE IMAGE CAROUSEL
+===================================================== */
+
+.niche-carousel {
+    position: relative;
+
+    grid-column: 1 / -1;
+
+    width: 100%;
+
+    height: 190px;
+
+    margin-top: 4px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    background: #080b13;
+
+    touch-action: pan-y;
+
+    user-select: none;
+}
+
+
+.carousel-track {
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+
+    transition:
+        transform 0.35s
+        cubic-bezier(.22,.61,.36,1);
+}
+
+
+.carousel-slide {
+    position: relative;
+
+    flex:
+        0 0 100%;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+.carousel-slide img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    pointer-events: none;
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+.carousel-slide:hover img {
+    transform: scale(1.03);
+}
+
+
+/* =====================================================
+   CAROUSEL GRADIENT
+===================================================== */
+
+.carousel-slide::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,0.02),
+            rgba(0,0,0,0.22)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   CAROUSEL ARROWS
+===================================================== */
+
+.carousel-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 5;
+
+    display: grid;
+
+    place-items: center;
+
+    width: 34px;
+    height: 34px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.18);
+
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    background:
+        rgba(5,7,13,0.55);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    transform:
+        translateY(-50%);
+
+    opacity: 0;
+
+    transition:
+        opacity 0.25s ease,
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.niche-carousel:hover .carousel-arrow {
+    opacity: 1;
+}
+
+
+.carousel-arrow:hover {
+    background:
+        rgba(80,120,255,0.65);
+
+    transform:
+        translateY(-50%)
+        scale(1.05);
+}
+
+
+.carousel-prev {
+    left: 10px;
+}
+
+
+.carousel-next {
+    right: 10px;
+}
+
+
+.carousel-arrow i {
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   CAROUSEL DOTS
+===================================================== */
+
+.carousel-dots {
+    position: absolute;
+
+    left: 50%;
+    bottom: 9px;
+
+    z-index: 6;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    transform:
+        translateX(-50%);
+}
+
+
+.carousel-dot {
+    width: 6px;
+    height: 6px;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.38);
+
+    transition:
+        width 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.carousel-dot.active {
+    width: 18px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,0.90);
+}
+
+
+/* =====================================================
+   HIDE CAROUSEL CONTROLS WHEN ONLY ONE IMAGE
+===================================================== */
+
+.niche-carousel.single-image .carousel-arrow,
+.niche-carousel.single-image .carousel-dots {
+    display: none;
 }
 
 
@@ -1475,6 +1720,7 @@ footer span {
     .profile-card {
         padding: 34px;
     }
+
 }
 
 
@@ -1513,11 +1759,6 @@ footer span {
     }
 
 
-    /* =============================================
-       MOBILE BACKGROUND PHOTO
-       FULL WIDTH BUT STILL INSIDE CARD
-    ============================================== */
-
     .profile-background {
         width: 100%;
 
@@ -1531,10 +1772,6 @@ footer span {
         opacity: 0.90;
     }
 
-
-    /* =============================================
-       MOBILE GRADIENT
-    ============================================== */
 
     .profile-background-overlay {
         background:
@@ -1575,11 +1812,60 @@ footer span {
     }
 
 
+    /* =============================================
+       MOBILE NICHE CAROUSEL
+    ============================================== */
+
+    .niche-item {
+        grid-template-columns:
+            auto 1fr;
+    }
+
+
+    .niche-carousel {
+        height: 210px;
+
+        margin-top: 5px;
+    }
+
+
+    .carousel-arrow {
+        opacity: 1;
+
+        width: 32px;
+        height: 32px;
+    }
+
+
+    .carousel-prev {
+        left: 8px;
+    }
+
+
+    .carousel-next {
+        right: 8px;
+    }
+
+
     .floating-save {
         right: 15px;
 
         bottom: 15px;
     }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .niche-carousel {
+        height: 180px;
+    }
+
 }
 
 
@@ -1601,4 +1887,248 @@ footer span {
 
         animation: none !important;
     }
+
+}
+
+/* =========================================
+   CLIENT REVIEW FORM
+========================================= */
+
+.review-form-container {
+    margin-top: 20px;
+    padding: 22px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.025);
+}
+
+
+.review-form-header {
+    margin-bottom: 20px;
+}
+
+
+.review-form-header h3 {
+    margin: 6px 0 6px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+.review-form-header p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 13px;
+}
+
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+
+.review-input-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.review-input-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+
+.review-input-group input,
+.review-input-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 12px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.045);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 13px 14px;
+    transition: 0.25s ease;
+}
+
+
+.review-input-group input::placeholder,
+.review-input-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+
+.review-input-group input:focus,
+.review-input-group textarea:focus {
+    border-color: rgba(255, 215, 90, 0.55);
+    background: rgba(255, 255, 255, 0.065);
+    box-shadow: 0 0 0 3px rgba(255, 215, 90, 0.06);
+}
+
+
+.review-input-group textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+
+.review-character-count {
+    align-self: flex-end;
+    margin-top: -3px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================================
+   STAR SELECTOR
+========================================= */
+
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+
+.star-button {
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.20);
+    font-size: 25px;
+    line-height: 1;
+    padding: 2px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+
+.star-button:hover {
+    transform: scale(1.12);
+    color: #ffd34d;
+}
+
+
+.star-button.active {
+    color: #ffd34d;
+    text-shadow: 0 0 12px rgba(255, 211, 77, 0.25);
+}
+
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+.submit-review-button {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 13px 18px;
+    background: rgba(255, 255, 255, 0.055);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    transition: 0.25s ease;
+}
+
+
+.submit-review-button:hover {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 211, 77, 0.35);
+    transform: translateY(-1px);
+}
+
+
+.submit-review-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   SUCCESS MESSAGE
+========================================= */
+
+.review-success {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(80, 220, 140, 0.08);
+    border: 1px solid rgba(80, 220, 140, 0.20);
+    color: #7ff0aa;
+    font-size: 13px;
+}
+
+
+.review-success.show {
+    display: flex;
+}
+
+
+/* =========================================
+   USER-SUBMITTED REVIEW
+========================================= */
+
+.review.user-review {
+    animation: reviewAppear 0.35s ease;
+}
+
+
+@keyframes reviewAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+.review-avatar {
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .review-form-container {
+        padding: 17px;
+        border-radius: 17px;
+    }
+
+
+    .review-form-header h3 {
+        font-size: 18px;
+    }
+
+
+    .star-button {
+        font-size: 23px;
+    }
+
 }
