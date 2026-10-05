@@ -43,7 +43,7 @@ const phoneDetected =
 ===================================== */
 
 const digitalCardURL =
-    "https://justinbyu.github.io/portfolio/digital_businesscard/index.html";
+    "https://justinbyu.github.io/portfolio/bdg/index.html";
 
 
 /* =====================================
