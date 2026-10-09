@@ -405,6 +405,51 @@ function createNicheCarousels() {
             const photos =
                 TAPIND.nichePhotos[nicheName];
 
+            // Keep each project gallery collapsed until its niche is selected.
+            carousel.hidden = true;
+            carousel.setAttribute("aria-hidden", "true");
+
+            const nicheItem = carousel.closest(".niche-item");
+            const nicheContent = nicheItem?.querySelector(".niche-content");
+            if (nicheContent) {
+                nicheContent.setAttribute("role", "button");
+                nicheContent.setAttribute("tabindex", "0");
+                nicheContent.setAttribute("aria-expanded", "false");
+                nicheContent.setAttribute("aria-controls", `niche-gallery-${nicheName}`);
+                carousel.id = `niche-gallery-${nicheName}`;
+
+                const toggleGallery = () => {
+                    const willOpen = carousel.hidden;
+
+                    // Only one niche gallery is open at a time for a tidy layout.
+                    document.querySelectorAll(".niche-carousel").forEach(other => {
+                        other.hidden = true;
+                        other.setAttribute("aria-hidden", "true");
+                        const otherContent = other.closest(".niche-item")?.querySelector(".niche-content");
+                        other.closest(".niche-item")?.classList.remove("is-expanded");
+                        otherContent?.setAttribute("aria-expanded", "false");
+                    });
+
+                    if (willOpen) {
+                        carousel.hidden = false;
+                        carousel.setAttribute("aria-hidden", "false");
+                        nicheItem?.classList.add("is-expanded");
+                        nicheContent.setAttribute("aria-expanded", "true");
+                    }
+                };
+
+                // Clicking the niche row/icon/title opens the same gallery.
+                nicheItem?.addEventListener("click", event => {
+                    if (event.target.closest(".niche-carousel, button")) return;
+                    toggleGallery();
+                });
+                nicheContent.addEventListener("keydown", event => {
+                    if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        toggleGallery();
+                    }
+                });
+            }
 
             const track =
                 carousel.querySelector(
@@ -471,7 +516,7 @@ function createNicheCarousels() {
 
                     slide.className =
                         "carousel-slide";
-
+                    slide.setAttribute("aria-hidden", index === 0 ? "false" : "true");
 
                     const image =
                         document.createElement(
@@ -676,7 +721,7 @@ function goToSlide(
         carousel.querySelectorAll(
             ".carousel-dot"
         );
-
+    const slides = carousel.querySelectorAll(".carousel-slide");
 
     if (!track) return;
 
@@ -688,6 +733,9 @@ function goToSlide(
     track.style.transform =
         `translateX(-${index * 100}%)`;
 
+    slides.forEach((slide, slideIndex) => {
+        slide.setAttribute("aria-hidden", slideIndex === index ? "false" : "true");
+    });
 
     dots.forEach(
         (dot, dotIndex) => {
