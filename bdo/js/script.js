@@ -133,38 +133,38 @@ const TAPIND = {
 
         "digital-business-card": [
 
-            "assets/niches/digital-business-card/1.jpg",
+            "assets/digital-business-card/1.jpg",
 
-            "assets/niches/digital-business-card/2.jpg",
+            "assets/digital-business-card/2.jpg",
 
-            "assets/niches/digital-business-card/3.jpg"
+            "assets/digital-business-card/3.jpg"
 
         ],
 
 
         "qr-solutions": [
 
-            "assets/niches/qr-solutions/1.jpg",
+            "assets/qr-solutions/1.jpg",
 
-            "assets/niches/qr-solutions/2.jpg"
+            "assets/qr-solutions/2.jpg"
 
         ],
 
 
         "graphic-design": [
 
-            "assets/niches/graphic-design/1.jpg",
+            "assets/graphic-design/1.jpg",
 
-            "assets/niches/graphic-design/2.jpg"
+            "assets/graphic-design/2.jpg"
 
         ],
 
 
         "ai-automation": [
 
-            "assets/niches/ai-automation/1.jpg",
+            "assets/ai-automation/1.jpg",
 
-            "assets/niches/ai-automation/2.jpg"
+            "assets/ai-automation/2.jpg"
 
         ]
 
