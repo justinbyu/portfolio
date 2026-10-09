@@ -126,7 +126,7 @@ const TAPIND = {
 
             "assets/web-dev/2.jpg",
 
-            "assets/web-dev/3.png"
+            "assets/web-dev/3.jpg"
 
         ],
 
@@ -474,14 +474,6 @@ function createNicheCarousels() {
                     ".carousel-next"
                 );
 
-            // Avoid a fatal TypeError if the HTML markup is missing a carousel control.
-            if (!track || !dots || !previous || !next) {
-                console.error(
-                    `[TAPIND gallery] Incomplete carousel markup for "${nicheName}". ` +
-                    "Each .niche-carousel needs .carousel-track, .carousel-dots, .carousel-prev, and .carousel-next."
-                );
-                return;
-            }
 
             if (
                 !photos ||
@@ -1507,19 +1499,7 @@ document.addEventListener(
    INITIALIZE NICHE CAROUSELS
 ===================================================== */
 
-function initializeTAPINDNicheCarousels() {
-    try {
-        createNicheCarousels();
-    } catch (error) {
-        console.error("[TAPIND gallery] Failed to initialize niche carousels:", error);
-    }
-}
-
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initializeTAPINDNicheCarousels, { once: true });
-} else {
-    initializeTAPINDNicheCarousels();
-}
+createNicheCarousels();
 
 
 /* =====================================================
@@ -1539,416 +1519,193 @@ console.log(
 );
 
 /* =========================================
-   CLIENT REVIEW SYSTEM
+   TAPIND CUSTOMER REVIEW SYSTEM
+   Cloudflare Worker + Turnstile + D1
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-
+    const API_BASE = "https://tapind-reviews-api.justinriverodiaz.workers.dev";
     const reviewForm = document.getElementById("reviewForm");
-
     const reviewsList = document.getElementById("reviewsList");
-
     const reviewName = document.getElementById("reviewName");
-
     const reviewRole = document.getElementById("reviewRole");
-
     const reviewRating = document.getElementById("reviewRating");
-
     const reviewMessage = document.getElementById("reviewMessage");
+    const reviewCharacterCount = document.getElementById("reviewCharacterCount");
+    const reviewSuccess = document.getElementById("reviewSuccess");
+    const submitButton = reviewForm?.querySelector('[type="submit"]');
+    const starButtons = document.querySelectorAll(".star-button");
+    const overallRating = document.getElementById("overallRating");
+    const overallStars = document.getElementById("overallStars");
+    const reviewsStatus = document.getElementById("reviewsStatus");
 
-    const reviewCharacterCount =
-        document.getElementById("reviewCharacterCount");
+    if (!reviewForm || !reviewsList) return;
 
-    const reviewSuccess =
-        document.getElementById("reviewSuccess");
-
-    const starButtons =
-        document.querySelectorAll(".star-button");
-
-    const overallRating =
-        document.getElementById("overallRating");
-
-    const overallStars =
-        document.getElementById("overallStars");
-
-
-    /* =========================================
-       DEFAULT RATING
-    ========================================= */
-
-    let selectedRating = 5;
-
-
-    if (starButtons.length) updateStars(selectedRating);
-
-
-    /* =========================================
-       STAR SELECTION
-    ========================================= */
+    let selectedRating = Number(reviewRating?.value || 5);
+    updateStars(selectedRating);
+    loadApprovedReviews();
 
     starButtons.forEach(button => {
-
         button.addEventListener("click", () => {
-
-            selectedRating =
-                Number(button.dataset.rating);
-
-            reviewRating.value =
-                selectedRating;
-
+            selectedRating = Number(button.dataset.rating);
+            reviewRating.value = String(selectedRating);
             updateStars(selectedRating);
-
         });
-
     });
-
 
     function updateStars(rating) {
-
         starButtons.forEach(button => {
-
-            const buttonRating =
-                Number(button.dataset.rating);
-
-            if (buttonRating <= rating) {
-
-                button.classList.add("active");
-
-            } else {
-
-                button.classList.remove("active");
-
-            }
-
+            button.classList.toggle("active", Number(button.dataset.rating) <= rating);
         });
-
     }
 
-
-    /* =========================================
-       CHARACTER COUNTER
-    ========================================= */
-
-    if (reviewMessage) reviewMessage.addEventListener("input", () => {
-
-        reviewCharacterCount.textContent =
-            reviewMessage.value.length;
-
+    reviewMessage?.addEventListener("input", () => {
+        if (reviewCharacterCount) reviewCharacterCount.textContent = String(reviewMessage.value.length);
     });
 
+    async function loadApprovedReviews() {
+        try {
+            const response = await fetch(`${API_BASE}/reviews`, { method: "GET" });
+            if (!response.ok) throw new Error("Unable to load reviews");
+            const data = await response.json();
+            const reviews = Array.isArray(data.reviews) ? data.reviews : [];
+            reviewsList.replaceChildren();
 
-    /* =========================================
-       LOAD SAVED REVIEWS
-    ========================================= */
-
-    loadSavedReviews();
-
-
-    function loadSavedReviews() {
-
-        const savedReviews =
-            JSON.parse(
-                localStorage.getItem("tapindReviews")
-            ) || [];
-
-
-        savedReviews.forEach(review => {
-
-            addReviewToPage(review, false);
-
-        });
-
-
-        updateOverallRating();
-
+            if (!reviews.length) {
+                if (reviewsStatus) {
+                    reviewsStatus.textContent = "No approved reviews yet. Be the first to share your experience!";
+                    reviewsList.appendChild(reviewsStatus);
+                } else {
+                    const empty = document.createElement("p");
+                    empty.className = "reviews-loading";
+                    empty.textContent = "No approved reviews yet. Be the first to share your experience!";
+                    reviewsList.appendChild(empty);
+                }
+            } else {
+                if (reviewsStatus) reviewsStatus.remove();
+                reviews.forEach(addReviewToPage);
+            }
+            updateOverallRating(reviews);
+        } catch (error) {
+            console.error("Could not load TAPIND reviews:", error);
+            if (reviewsStatus) reviewsStatus.textContent = "Reviews are temporarily unavailable. Please try again later.";
+            updateOverallRating([]);
+        }
     }
 
-
-    /* =========================================
-       SUBMIT REVIEW
-    ========================================= */
-
-    if (reviewForm) reviewForm.addEventListener("submit", event => {
-
+    reviewForm.addEventListener("submit", async event => {
         event.preventDefault();
+        const name = reviewName.value.trim();
+        const role = reviewRole.value.trim();
+        const review = reviewMessage.value.trim();
+        const rating = Number(reviewRating.value);
+        const tokenInput = reviewForm.querySelector('[name="cf-turnstile-response"]');
+        const turnstileToken = tokenInput?.value || "";
 
-
-        const name =
-            reviewName.value.trim();
-
-        const role =
-            reviewRole.value.trim();
-
-        const message =
-            reviewMessage.value.trim();
-
-        const rating =
-            Number(reviewRating.value);
-
-
-        if (!name || !role || !message) {
-
+        if (name.length < 2 || name.length > 80) {
+            showMessage("Please enter a name between 2 and 80 characters.", false);
             return;
-
+        }
+        if (!role || role.length > 60) {
+            showMessage("Please enter your business or role (up to 60 characters).", false);
+            return;
+        }
+        if (!Number.isInteger(rating) || rating < 1 || rating > 5) {
+            showMessage("Please select a rating from 1 to 5 stars.", false);
+            return;
+        }
+        if (review.length < 5 || review.length > 1500) {
+            showMessage("Your review must be between 5 and 1,500 characters.", false);
+            return;
+        }
+        if (!turnstileToken) {
+            showMessage("Please complete the anti-spam check first.", false);
+            return;
         }
 
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.dataset.originalText = submitButton.textContent.trim();
+            submitButton.textContent = "Submitting…";
+        }
+        if (reviewSuccess) reviewSuccess.classList.remove("show");
 
-        const review = {
+        try {
+            const response = await fetch(`${API_BASE}/reviews`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, role, rating, review, turnstileToken })
+            });
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(data.error || "Could not submit your review.");
 
-            id: Date.now(),
-
-            name: name,
-
-            role: role,
-
-            rating: rating,
-
-            message: message
-
-        };
-
-
-        /* =====================================
-           SAVE REVIEW
-        ===================================== */
-
-        const savedReviews =
-            JSON.parse(
-                localStorage.getItem("tapindReviews")
-            ) || [];
-
-
-        savedReviews.push(review);
-
-
-        localStorage.setItem(
-            "tapindReviews",
-            JSON.stringify(savedReviews)
-        );
-
-
-        /* =====================================
-           DISPLAY REVIEW
-        ===================================== */
-
-        addReviewToPage(review, true);
-
-
-        /* =====================================
-           UPDATE RATING
-        ===================================== */
-
-        updateOverallRating();
-
-
-        /* =====================================
-           RESET FORM
-        ===================================== */
-
-        reviewForm.reset();
-
-
-        selectedRating = 5;
-
-        reviewRating.value = 5;
-
-        updateStars(5);
-
-        reviewCharacterCount.textContent = "0";
-
-
-        /* =====================================
-           SUCCESS MESSAGE
-        ===================================== */
-
-        reviewSuccess.classList.add("show");
-
-
-        setTimeout(() => {
-
-            reviewSuccess.classList.remove("show");
-
-        }, 4000);
-
-
-        /* =====================================
-           SCROLL TO NEW REVIEW
-        ===================================== */
-
-        setTimeout(() => {
-
-            const newestReview =
-                reviewsList.lastElementChild;
-
-            if (newestReview) {
-
-                newestReview.scrollIntoView({
-
-                    behavior: "smooth",
-
-                    block: "center"
-
-                });
-
+            showMessage(data.message || "Thank you! Your review was submitted for approval.", true);
+            reviewForm.reset();
+            selectedRating = 5;
+            if (reviewRating) reviewRating.value = "5";
+            updateStars(5);
+            if (reviewCharacterCount) reviewCharacterCount.textContent = "0";
+            if (window.turnstile) window.turnstile.reset();
+            // Pending reviews are deliberately not inserted into the public list.
+        } catch (error) {
+            showMessage(error.message || "Submission failed. Please try again.", false);
+            if (window.turnstile) window.turnstile.reset();
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = submitButton.dataset.originalText || "Submit Review";
             }
-
-        }, 200);
-
+        }
     });
 
+    function showMessage(message, success) {
+        if (!reviewSuccess) {
+            window.alert(message);
+            return;
+        }
+        reviewSuccess.textContent = message;
+        reviewSuccess.classList.add("show");
+        reviewSuccess.style.borderColor = success ? "rgba(70, 200, 130, .45)" : "rgba(240, 90, 90, .5)";
+        window.setTimeout(() => reviewSuccess.classList.remove("show"), 6000);
+    }
 
-    /* =========================================
-       ADD REVIEW TO PAGE
-    ========================================= */
-
-    function addReviewToPage(review, animate = false) {
-
-        const article =
-            document.createElement("article");
-
-
+    function addReviewToPage(review) {
+        const name = String(review.customer_name || review.name || "Customer");
+        const message = String(review.review_text || review.message || "");
+        const rating = Math.max(1, Math.min(5, Number(review.rating) || 5));
+        const role = String(review.customer_role || review.role || "Customer");
+        const article = document.createElement("article");
         article.className = "review user-review";
 
+        const top = document.createElement("div");
+        top.className = "review-top";
+        const avatar = document.createElement("div");
+        avatar.className = "review-avatar";
+        avatar.textContent = name.charAt(0).toUpperCase();
+        const identity = document.createElement("div");
+        const strong = document.createElement("strong");
+        strong.textContent = name;
+        const roleSpan = document.createElement("span");
+        roleSpan.textContent = role;
+        identity.append(strong, roleSpan);
+        top.append(avatar, identity);
 
-        if (!animate) {
-
-            article.style.animation = "none";
-
-        }
-
-
-        const firstLetter =
-            review.name.charAt(0).toUpperCase();
-
-
-        const stars =
-            "★".repeat(review.rating) +
-            "☆".repeat(5 - review.rating);
-
-
-        article.innerHTML = `
-
-            <div class="review-top">
-
-                <div class="review-avatar">
-
-                    ${escapeHTML(firstLetter)}
-
-                </div>
-
-                <div>
-
-                    <strong>
-                        ${escapeHTML(review.name)}
-                    </strong>
-
-                    <span>
-                        ${escapeHTML(review.role)}
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="stars">
-
-                ${stars}
-
-            </div>
-
-
-            <p>
-
-                "${escapeHTML(review.message)}"
-
-            </p>
-
-        `;
-
-
+        const stars = document.createElement("div");
+        stars.className = "stars";
+        stars.textContent = "★".repeat(rating) + "☆".repeat(5 - rating);
+        const paragraph = document.createElement("p");
+        paragraph.textContent = `“${message}”`;
+        article.append(top, stars, paragraph);
         reviewsList.appendChild(article);
-
     }
 
-
-    /* =========================================
-       UPDATE OVERALL RATING
-    ========================================= */
-
-    function updateOverallRating() {
-
-        const savedReviews =
-            JSON.parse(
-                localStorage.getItem("tapindReviews")
-            ) || [];
-
-
-        /*
-         * Three original sample reviews
-         * are all 5 stars.
-         */
-
-        const originalReviews = 3;
-
-        const originalRating = 5;
-
-
-        let totalReviews =
-            originalReviews +
-            savedReviews.length;
-
-
-        let totalRating =
-            originalReviews * originalRating;
-
-
-        savedReviews.forEach(review => {
-
-            totalRating += Number(review.rating);
-
-        });
-
-
-        const average =
-            totalReviews > 0
-                ? totalRating / totalReviews
-                : 5;
-
-
-        const rounded =
-            average.toFixed(1);
-
-
-        overallRating.textContent =
-            rounded;
-
-
-        const fullStars =
-            Math.round(average);
-
-
-        overallStars.textContent =
-            "★".repeat(fullStars) +
-            "☆".repeat(5 - fullStars);
-
+    function updateOverallRating(reviews) {
+        const total = reviews.length;
+        const average = total ? reviews.reduce((sum, item) => sum + Number(item.rating || 0), 0) / total : 0;
+        if (overallRating) overallRating.textContent = total ? average.toFixed(1) : "—";
+        if (overallStars) {
+            const full = total ? Math.round(average) : 0;
+            overallStars.textContent = "★".repeat(full) + "☆".repeat(5 - full);
+        }
     }
-
-
-    /* =========================================
-       SECURITY
-       Prevent HTML injection in reviews
-    ========================================= */
-
-    function escapeHTML(value) {
-
-        const div =
-            document.createElement("div");
-
-        div.textContent = value;
-
-        return div.innerHTML;
-
-    }
-
 });

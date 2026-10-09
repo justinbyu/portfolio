@@ -63,6 +63,8 @@
         rel="stylesheet"
         href="css/style.css">
 
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 </head>
 
 
@@ -894,123 +896,7 @@
     <div
         class="reviews"
         id="reviewsList">
-
-
-        <!-- REVIEW 1 -->
-
-        <article class="review">
-
-            <div class="review-top">
-
-                <div class="review-avatar">
-                    M
-                </div>
-
-                <div>
-
-                    <strong>
-                        Client Name
-                    </strong>
-
-                    <span>
-                        Business Owner
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-
-            <p>
-                "Professional service and a
-                smooth experience. Highly recommended!"
-            </p>
-
-        </article>
-
-
-
-        <!-- REVIEW 2 -->
-
-        <article class="review">
-
-            <div class="review-top">
-
-                <div class="review-avatar">
-                    R
-                </div>
-
-                <div>
-
-                    <strong>
-                        Client Name
-                    </strong>
-
-                    <span>
-                        Small Business
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-
-            <p>
-                "Creative, responsive, and easy
-                to work with."
-            </p>
-
-        </article>
-
-
-
-        <!-- REVIEW 3 -->
-
-        <article class="review">
-
-            <div class="review-top">
-
-                <div class="review-avatar">
-                    J
-                </div>
-
-                <div>
-
-                    <strong>
-                        Client Name
-                    </strong>
-
-                    <span>
-                        Entrepreneur
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-
-            <p>
-                "The digital card makes connecting
-                so much easier."
-            </p>
-
-        </article>
-
+        <p class="reviews-loading" id="reviewsStatus">Loading approved reviews…</p>
     </div>
 
 
@@ -1195,6 +1081,11 @@
 
 
 
+            <!-- CLOUDFLARE TURNSTILE ANTI-SPAM CHECK -->
+            <div class="review-input-group">
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAFSFE6UCdcguhWxE" data-theme="dark"></div>
+            </div>
+
             <!-- SUBMIT -->
 
             <button
@@ -1216,7 +1107,7 @@
 
                 <i class="fa-solid fa-circle-check"></i>
 
-                Thank you! Your review has been added.
+                Thank you! Your review was submitted for approval.
 
             </div>
 

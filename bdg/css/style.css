@@ -2132,3 +2132,364 @@ footer span {
     }
 
 }
+
+/* =====================================================
+   TAPIND GLASSY CAROUSEL V2 — BUSINESS NICHE ONLY
+   Scoped overrides: other site sections are unchanged.
+===================================================== */
+
+.niche-carousel {
+    height: 225px;
+    perspective: 1100px;
+    isolation: isolate;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 50% 8%, rgba(116, 135, 255, 0.16), transparent 62%),
+        rgba(12, 14, 25, 0.70);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07),
+                0 12px 30px rgba(0, 0, 0, 0.16);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.niche-carousel .carousel-track {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* Do not lock the track in place: script.js translates it to each photo. */
+    transform-style: flat;
+    perspective: none;
+}
+
+.niche-carousel .carousel-slide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 68%;
+    height: 82%;
+    flex: none;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32),
+                inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+    transition: transform 650ms cubic-bezier(.2, .75, .25, 1),
+                opacity 450ms ease,
+                filter 450ms ease,
+                box-shadow 450ms ease;
+    will-change: transform, opacity, filter;
+    backface-visibility: hidden;
+}
+
+.niche-carousel .carousel-slide[aria-hidden="false"] {
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.40),
+                inset 0 1px 0 rgba(255, 255, 255, 0.20);
+}
+
+.niche-carousel .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.niche-carousel .carousel-slide::after {
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(8, 10, 20, 0.02), rgba(8, 10, 20, 0.22));
+}
+
+.niche-carousel .carousel-arrow {
+    z-index: 210;
+    width: 34px;
+    height: 34px;
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(18, 20, 34, 0.68);
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.20);
+    opacity: 1;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.niche-carousel .carousel-dots {
+    z-index: 220;
+    bottom: 8px;
+    gap: 6px;
+    padding: 7px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    background: rgba(12, 14, 24, 0.64);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.niche-carousel .carousel-dot {
+    flex: 0 0 auto;
+    width: 6px;
+    height: 6px;
+    border: 0;
+    cursor: pointer;
+}
+
+.niche-carousel .carousel-dot.active {
+    width: 20px;
+    border-radius: 10px;
+    background: #f4f5ff;
+}
+
+.niche-carousel .carousel-arrow:focus-visible,
+.niche-carousel .carousel-dot:focus-visible {
+    outline: 2px solid #aebeff;
+    outline-offset: 3px;
+}
+
+.niche-carousel.single-image .carousel-arrow,
+.niche-carousel.single-image .carousel-dots {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .niche-carousel {
+        height: 205px;
+        perspective: 900px;
+    }
+
+    .niche-carousel .carousel-slide {
+        width: 74%;
+        height: 80%;
+    }
+
+    .niche-carousel .carousel-arrow {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .niche-carousel .carousel-slide,
+    .niche-carousel .carousel-arrow,
+    .niche-carousel .carousel-dot {
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* =====================================================
+   EXPANDABLE NICHE CAROUSELS + FULL IMAGE VISIBILITY
+===================================================== */
+.niche-carousel[hidden] {
+    display: none !important;
+}
+
+.niche-item.is-expanded {
+    border-color: rgba(160, 185, 255, 0.24);
+    background: rgba(255, 255, 255, 0.045);
+}
+
+.niche-content {
+    cursor: pointer;
+    border-radius: 10px;
+    outline-offset: 4px;
+}
+
+.niche-content:focus-visible {
+    outline: 2px solid rgba(160, 190, 255, 0.85);
+}
+
+.niche-carousel .carousel-slide img {
+    object-fit: contain !important;
+    object-position: center center;
+    background: rgba(7, 9, 18, 0.28);
+}
+
+@media (max-width: 600px) {
+    .niche-carousel .carousel-slide {
+        width: 78%;
+        height: 84%;
+    }
+}
+
+
+/* Minimal requested fix: full image visible in portrait and landscape. */
+.niche-carousel[hidden] {
+    display: none !important;
+}
+.niche-carousel .carousel-slide img {
+    object-fit: contain !important;
+    object-position: center center;
+}
+
+
+/* =====================================================
+   FIXED BUSINESS NICHE GLASS CAROUSEL
+   Supports both portrait and landscape project images.
+===================================================== */
+.niche-carousel[hidden] {
+    display: none !important;
+}
+
+.niche-item {
+    grid-template-columns: auto minmax(0, 1fr);
+}
+
+.niche-content[role="button"] {
+    cursor: pointer;
+}
+
+.niche-content[role="button"]::after {
+    content: "View projects";
+    display: inline-block;
+    margin-top: 5px;
+    color: rgba(174, 190, 255, 0.78);
+    font-size: 10px;
+    letter-spacing: 0.02em;
+}
+
+.niche-content[aria-expanded="true"]::after {
+    content: "Hide projects";
+}
+
+.niche-carousel {
+    height: clamp(220px, 42vw, 310px);
+    min-width: 0;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 0%, rgba(116, 135, 255, 0.18), transparent 65%), rgba(12, 14, 25, 0.76);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 12px 30px rgba(0,0,0,.2);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.niche-carousel .carousel-track {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translateX(0);
+    transition: transform 420ms cubic-bezier(.22,.7,.25,1);
+    transform-style: flat;
+}
+
+.niche-carousel .carousel-slide {
+    position: relative;
+    inset: auto;
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    padding: 12px 48px 30px;
+    transform: none;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+.niche-carousel .carousel-slide::after {
+    content: none;
+}
+
+.niche-carousel .carousel-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    object-fit: contain !important;
+    object-position: center;
+    border-radius: 10px;
+    background: rgba(7, 9, 18, 0.22);
+    filter: drop-shadow(0 10px 18px rgba(0,0,0,.24));
+}
+
+.niche-carousel .carousel-arrow {
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    opacity: 1;
+}
+
+.niche-carousel .carousel-dots {
+    z-index: 6;
+    bottom: 7px;
+}
+
+.niche-carousel .carousel-slide[aria-hidden="true"] {
+    pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    .niche-carousel { height: 235px; }
+    .niche-carousel .carousel-slide { padding: 10px 38px 29px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .niche-carousel .carousel-track { transition: none; }
+}
+
+
+/* =====================================================
+   NICHE GALLERY — ALL SLIDES READY + FULL IMAGE FIT
+   Supports any number of photos listed in TAPIND.nichePhotos.
+===================================================== */
+.niche-carousel {
+    height: clamp(280px, 48vw, 390px);
+}
+
+.niche-carousel .carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 420ms cubic-bezier(.22,.7,.25,1);
+}
+
+.niche-carousel .carousel-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 12px 46px 32px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.niche-carousel .carousel-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain !important;
+    object-position: center;
+    border-radius: 10px;
+    background: rgba(7, 9, 18, 0.25);
+}
+
+.niche-carousel .carousel-slide.image-load-error::after {
+    content: "Image not found — check this photo path in script.js";
+    position: absolute;
+    inset: auto 12px 12px;
+    padding: 8px 10px;
+    color: rgba(255,255,255,.9);
+    background: rgba(130, 35, 45, .78);
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 8px;
+    font-size: 11px;
+    text-align: center;
+    pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    .niche-carousel { height: 300px; }
+    .niche-carousel .carousel-slide { padding: 10px 36px 32px; }
+}
