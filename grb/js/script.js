@@ -126,7 +126,7 @@ const TAPIND = {
 
             "assets/web-dev/2.jpg",
 
-            "assets/web-dev/3.jpg"
+            "assets/web-dev/3.png"
 
         ],
 
@@ -474,6 +474,14 @@ function createNicheCarousels() {
                     ".carousel-next"
                 );
 
+            // Avoid a fatal TypeError if the HTML markup is missing a carousel control.
+            if (!track || !dots || !previous || !next) {
+                console.error(
+                    `[TAPIND gallery] Incomplete carousel markup for "${nicheName}". ` +
+                    "Each .niche-carousel needs .carousel-track, .carousel-dots, .carousel-prev, and .carousel-next."
+                );
+                return;
+            }
 
             if (
                 !photos ||
@@ -532,12 +540,21 @@ function createNicheCarousels() {
                         `${nicheName} project ${index + 1}`;
 
 
-                    image.loading =
-                        "lazy";
+                    // Load every gallery image up front so later slides (especially
+                    // the third and final photos) are ready when the user navigates.
+                    image.loading = "eager";
+                    image.decoding = "async";
+                    image.draggable = false;
 
-
-                    image.draggable =
-                        false;
+                    // Make a missing filename/path easy to diagnose in DevTools.
+                    image.addEventListener("error", () => {
+                        console.warn(`[TAPIND gallery] Could not load image: ${photo}`, {
+                            niche: nicheName,
+                            slide: index + 1
+                        });
+                        slide.classList.add("image-load-error");
+                        image.alt = `${nicheName} project ${index + 1} — image could not load. Check its path in TAPIND.nichePhotos.`;
+                    }, { once: true });
 
 
                     slide.appendChild(
@@ -1490,7 +1507,19 @@ document.addEventListener(
    INITIALIZE NICHE CAROUSELS
 ===================================================== */
 
-createNicheCarousels();
+function initializeTAPINDNicheCarousels() {
+    try {
+        createNicheCarousels();
+    } catch (error) {
+        console.error("[TAPIND gallery] Failed to initialize niche carousels:", error);
+    }
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeTAPINDNicheCarousels, { once: true });
+} else {
+    initializeTAPINDNicheCarousels();
+}
 
 
 /* =====================================================
@@ -1550,7 +1579,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let selectedRating = 5;
 
 
-    updateStars(selectedRating);
+    if (starButtons.length) updateStars(selectedRating);
 
 
     /* =========================================
@@ -1600,7 +1629,7 @@ document.addEventListener("DOMContentLoaded", () => {
        CHARACTER COUNTER
     ========================================= */
 
-    reviewMessage.addEventListener("input", () => {
+    if (reviewMessage) reviewMessage.addEventListener("input", () => {
 
         reviewCharacterCount.textContent =
             reviewMessage.value.length;
@@ -1639,7 +1668,7 @@ document.addEventListener("DOMContentLoaded", () => {
        SUBMIT REVIEW
     ========================================= */
 
-    reviewForm.addEventListener("submit", event => {
+    if (reviewForm) reviewForm.addEventListener("submit", event => {
 
         event.preventDefault();
 

@@ -2158,9 +2158,9 @@ footer span {
     display: block;
     width: 100%;
     height: 100%;
-    transform: none !important;
-    transform-style: preserve-3d;
-    perspective: 1100px;
+    /* Do not lock the track in place: script.js translates it to each photo. */
+    transform-style: flat;
+    perspective: none;
 }
 
 .niche-carousel .carousel-slide {
@@ -2434,4 +2434,62 @@ footer span {
 
 @media (prefers-reduced-motion: reduce) {
     .niche-carousel .carousel-track { transition: none; }
+}
+
+
+/* =====================================================
+   NICHE GALLERY — ALL SLIDES READY + FULL IMAGE FIT
+   Supports any number of photos listed in TAPIND.nichePhotos.
+===================================================== */
+.niche-carousel {
+    height: clamp(280px, 48vw, 390px);
+}
+
+.niche-carousel .carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 420ms cubic-bezier(.22,.7,.25,1);
+}
+
+.niche-carousel .carousel-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 12px 46px 32px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.niche-carousel .carousel-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain !important;
+    object-position: center;
+    border-radius: 10px;
+    background: rgba(7, 9, 18, 0.25);
+}
+
+.niche-carousel .carousel-slide.image-load-error::after {
+    content: "Image not found — check this photo path in script.js";
+    position: absolute;
+    inset: auto 12px 12px;
+    padding: 8px 10px;
+    color: rgba(255,255,255,.9);
+    background: rgba(130, 35, 45, .78);
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 8px;
+    font-size: 11px;
+    text-align: center;
+    pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    .niche-carousel { height: 300px; }
+    .niche-carousel .carousel-slide { padding: 10px 36px 32px; }
 }
