@@ -10,14 +10,16 @@
    EDIT YOUR DETAILS HERE
 ===================================================== */
 
+/* Private fields start EMPTY on purpose: js/card-gate.js fills them from
+   the Worker's GET /card only after the visitor verifies an email OTP. */
 const TAPIND = {
 
-    name: "Justin Diaz",
+    name: "",
 
-    title: "CEO & Founder",
+    title: "",
 
     bio:
-        "Digital solutions designed to help businesses connect, grow, and stand out.",
+        "",
 
 
     /* ================================================
@@ -41,20 +43,15 @@ const TAPIND = {
 
     social: {
 
-        instagram:
-            "https://instagram.com/tapind_justin",
+        instagram: "",
 
-        facebook:
-            "https://facebook.com/",
+        facebook: "",
 
-        tiktok:
-            "https://tiktok.com/@tapind_justin",
+        tiktok: "",
 
-        youtube:
-            "https://youtube.com/",
+        youtube: "",
 
-        website:
-            "https://tapind.ph"
+        website: ""
 
     },
 
@@ -64,7 +61,7 @@ const TAPIND = {
     ================================================ */
 
     reviews:
-        "https://www.google.com/",
+        "",
 
 
     /* ================================================
@@ -91,10 +88,10 @@ const TAPIND = {
     contact: {
 
         phone:
-            "+63 900 000 0000",
+            "",
 
         email:
-            "hello@tapind.ph",
+            "",
 
         company:
             "TAPIND"

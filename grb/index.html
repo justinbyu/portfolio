@@ -87,10 +87,71 @@
 
 
     <!-- =========================================
-         MAIN CONTAINER
+         PRIVACY GATE — OTP REQUIRED EVERY VISIT
+         Card content stays hidden and its private
+         details are not loaded until verification.
     ========================================== -->
 
-    <main class="container">
+    <section class="privacy-gate" id="privacyGate" aria-labelledby="privacyGateTitle">
+
+        <div class="glass-card privacy-card">
+
+            <img src="assets/tapind-logo.png" alt="TAPIND" class="privacy-logo">
+
+            <span class="eyebrow">PRIVATE DIGITAL CARD</span>
+
+            <h2 id="privacyGateTitle">Verify your email to continue</h2>
+
+            <p class="privacy-text">
+                This TAPIND card is private. Enter your email and we will send you a
+                6-digit code. A new code is required on every visit.
+            </p>
+
+            <form id="gateRequestForm" class="privacy-form">
+                <div class="review-input-group">
+                    <label for="gateEmail">Your email</label>
+                    <input type="email" id="gateEmail" placeholder="you@example.com" autocomplete="email" required>
+                </div>
+                <button type="submit" class="submit-review-button" id="gateSendBtn">
+                    <i class="fa-solid fa-envelope"></i> Email me a code
+                </button>
+            </form>
+
+            <form id="gateVerifyForm" class="privacy-form" hidden>
+                <div class="review-input-group">
+                    <label for="gateCode">6-digit code sent to <strong id="gateEmailEcho"></strong></label>
+                    <input type="text" id="gateCode" class="gate-code" inputmode="numeric"
+                           autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6"
+                           placeholder="000000" required>
+                </div>
+                <p class="privacy-meta">
+                    <span id="gateCountdown" aria-live="polite"></span>
+                    <span>
+                        <button type="button" class="privacy-link" id="gateResendBtn">Resend code</button> ·
+                        <button type="button" class="privacy-link" id="gateChangeEmailBtn">Use a different email</button>
+                    </span>
+                </p>
+                <button type="submit" class="submit-review-button" id="gateVerifyBtn">
+                    <i class="fa-solid fa-lock-open"></i> Unlock card
+                </button>
+            </form>
+
+            <div class="review-success" id="gateStatus" role="status" aria-live="polite"></div>
+
+            <p class="privacy-note">
+                Only the newest code works, and it expires in 10 minutes.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         MAIN CONTAINER (HIDDEN UNTIL OTP VERIFIED)
+    ========================================== -->
+
+    <main class="container" id="cardContent" hidden>
 
 
         <!-- =====================================
@@ -191,20 +252,14 @@
                     </span>
 
 
-                    <h2 id="profile-name">
-                        Justin Diaz
-                    </h2>
+                    <!-- Populated by js/card-gate.js only after OTP verification -->
+                    <h2 id="profile-name"></h2>
 
 
-                    <h3 id="profile-title">
-                        CEO & Founder
-                    </h3>
+                    <h3 id="profile-title"></h3>
 
 
-                    <p id="profile-bio">
-                        Digital solutions designed to help
-                        businesses connect, grow, and stand out.
-                    </p>
+                    <p id="profile-bio"></p>
 
                 </div>
 
@@ -1196,6 +1251,12 @@
                 © 2026 TAPIND
             </span>
 
+            <p style="margin-top:10px">
+                <a href="admin.html" style="font-size:12px;opacity:.55;text-decoration:underline">
+                    Owner login
+                </a>
+            </p>
+
         </footer>
 
     </main>
@@ -1222,7 +1283,8 @@
     ========================================== -->
 
     <script src="js/script.js"></script>
+    <script src="js/card-gate.js"></script>
 
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a49fb1624ac00930',t:'MTc5MTkwODY0OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 
 </html>

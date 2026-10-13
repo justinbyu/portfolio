@@ -2493,3 +2493,58 @@ footer span {
     .niche-carousel { height: 300px; }
     .niche-carousel .carousel-slide { padding: 10px 36px 32px; }
 }
+
+
+/* =====================================================
+   PRIVACY GATE (OTP BEFORE CARD, EVERY VISIT)
+===================================================== */
+.privacy-gate {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 28px 16px;
+}
+.privacy-card {
+    width: min(100%, 460px);
+    text-align: center;
+    padding: 34px 26px;
+}
+.privacy-logo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    margin-bottom: 14px;
+}
+.privacy-card h2 { margin: 8px 0 10px; }
+.privacy-text, .privacy-note {
+    color: rgba(255,255,255,.72);
+    font-size: 14px;
+    line-height: 1.6;
+}
+.privacy-form { margin-top: 22px; text-align: left; }
+.privacy-form .submit-review-button { width: 100%; }
+.gate-code {
+    font-size: 24px !important;
+    letter-spacing: 8px;
+    text-align: center;
+}
+.privacy-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 10px 0 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,.65);
+}
+.privacy-link {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #6ea8ff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+.privacy-note { margin-top: 16px; font-size: 12px; }
+#cardContent[hidden] { display: none !important; }
