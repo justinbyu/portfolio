@@ -24,6 +24,40 @@
   let sessionToken = null;   // memory only — never stored, by design
   let countdownTimer = null;
   let relockTimer = null;
+  let turnstileWidgetId = null;
+
+  const TURNSTILE_SITE_KEY = "0x4AAAAAAFSFE6UCdcguhWxE";
+
+  // The Turnstile widget lives inside the (initially hidden) card, so it
+  // cannot auto-render at page load. Render it explicitly once visible.
+  function renderTurnstileWhenReady(attempt = 0) {
+    const container = $("turnstileWidget");
+    if (!container) return;
+    if (turnstileWidgetId !== null) {
+      try { window.turnstile?.reset(turnstileWidgetId); } catch { /* fresh below */ }
+      return;
+    }
+    if (window.turnstile?.render) {
+      try {
+        turnstileWidgetId = window.turnstile.render(container, {
+          sitekey: TURNSTILE_SITE_KEY,
+          theme: "dark"
+        });
+      } catch (error) {
+        console.warn("[TAPIND gate] Turnstile render failed:", error);
+      }
+      return;
+    }
+    // Turnstile script is async; retry briefly until it arrives.
+    if (attempt < 40) setTimeout(() => renderTurnstileWhenReady(attempt + 1), 250);
+  }
+
+  function removeTurnstile() {
+    if (turnstileWidgetId !== null && window.turnstile?.remove) {
+      try { window.turnstile.remove(turnstileWidgetId); } catch { /* already gone */ }
+    }
+    turnstileWidgetId = null;
+  }
 
   function showStatus(message, success) {
     if (!statusBox) { if (message) console.log("[TAPIND gate]", message); return; }
@@ -144,6 +178,7 @@
     applyPrivateCard(card);
     gate.hidden = true;
     cardContent.hidden = false;
+    renderTurnstileWhenReady();
     if (relockTimer) clearTimeout(relockTimer);
     // Session lasts up to 30 minutes; after that this visit locks again.
     relockTimer = setTimeout(lock, Math.max(1, Number(expiresInSeconds) || 1800) * 1000);
@@ -152,6 +187,7 @@
 
   function lock() {
     sessionToken = null;
+    removeTurnstile();
     setChallenge(null);
     if (relockTimer) clearTimeout(relockTimer);
     cardContent.hidden = true;

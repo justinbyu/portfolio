@@ -63,7 +63,9 @@
         rel="stylesheet"
         href="css/style.css">
 
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <!-- Explicit mode: rendered by js/card-gate.js only AFTER OTP unlock.
+         Auto-render fails because the widget starts inside the hidden card. -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 
 </head>
 
@@ -1138,7 +1140,7 @@
 
             <!-- CLOUDFLARE TURNSTILE ANTI-SPAM CHECK -->
             <div class="review-input-group">
-                <div class="cf-turnstile" data-sitekey="0x4AAAAAAFSFE6UCdcguhWxE" data-theme="dark"></div>
+                <div id="turnstileWidget"></div>
             </div>
 
             <!-- SUBMIT -->
@@ -1285,6 +1287,6 @@
     <script src="js/script.js"></script>
     <script src="js/card-gate.js"></script>
 
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a49fb1624ac00930',t:'MTc5MTkwODY0OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 
 </html>
