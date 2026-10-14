@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- =========================================
+         BASIC INFORMATION
+    ========================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="author"
+        content="TAPIND">
+
+    <meta
+        name="description"
+        content="TAPIND Private Digital Card - Email verification">
+
+    <meta
+        name="theme-color"
+        content="#05070d">
+
+    <meta
+        name="robots"
+        content="noindex">
+
+    <title>TAPIND | Verify to Continue</title>
+
+
+    <!-- =========================================
+         GOOGLE FONT
+    ========================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <!-- =========================================
+         FONT AWESOME
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- =========================================
+         CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         PAGE BACKGROUND EFFECTS
+    ========================================== -->
+
+    <div class="background">
+
+        <div class="glow glow-one"></div>
+
+        <div class="glow glow-two"></div>
+
+        <div class="glow glow-three"></div>
+
+    </div>
+
+
+    <!-- =========================================
+         EMAIL VERIFICATION (STEP 1)
+
+         This page contains ONLY the verification form:
+         no card markup, no private details, no floating
+         buttons. After a successful code check the visitor
+         is handed over to index.html (the digital card).
+    ========================================== -->
+
+    <section class="privacy-gate" id="privacyGate" aria-labelledby="privacyGateTitle">
+
+        <div class="glass-card privacy-card">
+
+            <img src="assets/tapind-logo.png" alt="TAPIND" class="privacy-logo">
+
+            <span class="eyebrow">PRIVATE DIGITAL CARD</span>
+
+            <h2 id="privacyGateTitle">Verify your email to continue</h2>
+
+            <p class="privacy-text">
+                This TAPIND card is private. Enter your email and we will send you a
+                6-digit code. A new code is required on every visit.
+            </p>
+
+            <form id="gateRequestForm" class="privacy-form">
+                <div class="review-input-group">
+                    <label for="gateEmail">Your email</label>
+                    <input type="email" id="gateEmail" placeholder="you@example.com" autocomplete="email" required>
+                </div>
+                <button type="submit" class="submit-review-button" id="gateSendBtn">
+                    <i class="fa-solid fa-envelope"></i> Email me a code
+                </button>
+            </form>
+
+            <form id="gateVerifyForm" class="privacy-form" hidden>
+                <div class="review-input-group">
+                    <label for="gateCode">A 6-digit code was sent to <strong id="gateEmailEcho"></strong></label>
+                    <input type="text" id="gateCode" class="gate-code" inputmode="numeric"
+                           autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6"
+                           placeholder="000000" required>
+                </div>
+                <p class="privacy-meta">
+                    <span id="gateCountdown" aria-live="polite"></span>
+                    <span>
+                        <button type="button" class="privacy-link" id="gateResendBtn">Resend code</button> ·
+                        <button type="button" class="privacy-link" id="gateChangeEmailBtn">Use a different email</button>
+                    </span>
+                </p>
+                <button type="submit" class="submit-review-button" id="gateVerifyBtn">
+                    <i class="fa-solid fa-lock-open"></i> Verify &amp; Continue
+                </button>
+            </form>
+
+            <div class="review-success" id="gateStatus" role="status" aria-live="polite"></div>
+
+            <p class="privacy-note">
+                Only the newest code works, and it expires in 10 minutes.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="js/verify.js"></script>
+
+</body>
+
+</html>

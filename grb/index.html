@@ -67,6 +67,16 @@
          Auto-render fails because the widget starts inside the hidden card. -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 
+
+    <!-- Card page guard: this page opens only with the one-time session
+         handed over by verify.html. A fresh visit, a reload or a direct
+         link sends the visitor back to the verification page. -->
+    <script>
+        if (!/^#t=.+/.test(window.location.hash)) {
+            window.location.replace("verify.html");
+        }
+    </script>
+
 </head>
 
 
@@ -89,68 +99,34 @@
 
 
     <!-- =========================================
-         PRIVACY GATE — OTP REQUIRED EVERY VISIT
-         Card content stays hidden and its private
-         details are not loaded until verification.
+         LOADING STATE
+
+         Shown for the moment between arriving from
+         verify.html and the card being unlocked.
+         Never contains card details.
     ========================================== -->
 
-    <section class="privacy-gate" id="privacyGate" aria-labelledby="privacyGateTitle">
+    <div class="privacy-gate" id="cardLoading" aria-live="polite">
 
         <div class="glass-card privacy-card">
 
             <img src="assets/tapind-logo.png" alt="TAPIND" class="privacy-logo">
 
-            <span class="eyebrow">PRIVATE DIGITAL CARD</span>
+            <span class="eyebrow">TAPIND PRIVATE CARD</span>
 
-            <h2 id="privacyGateTitle">Verify your email to continue</h2>
+            <h2>Unlocking…</h2>
 
             <p class="privacy-text">
-                This TAPIND card is private. Enter your email and we will send you a
-                6-digit code. A new code is required on every visit.
-            </p>
-
-            <form id="gateRequestForm" class="privacy-form">
-                <div class="review-input-group">
-                    <label for="gateEmail">Your email</label>
-                    <input type="email" id="gateEmail" placeholder="you@example.com" autocomplete="email" required>
-                </div>
-                <button type="submit" class="submit-review-button" id="gateSendBtn">
-                    <i class="fa-solid fa-envelope"></i> Email me a code
-                </button>
-            </form>
-
-            <form id="gateVerifyForm" class="privacy-form" hidden>
-                <div class="review-input-group">
-                    <label for="gateCode">6-digit code sent to <strong id="gateEmailEcho"></strong></label>
-                    <input type="text" id="gateCode" class="gate-code" inputmode="numeric"
-                           autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6"
-                           placeholder="000000" required>
-                </div>
-                <p class="privacy-meta">
-                    <span id="gateCountdown" aria-live="polite"></span>
-                    <span>
-                        <button type="button" class="privacy-link" id="gateResendBtn">Resend code</button> ·
-                        <button type="button" class="privacy-link" id="gateChangeEmailBtn">Use a different email</button>
-                    </span>
-                </p>
-                <button type="submit" class="submit-review-button" id="gateVerifyBtn">
-                    <i class="fa-solid fa-lock-open"></i> Unlock card
-                </button>
-            </form>
-
-            <div class="review-success" id="gateStatus" role="status" aria-live="polite"></div>
-
-            <p class="privacy-note">
-                Only the newest code works, and it expires in 10 minutes.
+                Checking your session and loading your private card.
             </p>
 
         </div>
 
-    </section>
+    </div>
 
 
     <!-- =========================================
-         MAIN CONTAINER (HIDDEN UNTIL OTP VERIFIED)
+         MAIN CONTAINER (SHOWN ONLY AFTER VERIFICATION)
     ========================================== -->
 
     <main class="container" id="cardContent" hidden>
@@ -1269,10 +1245,12 @@
          FLOATING SAVE BUTTON
     ========================================== -->
 
+    <!-- Shown only after the privacy gate unlocks (see js/card-gate.js) -->
     <button
         class="floating-save"
         id="floatingSave"
-        aria-label="Save contact">
+        aria-label="Save contact"
+        hidden>
 
         <i class="fa-solid fa-user-plus"></i>
 

@@ -1681,6 +1681,11 @@ footer span {
 }
 
 
+.floating-save[hidden] {
+    display: none;
+}
+
+
 .floating-save:hover {
     transform:
         translateY(-4px)
@@ -2055,6 +2060,28 @@ footer span {
 
 .submit-review-button:active {
     transform: translateY(0);
+}
+
+
+/* Verify page button states: gray while checking, green when verified */
+
+.submit-review-button.is-verifying,
+.submit-review-button.is-verifying:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: rgba(255, 255, 255, 0.55);
+    cursor: progress;
+    transform: none;
+}
+
+
+.submit-review-button.is-verified,
+.submit-review-button.is-verified:hover {
+    background: rgba(80, 220, 140, 0.16);
+    border-color: rgba(80, 220, 140, 0.50);
+    color: #7ff0aa;
+    cursor: default;
+    transform: none;
 }
 
 
@@ -2504,6 +2531,13 @@ footer span {
     place-items: center;
     padding: 28px 16px;
 }
+
+/* A hidden gate/loading screen must collapse COMPLETELY. The class above
+   sets display:grid, which would otherwise override the browser's built-in
+   [hidden] rule and leave a full empty screen pushing the card down. */
+.privacy-gate[hidden] {
+    display: none !important;
+}
 .privacy-card {
     width: min(100%, 460px);
     text-align: center;
@@ -2547,4 +2581,15 @@ footer span {
     cursor: pointer;
 }
 .privacy-note { margin-top: 16px; font-size: 12px; }
+
+/* The gate message box shows WARNINGS/ERRORS only (e.g. wrong code,
+   email could not be sent). Success never lands here — the OTP section
+   appearing / the green button is the confirmation. */
+#gateStatus {
+    margin-top: 14px;
+    background: rgba(240, 90, 90, 0.08);
+    border: 1px solid rgba(240, 90, 90, 0.35);
+    color: #ff9d9d;
+}
 #cardContent[hidden] { display: none !important; }
+#cardLoading[hidden] { display: none !important; }
