@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f3f3">
+  <title>GCash</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-pay="gcash">
+  <div class="shell">
+    <main class="card pay-screen">
+      <a class="back" href="index.html">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M15 5 L8 12 L15 19" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        Back
+      </a>
+      <p class="eyebrow" id="payBrand"></p>
+      <h1 id="payName">GCash</h1>
+      <p class="pay-sub" id="paySub"></p>
+      <div class="qr-box">
+        <img id="qrImage" alt="GCash QR code">
+      </div>
+      <p class="qr-note" id="qrNote" hidden></p>
+      <div class="pay-buttons">
+        <button type="button" class="btn btn-line" id="saveQr">Save the QR</button>
+        <button type="button" class="btn btn-black" id="openApp">Go to GCash app</button>
+      </div>
+      <p class="fine" id="payStatus" role="status"></p>
+    </main>
+  </div>
+  <script src="js/qrcode.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/pay.js"></script>
+</body>
+</html>

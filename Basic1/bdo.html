@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BDO Payment | TAPIND</title>
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="payment.js" defer></script>
+</head>
+
+<body>
+  <main class="payment-page">
+    <div class="payment-container">
+
+      <nav class="payment-topbar">
+        <a class="back-link" href="index.html">
+          <span aria-hidden="true">←</span> Back to card
+        </a>
+        <span class="payment-brand">TAPIND</span>
+      </nav>
+
+      <section class="payment-panel">
+        <div class="payment-provider-logo bdo">BDO</div>
+
+        <h1>Pay with BDO</h1>
+        <p class="payment-description">
+          Use your supported banking app to scan or upload the QR code.
+        </p>
+
+        <div class="payment-qr">
+          <img
+            src="images/bdo-qr.png"
+            alt="TAPIND BDO payment QR code"
+            onerror="this.style.display='none';
+              this.nextElementSibling.hidden=false;"
+          >
+
+          <div class="qr-placeholder" hidden>
+            <strong>BDO QR not added yet</strong>
+            <br>
+            Add your real QR image at
+            <code>images/bdo-qr.png</code>
+          </div>
+        </div>
+
+        <div class="payment-instructions">
+          <strong>How to pay</strong>
+          <ol>
+            <li>Save or download the QR code below.</li>
+            <li>Open BDO Pay or BDO Online, depending on your QR type.</li>
+            <li>Choose the relevant QR scan or upload option.</li>
+            <li>Verify the recipient and payment details before confirming.</li>
+          </ol>
+        </div>
+
+        <a
+          class="payment-action"
+          href="images/bdo-qr.png"
+          download="TAPIND-BDO-QR.png"
+        >
+          Download BDO QR
+        </a>
+
+        <a
+          class="payment-action secondary"
+          href="https://www.bdo.com.ph/personal/digital/bdo-pay/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit Official BDO Pay Page
+        </a>
+
+        <p class="payment-disclaimer">
+          Only use a QR code issued for receiving the type of payment
+          you intend to accept. Confirm the recipient details in your app.
+        </p>
+      </section>
+
+      <p class="payment-disclaimer">
+        TAPIND · Tap. Connect. Grow.
+      </p>
+
+    </div>
+  </main>
+</body>
+</html>

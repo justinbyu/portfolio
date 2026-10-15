@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f3f3">
+  <meta name="description" id="metaDescription" content="TAPIND digital card">
+  <title>TAPIND Digital Card</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!--
+    NFC digital card. Edit js/config.js, not this file.
+    Open the digital-card folder in VS Code, then open index.html with Live Server.
+  -->
+  <noscript><p class="noscript">This card needs JavaScript. Open it in a browser, or use Live Server in VS Code.</p></noscript>
+
+  <div class="shell">
+    <main class="card">
+      <header class="profile">
+        <div class="avatar" id="avatar" aria-hidden="true">JD</div>
+        <p class="eyebrow" id="cardLabel"></p>
+        <h1 id="name"></h1>
+        <p class="role" id="role"></p>
+        <p class="bio" id="bio"></p>
+        <p class="tagline" id="tagline"></p>
+      </header>
+
+      <section class="section" aria-labelledby="connectTitle">
+        <h2 id="connectTitle">Let's Connect</h2>
+        <p class="lead">Find me on social media.</p>
+        <nav class="link-list" id="socialList" aria-label="Social media"></nav>
+      </section>
+
+      <section class="section" aria-labelledby="workTitle">
+        <h2 id="workTitle">What I Do</h2>
+        <p class="lead" id="niche"></p>
+        <div class="shot" id="viewport" tabindex="0" aria-roledescription="carousel" aria-label="Work pictures">
+          <div class="track" id="track"></div>
+        </div>
+        <div class="slide-meta">
+          <p class="caption" id="caption"></p>
+          <p class="count" id="count"></p>
+        </div>
+        <div class="dots" id="dots"></div>
+      </section>
+
+      <section class="section" aria-labelledby="payTitle">
+        <h2 id="payTitle">Pay</h2>
+        <p class="lead">Scan to pay.</p>
+        <nav class="link-list" id="payList" aria-label="Payments"></nav>
+        <div class="actions">
+          <button type="button" class="btn btn-black" id="saveContact">Save contact</button>
+        </div>
+      </section>
+
+      <details class="owner">
+        <summary>Card owner</summary>
+        <div class="owner-body">
+          <p>A tap opens this page. The chip only stores the link.</p>
+          <ol>
+            <li>Host this folder so it has an https address.</li>
+            <li>Paste that address into <code>publicUrl</code> in <code>js/config.js</code>.</li>
+            <li>Write it to a blank NTAG213. Android Chrome can use the button. iPhone needs the NFC Tools app: Write, add a URL, paste the link.</li>
+          </ol>
+          <div class="url-line">
+            <code id="publicUrlText"></code>
+            <button type="button" class="btn btn-line" id="copyLink">Copy link</button>
+            <button type="button" class="btn btn-black" id="writeNfc">Write to NFC card</button>
+            <a class="btn btn-line" href="print-card.html">Print the paper card</a>
+          </div>
+          <p class="owner-status" id="nfcStatus" role="status"></p>
+        </div>
+      </details>
+
+      <p class="foot-note" id="sampleNote" hidden></p>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Print NFC card</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/print-card.css">
+</head>
+<body>
+  <header class="tools">
+    <p>Print at 100% scale. Do not choose “fit to page”. Each face is a bank-card size, 85.6 × 54 mm. Cut on the corner marks, then stick the chip on the circle.</p>
+    <div class="tools-actions">
+      <button type="button" id="printBtn">Print</button>
+      <a href="index.html">Back to digital card</a>
+    </div>
+  </header>
+  <p class="warn" id="sampleWarn">Sample data. Edit js/config.js before you hand this card to anyone.</p>
+  <main class="sheet">
+    <section class="face-block">
+      <p class="face-label">Front</p>
+      <div class="cut-wrap">
+        <span class="tick tick-tl"></span>
+        <span class="tick tick-tr"></span>
+        <span class="tick tick-bl"></span>
+        <span class="tick tick-br"></span>
+        <article class="face face-front" id="front"></article>
+      </div>
+    </section>
+    <section class="face-block">
+      <p class="face-label">Back — chip goes here</p>
+      <div class="cut-wrap">
+        <span class="tick tick-tl"></span>
+        <span class="tick tick-tr"></span>
+        <span class="tick tick-bl"></span>
+        <span class="tick tick-br"></span>
+        <article class="face face-back" id="back"></article>
+      </div>
+    </section>
+  </main>
+  <script src="js/config.js"></script>
+  <script src="js/print-card.js"></script>
+</body>
+</html>

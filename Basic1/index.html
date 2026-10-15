@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Justin Diaz | TAPIND Digital Card</title>
+  <meta name="description"
+    content="Connect with Justin Diaz through TAPIND. Tap. Connect. Grow.">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <main class="digital-card">
+
+    <!-- PROFILE -->
+    <header class="profile">
+      <div class="profile-image-wrap">
+        <img
+          src="images/profile.jpg"
+          alt="Justin Diaz profile photo"
+          class="profile-image"
+          onerror="this.style.display='none'"
+        >
+        <span class="profile-initials">JD</span>
+      </div>
+
+      <p class="eyebrow">TAPIND DIGITAL CARD</p>
+      <h1>Justin Diaz</h1>
+      <p class="profile-title">CEO &amp; Founder</p>
+
+      <p class="profile-bio">
+        Digital solutions designed to help businesses
+        connect, grow, and stand out.
+      </p>
+
+      <p class="brand-line">TAPIND <span>·</span> Tap. Connect. Grow.</p>
+    </header>
+
+    <!-- SOCIAL LINKS -->
+    <section class="section">
+      <div class="section-heading">
+        <h2>Let's Connect</h2>
+        <p>Find me on social media.</p>
+      </div>
+
+      <div class="social-grid">
+        <a
+          class="social-link"
+          href="https://instagram.com/tapind_justin"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Instagram"
+        >
+          <span class="social-icon instagram">◎</span>
+          <span>Instagram</span>
+          <span class="external-arrow">↗</span>
+        </a>
+
+        <a
+          class="social-link"
+          href="https://facebook.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Facebook"
+        >
+          <span class="social-icon facebook">f</span>
+          <span>Facebook</span>
+          <span class="external-arrow">↗</span>
+        </a>
+
+        <a
+          class="social-link"
+          href="https://tiktok.com/@tapind_justin"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit TikTok"
+        >
+          <span class="social-icon tiktok">♪</span>
+          <span>TikTok</span>
+          <span class="external-arrow">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- BUSINESS NICHE -->
+    <section class="section">
+      <div class="section-heading">
+        <h2>What I Do</h2>
+        <p>Web Development</p>
+      </div>
+
+      <div class="portfolio">
+        <div
+          class="carousel"
+          id="businessCarousel"
+          aria-label="Web development project photos"
+          tabindex="0"
+        >
+          <article class="slide">
+            <img
+              src="images/niche-1.jpg"
+              alt="Web development project one"
+              onerror="this.style.display='none'"
+            >
+            <div class="slide-fallback">
+              <span>01</span>
+              <p>Website Design</p>
+            </div>
+          </article>
+
+          <article class="slide">
+            <img
+              src="images/niche-2.jpg"
+              alt="Web development project two"
+              onerror="this.style.display='none'"
+            >
+            <div class="slide-fallback">
+              <span>02</span>
+              <p>Digital Solutions</p>
+            </div>
+          </article>
+
+          <article class="slide">
+            <img
+              src="images/niche-3.jpg"
+              alt="Web development project three"
+              onerror="this.style.display='none'"
+            >
+            <div class="slide-fallback">
+              <span>03</span>
+              <p>Business Websites</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="carousel-controls">
+          <button
+            type="button"
+            id="previousSlide"
+            class="arrow-button"
+            aria-label="Previous photo"
+          >←</button>
+
+          <div
+            class="carousel-dots"
+            id="carouselDots"
+            aria-label="Choose a project photo"
+          >
+            <button class="dot active" type="button"
+              data-slide="0" aria-label="Photo 1"
+              aria-current="true"></button>
+            <button class="dot" type="button"
+              data-slide="1" aria-label="Photo 2"></button>
+            <button class="dot" type="button"
+              data-slide="2" aria-label="Photo 3"></button>
+          </div>
+
+          <button
+            type="button"
+            id="nextSlide"
+            class="arrow-button"
+            aria-label="Next photo"
+          >→</button>
+        </div>
+
+        <p class="swipe-hint">Swipe to explore projects</p>
+      </div>
+    </section>
+
+    
+<!-- PAYMENT METHODS -->
+<section class="section">
+  <div class="section-heading">
+    <h2>Payment Methods</h2>
+    <p>Choose your preferred payment method.</p>
+  </div>
+
+  <div class="bank-list">
+
+    <a href="gcash.html" class="bank-card payment-link">
+      <span class="bank-logo gcash-logo">G</span>
+      <span class="bank-summary">
+        <strong>GCash</strong>
+        <small>Pay using GCash QR</small>
+      </span>
+      <span class="payment-arrow">↗</span>
+    </a>
+
+    <a href="bdo.html" class="bank-card payment-link">
+      <span class="bank-logo bdo-logo">BDO</span>
+      <span class="bank-summary">
+        <strong>BDO</strong>
+        <small>Pay using bank QR</small>
+      </span>
+      <span class="payment-arrow">↗</span>
+    </a>
+
+  </div>
+</section>
