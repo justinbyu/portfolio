@@ -38,21 +38,29 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: only light;
-  --ink: #14241c;
-  --forest: #1b3429;
-  --cream: #f4efe6;
-  --brass: #a68456;
-  --serif: "Fraunces", Palatino, Georgia, serif;
-  --sans: "Outfit", "Segoe UI", sans-serif;
+  --ink: #111111;
+  --forest: #111111;
+  --cream: #ffffff;
+  --brass: #ffffff;
+  --serif: "Inter", "Segoe UI", sans-serif;
+  --sans: "Inter", "Segoe UI", sans-serif;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: #cfc6b8;
+  background: #f3f3f3;
   color: var(--ink);
   font-family: var(--sans);
 }

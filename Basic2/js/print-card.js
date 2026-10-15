@@ -1,5 +1,13 @@
 (function () {
-  var card = window.CARD || {};
+  var card = window.CARD || {
+  brand: "TAPIND",
+  name: "Justin Diaz",
+  role: "CEO & Founder",
+  niche: "Web Development",
+  phone: "",
+  publicUrl: "",
+  sample: false
+};
 
   function esc(value) {
     return String(value == null ? "" : value).replace(/[&<>"']/g, function (ch) {
@@ -28,7 +36,7 @@
   if (back) {
     var link = card.publicUrl ? card.publicUrl : "Set publicUrl in js/config.js";
     back.innerHTML =
-      '<div class="back-copy"><h2>Tap to open</h2><p>' + esc(card.phone || "") + "</p><p>" + esc(link) + "</p><p>Place a 25 mm NTAG213 sticker in the circle. Keep it off metal.</p></div>" +
+      '<div class="back-copy"><h2>Tap to open</h2><p>' + esc(link) + "</p><p>Pay by QR on the digital card. No account number is printed here.</p><p>Place a 25 mm NTAG213 sticker in the circle. Keep it off metal.</p></div>" +
       '<div class="chip-spot">NFC<br>chip</div>';
   }
 

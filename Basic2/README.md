@@ -1,45 +1,39 @@
 # TAPIND digital card
 
-A phone taps the NFC chip and opens this page. The chip stores a link, not the QR or the design.
-
-The card matches a clean white phone card: profile, three socials, one niche, three pictures, then GCash and BDO. Account numbers are not shown.
+This follows the Basic1 card at `justinbyu.github.io/portfolio/Basic1`, then adds the pieces that page was missing.
 
 ## Open in VS Code
 
 1. File → Open Folder, and choose this `digital-card` folder.
-2. Install **Live Server** if VS Code asks.
-3. Right-click `index.html` → **Open with Live Server**.
+2. Right-click `index.html` → Open with Live Server.
 
-## Edit your details
+Edit your name, phone, email, and the NFC link in `script.js` (`CONFIG`).
 
-Open `js/config.js`. That is the only file you need to change.
+## Upgrades
 
-## Payments
+- Favicon, Apple touch icon, and a home-screen icon
+- Web app manifest, so a phone can add the card to the home screen
+- Share tags for the link preview
+- Inter is included, so the type matches even offline
+- Save contact and the footer year, which the original script expected
+- GCash and BDO pages show a QR only, never an account number
+- Each payment page has **Save the QR** and **Go to GCash app** / **Go to BDO app**
+- NFC write for a blank NTAG213, under Card owner
 
-GCash and BDO are rows on the card. Each opens its own page:
+## Your photos and QR files
 
-- `gcash.html`
-- `bdo.html`
+Drop these in `images/` when you have them:
 
-Each page has the QR and two buttons:
+- `profile.jpg` — if this file is missing, the card shows the JD initials
+- `niche-1.jpg`, `niche-2.jpg`, `niche-3.jpg` — the three project slides
+- `gcash-qr.png` — the receive QR saved from the GCash app
+- `bdo-qr.png` — the receive QR from BDO
 
-1. **Save the QR** — downloads the QR image.
-2. **Go to GCash app** / **Go to BDO app** — opens that app on a phone.
-
-Android opens the installed app (GCash `com.globe.gcash.android`, BDO Online `ph.com.bdo.retail`). If the app is missing, it opens the store. On iPhone, GCash tries `gcash://`, then the App Store. BDO opens the App Store page, which shows Open if the app is already installed.
-
-The QR on a fresh sample is not a real payment code. Replace it before anyone pays you:
-
-1. In GCash, open your receive QR and save the image.
-2. Put it in this folder as `images/gcash-qr.png`.
-3. In `js/config.js`, set that payment’s `qrImage` to `"images/gcash-qr.png"`.
-4. Do the same for BDO with `images/bdo-qr.png`.
-
-Or paste the text encoded in the QR into `qrPayload`. Leave `qrImage` empty if you use the text.
+Do not put account numbers on the card. The QR is the payment.
 
 ## NFC
 
-1. Host this folder so the page has an `https://` address.
-2. Paste that address into `publicUrl`.
-3. Print `print-card.html` at 100% scale and stick a blank NTAG213 on the dashed circle.
-4. Write the link. Android Chrome: Card owner → Write to NFC card. iPhone: NFC Tools → Write → URL → paste the link.
+1. Host this folder so `index.html` has an `https://` address.
+2. Paste that address into `publicUrl` in `script.js`.
+3. On Android Chrome, open Card owner and press Write to NFC card.
+4. On iPhone, use NFC Tools: Write → URL → paste the link.

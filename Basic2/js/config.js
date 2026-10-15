@@ -2,93 +2,103 @@
    EDIT THIS FILE ONLY
    Save, then refresh the browser.
 
-   This is a sample NFC business card for a freelance creative.
-   Replace the text, links, and payment numbers before you share it.
+   The card shows no account numbers.
+   GCash and BDO each open their own page with a QR.
 
-   NFC cards do not store the whole page. They store a link.
-   1. Put this folder online so it has an https address.
-   2. Paste that address into publicUrl below.
-   3. Write the chip from the "Card owner" section on the page,
-      or with the NFC Tools app (needed on iPhone).
+   To use your real QR:
+   1. In the GCash app, open your receive QR and save the image.
+   2. Put that image in this folder as images/gcash-qr.png
+   3. Set qrImage below to "images/gcash-qr.png"
+   4. Do the same for BDO with images/bdo-qr.png
+   Or paste the text encoded in the QR into qrPayload.
+
+   NFC: host this folder, paste the https link into publicUrl,
+   then write that link onto a blank NTAG213 sticker.
    ============================================================ */
 
 window.CARD = {
-  // Turn this off after you replace the sample name, links, and numbers.
+  // Set false after you replace the sample links and QR images.
   sample: true,
 
-  // Public https link of this page, after you host the folder.
-  // Example: "https://your-name.netlify.app"
-  // Leave "" until the site is online. A file on your computer cannot be opened by a tap.
+  // Public https link of index.html, after you host the folder.
   publicUrl: "",
 
-  brand: "Field & Form",
-  name: "Lina Vargas",
-  role: "Freelance Creative",
-  location: "Quezon City",
+  brand: "TAPIND",
+  cardLabel: "TAPIND DIGITAL CARD",
+  name: "Justin Diaz",
+  role: "CEO & Founder",
+  bio: "Digital solutions designed to help businesses connect, grow, and stand out.",
+  tagline: "TAPIND · Tap. Connect. Grow.",
 
-  phone: "+63 917 000 0000",
-  email: "hello@fieldandform.example",
+  // Used for Save contact. Leave "" to hide them from the contact file.
+  phone: "",
+  email: "",
+  location: "",
 
-  // The one business niche.
-  niche: "Creative services",
-  nicheSummary: "Brand identity, campaigns, and social content for small studios.",
+  niche: "Web Development",
 
-  portrait: "images/portrait.jpg",
-
-  // Exactly three socials. Change name, handle, and url.
   socials: [
     {
       name: "Instagram",
-      handle: "@fieldandform",
-      url: "https://instagram.com/fieldandform",
+      url: "https://instagram.com/tapind",
       icon: "instagram"
     },
     {
       name: "Facebook",
-      handle: "Field & Form",
-      url: "https://facebook.com/fieldandform",
+      url: "https://facebook.com/tapind",
       icon: "facebook"
     },
     {
       name: "TikTok",
-      handle: "@fieldandform",
-      url: "https://www.tiktok.com/@fieldandform",
+      url: "https://www.tiktok.com/@tapind",
       icon: "tiktok"
     }
   ],
 
-  // Three pictures in the slider. Drop new jpgs in /images and update the paths.
   slides: [
     {
       image: "images/slide-1.jpg",
-      title: "Identity system",
-      caption: "Stationery and a quiet mark for a new studio."
+      title: "Product sites",
+      caption: "Quiet pages for growing teams."
     },
     {
       image: "images/slide-2.jpg",
-      title: "Social set",
-      caption: "Content cards for a seasonal launch."
+      title: "Mobile flows",
+      caption: "Short paths from tap to action."
     },
     {
       image: "images/slide-3.jpg",
-      title: "Packaging",
-      caption: "Box, sleeve, and a small geometric mark."
+      title: "Systems",
+      caption: "Structure behind the screen."
     }
   ],
 
-  // Two ways to pay. Numbers below are fake samples.
+  // No numbers are shown on the card. Each row opens its own page.
   payments: [
     {
+      id: "gcash",
       name: "GCash",
-      accountName: "Lina Vargas",
-      number: "0917 000 0000",
-      detail: "Sample wallet number — replace before sharing"
+      page: "gcash.html",
+      accountName: "Justin Diaz",
+      qrImage: "",
+      qrPayload: "",
+      androidPackage: "com.globe.gcash.android",
+      androidStore: "https://play.google.com/store/apps/details?id=com.globe.gcash.android",
+      iosStore: "https://apps.apple.com/ph/app/gcash/id520020791",
+      // Used on iPhone to open the installed app. Clear it if the phone says the link is invalid.
+      scheme: "gcash://"
     },
     {
+      id: "bdo",
       name: "BDO",
-      accountName: "Lina Vargas",
-      number: "0000 0000 0000",
-      detail: "Sample savings number — replace before sharing"
+      page: "bdo.html",
+      accountName: "Justin Diaz",
+      qrImage: "",
+      qrPayload: "",
+      androidPackage: "ph.com.bdo.retail",
+      androidStore: "https://play.google.com/store/apps/details?id=ph.com.bdo.retail",
+      iosStore: "https://apps.apple.com/app/bdo-online/id1551584630",
+      scheme: ""
     }
   ]
 };
