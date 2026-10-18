@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claim your prize</title>
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="Paste your prize code, save the ticket, and show it at the counter.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css?v=10">
+</head>
+<body class="glass-pay">
+  <main class="pay-shell">
+    <a class="glass-back" href="index.html">← Menu</a>
+    <section class="pay-card store-card">
+      <img class="store-logo" id="bizLogo" src="images/logo.png" alt="Business logo">
+      <p class="pay-kicker">How to claim</p>
+      <h1 id="bizName">Claim your prize</h1>
+      <ol class="claim-steps">
+        <li><span>1</span>Copy the code from the wheel.</li>
+        <li><span>2</span>Paste it in the box below.</li>
+        <li><span>3</span>Save your ticket.</li>
+        <li><span>4</span>Print it, or open the picture, and show the code at the counter.</li>
+      </ol>
+
+      <form class="claim-form" id="claimForm">
+        <label for="claimCode">Paste your code</label>
+        <div class="claim-row">
+          <input id="claimCode" name="code" autocomplete="off" spellcheck="false" maxlength="32" placeholder="Paste your code">
+          <button type="submit">Claim</button>
+        </div>
+        <p class="claim-status" id="claimStatus" role="status"></p>
+      </form>
+
+      <div class="ticket-ready" id="ticketReady" hidden>
+        <p class="pay-kicker" id="prizeLabel">Prize</p>
+        <strong id="prizeCode"></strong>
+        <p class="ticket-note">Show the printed code at the counter.</p>
+        <button type="button" class="save-ticket" id="saveTicket">Save ticket</button>
+      </div>
+    </section>
+  </main>
+  <script src="menu.js"></script>
+  <script>
+    (function () {
+      var client = window.CLIENT || {};
+      var marketing = window.MARKETING || {};
+      var prizes = marketing.prizes || [];
+      var params = new URLSearchParams(window.location.search);
+      var name = document.getElementById("bizName");
+      var logo = document.getElementById("bizLogo");
+      var form = document.getElementById("claimForm");
+      var input = document.getElementById("claimCode");
+      var status = document.getElementById("claimStatus");
+      var ready = document.getElementById("ticketReady");
+      var prizeLabel = document.getElementById("prizeLabel");
+      var prizeCodeEl = document.getElementById("prizeCode");
+      var saveButton = document.getElementById("saveTicket");
+      var claimed = null;
+
+      if (name && client.name) name.textContent = client.name;
+      if (logo) logo.alt = (client.name || "Business") + " logo";
+
+      function weekNumber(date) {
+        var copy = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+        var day = copy.getUTCDay() || 7;
+        copy.setUTCDate(copy.getUTCDate() + 4 - day);
+        var yearStart = new Date(Date.UTC(copy.getUTCFullYear(), 0, 1));
+        return Math.ceil((((copy - yearStart) / 86400000) + 1) / 7);
+      }
+
+      function weekCode() {
+        var prefix = String(marketing.weekPrefix || client.name || "STORE").replace(/\s+/g, "").toUpperCase();
+        var n = weekNumber(new Date());
+        return prefix + "-W" + (n < 10 ? "0" : "") + n;
+      }
+
+      function cleanCode(value) {
+        return String(value || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+      }
+
+      function claimCodeFor(prize) {
+        var token = String(prize && prize.code || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+        if (!token) return "";
+        return weekCode().replace(/-W(\d+)$/, "-" + token + "-W$1");
+      }
+
+      function prizeFromCode(value) {
+        var typed = cleanCode(value);
+        if (!typed) return null;
+        for (var i = 0; i < prizes.length; i += 1) {
+          if (cleanCode(claimCodeFor(prizes[i])) === typed) return prizes[i];
+        }
+        return null;
+      }
+
+      function setStatus(message, bad) {
+        if (!status) return;
+        status.textContent = message;
+        status.classList.toggle("is-bad", Boolean(bad));
+      }
+
+      function showPrize(prize) {
+        claimed = { label: prize.label, code: claimCodeFor(prize) };
+        if (prizeLabel) prizeLabel.textContent = prize.label;
+        if (prizeCodeEl) prizeCodeEl.textContent = claimed.code;
+        if (ready) ready.hidden = false;
+        if (saveButton) saveButton.textContent = "Save ticket";
+        try {
+          localStorage.setItem("claim-" + weekCode(), JSON.stringify(claimed));
+        } catch (error) { /* ignore */ }
+        setStatus("Prize ready. Save the ticket, then show the printed code at the counter.");
+      }
+
+      function applyCode(value) {
+        var typed = String(value || "").trim();
+        if (!typed) {
+          claimed = null;
+          if (ready) ready.hidden = true;
+          setStatus("Paste the code you copied from the wheel.", true);
+          return;
+        }
+        var prize = prizeFromCode(typed);
+        if (!prize) {
+          claimed = null;
+          if (ready) ready.hidden = true;
+          setStatus("That code does not match a prize this week.", true);
+          return;
+        }
+        showPrize(prize);
+      }
+
+      function drawTicket(label, prizeCode) {
+        var canvas = document.createElement("canvas");
+        canvas.width = 800;
+        canvas.height = 1040;
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#07090e";
+        ctx.fillRect(0, 0, 800, 1040);
+        ctx.strokeStyle = "#f2d31b";
+        ctx.lineWidth = 10;
+        ctx.strokeRect(36, 36, 728, 968);
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#8ef7ff";
+        ctx.font = "700 28px sans-serif";
+        ctx.fillText(String(client.name || "Hearth").toUpperCase(), 400, 150);
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "800 46px sans-serif";
+        ctx.fillText("PRIZE TICKET", 400, 230);
+        ctx.font = "600 32px sans-serif";
+        ctx.fillText(label || "Prize", 400, 320);
+        ctx.fillStyle = "#f2d31b";
+        ctx.fillRect(90, 400, 620, 150);
+        ctx.fillStyle = "#172033";
+        ctx.font = "800 40px sans-serif";
+        ctx.fillText(prizeCode, 400, 492);
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "700 30px sans-serif";
+        ctx.fillText("Show this printed code", 400, 680);
+        ctx.fillText("at the counter.", 400, 728);
+        return canvas;
+      }
+
+      function saveTicket() {
+        if (!claimed) return;
+        var canvas = drawTicket(claimed.label, claimed.code);
+        canvas.toBlob(function (blob) {
+          if (!blob) {
+            setStatus("Could not save this ticket.", true);
+            return;
+          }
+          var fileName = String(client.name || "ticket").replace(/\s+/g, "-") + "-" + claimed.code + ".png";
+          var file = new File([blob], fileName, { type: "image/png" });
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            navigator.share({ files: [file], title: "Prize ticket" }).then(function () {
+              if (saveButton) saveButton.textContent = "Saved";
+              setStatus("Ticket ready. Show the printed code at the counter.");
+            }).catch(function () {
+              setStatus("Could not save this ticket.", true);
+            });
+            return;
+          }
+          var url = URL.createObjectURL(blob);
+          var link = document.createElement("a");
+          link.href = url;
+          link.download = fileName;
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          setTimeout(function () { URL.revokeObjectURL(url); }, 800);
+          if (saveButton) saveButton.textContent = "Saved";
+          setStatus("Ticket saved. Print it and show the code at the counter.");
+        }, "image/png");
+      }
+
+      var pasted = params.get("code") || "";
+      if (input && pasted) input.value = pasted;
+      if (pasted) applyCode(pasted);
+
+      if (form) {
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          applyCode(input && input.value);
+        });
+      }
+      if (saveButton) saveButton.addEventListener("click", saveTicket);
+    })();
+  </script>
+</body>
+</html>

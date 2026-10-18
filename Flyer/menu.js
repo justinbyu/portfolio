@@ -17,11 +17,11 @@ window.MARKETING = {
   lunchStart: 11,
   lunchEnd: 14,
   prizes: [
-    { label: "Free ice tea", weight: 2 },
-    { label: "$5 off today's plate", weight: 2 },
-    { label: "Free fries", weight: 1 },
-    { label: "10% off", weight: 3 },
-    { label: "Try again next visit", weight: 4 }
+    { label: "Free ice tea", code: "TEA", weight: 2 },
+    { label: "$5 off today's plate", code: "5OFF", weight: 2 },
+    { label: "Free fries", code: "FRIES", weight: 1 },
+    { label: "10% off", code: "10OFF", weight: 3 },
+    { label: "Try again next visit", code: "", weight: 4 }
   ]
 };
 

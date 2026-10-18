@@ -25,9 +25,9 @@
   <meta name="twitter:title" content="Justin Diaz | TAPIND Digital Card">
   <meta name="twitter:description" content="Connect with Justin Diaz through TAPIND. Tap. Connect. Grow.">
 
-  <link rel="stylesheet" href="style.css">
-  <script src="menu.js" defer></script>
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css?v=10">
+  <script src="menu.js?v=10" defer></script>
+  <script src="script.js?v=10" defer></script>
 </head>
 
 <body class="menu-app">
@@ -73,13 +73,25 @@
 
       <section class="spin-box" aria-label="Spin the wheel">
         <h2>Spin the wheel</h2>
-        <p class="spin-lead">One spin a day. The code changes every Monday.</p>
+        <p class="spin-lead">Copy the code, then tap Claim.</p>
         <div class="wheel-wrap">
           <div class="wheel-pointer" aria-hidden="true"></div>
           <div class="wheel" id="wheel"></div>
         </div>
-        <button type="button" class="spin-button" id="spinButton">Spin</button>
+        <button type="button" class="spin-button" id="spinButton" onclick="window.spinTheWheel && window.spinTheWheel()">Spin</button>
         <p class="spin-result" id="spinResult" role="status"></p>
+        <div class="prize-code" id="prizeCode" hidden>
+          <span class="prize-code-text" id="prizeCodeText"></span>
+          <button type="button" class="copy-code" id="copyCode">Copy</button>
+        </div>
+        <form class="claim-form" id="claimForm" action="claim.html" method="get">
+          <label for="claimCode">Enter your code</label>
+          <div class="claim-row">
+            <input id="claimCode" name="code" autocomplete="off" spellcheck="false" maxlength="32" placeholder="Paste your code">
+            <button type="submit" id="claimButton">Claim</button>
+          </div>
+          <p class="claim-status" id="claimStatus" role="status"></p>
+        </form>
       </section>
 
       <p class="stage-count" id="slideCount">01 / 12</p>

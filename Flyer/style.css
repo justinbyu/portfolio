@@ -1225,8 +1225,23 @@ button.payment-action {
   border: 8px solid rgba(255, 255, 255, 0.34);
   border-radius: 50%;
   box-shadow: 0 0 24px rgba(142, 247, 255, 0.25);
+  transform: rotate(0deg);
   transform-origin: 50% 50%;
-  transition: transform 4s cubic-bezier(0.15, 0.7, 0.1, 1);
+  cursor: pointer;
+}
+
+.wheel::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  z-index: 2;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(23, 32, 51, 0.85);
 }
 
 .wheel span {
@@ -1244,6 +1259,8 @@ button.payment-action {
 }
 
 .spin-button {
+  position: relative;
+  z-index: 6;
   display: inline-flex;
   min-width: 148px;
   min-height: 52px;
@@ -1264,6 +1281,177 @@ button.payment-action {
 .spin-button:disabled {
   cursor: wait;
   opacity: 0.7;
+}
+
+.prize-code {
+  display: flex;
+  width: min(100%, 320px);
+  align-items: center;
+  gap: 8px;
+  margin: 12px auto 0;
+}
+
+.prize-code[hidden] { display: none !important; }
+
+.prize-code-text {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 10px;
+  border: 1px dashed rgba(242, 211, 27, 0.7);
+  border-radius: 14px;
+  background: rgba(242, 211, 27, 0.12);
+  color: #f2d31b;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  user-select: all;
+  -webkit-user-select: all;
+}
+
+.copy-code {
+  min-width: 84px;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 14px;
+  background: #f2d31b;
+  color: #172033;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.copy-code.is-copied {
+  background: #8ef7ff;
+}
+
+.claim-steps {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.claim-steps li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.claim-steps span {
+  display: grid;
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border-radius: 50%;
+  background: #f2d31b;
+  color: #172033;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.ticket-ready {
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid rgba(242, 211, 27, 0.45);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.ticket-ready[hidden] { display: none !important; }
+
+.ticket-ready strong {
+  display: block;
+  margin-top: 6px;
+  color: #f2d31b;
+  font-size: 18px;
+  letter-spacing: 0.03em;
+}
+
+.ticket-note {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.save-ticket {
+  display: inline-flex;
+  min-width: 168px;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 0 18px;
+  border: 1px solid rgba(142, 247, 255, 0.5);
+  border-radius: 14px;
+  background: rgba(142, 247, 255, 0.14);
+  color: #dffcff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.claim-form {
+  width: min(100%, 320px);
+  margin: 14px auto 0;
+  text-align: left;
+}
+
+.claim-form label {
+  display: block;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.claim-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.claim-form input {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.claim-form button {
+  min-height: 48px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 14px;
+  background: #f2d31b;
+  color: #172033;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.claim-status {
+  margin: 8px 0 0;
+  color: #8ef7ff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.claim-status.is-bad {
+  color: #ffb4a8;
 }
 
 .deal-strip[hidden],
@@ -1933,6 +2121,11 @@ body.glass-pay .payment-qr {
   margin-top: 12px;
   color: rgba(255, 255, 255, 0.7);
   font-size: 12px;
+}
+
+.store-card .claim-form input {
+  width: auto;
+  flex: 1;
 }
 
 .store-card input {

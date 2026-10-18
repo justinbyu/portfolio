@@ -80,7 +80,9 @@ function orderHref(item) {
     item && item.promo ? "promo=" + encodeURIComponent(item.promo) : "",
     item && item.ends ? "ends=" + encodeURIComponent(item.ends) : "",
     item && item.addOn ? "addOn=" + encodeURIComponent(item.addOn) : "",
-    item && item.addOnPrice ? "addOnPrice=" + encodeURIComponent(money(item.addOnPrice)) : ""
+    item && item.addOnPrice ? "addOnPrice=" + encodeURIComponent(money(item.addOnPrice)) : "",
+    readClaim() ? "prize=" + encodeURIComponent(readClaim().label) : "",
+    readClaim() ? "claim=" + encodeURIComponent(readClaim().code) : ""
   ].filter(Boolean).join("&");
   const site = String(client.storeUrl || "").trim();
   if (/^https:\/\//i.test(site)) {
@@ -444,7 +446,9 @@ function weekNumber(date) {
 }
 
 function weeklyCode() {
-  const prefix = String(marketing.weekPrefix || client.name || "STORE").replace(/\s+/g, "").toUpperCase();
+  const source = window.MARKETING || {};
+  const who = window.CLIENT || {};
+  const prefix = String(source.weekPrefix || who.name || "STORE").replace(/\s+/g, "").toUpperCase();
   return prefix + "-W" + String(weekNumber(new Date())).padStart(2, "0");
 }
 
@@ -500,71 +504,266 @@ const spinResult = document.getElementById("spinResult");
 const wheel = document.getElementById("wheel");
 const spinKey = "spin-" + new Date().toISOString().slice(0, 10);
 
-function showSpin(label, already) {
-  if (!spinResult) return;
-  spinResult.textContent = (already ? "Already spun today. " : "") + label + ". Code " + code + ".";
+function prizeClaimCode(prize) {
+  const token = String(prize && prize.code || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+  if (!token) return "";
+  return code.replace(/-W(\d+)$/, "-" + token + "-W$1");
 }
 
-try {
-  const savedSpin = localStorage.getItem(spinKey);
-  if (savedSpin) showSpin(savedSpin, true);
-} catch (error) {
-  /* ignore */
+function cleanCode(value) {
+  return String(value || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
 }
 
-let wheelAngle = 0;
-let wheelSpinning = false;
+function prizeFromCode(value) {
+  const typed = cleanCode(value);
+  if (!typed) return null;
+  return prizeList.find((prize) => cleanCode(prizeClaimCode(prize)) === typed) || null;
+}
 
-function spinWheel() {
-  if (!wheel || !prizeList.length || wheelSpinning) return;
+function readClaim() {
   try {
-    const saved = localStorage.getItem(spinKey);
-    if (saved) {
-      showSpin(saved, true);
-      return;
+    const raw = localStorage.getItem("claim-" + weeklyCode());
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    if (!data || !data.label || !data.code) return null;
+    return data;
+  } catch (error) {
+    return null;
+  }
+}
+
+function showWon(label, prizeCodeText) {
+  const prizeCodeEl = document.getElementById("prizeCode");
+  const prizeCodeTextEl = document.getElementById("prizeCodeText");
+  const claimInput = document.getElementById("claimCode");
+  const copyCode = document.getElementById("copyCode");
+  if (spinResult) {
+    spinResult.textContent = prizeCodeText
+      ? label + ". Copy the code, then paste it below."
+      : label + ". No prize code on this spin.";
+  }
+  if (prizeCodeEl) {
+    prizeCodeEl.hidden = !prizeCodeText;
+    prizeCodeEl.dataset.label = label || "";
+    prizeCodeEl.dataset.code = prizeCodeText || "";
+  }
+  if (prizeCodeTextEl) prizeCodeTextEl.textContent = prizeCodeText || "";
+  if (claimInput && prizeCodeText && !readClaim()) claimInput.value = "";
+  if (copyCode) {
+    copyCode.textContent = "Copy";
+    copyCode.classList.remove("is-copied");
+  }
+}
+
+async function copyPrizeCode() {
+  const prizeCodeTextEl = document.getElementById("prizeCodeText");
+  const copyCode = document.getElementById("copyCode");
+  const value = prizeCodeTextEl ? prizeCodeTextEl.textContent.trim() : "";
+  if (!value) return;
+  let copied = false;
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(value);
+      copied = true;
     }
   } catch (error) {
-    /* allow the spin if storage is blocked */
+    copied = false;
   }
-  const index = pickPrize();
-  const slice = 360 / prizeList.length;
-  const target = (360 - (index * slice) % 360) % 360;
-  const current = ((wheelAngle % 360) + 360) % 360;
-  let delta = target - current;
-  if (delta < 0) delta += 360;
-  wheelAngle += (5 * 360) + delta;
-  wheelSpinning = true;
-  wheel.style.transform = "rotate(" + wheelAngle + "deg)";
-  if (spinButton) spinButton.disabled = true;
-  window.setTimeout(() => {
-    const label = prizeList[index].label;
-    try { localStorage.setItem(spinKey, label); } catch (error) { /* ignore */ }
-    showSpin(label, false);
-    wheelSpinning = false;
-    if (spinButton) spinButton.disabled = false;
-  }, 4200);
+  if (!copied) {
+    try {
+      const area = document.createElement("textarea");
+      area.value = value;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.focus();
+      area.select();
+      copied = document.execCommand("copy");
+      area.remove();
+    } catch (error) {
+      copied = false;
+    }
+  }
+  if (copyCode) {
+    copyCode.textContent = copied ? "Copied" : "Hold code";
+    copyCode.classList.add("is-copied");
+  }
+  if (prizeCodeTextEl && !copied) {
+    const range = document.createRange();
+    range.selectNodeContents(prizeCodeTextEl);
+    const selection = window.getSelection();
+    if (selection) {
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+  }
+  showClaim(copied ? "Copied. Tap Claim and paste it there." : "Hold the yellow code, then tap Copy.", !copied);
 }
 
-if (spinButton && wheel && prizeList.length) {
-  spinButton.addEventListener("click", spinWheel);
+function showClaim(message, bad) {
+  const claimStatus = document.getElementById("claimStatus");
+  if (!claimStatus) return;
+  claimStatus.textContent = message;
+  claimStatus.classList.toggle("is-bad", Boolean(bad));
+}
+
+function claimPrize(value) {
+  const prize = prizeFromCode(value);
+  if (!prize) {
+    showClaim("That code does not match a prize this week.", true);
+    return null;
+  }
+  const prizeCodeText = prizeClaimCode(prize);
+  const saved = { label: prize.label, code: prizeCodeText };
+  try { localStorage.setItem("claim-" + code, JSON.stringify(saved)); } catch (error) { /* ignore */ }
+  showClaim("Prize claimed: " + prize.label + ". Show the printed ticket at the counter.");
+  if (typeof showSlide === "function") showSlide();
+  return saved;
 }
 
 const wheelWrap = document.querySelector(".wheel-wrap");
-if (wheelWrap && wheel && prizeList.length) {
-  let flick = null;
-  wheelWrap.addEventListener("pointerdown", (event) => {
+
+let wheelAngle = 0;
+let wheelSpinning = false;
+let spinFrame = 0;
+
+function setWheelAngle(angle) {
+  wheelAngle = angle;
+  wheel.style.transition = "none";
+  wheel.style.transform = "rotate(" + angle + "deg)";
+}
+
+function playSpin(from, to, done) {
+  const duration = 4200;
+  const start = performance.now();
+  wheelSpinning = true;
+  if (spinButton) {
+    spinButton.disabled = true;
+    spinButton.textContent = "Spinning";
+  }
+  if (spinResult) spinResult.textContent = "Spinning…";
+  cancelAnimationFrame(spinFrame);
+
+  function frame(now) {
+    const t = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - t, 3);
+    setWheelAngle(from + (to - from) * eased);
+    if (t < 1) {
+      spinFrame = requestAnimationFrame(frame);
+      return;
+    }
+    setWheelAngle(to);
+    wheelSpinning = false;
+    if (spinButton) {
+      spinButton.disabled = false;
+      spinButton.textContent = "Spin";
+    }
+    burstConfetti();
+    done();
+  }
+
+  spinFrame = requestAnimationFrame(frame);
+}
+
+function burstConfetti() {
+  try {
+    const old = document.getElementById("confetti-layer");
+    if (old) old.remove();
+    if (!document.getElementById("confetti-style")) {
+      const style = document.createElement("style");
+      style.id = "confetti-style";
+      style.textContent = "@keyframes confettiFly{0%{transform:translate(var(--sx),var(--sy)) rotate(0deg);opacity:1}100%{transform:translate(var(--ex),var(--ey)) rotate(var(--rot));opacity:0}}";
+      document.head.appendChild(style);
+    }
+    const layer = document.createElement("div");
+    layer.id = "confetti-layer";
+    layer.setAttribute("aria-hidden", "true");
+    layer.style.cssText = "position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:visible;";
+    document.body.appendChild(layer);
+    const host = document.querySelector(".wheel-wrap") || document.body;
+    const box = host.getBoundingClientRect();
+    const x0 = box.width ? box.left + box.width / 2 : window.innerWidth / 2;
+    const y0 = box.height ? box.top + box.height / 2 : window.innerHeight / 3;
+    const colors = ["#f2d31b", "#8ef7ff", "#ffffff", "#ff8a5b", "#c9f27a", "#ff5d8f", "#7aa2ff"];
+    for (let i = 0; i < 90; i += 1) {
+      const bit = document.createElement("span");
+      const w = 8 + (i % 5) * 2;
+      const h = 12 + (i % 4) * 3;
+      const angle = (Math.PI * 2 * i) / 90 + (i % 3) * 0.2;
+      const dist = 70 + (i % 9) * 22;
+      const sx = x0 - w / 2;
+      const sy = y0 - h / 2;
+      const ex = sx + Math.cos(angle) * dist;
+      const ey = sy + Math.sin(angle) * dist + 80 + (i % 5) * 16;
+      const rot = (i % 2 ? 1 : -1) * (180 + (i % 7) * 40);
+      bit.style.cssText = "position:absolute;left:0;top:0;display:block;width:" + w + "px;height:" + h + "px;border-radius:" + (i % 4 === 0 ? "50%" : "2px") + ";background:" + colors[i % colors.length] + ";transform:translate(" + sx + "px," + sy + "px);";
+      layer.appendChild(bit);
+      if (bit.animate) {
+        bit.animate([
+          { transform: "translate(" + sx + "px," + sy + "px) rotate(0deg)", opacity: 1 },
+          { transform: "translate(" + ex + "px," + ey + "px) rotate(" + rot + "deg)", opacity: 0 }
+        ], { duration: 1500, delay: (i % 8) * 20, easing: "cubic-bezier(.15,.7,.2,1)", fill: "forwards" });
+      }
+    }
+    window.setTimeout(() => layer.remove(), 2200);
+  } catch (error) {
+    /* the prize still shows if the burst cannot paint */
+  }
+}
+
+function spinWheel() {
+  if (!wheel || !prizeList.length || wheelSpinning) return;
+  const index = pickPrize();
+  const slice = 360 / prizeList.length;
+  const target = (360 - ((index * slice) % 360)) % 360;
+  const current = ((wheelAngle % 360) + 360) % 360;
+  const forward = (target - current + 360) % 360;
+  const next = wheelAngle + (5 * 360) + forward;
+  playSpin(wheelAngle, next, () => {
+    const prize = prizeList[index];
+    const prizeCodeText = prizeClaimCode(prize);
+    try {
+      localStorage.setItem(spinKey, JSON.stringify({ label: prize.label, code: prizeCodeText }));
+    } catch (error) { /* ignore */ }
+    showWon(prize.label, prizeCodeText);
+  });
+}
+
+window.spinTheWheel = spinWheel;
+
+const claimForm = document.getElementById("claimForm");
+const claimInput = document.getElementById("claimCode");
+if (claimForm) {
+  claimForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const value = claimInput && claimInput.value ? claimInput.value.trim() : "";
+    window.location.href = value ? "claim.html?code=" + encodeURIComponent(value) : "claim.html";
+  });
+}
+const copyCode = document.getElementById("copyCode");
+if (copyCode) copyCode.addEventListener("click", copyPrizeCode);
+const prizeCodeTextEl = document.getElementById("prizeCodeText");
+if (prizeCodeTextEl) prizeCodeTextEl.addEventListener("click", copyPrizeCode);
+if (claimInput) {
+  claimInput.addEventListener("focus", () => {
+    if (claimInput.value) claimInput.select();
+  });
+}
+try {
+  const savedSpin = localStorage.getItem(spinKey);
+  if (savedSpin) {
+    const data = savedSpin.charAt(0) === "{" ? JSON.parse(savedSpin) : { label: savedSpin, code: "" };
+    if (data && data.label) showWon(data.label, data.code || "");
+  }
+} catch (error) { /* ignore */ }
+
+if (spinButton) spinButton.addEventListener("click", spinWheel);
+if (wheelWrap && wheel) {
+  wheelWrap.addEventListener("click", (event) => {
     if (event.target.closest("button, a")) return;
-    flick = { id: event.pointerId, x: event.clientX, y: event.clientY };
-    try { wheelWrap.setPointerCapture(event.pointerId); } catch (error) { /* ignore */ }
+    spinWheel();
   });
-  wheelWrap.addEventListener("pointerup", (event) => {
-    if (!flick || event.pointerId !== flick.id) return;
-    const dx = event.clientX - flick.x;
-    const dy = event.clientY - flick.y;
-    flick = null;
-    if (Math.abs(dx) >= 24 || Math.abs(dy) >= 24) spinWheel();
-  });
-  wheelWrap.addEventListener("pointercancel", () => { flick = null; });
 }
 
 /* =====================================

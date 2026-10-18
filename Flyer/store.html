@@ -31,6 +31,14 @@
           Quantity
           <input id="qty" type="number" min="1" max="20" value="1">
         </label>
+        <form class="claim-form" id="claimForm">
+          <label for="claimCode">Enter your code</label>
+          <div class="claim-row">
+            <input id="claimCode" name="code" autocomplete="off" spellcheck="false" maxlength="32" placeholder="Prize code">
+            <button type="submit">Claim</button>
+          </div>
+          <p class="claim-status" id="claimStatus" role="status"></p>
+        </form>
       </article>
 
       <button type="button" class="order-now" id="placeOrder">Place order</button>
@@ -59,6 +67,65 @@
       var status = document.getElementById("orderStatus");
       var button = document.getElementById("placeOrder");
       var qty = document.getElementById("qty");
+      var claimForm = document.getElementById("claimForm");
+      var claimInput = document.getElementById("claimCode");
+      var claimStatus = document.getElementById("claimStatus");
+      var marketing = window.MARKETING || {};
+      var prizes = marketing.prizes || [];
+
+      function weekNumber(date) {
+        var copy = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+        var day = copy.getUTCDay() || 7;
+        copy.setUTCDate(copy.getUTCDate() + 4 - day);
+        var yearStart = new Date(Date.UTC(copy.getUTCFullYear(), 0, 1));
+        return Math.ceil((((copy - yearStart) / 86400000) + 1) / 7);
+      }
+
+      function weekCode() {
+        var prefix = String(marketing.weekPrefix || client.name || "STORE").replace(/\s+/g, "").toUpperCase();
+        var n = weekNumber(new Date());
+        return prefix + "-W" + (n < 10 ? "0" : "") + n;
+      }
+
+      function cleanCode(value) {
+        return String(value || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+      }
+
+      function claimCodeFor(prize) {
+        var token = String(prize && prize.code || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+        if (!token) return "";
+        return weekCode().replace(/-W(\d+)$/, "-" + token + "-W$1");
+      }
+
+      function prizeFromCode(value) {
+        var typed = cleanCode(value);
+        if (!typed) return null;
+        for (var i = 0; i < prizes.length; i += 1) {
+          if (cleanCode(claimCodeFor(prizes[i])) === typed) return prizes[i];
+        }
+        return null;
+      }
+
+      var claimed = null;
+      function setClaimMessage(message, bad) {
+        if (!claimStatus) return;
+        claimStatus.textContent = message;
+        claimStatus.classList.toggle("is-bad", Boolean(bad));
+      }
+      function applyCode(value) {
+        var prize = prizeFromCode(value);
+        if (!prize) {
+          claimed = null;
+          setClaimMessage("That code does not match a prize this week.", true);
+          return;
+        }
+        claimed = { label: prize.label, code: claimCodeFor(prize) };
+        setClaimMessage("Prize claimed: " + prize.label + ".");
+      }
+
+      var fromOrder = params.get("claim") || "";
+      if (claimInput && fromOrder) claimInput.value = fromOrder;
+      if (fromOrder && prizeFromCode(fromOrder)) applyCode(fromOrder);
 
       if (name && client.name) name.textContent = client.name;
       if (itemName) itemName.textContent = item;
@@ -72,12 +139,20 @@
         if (addOnText) addOnText.textContent = addOnName + (addOnPrice ? " · " + addOnPrice : "");
       }
 
+      if (claimForm) {
+        claimForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          applyCode(claimInput && claimInput.value);
+        });
+      }
+
       if (button) {
         button.addEventListener("click", function () {
           var count = Math.max(1, Number(qty && qty.value) || 1);
           var extra = addOn && addOn.checked ? " + " + addOnName : "";
+          var prizeNote = claimed ? " Prize: " + claimed.label + " (" + claimed.code + ")." : "";
           if (status) {
-            status.textContent = "Example only. " + count + " × " + item + extra + " (" + price + ") is noted on this temporary store. No account number is shown, and nothing was charged.";
+            status.textContent = "Example only. " + count + " × " + item + extra + " (" + price + ") is noted on this temporary store." + prizeNote + " No account number is shown, and nothing was charged.";
           }
         });
       }
