@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Justin Diaz | TAPIND Digital Card</title>
+  <meta name="description" content="Connect with Justin Diaz through TAPIND. Tap. Connect. Grow.">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="application-name" content="TAPIND">
+  <meta name="apple-mobile-web-app-title" content="TAPIND">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <meta property="og:title" content="Justin Diaz | TAPIND Digital Card">
+  <meta property="og:description" content="Connect with Justin Diaz through TAPIND. Tap. Connect. Grow.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="apple-touch-icon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Justin Diaz | TAPIND Digital Card">
+  <meta name="twitter:description" content="Connect with Justin Diaz through TAPIND. Tap. Connect. Grow.">
+
+  <link rel="stylesheet" href="style.css?v=3">
+  <script src="menu.js?v=3" defer></script>
+  <script src="script.js?v=3" defer></script>
+</head>
+
+<body class="menu-app">
+  <main class="digital-card">
+
+    <section class="menu-stage" id="menuSketch" aria-label="Menu">
+      <svg class="electric-svg" aria-hidden="true">
+        <defs>
+          <filter id="turbulent-displace" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="8" result="noise1" seed="1" />
+            <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+              <animate attributeName="dy" values="700; 0; 700" dur="7s" repeatCount="indefinite" />
+            </feOffset>
+            <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="8" result="noise2" seed="1" />
+            <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+              <animate attributeName="dy" values="0; -700; 0" dur="7s" repeatCount="indefinite" />
+            </feOffset>
+            <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="8" result="noise3" seed="2" />
+            <feOffset in="noise3" dx="0" dy="0" result="offsetNoise3">
+              <animate attributeName="dx" values="490; 0; 490" dur="7s" repeatCount="indefinite" />
+            </feOffset>
+            <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="8" result="noise4" seed="2" />
+            <feOffset in="noise4" dx="0" dy="0" result="offsetNoise4">
+              <animate attributeName="dx" values="0; -490; 0" dur="7s" repeatCount="indefinite" />
+            </feOffset>
+            <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+            <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+            <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
+            <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="32" xChannelSelector="R" yChannelSelector="B" />
+          </filter>
+        </defs>
+      </svg>
+
+      <div class="biz-logo">
+        <img id="bizLogo" src="images/logo.png" alt="Business logo">
+        <span class="biz-mark" id="bizMark" hidden>SM</span>
+      </div>
+      <p class="biz-name" id="bizName">Hearth</p>
+      <h2 class="menu-title">MENU</h2>
+      <p class="food-tagline" id="foodTagline">Straight from the kitchen. See the plate, then order it.</p>
+      <button type="button" class="deal-strip" id="dealStrip">Today only · Today's Fries · $40 · until close</button>
+      <p class="week-code" id="weekCode">This week's code · HEARTH-W42</p>
+
+      <section class="spin-box" aria-label="Spin the wheel">
+        <h2>Spin the wheel</h2>
+        <p class="spin-lead">Tap Spin. The code changes every Monday.</p>
+        <div class="wheel-wrap">
+          <div class="wheel-pointer" aria-hidden="true"></div>
+          <div class="wheel" id="wheel"></div>
+        </div>
+        <button type="button" class="spin-button" id="spinButton" onclick="window.spinTheWheel && window.spinTheWheel()">Spin</button>
+        <p class="spin-result" id="spinResult" role="status"></p>
+      </section>
+
+      <p class="stage-count" id="slideCount">01 / 12</p>
+
+      <div class="electric" id="menuPng">
+        <div class="electric-bloom" aria-hidden="true"></div>
+        <div class="electric-glow" aria-hidden="true"></div>
+        <div class="electric-line" aria-hidden="true"></div>
+        <div class="glass-card" id="flipCard">
+          <div class="flip-inner" id="flipInner">
+            <div class="flip-face flip-front">
+              <img id="menuImage" alt="" src="images/slides/01.jpg" draggable="false">
+              <div class="png-fallback" id="pngFallback" hidden>PNG</div>
+              <div class="glass-wash" aria-hidden="true"></div>
+              <span class="deal-ribbon" id="dealRibbon" hidden>Today only</span>
+              <span class="glass-badge" id="glassBadge">Slide 01</span>
+              <button type="button" class="png-save" id="savePicture">Save picture</button>
+              <figcaption class="glass-caption">
+                <span id="menuItemName">Today's Fries</span>
+                <span class="price-wrap">
+                  <s id="menuWas" hidden>$55</s>
+                  <strong id="menuItemPrice">$40</strong>
+                </span>
+              </figcaption>
+            </div>
+            <div class="flip-face flip-back">
+              <p class="flip-kicker">On the plate</p>
+              <h3 id="flipName">Beef Steak</h3>
+              <p id="flipDetail">Tap the picture to flip it. It stays in this frame.</p>
+              <p id="flipSave" hidden></p>
+              <p id="flipAdd" hidden></p>
+              <strong id="flipPrice">$70</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-bar" id="slideBar" aria-label="Slide position"></div>
+
+      <a class="order-now" id="orderNow" href="store.html">ORDER NOW</a>
+      <p class="save-message" id="savePictureMessage" role="status"></p>
+    </section>
+
+    <section class="contact-box" aria-label="Follow us">
+      <h2>Follow us</h2>
+      <div id="socialList"></div>
+    </section>
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,304 @@
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/fraunces-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/fraunces-400i.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/fraunces-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("../fonts/outfit-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("../fonts/outfit-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: only light;
+  --ink: #111111;
+  --forest: #111111;
+  --cream: #ffffff;
+  --brass: #ffffff;
+  --serif: "Inter", "Segoe UI", sans-serif;
+  --sans: "Inter", "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #f3f3f3;
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 22px 20px 8px;
+}
+
+.tools p {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 14px;
+}
+
+.tools-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tools a,
+.tools button {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border: 1.5px solid var(--forest);
+  background: var(--forest);
+  color: var(--cream);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.tools a {
+  background: transparent;
+  color: var(--forest);
+}
+
+.sheet {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 12px 20px 40px;
+}
+
+.face-block + .face-block {
+  margin-top: 22px;
+}
+
+.face-label {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.cut-wrap {
+  position: relative;
+  width: 85.6mm;
+  height: 54mm;
+}
+
+.tick {
+  position: absolute;
+  width: 3.5mm;
+  height: 3.5mm;
+  border-color: var(--ink);
+  border-style: solid;
+}
+
+.tick-tl { left: -4mm; top: -4mm; border-width: 0.35mm 0 0 0.35mm; }
+.tick-tr { right: -4mm; top: -4mm; border-width: 0.35mm 0.35mm 0 0; }
+.tick-bl { left: -4mm; bottom: -4mm; border-width: 0 0 0.35mm 0.35mm; }
+.tick-br { right: -4mm; bottom: -4mm; border-width: 0 0.35mm 0.35mm 0; }
+
+.face {
+  width: 85.6mm;
+  height: 54mm;
+  position: relative;
+  overflow: hidden;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.face-front {
+  background: var(--forest);
+  color: var(--cream);
+  padding: 5mm 5.5mm 5mm 7mm;
+}
+
+.face-front::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2.2mm;
+  background: var(--brass);
+}
+
+.face-top,
+.face-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4mm;
+}
+
+.face-bottom {
+  position: absolute;
+  left: 7mm;
+  right: 5.5mm;
+  bottom: 4.5mm;
+  align-items: flex-end;
+}
+
+.brand,
+.tiny {
+  margin: 0;
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tiny { color: var(--brass); }
+
+.face h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 16pt;
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+
+.face h1 em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.face .role {
+  margin: 1.5mm 0 0;
+  font-size: 8pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.nfc-mini {
+  width: 8mm;
+  height: 8mm;
+  display: grid;
+  place-items: center;
+  border: 0.3mm solid var(--brass);
+  color: var(--cream);
+}
+
+.face-back {
+  background: var(--cream);
+  color: var(--ink);
+  padding: 5mm;
+  display: grid;
+  grid-template-columns: 1fr 28mm;
+  gap: 4mm;
+  align-items: center;
+}
+
+.back-copy h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 12pt;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.back-copy p {
+  margin: 1.5mm 0 0;
+  font-size: 7.5pt;
+  line-height: 1.35;
+  max-width: 42mm;
+}
+
+.chip-spot {
+  width: 25mm;
+  height: 25mm;
+  border: 0.45mm dashed var(--forest);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-size: 6.5pt;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  justify-self: end;
+}
+
+.sample-stamp {
+  position: absolute;
+  top: 5mm;
+  right: 5mm;
+  margin: 0;
+  color: var(--brass);
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.warn {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 20px 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media print {
+  @page { size: A4; margin: 14mm; }
+
+  body { background: white; }
+
+  .tools,
+  .face-label,
+  .warn { display: none !important; }
+
+  .sheet { padding: 0; margin: 0; }
+
+  .face-block + .face-block { margin-top: 14mm; }
+}
