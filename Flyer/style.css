@@ -1195,59 +1195,70 @@ button.payment-action {
 
 .wheel-wrap {
   position: relative;
-  width: 220px;
-  height: 220px;
-  margin: 14px auto 0;
+  width: 248px;
+  height: 248px;
+  margin: 28px auto 0;
+  touch-action: none;
 }
 
 .wheel-pointer {
   position: absolute;
-  top: -6px;
+  top: -2px;
   left: 50%;
-  z-index: 2;
+  z-index: 5;
   width: 0;
   height: 0;
-  border-right: 8px solid transparent;
-  border-bottom: 16px solid #f2d31b;
-  border-left: 8px solid transparent;
-  transform: translateX(-50%);
+  margin-left: -14px;
+  border-right: 14px solid transparent;
+  border-bottom: 0;
+  border-left: 14px solid transparent;
+  border-top: 26px solid #f2d31b;
+  filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.45));
+  pointer-events: none;
 }
 
 .wheel {
-  width: 240px;
-  height: 240px;
-  border: 6px solid rgba(255, 255, 255, 0.28);
+  position: relative;
+  width: 248px;
+  height: 248px;
+  overflow: hidden;
+  border: 8px solid rgba(255, 255, 255, 0.34);
   border-radius: 50%;
   box-shadow: 0 0 24px rgba(142, 247, 255, 0.25);
+  transform-origin: 50% 50%;
   transition: transform 4s cubic-bezier(0.15, 0.7, 0.1, 1);
 }
 
 .wheel span {
   position: absolute;
+  top: 36px;
   left: 50%;
-  top: 8px;
-  width: 80px;
-  margin-left: -40px;
-  color: #fff;
-  font-size: 10px;
-  text-shadow: 0 1px 2px #000;
+  width: 72px;
+  margin-left: -36px;
+  font-size: 11px;
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.15;
   text-align: center;
-  transform-origin: 50% 102px;
+  pointer-events: none;
+  transform-origin: 50% 88px;
 }
 
 .spin-button {
-  min-height: 46px;
-  margin-top: 14px;
-  padding: 0 22px;
+  display: inline-flex;
+  min-width: 148px;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 36px;
+  padding: 0 28px;
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 999px;
   background: #f2d31b;
   color: #172033;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 800;
+  letter-spacing: 0.08em;
 }
 
 .spin-button:disabled {
@@ -1378,6 +1389,25 @@ body.menu-app .digital-card {
   width: min(100%, 300px);
   margin: 18px auto 0;
   aspect-ratio: 4 / 5;
+  touch-action: pan-y;
+  overscroll-behavior-x: contain;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.electric img,
+.electric .glass-card,
+.electric .flip-face,
+.electric .flip-inner,
+.electric .glass-caption,
+.electric .glass-badge {
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.electric img {
+  -webkit-user-drag: none;
 }
 
 .electric-bloom {

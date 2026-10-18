@@ -214,28 +214,58 @@ if (orderNow) {
 }
 
 if (menuPng) {
-  let startX = 0;
-  let swiped = false;
+  let drag = null;
+  let ignoreClick = false;
+  let trackpadLock = false;
+
   menuPng.addEventListener("pointerdown", (event) => {
-    if (event.target.closest(".png-save")) return;
-    startX = event.clientX;
-    swiped = false;
+    if (event.target.closest("button, a")) return;
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    drag = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    try { menuPng.setPointerCapture(event.pointerId); } catch (error) { /* ignore */ }
   });
-  menuPng.addEventListener("pointerup", (event) => {
-    const delta = event.clientX - startX;
-    if (delta > 40) {
-      swiped = true;
-      step(-1);
-    } else if (delta < -40) {
-      swiped = true;
-      step(1);
+
+  menuPng.addEventListener("pointermove", (event) => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const dx = event.clientX - drag.x;
+    const dy = event.clientY - drag.y;
+    if (Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy) && event.cancelable) {
+      event.preventDefault();
     }
   });
+
+  menuPng.addEventListener("pointerup", (event) => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const dx = event.clientX - drag.x;
+    const dy = event.clientY - drag.y;
+    drag = null;
+    if (Math.abs(dx) >= 24 && Math.abs(dx) > Math.abs(dy)) {
+      ignoreClick = true;
+      step(dx > 0 ? -1 : 1);
+      window.setTimeout(() => { ignoreClick = false; }, 500);
+    }
+  });
+
+  menuPng.addEventListener("pointercancel", (event) => {
+    if (drag && event.pointerId === drag.id) drag = null;
+  });
+
   menuPng.addEventListener("click", (event) => {
-    if (swiped || event.target.closest(".png-save")) return;
+    if (ignoreClick || event.target.closest(".png-save")) return;
     const card = document.getElementById("flipCard");
     if (card) card.classList.toggle("is-flipped");
   });
+
+  menuPng.addEventListener("dragstart", (event) => event.preventDefault());
+
+  menuPng.addEventListener("wheel", (event) => {
+    if (Math.abs(event.deltaX) < 18 || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+    event.preventDefault();
+    if (trackpadLock) return;
+    trackpadLock = true;
+    step(event.deltaX > 0 ? 1 : -1);
+    window.setTimeout(() => { trackpadLock = false; }, 450);
+  }, { passive: false });
 }
 
 document.addEventListener("keydown", (event) => {
@@ -433,16 +463,23 @@ if (weekCodeEl) weekCodeEl.textContent = "This week's code · " + code + (inLunc
 function paintWheel() {
   const wheel = document.getElementById("wheel");
   if (!wheel || !prizeList.length) return;
-  const colors = ["#f2d31b", "#12343a", "#8ef7ff", "#1a120c", "#e7f0ff", "#0c3f86"];
+  const colors = [
+    { bg: "#f2d31b", ink: "#172033" },
+    { bg: "#12343a", ink: "#ffffff" },
+    { bg: "#8ef7ff", ink: "#172033" },
+    { bg: "#1a120c", ink: "#ffffff" },
+    { bg: "#e7f0ff", ink: "#172033" },
+    { bg: "#0c3f86", ink: "#ffffff" }
+  ];
   const slice = 360 / prizeList.length;
   const stops = prizeList.map((prize, index) => {
-    const color = colors[index % colors.length];
+    const color = colors[index % colors.length].bg;
     return color + " " + (index * slice) + "deg " + ((index + 1) * slice) + "deg";
   }).join(", ");
-  wheel.style.background = "conic-gradient(" + stops + ")";
+  wheel.style.background = "conic-gradient(from " + (-slice / 2) + "deg, " + stops + ")";
   wheel.innerHTML = prizeList.map((prize, index) => {
-    const turn = (index + 0.5) / prizeList.length;
-    return '<span style="transform: rotate(' + (turn * 360) + 'deg)">' + escapeText(prize.label) + "</span>";
+    const ink = colors[index % colors.length].ink;
+    return '<span style="color:' + ink + ";transform:rotate(" + (index * slice) + 'deg)">' + escapeText(prize.label) + "</span>";
   }).join("");
 }
 
@@ -475,29 +512,59 @@ try {
   /* ignore */
 }
 
-if (spinButton && wheel && prizeList.length) {
-  spinButton.addEventListener("click", () => {
-    try {
-      if (localStorage.getItem(spinKey)) {
-        showSpin(localStorage.getItem(spinKey), true);
-        return;
-      }
-    } catch (error) {
-      /* allow the spin if storage is blocked */
+let wheelAngle = 0;
+let wheelSpinning = false;
+
+function spinWheel() {
+  if (!wheel || !prizeList.length || wheelSpinning) return;
+  try {
+    const saved = localStorage.getItem(spinKey);
+    if (saved) {
+      showSpin(saved, true);
+      return;
     }
-    const index = pickPrize();
-    const slice = 360 / prizeList.length;
-    const spins = 5 * 360;
-    const landing = spins + (360 - (index * slice + slice / 2));
-    wheel.style.transform = "rotate(" + landing + "deg)";
-    spinButton.disabled = true;
-    window.setTimeout(() => {
-      const label = prizeList[index].label;
-      try { localStorage.setItem(spinKey, label); } catch (error) { /* ignore */ }
-      showSpin(label, false);
-      spinButton.disabled = false;
-    }, 4200);
+  } catch (error) {
+    /* allow the spin if storage is blocked */
+  }
+  const index = pickPrize();
+  const slice = 360 / prizeList.length;
+  const target = (360 - (index * slice) % 360) % 360;
+  const current = ((wheelAngle % 360) + 360) % 360;
+  let delta = target - current;
+  if (delta < 0) delta += 360;
+  wheelAngle += (5 * 360) + delta;
+  wheelSpinning = true;
+  wheel.style.transform = "rotate(" + wheelAngle + "deg)";
+  if (spinButton) spinButton.disabled = true;
+  window.setTimeout(() => {
+    const label = prizeList[index].label;
+    try { localStorage.setItem(spinKey, label); } catch (error) { /* ignore */ }
+    showSpin(label, false);
+    wheelSpinning = false;
+    if (spinButton) spinButton.disabled = false;
+  }, 4200);
+}
+
+if (spinButton && wheel && prizeList.length) {
+  spinButton.addEventListener("click", spinWheel);
+}
+
+const wheelWrap = document.querySelector(".wheel-wrap");
+if (wheelWrap && wheel && prizeList.length) {
+  let flick = null;
+  wheelWrap.addEventListener("pointerdown", (event) => {
+    if (event.target.closest("button, a")) return;
+    flick = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    try { wheelWrap.setPointerCapture(event.pointerId); } catch (error) { /* ignore */ }
   });
+  wheelWrap.addEventListener("pointerup", (event) => {
+    if (!flick || event.pointerId !== flick.id) return;
+    const dx = event.clientX - flick.x;
+    const dy = event.clientY - flick.y;
+    flick = null;
+    if (Math.abs(dx) >= 24 || Math.abs(dy) >= 24) spinWheel();
+  });
+  wheelWrap.addEventListener("pointercancel", () => { flick = null; });
 }
 
 /* =====================================
