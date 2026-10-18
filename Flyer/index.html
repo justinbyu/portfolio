@@ -68,6 +68,20 @@
       <p class="biz-name" id="bizName">Hearth</p>
       <h2 class="menu-title">MENU</h2>
       <p class="food-tagline" id="foodTagline">Straight from the kitchen. See the plate, then order it.</p>
+      <button type="button" class="deal-strip" id="dealStrip">Today only · Today's Fries · $40 · until close</button>
+      <p class="week-code" id="weekCode">This week's code · HEARTH-W42</p>
+
+      <section class="spin-box" aria-label="Spin the wheel">
+        <h2>Spin the wheel</h2>
+        <p class="spin-lead">One spin a day. The code changes every Monday.</p>
+        <div class="wheel-wrap">
+          <div class="wheel-pointer" aria-hidden="true"></div>
+          <div class="wheel" id="wheel"></div>
+        </div>
+        <button type="button" class="spin-button" id="spinButton">Spin</button>
+        <p class="spin-result" id="spinResult" role="status"></p>
+      </section>
+
       <p class="stage-count" id="slideCount">01 / 12</p>
 
       <div class="electric" id="menuPng">
@@ -80,48 +94,38 @@
               <img id="menuImage" alt="" src="images/slides/01.jpg">
               <div class="png-fallback" id="pngFallback" hidden>PNG</div>
               <div class="glass-wash" aria-hidden="true"></div>
+              <span class="deal-ribbon" id="dealRibbon" hidden>Today only</span>
               <span class="glass-badge" id="glassBadge">Slide 01</span>
               <button type="button" class="png-save" id="savePicture">Save picture</button>
               <figcaption class="glass-caption">
-                <span id="menuItemName">Beef Steak</span>
-                <strong id="menuItemPrice">$70</strong>
+                <span id="menuItemName">Today's Fries</span>
+                <span class="price-wrap">
+                  <s id="menuWas" hidden>$55</s>
+                  <strong id="menuItemPrice">$40</strong>
+                </span>
               </figcaption>
             </div>
             <div class="flip-face flip-back">
               <p class="flip-kicker">On the plate</p>
               <h3 id="flipName">Beef Steak</h3>
               <p id="flipDetail">Tap the picture to flip it. It stays in this frame.</p>
+              <p id="flipSave" hidden></p>
+              <p id="flipAdd" hidden></p>
               <strong id="flipPrice">$70</strong>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="slide-bar" id="slideBar" aria-label="Choose a slide"></div>
-
-      <div class="glass-nav" aria-label="Next slide">
-        <button type="button" id="previousSlide" aria-label="Previous slide">←</button>
-        <span>Next slide</span>
-        <button type="button" id="nextSlide" aria-label="Next slide">→</button>
-      </div>
+      <div class="slide-bar" id="slideBar" aria-label="Slide position"></div>
 
       <a class="order-now" id="orderNow" href="store.html">ORDER NOW</a>
-      <p class="order-note">Opens the store owner's site.</p>
       <p class="save-message" id="savePictureMessage" role="status"></p>
-      <p class="edit-hint">Client photos go in <code>menu.js</code>. Keep at least 10 slides.</p>
     </section>
 
-    <section class="contact-box" aria-label="Contact">
-      <h2>Contact</h2>
+    <section class="contact-box" aria-label="Follow us">
+      <h2>Follow us</h2>
       <div id="socialList"></div>
-      <a class="glass-method" href="contact.html">
-        <span class="method-mark">@</span>
-        <span>
-          <strong>Contact page</strong>
-          <small>Social, phone, and email</small>
-        </span>
-        <span class="method-arrow">↗</span>
-      </a>
     </section>
 
   </main>

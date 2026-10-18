@@ -1164,6 +1164,147 @@ button.payment-action {
   line-height: 1.45;
 }
 
+.week-code {
+  margin: 10px 0 0;
+  color: #8ef7ff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.spin-box {
+  width: min(100%, 440px);
+  margin: 8px auto 8px;
+  padding: 8px 16px 18px;
+  color: #fff;
+  text-align: center;
+}
+
+.spin-box h2 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.4px;
+}
+
+.spin-lead,
+.spin-result {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+}
+
+.wheel-wrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 14px auto 0;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  z-index: 2;
+  width: 0;
+  height: 0;
+  border-right: 8px solid transparent;
+  border-bottom: 16px solid #f2d31b;
+  border-left: 8px solid transparent;
+  transform: translateX(-50%);
+}
+
+.wheel {
+  width: 240px;
+  height: 240px;
+  border: 6px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  box-shadow: 0 0 24px rgba(142, 247, 255, 0.25);
+  transition: transform 4s cubic-bezier(0.15, 0.7, 0.1, 1);
+}
+
+.wheel span {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 80px;
+  margin-left: -40px;
+  color: #fff;
+  font-size: 10px;
+  text-shadow: 0 1px 2px #000;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  transform-origin: 50% 102px;
+}
+
+.spin-button {
+  min-height: 46px;
+  margin-top: 14px;
+  padding: 0 22px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: #f2d31b;
+  color: #172033;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.spin-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.deal-strip[hidden],
+.deal-ribbon[hidden] { display: none !important; }
+
+.deal-strip {
+  position: relative;
+  z-index: 6;
+  display: block;
+  width: min(100%, 300px);
+  margin: 14px auto 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: #f2d31b;
+  color: #172033;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.deal-ribbon {
+  position: absolute;
+  top: 52px;
+  left: 12px;
+  z-index: 3;
+  max-width: calc(100% - 24px);
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f2d31b;
+  color: #172033;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.flip-back #flipSave,
+.flip-back #flipAdd {
+  margin: 8px 0 0;
+  color: #f2d31b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.add-on {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: #fff;
+  font-size: 13px;
+}
+
 .stage-count {
   margin: 8px 0 0;
   color: #8ef7ff;
@@ -1273,6 +1414,10 @@ body.menu-app .digital-card {
   z-index: 4;
 }
 
+.electric {
+  overflow: hidden;
+}
+
 .glass-card {
   position: absolute;
   inset: 8px;
@@ -1283,6 +1428,75 @@ body.menu-app .digital-card {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(18px) saturate(1.35);
   -webkit-backdrop-filter: blur(18px) saturate(1.35);
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.glass-card.is-flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 22px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-front img {
+  animation: photoDrift 9s ease-in-out infinite;
+}
+
+@keyframes photoDrift {
+  0%, 100% { transform: scale(1.08) translate3d(0, 0, 0); }
+  50% { transform: scale(1.14) translate3d(0, -10px, 0); }
+}
+
+.flip-back {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px 18px;
+  background: linear-gradient(165deg, #12343a, #1a120c);
+  color: #fff;
+  text-align: left;
+  transform: rotateY(180deg);
+}
+
+.flip-kicker {
+  margin: 0;
+  color: #8ef7ff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.flip-back h3 {
+  margin: 8px 0 0;
+  font-size: 28px;
+  letter-spacing: -0.6px;
+}
+
+.flip-back p {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 13px;
+}
+
+.flip-back strong {
+  margin-top: 14px;
+  color: #8ef7ff;
+  font-size: 22px;
 }
 
 .glass-card img,
@@ -1372,6 +1586,19 @@ body.menu-app .digital-card {
 .glass-caption span {
   font-size: 14px;
   font-weight: 700;
+}
+
+.price-wrap {
+  display: flex;
+  flex-shrink: 0;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.price-wrap s {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .glass-caption strong {
@@ -1653,6 +1880,61 @@ body.glass-pay .payment-qr {
 .method-mark.gcash { background: rgba(0, 180, 220, 0.25); color: #9be7ff; }
 .method-mark.bdo { background: rgba(40, 90, 200, 0.28); color: #c5d7ff; }
 
+.store-logo {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.store-item {
+  margin: 16px 0;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+}
+
+.store-item h2 { margin: 4px 0 0; font-size: 22px; }
+.store-price { margin: 6px 0 0; color: #8ef7ff; font-size: 22px; font-weight: 800; }
+
+.store-card label {
+  display: block;
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+}
+
+.store-card input {
+  display: block;
+  width: 88px;
+  min-height: 40px;
+  margin-top: 6px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font: inherit;
+}
+
+.store-card .order-now {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 14px;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .electric-line { filter: none; }
+  .flip-front img { animation: none; }
+  .flip-inner { transition: none; }
 }

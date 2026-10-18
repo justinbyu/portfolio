@@ -57,9 +57,31 @@ function currentItem() {
   return slides[(slideIndex + slides.length) % slides.length];
 }
 
+function dealEnded(item) {
+  if (!item || !item.endsAt) return false;
+  const parts = String(item.endsAt).split(":");
+  const hour = Number(parts[0]);
+  const minute = Number(parts[1] || 0);
+  if (!Number.isFinite(hour)) return false;
+  const now = new Date();
+  return now.getHours() > hour || (now.getHours() === hour && now.getMinutes() >= minute);
+}
+
+function liveDeal() {
+  return slides.find((item) => item.promo && !item.soldOut && !dealEnded(item)) || null;
+}
+
 function orderHref(item) {
   const price = money(item && item.price);
-  const query = "item=" + encodeURIComponent((item && item.name) || "") + "&price=" + encodeURIComponent(price);
+  const query = [
+    "item=" + encodeURIComponent((item && item.name) || ""),
+    "price=" + encodeURIComponent(price),
+    item && item.was ? "was=" + encodeURIComponent(money(item.was)) : "",
+    item && item.promo ? "promo=" + encodeURIComponent(item.promo) : "",
+    item && item.ends ? "ends=" + encodeURIComponent(item.ends) : "",
+    item && item.addOn ? "addOn=" + encodeURIComponent(item.addOn) : "",
+    item && item.addOnPrice ? "addOnPrice=" + encodeURIComponent(money(item.addOnPrice)) : ""
+  ].filter(Boolean).join("&");
   const site = String(client.storeUrl || "").trim();
   if (/^https:\/\//i.test(site)) {
     return site + (site.indexOf("?") === -1 ? "?" : "&") + query;
@@ -82,31 +104,64 @@ function showSlide() {
   if (!item || !menuImage) return;
 
   const price = money(item.price);
+  const was = item.was ? money(item.was) : "";
   const number = String(slideIndex + 1).padStart(2, "0");
   const total = String(slides.length).padStart(2, "0");
+  const menuWas = document.getElementById("menuWas");
 
   menuImage.style.display = "";
   menuImage.src = item.image || "";
   menuImage.alt = item.name || "Slide";
   if (menuCaptionName) menuCaptionName.textContent = item.name || "Slide";
   if (menuCaptionPrice) menuCaptionPrice.textContent = price;
+  if (menuWas) {
+    menuWas.hidden = !was;
+    menuWas.textContent = was;
+  }
   if (pngFallback) pngFallback.hidden = true;
   if (slideCount) slideCount.textContent = number + " / " + total;
-  if (glassBadge) glassBadge.textContent = "Slide " + number;
+  const ended = dealEnded(item);
+  const dealRibbon = document.getElementById("dealRibbon");
+  const flipSave = document.getElementById("flipSave");
+  const flipAdd = document.getElementById("flipAdd");
+  const dealStrip = document.getElementById("dealStrip");
+  const offer = liveDeal();
+
+  if (dealRibbon) {
+    dealRibbon.hidden = !item.promo;
+    dealRibbon.textContent = ended ? "Deal ended" : [item.promo, item.ends].filter(Boolean).join(" · ");
+  }
+  if (flipSave) {
+    flipSave.hidden = !item.saveNote;
+    flipSave.textContent = item.saveNote || "";
+  }
+  if (flipAdd) {
+    flipAdd.hidden = !item.addOn;
+    flipAdd.textContent = item.addOn ? item.addOn + (item.addOnPrice ? " · " + money(item.addOnPrice) : "") : "";
+  }
+  if (dealStrip) {
+    if (offer) {
+      dealStrip.hidden = false;
+      dealStrip.textContent = [offer.promo, offer.name, money(offer.price), offer.ends].filter(Boolean).join(" · ");
+    } else {
+      dealStrip.hidden = true;
+    }
+  }
+  if (glassBadge) glassBadge.textContent = item.promo || ("Slide " + number);
   const flipName = document.getElementById("flipName");
   const flipDetail = document.getElementById("flipDetail");
   const flipPrice = document.getElementById("flipPrice");
   const flipCard = document.getElementById("flipCard");
   if (flipName) flipName.textContent = item.name || "Slide";
   if (flipPrice) flipPrice.textContent = price;
-  if (flipDetail) flipDetail.textContent = item.detail || "Tap the picture to flip it back.";
+  if (flipDetail) flipDetail.textContent = item.detail || item.ends || "Tap the picture to flip it back.";
   if (flipCard) flipCard.classList.remove("is-flipped");
 
   if (orderNow) {
-    const sold = Boolean(item.soldOut);
+    const sold = Boolean(item.soldOut) || ended;
     orderNow.setAttribute("aria-disabled", sold ? "true" : "false");
     orderNow.classList.toggle("is-sold", sold);
-    orderNow.textContent = sold ? "SOLD OUT" : "ORDER NOW";
+    orderNow.textContent = ended ? "DEAL ENDED" : item.promo ? "ORDER THE DEAL" : sold ? "SOLD OUT" : "ORDER NOW";
     orderNow.href = sold ? "#menuSketch" : orderHref(item);
   }
 
@@ -142,6 +197,16 @@ if (slideBar) {
   });
 }
 
+const dealStrip = document.getElementById("dealStrip");
+if (dealStrip) {
+  dealStrip.addEventListener("click", () => {
+    const index = slides.findIndex((item) => item.promo && !dealEnded(item));
+    if (index < 0) return;
+    slideIndex = index;
+    showSlide();
+  });
+}
+
 if (orderNow) {
   orderNow.addEventListener("click", (event) => {
     if (orderNow.classList.contains("is-sold")) event.preventDefault();
@@ -150,14 +215,27 @@ if (orderNow) {
 
 if (menuPng) {
   let startX = 0;
-  menuPng.addEventListener("touchstart", (event) => {
-    startX = event.changedTouches[0].clientX;
-  }, { passive: true });
-  menuPng.addEventListener("touchend", (event) => {
-    const delta = event.changedTouches[0].clientX - startX;
-    if (delta > 40) step(-1);
-    if (delta < -40) step(1);
-  }, { passive: true });
+  let swiped = false;
+  menuPng.addEventListener("pointerdown", (event) => {
+    if (event.target.closest(".png-save")) return;
+    startX = event.clientX;
+    swiped = false;
+  });
+  menuPng.addEventListener("pointerup", (event) => {
+    const delta = event.clientX - startX;
+    if (delta > 40) {
+      swiped = true;
+      step(-1);
+    } else if (delta < -40) {
+      swiped = true;
+      step(1);
+    }
+  });
+  menuPng.addEventListener("click", (event) => {
+    if (swiped || event.target.closest(".png-save")) return;
+    const card = document.getElementById("flipCard");
+    if (card) card.classList.toggle("is-flipped");
+  });
 }
 
 document.addEventListener("keydown", (event) => {
@@ -249,13 +327,7 @@ if (socialList) {
    It stays inside the frame. It cannot leave the section.
 ===================================== */
 
-const flipCard = document.getElementById("flipCard");
-if (flipCard) {
-  flipCard.addEventListener("click", (event) => {
-    if (event.target.closest(".png-save")) return;
-    flipCard.classList.toggle("is-flipped");
-  });
-}
+
 
 /* =====================================
    SAVE CONTACT AS VCARD
@@ -323,6 +395,108 @@ if (saveButton) {
         "Contact file downloaded. Open it to save the contact.";
       saveMessage.setAttribute("role", "status");
     }
+  });
+}
+
+/* =====================================
+   WEEKLY CODE AND SPIN WHEEL
+===================================== */
+
+const marketing = window.MARKETING || {};
+const prizeList = (marketing.prizes || []).filter((prize) => prize && prize.label);
+
+function weekNumber(date) {
+  const copy = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const day = copy.getUTCDay() || 7;
+  copy.setUTCDate(copy.getUTCDate() + 4 - day);
+  const yearStart = new Date(Date.UTC(copy.getUTCFullYear(), 0, 1));
+  return Math.ceil((((copy - yearStart) / 86400000) + 1) / 7);
+}
+
+function weeklyCode() {
+  const prefix = String(marketing.weekPrefix || client.name || "STORE").replace(/\s+/g, "").toUpperCase();
+  return prefix + "-W" + String(weekNumber(new Date())).padStart(2, "0");
+}
+
+function inLunchRush() {
+  const hour = new Date().getHours();
+  const start = Number(marketing.lunchStart);
+  const end = Number(marketing.lunchEnd);
+  if (!Number.isFinite(start) || !Number.isFinite(end)) return false;
+  return hour >= start && hour < end;
+}
+
+const weekCodeEl = document.getElementById("weekCode");
+const code = weeklyCode();
+if (weekCodeEl) weekCodeEl.textContent = "This week's code · " + code + (inLunchRush() ? " · Lunch rush" : "");
+
+function paintWheel() {
+  const wheel = document.getElementById("wheel");
+  if (!wheel || !prizeList.length) return;
+  const colors = ["#f2d31b", "#12343a", "#8ef7ff", "#1a120c", "#e7f0ff", "#0c3f86"];
+  const slice = 360 / prizeList.length;
+  const stops = prizeList.map((prize, index) => {
+    const color = colors[index % colors.length];
+    return color + " " + (index * slice) + "deg " + ((index + 1) * slice) + "deg";
+  }).join(", ");
+  wheel.style.background = "conic-gradient(" + stops + ")";
+  wheel.innerHTML = prizeList.map((prize, index) => {
+    const turn = (index + 0.5) / prizeList.length;
+    return '<span style="transform: rotate(' + (turn * 360) + 'deg)">' + escapeText(prize.label) + "</span>";
+  }).join("");
+}
+
+function pickPrize() {
+  const total = prizeList.reduce((sum, prize) => sum + (Number(prize.weight) || 1), 0);
+  let roll = Math.random() * total;
+  for (let index = 0; index < prizeList.length; index += 1) {
+    roll -= Number(prizeList[index].weight) || 1;
+    if (roll <= 0) return index;
+  }
+  return prizeList.length - 1;
+}
+
+paintWheel();
+
+const spinButton = document.getElementById("spinButton");
+const spinResult = document.getElementById("spinResult");
+const wheel = document.getElementById("wheel");
+const spinKey = "spin-" + new Date().toISOString().slice(0, 10);
+
+function showSpin(label, already) {
+  if (!spinResult) return;
+  spinResult.textContent = (already ? "Already spun today. " : "") + label + ". Code " + code + ".";
+}
+
+try {
+  const savedSpin = localStorage.getItem(spinKey);
+  if (savedSpin) showSpin(savedSpin, true);
+} catch (error) {
+  /* ignore */
+}
+
+if (spinButton && wheel && prizeList.length) {
+  spinButton.addEventListener("click", () => {
+    try {
+      if (localStorage.getItem(spinKey)) {
+        showSpin(localStorage.getItem(spinKey), true);
+        return;
+      }
+    } catch (error) {
+      /* allow the spin if storage is blocked */
+    }
+    const index = pickPrize();
+    const slice = 360 / prizeList.length;
+    const spins = 5 * 360;
+    const landing = spins + (360 - (index * slice + slice / 2));
+    wheel.style.transform = "rotate(" + landing + "deg)";
+    spinButton.disabled = true;
+    window.setTimeout(() => {
+      const label = prizeList[index].label;
+      try { localStorage.setItem(spinKey, label); } catch (error) { /* ignore */ }
+      showSpin(label, false);
+      spinButton.disabled = false;
+    }, 4200);
   });
 }
 

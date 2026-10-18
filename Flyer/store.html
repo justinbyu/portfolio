@@ -21,7 +21,12 @@
       <article class="store-item">
         <p class="pay-kicker">This order</p>
         <h2 id="itemName">Menu item</h2>
+        <p id="dealLine" class="pay-kicker" hidden></p>
         <p id="itemPrice" class="store-price">$0</p>
+        <label class="add-on" id="addOnLabel" hidden>
+          <input id="addOn" type="checkbox">
+          <span id="addOnText">Add-on</span>
+        </label>
         <label>
           Quantity
           <input id="qty" type="number" min="1" max="20" value="1">
@@ -39,22 +44,40 @@
       var params = new URLSearchParams(window.location.search);
       var item = params.get("item") || "Menu item";
       var price = params.get("price") || "Ask";
+      var was = params.get("was") || "";
+      var promo = params.get("promo") || "";
+      var ends = params.get("ends") || "";
+      var addOnName = params.get("addOn") || "";
+      var addOnPrice = params.get("addOnPrice") || "";
       var name = document.getElementById("storeName");
       var itemName = document.getElementById("itemName");
       var itemPrice = document.getElementById("itemPrice");
+      var dealLine = document.getElementById("dealLine");
+      var addOnLabel = document.getElementById("addOnLabel");
+      var addOnText = document.getElementById("addOnText");
+      var addOn = document.getElementById("addOn");
       var status = document.getElementById("orderStatus");
       var button = document.getElementById("placeOrder");
       var qty = document.getElementById("qty");
 
       if (name && client.name) name.textContent = client.name;
       if (itemName) itemName.textContent = item;
-      if (itemPrice) itemPrice.textContent = price;
+      if (itemPrice) itemPrice.textContent = was ? price + "  ·  was " + was : price;
+      if (dealLine && promo) {
+        dealLine.hidden = false;
+        dealLine.textContent = [promo, ends].filter(Boolean).join(" · ");
+      }
+      if (addOnLabel && addOnName) {
+        addOnLabel.hidden = false;
+        if (addOnText) addOnText.textContent = addOnName + (addOnPrice ? " · " + addOnPrice : "");
+      }
 
       if (button) {
         button.addEventListener("click", function () {
           var count = Math.max(1, Number(qty && qty.value) || 1);
+          var extra = addOn && addOn.checked ? " + " + addOnName : "";
           if (status) {
-            status.textContent = "Example only. " + count + " × " + item + " (" + price + ") is noted on this temporary store. No account number is shown, and nothing was charged.";
+            status.textContent = "Example only. " + count + " × " + item + extra + " (" + price + ") is noted on this temporary store. No account number is shown, and nothing was charged.";
           }
         });
       }

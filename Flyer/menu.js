@@ -11,6 +11,20 @@
    Do not put account numbers here. Order now opens a QR page.
    ============================================================ */
 
+window.MARKETING = {
+  // Change the first slide before the lunch rush. The code below changes by itself every Monday.
+  weekPrefix: "HEARTH",
+  lunchStart: 11,
+  lunchEnd: 14,
+  prizes: [
+    { label: "Free ice tea", weight: 2 },
+    { label: "$5 off today's plate", weight: 2 },
+    { label: "Free fries", weight: 1 },
+    { label: "10% off", weight: 3 },
+    { label: "Try again next visit", weight: 4 }
+  ]
+};
+
 window.CLIENT = {
   name: "Hearth",
   currency: "$",
@@ -28,10 +42,11 @@ window.CLIENT = {
 };
 
 window.SLIDES = [
+  { name: "Today's Fries", price: "40", was: "55", promo: "Today only", ends: "until close", endsAt: "23:00", left: 12, saveNote: "Save this picture. Show it when you order.", addOn: "Add ice tea", addOnPrice: "5", detail: "Was $55. Until close, while it lasts.", image: "images/slides/04.jpg" },
   { name: "Beef Steak", price: "70", detail: "From the grill.", image: "images/slides/01.jpg" },
   { name: "Pasta", price: "50", detail: "House pasta.", image: "images/slides/02.jpg" },
   { name: "Salmon Fillet", price: "50", detail: "", image: "images/slides/03.jpg" },
-  { name: "Fries", price: "40", detail: "", image: "images/slides/04.jpg" },
+  { name: "Fries", price: "55", detail: "", image: "images/slides/04.jpg" },
   { name: "Ice Tea", price: "50", detail: "", image: "images/slides/05.jpg" },
   { name: "Milkshake", price: "50", detail: "", image: "images/slides/06.jpg" },
   { name: "Ice Chocolate", price: "70", detail: "", image: "images/slides/07.jpg" },
