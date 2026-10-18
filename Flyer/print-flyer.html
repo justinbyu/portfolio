@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print flyer</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="tools no-print">
+    <p>Print at 100% scale. Do not fit to page. This is one A6 flyer, 105 × 148 mm. Stick a 25 mm NTAG213 on the circle, then write the link from the flyer page.</p>
+    <div class="tools-row">
+      <button type="button" class="btn" id="printBtn">Print</button>
+      <a class="btn line" href="index.html">Back to flyer</a>
+    </div>
+  </div>
+  <article class="sheet">
+    <div>
+      <p class="eyebrow" id="brand"></p>
+      <h1 id="name"></h1>
+      <p class="tap" id="tap">Tap for the menu</p>
+      <div class="chip">NFC<br>chip</div>
+    </div>
+    <div>
+      <div id="qrSlot"></div>
+      <p class="tap" id="area"></p>
+    </div>
+  </article>
+  <script src="menu.js"></script>
+  <script src="qrcode.js"></script>
+  <script>
+    var store = window.STORE || {};
+    var services = store.listMode === "services";
+    document.getElementById("brand").textContent = store.platform || "ONE TAP";
+    document.getElementById("name").textContent = store.name || "Store name";
+    document.getElementById("tap").textContent = services ? "Tap for services" : "Tap for the menu";
+    document.getElementById("area").textContent = store.area || "";
+    var slot = document.getElementById("qrSlot");
+    var link = "";
+    try {
+      var url = new URL(store.publicUrl || "", window.location.href);
+      if (url.protocol === "https:") link = url.href;
+    } catch (err) {
+      link = "";
+    }
+    if (link && window.qrcode) {
+      var qr = qrcode(0, "M");
+      qr.addData(link);
+      qr.make();
+      slot.innerHTML = '<div class="qr-print">' + qr.createImgTag(4, 2) + "</div>";
+    } else {
+      slot.innerHTML = '<div class="qr-missing">Set publicUrl in menu.js to print the QR</div>';
+    }
+    document.getElementById("printBtn").addEventListener("click", function () {
+      window.print();
+    });
+  </script>
+</body>
+</html>

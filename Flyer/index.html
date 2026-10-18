@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Justin Diaz | TAPIND Digital Card</title>
+  <meta name="description" content="Connect with Justin Diaz through TAPIND. Tap. Connect. Grow.">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="application-name" content="TAPIND">
+  <meta name="apple-mobile-web-app-title" content="TAPIND">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <meta property="og:title" content="Justin Diaz | TAPIND Digital Card">
+  <meta property="og:description" content="Connect with Justin Diaz through TAPIND. Tap. Connect. Grow.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="apple-touch-icon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Justin Diaz | TAPIND Digital Card">
+  <meta name="twitter:description" content="Connect with Justin Diaz through TAPIND. Tap. Connect. Grow.">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="menu.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body class="menu-app">
+  <main class="digital-card">
+
+    <section class="menu-stage" id="menuSketch" aria-label="Menu">
+      <svg class="electric-svg" aria-hidden="true">
+        <defs>
+          <filter id="turbulent-displace" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="8" result="noise1" seed="1" />
+            <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+              <animate attributeName="dy" values="700; 0; 700" dur="7s" repeatCount="indefinite" />
+            </feOffset>
+            <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="8" result="noise2" seed="1" />
+            <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+              <animate attributeName="dy" values="0; -700; 0" dur="7s" repeatCount="indefinite" />
+            </feOffset>
+            <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="8" result="noise3" seed="2" />
+            <feOffset in="noise3" dx="0" dy="0" result="offsetNoise3">
+              <animate attributeName="dx" values="490; 0; 490" dur="7s" repeatCount="indefinite" />
+            </feOffset>
+            <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="8" result="noise4" seed="2" />
+            <feOffset in="noise4" dx="0" dy="0" result="offsetNoise4">
+              <animate attributeName="dx" values="0; -490; 0" dur="7s" repeatCount="indefinite" />
+            </feOffset>
+            <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+            <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+            <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
+            <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="32" xChannelSelector="R" yChannelSelector="B" />
+          </filter>
+        </defs>
+      </svg>
+
+      <div class="biz-logo">
+        <img id="bizLogo" src="images/logo.png" alt="Business logo">
+        <span class="biz-mark" id="bizMark" hidden>SM</span>
+      </div>
+      <p class="biz-name" id="bizName">Hearth</p>
+      <h2 class="menu-title">MENU</h2>
+      <p class="food-tagline" id="foodTagline">Straight from the kitchen. See the plate, then order it.</p>
+      <p class="stage-count" id="slideCount">01 / 12</p>
+
+      <div class="electric" id="menuPng">
+        <div class="electric-bloom" aria-hidden="true"></div>
+        <div class="electric-glow" aria-hidden="true"></div>
+        <div class="electric-line" aria-hidden="true"></div>
+        <div class="glass-card" id="flipCard">
+          <div class="flip-inner" id="flipInner">
+            <div class="flip-face flip-front">
+              <img id="menuImage" alt="" src="images/slides/01.jpg">
+              <div class="png-fallback" id="pngFallback" hidden>PNG</div>
+              <div class="glass-wash" aria-hidden="true"></div>
+              <span class="glass-badge" id="glassBadge">Slide 01</span>
+              <button type="button" class="png-save" id="savePicture">Save picture</button>
+              <figcaption class="glass-caption">
+                <span id="menuItemName">Beef Steak</span>
+                <strong id="menuItemPrice">$70</strong>
+              </figcaption>
+            </div>
+            <div class="flip-face flip-back">
+              <p class="flip-kicker">On the plate</p>
+              <h3 id="flipName">Beef Steak</h3>
+              <p id="flipDetail">Tap the picture to flip it. It stays in this frame.</p>
+              <strong id="flipPrice">$70</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-bar" id="slideBar" aria-label="Choose a slide"></div>
+
+      <div class="glass-nav" aria-label="Next slide">
+        <button type="button" id="previousSlide" aria-label="Previous slide">←</button>
+        <span>Next slide</span>
+        <button type="button" id="nextSlide" aria-label="Next slide">→</button>
+      </div>
+
+      <a class="order-now" id="orderNow" href="store.html">ORDER NOW</a>
+      <p class="order-note">Opens the store owner's site.</p>
+      <p class="save-message" id="savePictureMessage" role="status"></p>
+      <p class="edit-hint">Client photos go in <code>menu.js</code>. Keep at least 10 slides.</p>
+    </section>
+
+    <section class="contact-box" aria-label="Contact">
+      <h2>Contact</h2>
+      <div id="socialList"></div>
+      <a class="glass-method" href="contact.html">
+        <span class="method-mark">@</span>
+        <span>
+          <strong>Contact page</strong>
+          <small>Social, phone, and email</small>
+        </span>
+        <span class="method-arrow">↗</span>
+      </a>
+    </section>
+
+  </main>
+</body>
+</html>

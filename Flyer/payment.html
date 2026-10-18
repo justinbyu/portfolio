@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment | TAPIND</title>
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="Choose GCash or BDO. QR only. No account number.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="glass-pay">
+  <main class="pay-shell">
+    <a class="glass-back" href="index.html">← Menu</a>
+    <section class="pay-card">
+      <p class="pay-kicker">Payment methods</p>
+      <h1 id="payTitle">Choose how to pay</h1>
+      <p class="pay-for" id="payFor">QR only. No account number is shown.</p>
+
+      <a class="glass-method" id="gcashLink" href="gcash.html">
+        <span class="method-mark gcash">G</span>
+        <span>
+          <strong>GCash</strong>
+          <small>Pay using GCash QR</small>
+        </span>
+        <span class="method-arrow">↗</span>
+      </a>
+
+      <a class="glass-method" id="bdoLink" href="bdo.html">
+        <span class="method-mark bdo">BDO</span>
+        <span>
+          <strong>BDO</strong>
+          <small>Pay using bank QR</small>
+        </span>
+        <span class="method-arrow">↗</span>
+      </a>
+    </section>
+  </main>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var item = params.get("item") || "";
+      var price = params.get("price") || "";
+      var query = window.location.search || "";
+      var title = document.getElementById("payFor");
+      if (title && item) title.textContent = item + (price ? " · " + price : "") + ". QR only. No account number.";
+      var gcash = document.getElementById("gcashLink");
+      var bdo = document.getElementById("bdoLink");
+      if (gcash) gcash.href = "gcash.html" + query;
+      if (bdo) bdo.href = "bdo.html" + query;
+    })();
+  </script>
+</body>
+</html>

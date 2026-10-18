@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hearth Store</title>
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="Temporary example store for the owner. No account number is shown.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="glass-pay">
+  <main class="pay-shell">
+    <a class="glass-back" href="index.html">← Menu</a>
+    <section class="pay-card store-card">
+      <img class="store-logo" src="images/logo.png" alt="Hearth logo">
+      <p class="pay-kicker">Store owner site</p>
+      <h1 id="storeName">Hearth</h1>
+      <p class="pay-for">Temporary example store. Order now lands here instead of a payment app. Paste the real https site into <code>storeUrl</code> in menu.js when the owner has one.</p>
+
+      <article class="store-item">
+        <p class="pay-kicker">This order</p>
+        <h2 id="itemName">Menu item</h2>
+        <p id="itemPrice" class="store-price">$0</p>
+        <label>
+          Quantity
+          <input id="qty" type="number" min="1" max="20" value="1">
+        </label>
+      </article>
+
+      <button type="button" class="order-now" id="placeOrder">Place order</button>
+      <p class="pay-for" id="orderStatus" role="status"></p>
+    </section>
+  </main>
+  <script src="menu.js"></script>
+  <script>
+    (function () {
+      var client = window.CLIENT || {};
+      var params = new URLSearchParams(window.location.search);
+      var item = params.get("item") || "Menu item";
+      var price = params.get("price") || "Ask";
+      var name = document.getElementById("storeName");
+      var itemName = document.getElementById("itemName");
+      var itemPrice = document.getElementById("itemPrice");
+      var status = document.getElementById("orderStatus");
+      var button = document.getElementById("placeOrder");
+      var qty = document.getElementById("qty");
+
+      if (name && client.name) name.textContent = client.name;
+      if (itemName) itemName.textContent = item;
+      if (itemPrice) itemPrice.textContent = price;
+
+      if (button) {
+        button.addEventListener("click", function () {
+          var count = Math.max(1, Number(qty && qty.value) || 1);
+          if (status) {
+            status.textContent = "Example only. " + count + " × " + item + " (" + price + ") is noted on this temporary store. No account number is shown, and nothing was charged.";
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

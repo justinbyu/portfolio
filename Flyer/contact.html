@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | TAPIND</title>
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="Contact and social links. No account number.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="glass-pay">
+  <main class="pay-shell">
+    <a class="glass-back" href="index.html">← Menu</a>
+    <section class="pay-card">
+      <p class="pay-kicker">Contact</p>
+      <h1 id="contactName">Get in touch</h1>
+      <p class="pay-for">Social pages, phone, and email. Edit these in menu.js.</p>
+      <div id="contactList"></div>
+    </section>
+  </main>
+  <script src="menu.js"></script>
+  <script>
+    (function () {
+      var client = window.CLIENT || {};
+      var name = document.getElementById("contactName");
+      var list = document.getElementById("contactList");
+      if (name && client.name) name.textContent = client.name;
+      if (!list) return;
+
+      function row(mark, title, note, href, external) {
+        var extra = external ? ' target="_blank" rel="noopener noreferrer"' : "";
+        return '<a class="glass-method" href="' + href + '"' + extra + '>' +
+          '<span class="method-mark">' + mark + "</span>" +
+          "<span><strong>" + title + "</strong><small>" + note + "</small></span>" +
+          '<span class="method-arrow">↗</span></a>';
+      }
+
+      var html = "";
+      (client.socials || []).forEach(function (social) {
+        if (!social.href) return;
+        html += row(social.mark || "@", social.name, "Open profile", social.href, true);
+      });
+      if (client.phone) html += row("Tel", "Call", client.phone, "tel:" + String(client.phone).replace(/[^\d+]/g, ""), false);
+      if (client.email) html += row("@", "Email", client.email, "mailto:" + client.email, false);
+      if (!html) html = '<p class="pay-for">Add social links, a phone, or an email in menu.js.</p>';
+      list.innerHTML = html;
+    })();
+  </script>
+</body>
+</html>
