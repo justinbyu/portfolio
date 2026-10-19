@@ -18,9 +18,14 @@
   <header class="topbar">
     <a class="wordmark" href="#top" aria-label="A Bouquet for You home"><span class="wordmark__flower">✿</span> petal & prose</a>
     <span class="topbar__note">A little something, just for you</span>
-    <button class="sound-toggle" id="soundToggle" type="button" aria-label="Play background music" aria-pressed="false">
-      <span class="sound-toggle__icon" aria-hidden="true">♫</span><span id="soundLabel">Play our song</span>
-    </button>
+    <div class="audio-controls" aria-label="Music controls">
+      <button class="sound-toggle" id="soundToggle" type="button" aria-label="Play our song" aria-pressed="false">
+        <span class="sound-toggle__icon" aria-hidden="true">♫</span><span id="soundLabel">Play our song</span>
+      </button>
+      <label class="volume-control" for="musicVolume"><span aria-hidden="true">♪</span><span class="sr-only">Volume</span>
+        <input id="musicVolume" type="range" min="0" max="1" step="0.01" value="0.75" aria-label="Music volume">
+      </label>
+    </div>
   </header>
 
   <main id="top">
@@ -60,7 +65,7 @@
           <!-- roses -->
           <g class="rose rose--left" transform="translate(177 244) scale(.8)" style="--bloom-color:#e6a08f;--bloom-mid:#c7736b"><use href="#bloom"/></g>
           <g class="rose rose--midleft" transform="translate(231 194) scale(.9)" style="--bloom-color:#d98280;--bloom-mid:#b55366"><use href="#bloom"/></g>
-          <g class="rose rose--center" transform="translate(280 173) scale(1.08)" style="--bloom-color:#e8a0a0;--bloom-mid:#bd6178"><use href="#bloom"/><g class="photo-medallion"><circle r="25" fill="#f7e8dc"/><circle r="22" fill="#714854"/><image href="assets/photo-placeholder.svg" x="-21" y="-21" width="42" height="42" preserveAspectRatio="xMidYMid slice" clip-path="url(#photoClip)"/><circle r="23" fill="none" stroke="#fff3e9" stroke-width="2"/></g></g>
+          <g class="rose rose--center" transform="translate(280 173) scale(1.08)" style="--bloom-color:#e8a0a0;--bloom-mid:#bd6178"><use href="#bloom"/><g class="photo-medallion"><circle r="25" fill="#f7e8dc"/><circle r="22" fill="#714854"/><image href="assets/photo.jpg" x="-21" y="-21" width="42" height="42" preserveAspectRatio="xMidYMid slice" clip-path="url(#photoClip)"/><circle r="23" fill="none" stroke="#fff3e9" stroke-width="2"/></g></g>
           <g class="rose rose--midright" transform="translate(330 194) scale(.9)" style="--bloom-color:#f0c2aa;--bloom-mid:#c98473"><use href="#bloom"/></g>
           <g class="rose rose--right" transform="translate(383 244) scale(.8)" style="--bloom-color:#c87583;--bloom-mid:#94485d"><use href="#bloom"/></g>
           <!-- wrapping -->
@@ -93,6 +98,13 @@
       <p class="gallery-hint">Use the arrows or swipe to wander through our moments.</p>
     </section>
 
+    <section class="song-section" aria-labelledby="song-title">
+      <p class="eyebrow"><span></span> a song for us <span></span></p>
+      <h2 id="song-title">They Long to Be <em>Close to You</em></h2>
+      <p class="song-section__artist">The Carpenters · audio only</p>
+      <div class="audio-note"><span class="audio-note__symbol" aria-hidden="true">♫</span><p>Press <strong>Play our song</strong> above to listen.</p><span class="audio-note__line" aria-hidden="true"></span></div>
+    </section>
+
     <section class="dedication" aria-label="A little note"><span class="dedication__line"></span><p>For all the ways you make<br><em>ordinary days extraordinary.</em></p><span class="dedication__line"></span></section>
 
     <section class="letter-section" id="letterSection" aria-labelledby="letter-title">
@@ -112,6 +124,6 @@
   </main>
 
   <footer class="footer"><span>✿</span> A little love, always <span>✿</span></footer>
-  <audio id="musicPlayer" src="assets/music.mp3" loop preload="none"></audio>
+  <audio id="musicPlayer" src="assets/Love%20Me%20For%20What%20I%20Am.mp3" preload="none" loop></audio>
 </body>
 </html>

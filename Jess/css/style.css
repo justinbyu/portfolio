@@ -42,3 +42,29 @@
 /* Keep the petal shower visible and above every section. */
 .petal-fall{z-index:9999!important;animation-delay:var(--fall-delay,0s)}
 @media(prefers-reduced-motion:reduce){.petal-fall{display:block!important;animation-duration:var(--fall-time,7s)!important}}
+
+.sound-toggle{text-decoration:none}
+.song-section{width:min(760px,88vw);margin:0 auto;padding:32px 0 78px;text-align:center}
+.song-section .eyebrow{justify-content:center}
+.song-section h2{font:500 clamp(28px,4vw,40px) var(--serif);letter-spacing:-.025em;margin:16px 0 5px;color:#f2e8df}
+.song-section h2 em{font-weight:500;color:#dca6a1}
+.song-section__artist{margin:0 0 22px;color:#ad9fa0;font-size:11px;letter-spacing:.1em}
+.song-video-embed{display:block;width:100%;max-width:660px;height:auto;aspect-ratio:16/9;margin:0 auto;border:0;border-radius:10px;box-shadow:0 14px 38px rgba(0,0,0,.2);background:#100e10}
+@media(max-width:640px){.song-section{width:90vw;padding:20px 0 55px}}
+
+.audio-controls{display:flex;align-items:center;gap:12px}
+.sound-toggle{font-family:var(--sans)}
+.volume-control{height:38px;display:flex;align-items:center;gap:8px;padding:0 11px;border:1px solid rgba(230,197,183,.2);border-radius:24px;color:#e5aaa3;background:rgba(255,255,255,.025)}
+.volume-control input{width:75px;accent-color:#dca6a1;cursor:pointer}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.audio-note{max-width:440px;margin:26px auto 0;padding:19px 22px;border:1px solid rgba(233,206,190,.15);border-radius:5px;background:rgba(255,255,255,.025);display:flex;align-items:center;gap:14px;color:#b9aaab}
+.audio-note__symbol{font-size:23px;color:#dca6a1}
+.audio-note p{margin:0;font-size:11px;line-height:1.7}
+.audio-note strong{color:#ead9cf;font-weight:600}
+.audio-note__line{height:1px;flex:1;background:linear-gradient(90deg,rgba(220,166,161,.45),transparent)}
+@media(max-width:640px){.audio-controls{gap:6px}.sound-toggle{padding:8px 10px;font-size:9px}.volume-control{height:34px;padding:0 8px;gap:5px}.volume-control input{width:54px}}
+/* Portrait frame for the couple photo album */
+.memory-viewer{grid-template-columns:44px minmax(0,460px) 44px;gap:14px}
+.memory-slide{width:100%;max-width:460px;justify-self:center}
+.memory-slide img{width:100%;height:auto;min-height:0;aspect-ratio:2/3;object-fit:cover}
+@media(max-width:640px){.memory-viewer{grid-template-columns:32px minmax(0,1fr) 32px;gap:5px}.memory-slide img{height:auto;min-height:0;aspect-ratio:2/3}}

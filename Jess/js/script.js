@@ -1,14 +1,39 @@
 (() => {
   const bloomBtn = document.getElementById('bloomBtn');
   const bouquetCard = document.getElementById('bouquetCard');
-  const musicPlayer = document.getElementById('musicPlayer');
-  const soundToggle = document.getElementById('soundToggle');
-  const soundLabel = document.getElementById('soundLabel');
   const letterBody = document.getElementById('letterBody');
   const editLetterBtn = document.getElementById('editLetterBtn');
   const editHint = document.getElementById('editHint');
   const letterJump = document.getElementById('letterJump');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const musicPlayer = document.getElementById('musicPlayer');
+  const soundToggle = document.getElementById('soundToggle');
+  const soundLabel = document.getElementById('soundLabel');
+  const musicVolume = document.getElementById('musicVolume');
+
+  // Audio-only local playback. The visitor starts it with a click.
+  musicPlayer.volume = Number(musicVolume.value);
+  musicVolume.addEventListener('input', () => {
+    musicPlayer.volume = Number(musicVolume.value);
+  });
+  soundToggle.addEventListener('click', async () => {
+    if (musicPlayer.paused) {
+      try {
+        await musicPlayer.play();
+        soundToggle.setAttribute('aria-pressed', 'true');
+        soundToggle.setAttribute('aria-label', 'Pause our song');
+        soundLabel.textContent = 'Pause our song';
+      } catch (error) {
+        soundLabel.textContent = 'Check your audio file';
+        console.error('Check that assets/Love Me For What I Am.mp3 exists and is a playable audio file.', error);
+      }
+    } else {
+      musicPlayer.pause();
+      soundToggle.setAttribute('aria-pressed', 'false');
+      soundToggle.setAttribute('aria-label', 'Play our song');
+      soundLabel.textContent = 'Play our song';
+    }
+  });
 
   // Show today's date on the letter.
   const date = document.getElementById('letterDate');
@@ -57,12 +82,12 @@
 
   // Six replaceable photo slides with arrows, dots, and touch-swipe navigation.
   const memories = [
-    { src: 'assets/couple-1.svg', alt: 'A favorite memory together, photo 1 of 6', caption: 'The beginning of us' },
-    { src: 'assets/couple-2.svg', alt: 'A favorite memory together, photo 2 of 6', caption: 'Your laugh is my favorite sound' },
-    { src: 'assets/couple-3.svg', alt: 'A favorite memory together, photo 3 of 6', caption: 'One of our little adventures' },
-    { src: 'assets/couple-4.svg', alt: 'A favorite memory together, photo 4 of 6', caption: 'A day I keep replaying' },
-    { src: 'assets/couple-5.svg', alt: 'A favorite memory together, photo 5 of 6', caption: 'My favorite place is beside you' },
-    { src: 'assets/couple-6.svg', alt: 'A favorite memory together, photo 6 of 6', caption: 'And all the days still to come' }
+    { src: 'assets/couple-1.jpg', alt: 'A favorite memory together, photo 1 of 6', caption: 'The beginning of us' },
+    { src: 'assets/couple-2.jpg', alt: 'A favorite memory together, photo 2 of 6', caption: 'Your laugh is my favorite sound' },
+    { src: 'assets/couple-3.jpg', alt: 'A favorite memory together, photo 3 of 6', caption: 'One of our little adventures' },
+    { src: 'assets/couple-4.jpg', alt: 'A favorite memory together, photo 4 of 6', caption: 'A day I keep replaying' },
+    { src: 'assets/couple-5.jpg', alt: 'A favorite memory together, photo 5 of 6', caption: 'My favorite place is beside you' },
+    { src: 'assets/couple-6.jpg', alt: 'A favorite memory together, photo 6 of 6', caption: 'And all the days still to come' }
   ];
   let memoryIndex = 0;
   const memoryImage = document.getElementById('memoryImage');
@@ -124,32 +149,6 @@
       petal.addEventListener('animationend', () => petal.remove(), { once: true });
     }
   }
-
-  // Play/pause music. A user gesture is required by modern browsers.
-  soundToggle.addEventListener('click', async () => {
-    if (musicPlayer.paused) {
-      try {
-        await musicPlayer.play();
-        soundToggle.setAttribute('aria-pressed', 'true');
-        soundToggle.setAttribute('aria-label', 'Pause background music');
-        soundLabel.textContent = 'Pause our song';
-      } catch (error) {
-        soundLabel.textContent = 'Add assets/music.mp3';
-        console.error('Music could not be played. Check assets/music.mp3.', error);
-      }
-    } else {
-      musicPlayer.pause();
-      soundToggle.setAttribute('aria-pressed', 'false');
-      soundToggle.setAttribute('aria-label', 'Play background music');
-      soundLabel.textContent = 'Play our song';
-    }
-  });
-
-  musicPlayer.addEventListener('ended', () => {
-    soundToggle.setAttribute('aria-pressed', 'false');
-    soundToggle.setAttribute('aria-label', 'Play background music');
-    soundLabel.textContent = 'Play our song';
-  });
 
   // Letter is directly editable; edits are saved on this device.
   editLetterBtn.addEventListener('click', () => {
