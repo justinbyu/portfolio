@@ -167,3 +167,13 @@ html,body{max-width:100%;overflow-x:hidden}
   .gallery-arrow{width:28px;height:28px}
   .memory-slide{min-width:0}
 }
+
+/* Tap the flying angel: each tap releases a heart; the third tap makes it fall. */
+.angel-sprite{pointer-events:auto;cursor:pointer;touch-action:manipulation}
+.angel-sprite:focus-visible{outline:2px solid #f1c1c1;outline-offset:5px;border-radius:12px}
+.angel-flight.angel-dropped{animation:angel-drop-down 1.2s ease-in forwards!important}
+@keyframes angel-drop-down{0%{transform:translateY(0) rotate(0) scale(1);opacity:1}100%{transform:translateY(115vh) rotate(24deg) scale(.78);opacity:0}}
+.touch-heart{position:fixed;z-index:10001;pointer-events:none;color:#f18d9b;font-size:var(--heart-size,28px);line-height:1;text-shadow:0 3px 14px rgba(236,114,139,.5);animation:touch-heart-fall var(--heart-fall-time,2.5s) ease-in forwards;will-change:transform,opacity}
+@keyframes touch-heart-fall{0%{transform:translate3d(0,0,0) scale(.6) rotate(-10deg);opacity:0}12%{opacity:1;transform:translate3d(0,0,0) scale(1) rotate(0)}100%{transform:translate3d(30px,105vh,0) scale(.7) rotate(35deg);opacity:0}}
+.touch-heart{z-index:2147483647!important;display:block!important;visibility:visible!important;text-shadow:0 3px 18px rgba(255,72,110,.85);filter:drop-shadow(0 0 8px rgba(255,126,150,.55))}
+@media(prefers-reduced-motion:reduce){.touch-heart{animation-duration:var(--heart-fall-time,3.6s)!important;animation-iteration-count:1!important}}

@@ -32,15 +32,55 @@
     angel.src = 'assets/angel.png';
     angel.alt = '';
     angel.className = 'angel-sprite';
+    angel.setAttribute('role', 'button');
+    angel.setAttribute('tabindex', '0');
+    angel.setAttribute('aria-label', 'Tap the angel to drop hearts; three taps makes it fall');
+    let taps = 0;
+    let dropped = false;
+
+    function tapAngel(event) {
+      if (dropped) return;
+      if (event) event.preventDefault();
+      taps += 1;
+      dropHeart(angel);
+      if (taps >= 3) {
+        dropped = true;
+        const rect = flight.getBoundingClientRect();
+        flight.style.animation = 'none';
+        flight.style.left = `${rect.left}px`;
+        flight.style.top = `${rect.top}px`;
+        flight.style.transform = 'none';
+        flight.classList.add('angel-dropped');
+      }
+    }
+
+    angel.addEventListener('click', tapAngel);
+    angel.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') tapAngel(event);
+    });
     flight.appendChild(angel);
     angelLayer.appendChild(flight);
     flight.addEventListener('animationend', (event) => {
-      // The sprite has its own bob animation; ignore its bubbled animationend event.
+      // Ignore the sprite's wing-bob animation; only finish on the flight/drop.
       if (event.target !== flight) return;
       flight.remove();
-      window.setTimeout(launchAngel, 700 + Math.random() * 2600);
+      window.setTimeout(launchAngel, dropped ? 900 : 700 + Math.random() * 2600);
     });
   }
+  function dropHeart(fromAngel) {
+    const rect = fromAngel.getBoundingClientRect();
+    const heart = document.createElement('span');
+    heart.className = 'touch-heart';
+    heart.setAttribute('aria-hidden', 'true');
+    heart.textContent = '❤️';
+    heart.style.left = `${rect.left + rect.width * (.4 + Math.random() * .2)}px`;
+    heart.style.top = `${rect.top + rect.height * .3}px`;
+    heart.style.setProperty('--heart-size', `${38 + Math.random() * 14}px`);
+    heart.style.setProperty('--heart-fall-time', `${3.2 + Math.random() * .8}s`);
+    document.body.appendChild(heart);
+    heart.addEventListener('animationend', () => heart.remove(), { once: true });
+  }
+
   window.setTimeout(launchAngel, 900);
 
   // Web Audio gain gives the volume slider consistent control on iPhone/iPad too.
