@@ -18,10 +18,17 @@
     const flight = document.createElement('div');
     const angel = new Image();
     const direction = Math.random() < 0.5 ? 'angel-fly--ltr' : 'angel-fly--rtl';
-    flight.className = `angel-flight ${direction}`;
-    flight.style.top = `${8 + Math.random() * 72}vh`;
-    flight.style.width = `${96 + Math.random() * 84}px`;
-    flight.style.setProperty('--flight-duration', `${11 + Math.random() * 7}s`);
+    const isMobile = window.matchMedia('(max-width: 640px)').matches;
+    flight.className = `angel-flight ${direction}${isMobile ? ' angel-flight--mobile' : ''}`;
+    flight.style.top = isMobile
+      ? `${12 + Math.random() * 45}vh`
+      : `${8 + Math.random() * 72}vh`;
+    flight.style.width = isMobile
+      ? `${Math.min(126, Math.max(92, window.innerWidth * 0.3))}px`
+      : `${110 + Math.random() * 80}px`;
+    flight.style.setProperty('--flight-duration', isMobile
+      ? `${9 + Math.random() * 4}s`
+      : `${11 + Math.random() * 7}s`);
     angel.src = 'assets/angel.png';
     angel.alt = '';
     angel.className = 'angel-sprite';
@@ -36,16 +43,41 @@
   }
   window.setTimeout(launchAngel, 900);
 
-  // Audio-only local playback. The visitor starts it with a click.
-  musicPlayer.volume = Number(musicVolume.value);
-  volumeValue.value = `${Math.round(musicPlayer.volume * 100)}%`;
-  musicVolume.addEventListener('input', () => {
-    musicPlayer.volume = Number(musicVolume.value);
-    volumeValue.value = `${Math.round(musicPlayer.volume * 100)}%`;
-  });
+  // Web Audio gain gives the volume slider consistent control on iPhone/iPad too.
+  let audioContext = null;
+  let mediaSource = null;
+  let gainNode = null;
+  function applyMusicVolume() {
+    const value = Number(musicVolume.value);
+    volumeValue.value = `${Math.round(value * 100)}%`;
+    if (gainNode && audioContext) {
+      gainNode.gain.setTargetAtTime(value, audioContext.currentTime, 0.025);
+    } else {
+      // Fallback for browsers without Web Audio support.
+      musicPlayer.volume = value;
+    }
+  }
+  applyMusicVolume();
+  musicVolume.addEventListener('input', applyMusicVolume);
+
+  async function unlockAudioForMobile() {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+    if (!audioContext) {
+      audioContext = new AudioContextClass();
+      mediaSource = audioContext.createMediaElementSource(musicPlayer);
+      gainNode = audioContext.createGain();
+      mediaSource.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      applyMusicVolume();
+    }
+    if (audioContext.state === 'suspended') await audioContext.resume();
+  }
+
   soundToggle.addEventListener('click', async () => {
     if (musicPlayer.paused) {
       try {
+        await unlockAudioForMobile();
         await musicPlayer.play();
         soundToggle.setAttribute('aria-pressed', 'true');
         soundToggle.setAttribute('aria-label', 'Pause our song');
@@ -109,12 +141,12 @@
 
   // Six replaceable photo slides with arrows, dots, and touch-swipe navigation.
   const memories = [
-    { src: 'assets/couple-1.jpg', alt: 'A favorite memory together, photo 1 of 6', caption: 'The beginning of us' },
-    { src: 'assets/couple-2.jpg', alt: 'A favorite memory together, photo 2 of 6', caption: 'Your laugh is my favorite sound' },
-    { src: 'assets/couple-3.jpg', alt: 'A favorite memory together, photo 3 of 6', caption: 'One of our little adventures' },
-    { src: 'assets/couple-4.jpg', alt: 'A favorite memory together, photo 4 of 6', caption: 'A day I keep replaying' },
-    { src: 'assets/couple-5.jpg', alt: 'A favorite memory together, photo 5 of 6', caption: 'My favorite place is beside you' },
-    { src: 'assets/couple-6.jpg', alt: 'A favorite memory together, photo 6 of 6', caption: 'And all the days still to come' }
+    { src: 'assets/couple-2.jpg', alt: 'A favorite memory together, photo 1 of 6', caption: 'The beginning of us' },
+    { src: 'assets/couple-3.jpg', alt: 'A favorite memory together, photo 2 of 6', caption: 'Your laugh is my favorite sound' },
+    { src: 'assets/couple-4.jpg', alt: 'A favorite memory together, photo 3 of 6', caption: 'One of our little adventures' },
+    { src: 'assets/couple-5.jpg', alt: 'A favorite memory together, photo 4 of 6', caption: 'A day I keep replaying' },
+    { src: 'assets/couple-6.jpg', alt: 'A favorite memory together, photo 5 of 6', caption: 'My favorite place is beside you' },
+    { src: 'assets/couple-1.jpg', alt: 'A favorite memory together, photo 6 of 6', caption: 'And all the days still to come' }
   ];
   let memoryIndex = 0;
   const memoryImage = document.getElementById('memoryImage');

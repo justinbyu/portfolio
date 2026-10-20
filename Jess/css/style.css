@@ -127,3 +127,43 @@
   .hero h1{font-size:52px}
   .hero__actions .button--primary{padding:13px 16px}
 }
+/* Mobile Safari/Chrome: keep the flyer viewport-fixed and size it to the device. */
+.angel-layer{overflow:visible!important;height:100vh;height:100dvh}
+.angel-flight{position:fixed!important;max-width:none!important}
+@media(max-width:640px){
+  .angel-layer{inset:0;z-index:9998;pointer-events:none}
+  .angel-flight--mobile{max-width:35vw!important}
+}
+
+/* Smaller tablet and mobile portrait layout: prevent the desktop grid from overflowing. */
+html,body{max-width:100%;overflow-x:hidden}
+@media(max-width:850px){
+  .topbar{height:auto;min-height:0;padding:12px 16px 14px;display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;gap:10px}
+  .topbar__note{display:none}
+  .audio-controls{width:min(100%,360px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px}
+  .volume-control{min-width:0;width:100%;justify-content:space-between}
+  .hero{display:flex;flex-direction:column;align-items:stretch;width:min(520px,calc(100% - 32px));min-height:0;gap:28px;padding:38px 0 30px}
+  .hero__copy{width:100%;padding:0;text-align:center}
+  .hero .eyebrow{justify-content:center}
+  .hero h1{font-size:clamp(50px,10vw,68px);margin:24px 0 18px}
+  .hero__description{margin-left:auto;margin-right:auto}
+  .hero__actions{justify-content:center}
+  .hero__footnote{margin-top:25px}
+  .bouquet-card{width:min(100%,420px);height:auto;aspect-ratio:.92;align-self:center;justify-self:center}
+  .bouquet-art{width:100%;height:auto}
+  .memory-viewer{min-width:0}
+}
+@media(max-width:420px){
+  .topbar{padding-left:12px;padding-right:12px}
+  .audio-controls{gap:6px}
+  .sound-toggle{font-size:9px;padding:8px 9px}
+  .volume-control{gap:5px;padding-left:7px;padding-right:7px}
+  .volume-control input{width:clamp(58px,21vw,82px);min-width:58px}
+  .hero{width:calc(100% - 28px);gap:23px;padding-top:29px}
+  .hero h1{font-size:clamp(46px,13vw,56px)}
+  .hero__actions{gap:8px}
+  .bouquet-card{width:min(100%,360px)}
+  .memory-viewer{grid-template-columns:28px minmax(0,1fr) 28px;gap:4px}
+  .gallery-arrow{width:28px;height:28px}
+  .memory-slide{min-width:0}
+}
