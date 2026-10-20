@@ -124,7 +124,7 @@
         soundLabel.textContent = 'Pause our song';
       } catch (error) {
         soundLabel.textContent = 'Check your audio file';
-        console.error('Check that assets/Love Me For What I Am.mp3 exists and is a playable audio file.', error);
+        console.error('Check that assets/Fallen.mp3 exists and is a playable audio file.', error);
       }
     } else {
       musicPlayer.pause();
@@ -181,12 +181,12 @@
 
   // Six replaceable photo slides with arrows, dots, and touch-swipe navigation.
   const memories = [
-    { src: 'assets/couple-2.jpg', alt: 'A favorite memory together, photo 1 of 6', caption: 'The beginning of us' },
-    { src: 'assets/couple-3.jpg', alt: 'A favorite memory together, photo 2 of 6', caption: 'Your laugh is my favorite sound' },
-    { src: 'assets/couple-4.jpg', alt: 'A favorite memory together, photo 3 of 6', caption: 'One of our little adventures' },
-    { src: 'assets/couple-5.jpg', alt: 'A favorite memory together, photo 4 of 6', caption: 'A day I keep replaying' },
-    { src: 'assets/couple-6.jpg', alt: 'A favorite memory together, photo 5 of 6', caption: 'My favorite place is beside you' },
-    { src: 'assets/couple-1.jpg', alt: 'A favorite memory together, photo 6 of 6', caption: 'And all the days still to come' }
+    { src: 'assets/couple-1.jpg', alt: 'A close-up selfie together', caption: 'A little closer to my heart' },
+    { src: 'assets/couple-2.jpg', alt: 'A playful close-up selfie together', caption: 'My favorite silly faces' },
+    { src: 'assets/couple-3.jpg', alt: 'A sweet selfie together', caption: 'Our little close-up' },
+    { src: 'assets/couple-4.jpg', alt: 'A night out together', caption: 'A night out with you' },
+    { src: 'assets/couple-5.jpg', alt: 'Sharing a treat together', caption: 'Sweet moments shared' },
+    { src: 'assets/couple-6.jpg', alt: 'A favorite evening together', caption: 'One more favorite memory' }
   ];
   let memoryIndex = 0;
   const memoryImage = document.getElementById('memoryImage');
@@ -200,9 +200,9 @@
     memoryImage.classList.add('is-changing');
     window.setTimeout(() => {
       memoryImage.src = memory.src;
-      memoryImage.alt = memory.alt;
+      memoryImage.alt = `${memory.alt}, photo ${memoryIndex + 1} of ${memories.length}`;
       memoryCaption.textContent = memory.caption;
-      memoryCount.innerHTML = `${String(memoryIndex + 1).padStart(2, '0')} <i>/</i> 06`;
+      memoryCount.innerHTML = `${String(memoryIndex + 1).padStart(2, '0')} <i>/</i> ${String(memories.length).padStart(2, '0')}`;
       memoryImage.classList.remove('is-changing');
       [...memoryDots.children].forEach((dot, i) => {
         dot.classList.toggle('is-active', i === memoryIndex);
