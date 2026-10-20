@@ -14,6 +14,7 @@
 </head>
 <body>
   <div class="ambient ambient--one" aria-hidden="true"></div>
+  <div class="angel-layer" id="angelLayer" aria-hidden="true"></div>
   <div class="ambient ambient--two" aria-hidden="true"></div>
   <header class="topbar">
     <a class="wordmark" href="#top" aria-label="A Bouquet for You home"><span class="wordmark__flower">✿</span> petal & prose</a>
@@ -22,8 +23,10 @@
       <button class="sound-toggle" id="soundToggle" type="button" aria-label="Play our song" aria-pressed="false">
         <span class="sound-toggle__icon" aria-hidden="true">♫</span><span id="soundLabel">Play our song</span>
       </button>
-      <label class="volume-control" for="musicVolume"><span aria-hidden="true">♪</span><span class="sr-only">Volume</span>
+      <label class="volume-control" for="musicVolume">
+        <span class="volume-glyph" aria-hidden="true">♪</span><span class="volume-word">Volume</span>
         <input id="musicVolume" type="range" min="0" max="1" step="0.01" value="0.75" aria-label="Music volume">
+        <output id="volumeValue" for="musicVolume">75%</output>
       </label>
     </div>
   </header>

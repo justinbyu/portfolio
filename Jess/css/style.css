@@ -68,3 +68,62 @@
 .memory-slide{width:100%;max-width:460px;justify-self:center}
 .memory-slide img{width:100%;height:auto;min-height:0;aspect-ratio:2/3;object-fit:cover}
 @media(max-width:640px){.memory-viewer{grid-template-columns:32px minmax(0,1fr) 32px;gap:5px}.memory-slide img{height:auto;min-height:0;aspect-ratio:2/3}}
+
+/* Intermittent, continuous cupid fly-bys */
+.angel-layer{position:fixed;inset:0;z-index:30;overflow:hidden;pointer-events:none}
+.angel-fly{position:fixed;left:0;height:auto;max-width:32vw;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(35,20,25,.18));pointer-events:none;will-change:transform,opacity;animation-duration:var(--flight-duration,16s);animation-timing-function:ease-in-out;animation-fill-mode:forwards}
+.angel-fly--ltr{animation-name:angel-flight-ltr}
+.angel-fly--rtl{animation-name:angel-flight-rtl}
+@keyframes angel-flight-ltr{0%{transform:translate3d(-140vw,8px,0) rotate(-5deg);opacity:0}10%{opacity:.94}48%{transform:translate3d(38vw,-24px,0) rotate(3deg);opacity:.96}88%{opacity:.9}100%{transform:translate3d(112vw,16px,0) rotate(-3deg);opacity:0}}
+@keyframes angel-flight-rtl{0%{transform:translate3d(112vw,8px,0) scaleX(-1) rotate(-5deg);opacity:0}10%{opacity:.94}48%{transform:translate3d(38vw,-24px,0) scaleX(-1) rotate(3deg);opacity:.96}88%{opacity:.9}100%{transform:translate3d(-140vw,16px,0) scaleX(-1) rotate(-3deg);opacity:0}}
+@media(max-width:640px){.angel-fly{max-width:38vw}}
+/* Keep the cupid visible above the page and avoid clipping its viewport-wide flight. */
+.angel-layer{z-index:9998;overflow:hidden}
+.angel-fly{position:absolute;display:block;visibility:visible}
+@media(prefers-reduced-motion:reduce){.angel-fly{animation-duration:var(--flight-duration,16s)!important;animation-iteration-count:1!important}}
+
+/* Cupid has a floating, wing-beat-like bob as it travels across the page. */
+.angel-flight{position:absolute;left:0;width:150px;z-index:1;animation-duration:var(--flight-duration,15s);animation-timing-function:ease-in-out;animation-fill-mode:forwards;will-change:transform,opacity}
+.angel-flight.angel-fly--ltr{animation-name:cupid-cross-ltr}
+.angel-flight.angel-fly--rtl{animation-name:cupid-cross-rtl}
+.angel-sprite{display:block;width:100%;height:auto;filter:drop-shadow(0 8px 18px rgba(35,20,25,.2));animation:cupid-hover .72s ease-in-out infinite alternate;transform-origin:50% 55%}
+@keyframes cupid-cross-ltr{0%{transform:translateX(-140vw) rotate(-7deg);opacity:0}8%{opacity:1}24%{transform:translate(10vw,-26px) rotate(2deg)}48%{transform:translate(42vw,13px) rotate(-3deg)}72%{transform:translate(76vw,-24px) rotate(4deg)}92%{opacity:1}100%{transform:translateX(112vw) rotate(-4deg);opacity:0}}
+@keyframes cupid-cross-rtl{0%{transform:translateX(112vw) scaleX(-1) rotate(-7deg);opacity:0}8%{opacity:1}24%{transform:translate(76vw,-26px) scaleX(-1) rotate(2deg)}48%{transform:translate(42vw,13px) scaleX(-1) rotate(-3deg)}72%{transform:translate(10vw,-24px) scaleX(-1) rotate(4deg)}92%{opacity:1}100%{transform:translateX(-140vw) scaleX(-1) rotate(-4deg);opacity:0}}
+@keyframes cupid-hover{from{transform:translateY(5px) rotate(-2deg) scaleY(.98)}to{transform:translateY(-6px) rotate(2deg) scaleY(1.02)}}
+@media(prefers-reduced-motion:reduce){.angel-flight{animation-duration:var(--flight-duration,15s)!important}.angel-sprite{animation-duration:1.3s!important}}
+
+/* Clearly operable audio/volume controls, including on narrow touch screens. */
+.volume-control{min-width:205px;justify-content:space-between;gap:9px;color:#c8b4ad;font-size:10px;letter-spacing:.04em}
+.volume-glyph{color:#e5aaa3;font-size:16px}
+.volume-control input{width:92px;height:32px;margin:0;accent-color:#dca6a1;touch-action:pan-x;cursor:pointer}
+.volume-control output{min-width:32px;text-align:right;color:#d8c7c0;font-size:10px;font-variant-numeric:tabular-nums}
+.volume-control input::-webkit-slider-runnable-track{height:4px;border-radius:9px;background:linear-gradient(90deg,#dca6a1,#815963)}
+.volume-control input::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-7px;border:2px solid #f6e8df;border-radius:50%;background:#bd787d;box-shadow:0 1px 5px #171317}
+.volume-control input::-moz-range-track{height:4px;border-radius:9px;background:#815963}
+.volume-control input::-moz-range-progress{height:4px;border-radius:9px;background:#dca6a1}
+.volume-control input::-moz-range-thumb{width:14px;height:14px;border:2px solid #f6e8df;border-radius:50%;background:#bd787d}
+@media(max-width:640px){
+  .topbar{height:auto;min-height:0;padding:12px 16px 14px;display:grid;grid-template-columns:1fr;justify-items:center;gap:10px}
+  .wordmark{font-size:17px;line-height:1.3}
+  .audio-controls{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;width:min(100%,360px);gap:8px}
+  .sound-toggle{min-height:44px;padding:9px 12px;font-size:10px;white-space:nowrap}
+  .volume-control{height:44px;min-width:0;width:100%;padding:0 10px;gap:7px}
+  .volume-control input{width:clamp(70px,25vw,118px);min-width:65px;height:36px}
+  .hero{gap:26px;padding:36px 0 26px;min-height:0}
+  .hero__copy{width:100%}
+  .hero__actions{gap:10px;flex-wrap:wrap}
+  .bouquet-card{width:min(100%,390px)}
+  .song-section{padding:17px 0 44px}
+  .letter-section{padding-bottom:54px}
+}
+@media(max-width:380px){
+  .topbar{padding-left:12px;padding-right:12px}
+  .audio-controls{gap:6px}
+  .sound-toggle{padding:8px 9px;font-size:9px}
+  .volume-control{padding:0 7px;gap:5px}
+  .volume-word{font-size:9px}
+  .volume-control input{width:62px;min-width:58px}
+  .volume-control output{min-width:27px;font-size:9px}
+  .hero h1{font-size:52px}
+  .hero__actions .button--primary{padding:13px 16px}
+}

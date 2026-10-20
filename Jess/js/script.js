@@ -10,11 +10,38 @@
   const soundToggle = document.getElementById('soundToggle');
   const soundLabel = document.getElementById('soundLabel');
   const musicVolume = document.getElementById('musicVolume');
+  const volumeValue = document.getElementById('volumeValue');
+  const angelLayer = document.getElementById('angelLayer');
+
+  // Cupid repeatedly glides from side to side with a gentle floating motion.
+  function launchAngel() {
+    const flight = document.createElement('div');
+    const angel = new Image();
+    const direction = Math.random() < 0.5 ? 'angel-fly--ltr' : 'angel-fly--rtl';
+    flight.className = `angel-flight ${direction}`;
+    flight.style.top = `${8 + Math.random() * 72}vh`;
+    flight.style.width = `${96 + Math.random() * 84}px`;
+    flight.style.setProperty('--flight-duration', `${11 + Math.random() * 7}s`);
+    angel.src = 'assets/angel.png';
+    angel.alt = '';
+    angel.className = 'angel-sprite';
+    flight.appendChild(angel);
+    angelLayer.appendChild(flight);
+    flight.addEventListener('animationend', (event) => {
+      // The sprite has its own bob animation; ignore its bubbled animationend event.
+      if (event.target !== flight) return;
+      flight.remove();
+      window.setTimeout(launchAngel, 700 + Math.random() * 2600);
+    });
+  }
+  window.setTimeout(launchAngel, 900);
 
   // Audio-only local playback. The visitor starts it with a click.
   musicPlayer.volume = Number(musicVolume.value);
+  volumeValue.value = `${Math.round(musicPlayer.volume * 100)}%`;
   musicVolume.addEventListener('input', () => {
     musicPlayer.volume = Number(musicVolume.value);
+    volumeValue.value = `${Math.round(musicPlayer.volume * 100)}%`;
   });
   soundToggle.addEventListener('click', async () => {
     if (musicPlayer.paused) {

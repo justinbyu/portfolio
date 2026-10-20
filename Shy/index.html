@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171317">
+  <meta name="description" content="A little garden of roses, gathered just for you.">
+  <title>A Bouquet for You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient--one" aria-hidden="true"></div>
+  <div class="angel-layer" id="angelLayer" aria-hidden="true"></div>
+  <div class="ambient ambient--two" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="wordmark" href="#top" aria-label="A Bouquet for You home"><span class="wordmark__flower">✿</span> petal & prose</a>
+    <span class="topbar__note">A little something, just for you</span>
+    <div class="audio-controls" aria-label="Music controls">
+      <button class="sound-toggle" id="soundToggle" type="button" aria-label="Play our song" aria-pressed="false">
+        <span class="sound-toggle__icon" aria-hidden="true">♫</span><span id="soundLabel">Play our song</span>
+      </button>
+      <label class="volume-control" for="musicVolume">
+        <span class="volume-glyph" aria-hidden="true">♪</span><span class="volume-word">Volume</span>
+        <input id="musicVolume" type="range" min="0" max="1" step="0.01" value="0.75" aria-label="Music volume">
+        <output id="volumeValue" for="musicVolume">75%</output>
+      </label>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__copy">
+        <p class="eyebrow"><span></span> gathered with love <span></span></p>
+        <h1 id="hero-title">A bouquet<br>for <em>someone</em><br><em>special.</em></h1>
+        <p class="hero__description">A little garden of roses, gathered just for you. Every petal holds a thought, every bloom a little piece of my heart.</p>
+        <div class="hero__actions">
+          <button class="button button--primary" id="bloomBtn" type="button" aria-expanded="false"><span>✧</span> Let it bloom</button>
+          <button class="text-button" id="letterJump" type="button">There's a letter for you <span aria-hidden="true">↓</span></button>
+        </div>
+        <div class="hero__footnote"><span class="tiny-heart">♥</span> Made just for you, with all my love</div>
+      </div>
+
+      <div class="bouquet-card" id="bouquetCard">
+        <div class="bouquet-card__glow" aria-hidden="true"></div>
+        <div class="bouquet-card__reveal" aria-hidden="true">A little surprise<br><span>waiting to bloom</span></div>
+        <span class="bouquet-card__tag">FRESHLY PICKED <span>✳</span></span>
+        <svg class="bouquet-art" id="bouquetArt" viewBox="0 0 560 570" role="img" aria-labelledby="artTitle artDesc">
+          <title id="artTitle">A hand-gathered bouquet of roses</title><desc id="artDesc">Five roses, greenery and baby's breath wrapped in blush paper with a photo in the middle bloom.</desc>
+          <defs>
+            <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5e6da"/><stop offset=".55" stop-color="#e6c9c1"/><stop offset="1" stop-color="#c9979c"/></linearGradient>
+            <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#93a884"/><stop offset="1" stop-color="#425b49"/></linearGradient>
+            <linearGradient id="stem" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#405947"/><stop offset=".5" stop-color="#829474"/><stop offset="1" stop-color="#405947"/></linearGradient>
+            <radialGradient id="rose" cx="40%" cy="30%"><stop stop-color="#f8c5bd"/><stop offset=".5" stop-color="#d77d83"/><stop offset="1" stop-color="#9c485d"/></radialGradient>
+            <radialGradient id="rose2" cx="40%" cy="30%"><stop stop-color="#f4c7bb"/><stop offset=".5" stop-color="#df8e83"/><stop offset="1" stop-color="#a8585a"/></radialGradient>
+            <radialGradient id="rose3" cx="40%" cy="30%"><stop stop-color="#f0b4bd"/><stop offset=".5" stop-color="#cb6b80"/><stop offset="1" stop-color="#8f4059"/></radialGradient>
+            <clipPath id="photoClip"><circle cx="0" cy="0" r="21"/></clipPath>
+            <g id="bloom"><path d="M0 37C-23 43-51 27-51 2c0-22 17-38 33-30 10-18 32-17 37 0 20-11 38 6 32 27C45 23 24 41 0 37Z" fill="var(--bloom-color,#d77d83)" stroke="#f7d3c9" stroke-opacity=".55" stroke-width="2"/><path d="M-2 29C-26 29-37 12-30-5c7-16 19-13 25 0 1-22 20-24 29-9 9 17-2 37-26 43Z" fill="var(--bloom-mid,#bd6070)"/><path d="M-15 16C-21 1-8-12 2-7c7 4 3 14 0 17 10-13 24-8 23 3-1 13-18 23-27 24-7-3-11-10-13-21Z" fill="var(--bloom-color,#d77d83)"/><path d="M-10 8C-15-4-2-14 9-9c8 4 5 12 0 15" fill="none" stroke="#ffe5dc" stroke-width="2" stroke-linecap="round"/></g>
+            <g id="sprig"><path d="M0 0Q-3 52 5 112" fill="none" stroke="#7c9273" stroke-width="2"/><g fill="url(#leaf)" stroke="#afbd9e" stroke-width=".7"><path d="M-1 28C-26 11-42 20-31 34-20 43-9 36-1 28ZM1 47C25 28 41 37 30 50 20 59 9 54 1 47ZM1 69C-25 53-38 64-27 76-17 84-7 77 1 69ZM3 89C26 72 39 83 27 95 18 102 8 96 3 89Z"/></g></g>
+          </defs>
+          <!-- stems and fernlike greenery -->
+          <g class="stems"><path d="M279 258Q275 360 175 480M279 258Q292 365 384 480M279 244Q270 364 275 493M229 278Q243 370 219 481M329 278Q312 365 348 480" fill="none" stroke="url(#stem)" stroke-width="5" stroke-linecap="round"/><g transform="translate(180 302) rotate(-25)"><use href="#sprig"/></g><g transform="translate(375 302) rotate(25)"><use href="#sprig"/></g><g transform="translate(226 340) rotate(-12) scale(.8)"><use href="#sprig"/></g><g transform="translate(326 339) rotate(14) scale(.8)"><use href="#sprig"/></g><g fill="#526d59"><path d="M230 390q-48-55-59-28 11 29 59 28m71 18q53-52 63-23-14 28-63 23m-65 26q-46-42-53-14 18 23 53 14m57 4q43-43 54-17-12 28-54 17"/></g></g>
+          <!-- baby's breath -->
+          <g class="baby-breath" fill="#f7eee4" stroke="#dbd0c1" stroke-width="1"><path d="M218 227l-29-53m29 53 22-64m-22 64-52-19m52 19 53-39m-53 39 2-72m85 72 31-55m-31 55-12-72m12 72 54-24m-54 24-44-43m-44-15v-6m22-18v-5m-47 37v-5m121-9v-5m21 42v-5m-54-43v-5" fill="none" stroke="#a8a991" stroke-width="2"/><circle cx="189" cy="174" r="5"/><circle cx="240" cy="163" r="5"/><circle cx="166" cy="208" r="5"/><circle cx="272" cy="188" r="5"/><circle cx="274" cy="155" r="5"/><circle cx="334" cy="172" r="5"/><circle cx="322" cy="157" r="5"/><circle cx="385" cy="203" r="5"/><circle cx="341" cy="196" r="5"/><circle cx="297" cy="185" r="5"/></g>
+          <!-- roses -->
+          <g class="rose rose--left" transform="translate(177 244) scale(.8)" style="--bloom-color:#e6a08f;--bloom-mid:#c7736b"><use href="#bloom"/></g>
+          <g class="rose rose--midleft" transform="translate(231 194) scale(.9)" style="--bloom-color:#d98280;--bloom-mid:#b55366"><use href="#bloom"/></g>
+          <g class="rose rose--center" transform="translate(280 173) scale(1.08)" style="--bloom-color:#e8a0a0;--bloom-mid:#bd6178"><use href="#bloom"/><g class="photo-medallion"><circle r="25" fill="#f7e8dc"/><circle r="22" fill="#714854"/><image href="assets/photo.jpg" x="-21" y="-21" width="42" height="42" preserveAspectRatio="xMidYMid slice" clip-path="url(#photoClip)"/><circle r="23" fill="none" stroke="#fff3e9" stroke-width="2"/></g></g>
+          <g class="rose rose--midright" transform="translate(330 194) scale(.9)" style="--bloom-color:#f0c2aa;--bloom-mid:#c98473"><use href="#bloom"/></g>
+          <g class="rose rose--right" transform="translate(383 244) scale(.8)" style="--bloom-color:#c87583;--bloom-mid:#94485d"><use href="#bloom"/></g>
+          <!-- wrapping -->
+          <path class="wrapper-paper" d="M145 332Q279 379 415 332L362 500Q281 533 199 500Z" fill="url(#paper)" stroke="#f6e4d9" stroke-width="2"/><path d="M145 332Q279 379 415 332M199 500l80-153 83 153M279 356v165" fill="none" stroke="#fff4e9" stroke-opacity=".6" stroke-width="3"/><path d="M279 416c-20-20-47-20-46-3s24 19 46 6c22 13 46 11 46-6s-26-17-46 3Zm0 0c-12 15-22 31-15 44l15-15 16 15c7-13-3-29-16-44Z" fill="#ae6870" stroke="#f0c9be" stroke-width="2"/><circle cx="279" cy="417" r="6" fill="#f8dfcf"/>
+        </svg>
+        <div class="bouquet-card__caption"><span>№ 01 — THE HEART'S GARDEN</span><span>Always in bloom <b>✿</b></span></div>
+      </div>
+    </section>
+
+    <div class="memories-cta-wrap" id="memoriesCtaWrap" hidden>
+      <button class="button button--primary memories-cta" id="memoriesBtn" type="button"><span>♡</span> Open our memories</button>
+      <p>A few of my favorite moments with you</p>
+    </div>
+
+    <section class="memories-section" id="memoriesSection" aria-labelledby="memories-title" hidden>
+      <div class="memories-heading">
+        <p class="eyebrow"><span></span> our little world <span></span></p>
+        <h2 id="memories-title">A thousand little <em>forevers.</em></h2>
+        <p>Six moments I wish I could keep in my pocket forever.</p>
+      </div>
+      <div class="memory-viewer" aria-roledescription="carousel" aria-label="Our memories">
+        <button class="gallery-arrow gallery-arrow--prev" id="prevMemory" type="button" aria-label="Previous photo">‹</button>
+        <figure class="memory-slide" id="memorySlide">
+          <img id="memoryImage" src="assets/couple-1.svg" alt="A favorite memory together, photo 1 of 6">
+          <figcaption><span id="memoryCaption">The beginning of us</span><span class="memory-count" id="memoryCount">01 <i>/</i> 06</span></figcaption>
+        </figure>
+        <button class="gallery-arrow gallery-arrow--next" id="nextMemory" type="button" aria-label="Next photo">›</button>
+      </div>
+      <div class="memory-dots" id="memoryDots" aria-label="Choose a memory"></div>
+      <p class="gallery-hint">Use the arrows or swipe to wander through our moments.</p>
+    </section>
+
+    <section class="song-section" aria-labelledby="song-title">
+      <p class="eyebrow"><span></span> a song for us <span></span></p>
+      <h2 id="song-title">They Long to Be <em>Close to You</em></h2>
+      <p class="song-section__artist">The Carpenters · audio only</p>
+      <div class="audio-note"><span class="audio-note__symbol" aria-hidden="true">♫</span><p>Press <strong>Play our song</strong> above to listen.</p><span class="audio-note__line" aria-hidden="true"></span></div>
+    </section>
+
+    <section class="dedication" aria-label="A little note"><span class="dedication__line"></span><p>For all the ways you make<br><em>ordinary days extraordinary.</em></p><span class="dedication__line"></span></section>
+
+    <section class="letter-section" id="letterSection" aria-labelledby="letter-title">
+      <div class="letter-heading"><p class="eyebrow"><span></span> sealed with a kiss <span></span></p><h2 id="letter-title">A note from <em>my heart</em></h2><p class="letter-intro">Some things are better said on paper.</p></div>
+      <article class="letter-card" id="letterCard">
+        <div class="letter-card__top"><span class="letter-card__stamp">P<span>✿</span>P</span><span class="letter-card__date" id="letterDate"></span></div>
+        <div class="letter-card__body" id="letterBody" contenteditable="false" spellcheck="true" aria-label="Love letter">
+          <p>My dearest,</p>
+          <p>Like these roses, my love for you keeps growing. You bring a kind of light into my life that makes even the simplest moments feel golden.</p>
+          <p>Thank you for being exactly who you are, and for making my world a softer, brighter place. I hope this little bouquet reminds you that you are cherished—today and always.</p>
+          <p class="letter-card__signoff">All my love, <span>♡</span></p>
+        </div>
+        <div class="letter-card__footer"><span><i></i> Written with love</span><button id="editLetterBtn" class="edit-button" type="button">Edit this letter <span>↗</span></button></div>
+      </article>
+      <p class="edit-hint" id="editHint">Tap “Edit this letter” to personalize your message.</p>
+    </section>
+  </main>
+
+  <footer class="footer"><span>✿</span> A little love, always <span>✿</span></footer>
+  <audio id="musicPlayer" src="assets/Love%20Me%20For%20What%20I%20Am.mp3" preload="none" loop></audio>
+</body>
+</html>
