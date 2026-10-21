@@ -4,8 +4,8 @@
   "clients": 14,
   "services": 12,
   "appointments": 42,
-  "emails": 20,
-  "audit": 11
+  "emails": 23,
+  "audit": 19
  },
  "settings": {
   "clinicName": "Allanese Medical Aesthetics",
@@ -931,16 +931,21 @@
    "date": "2026-10-21",
    "start": "15:00",
    "duration": 45,
-   "status": "pending",
+   "status": "confirmed",
    "source": "website",
    "note": "",
    "createdAt": "2026-10-19T03:54:56.586Z",
-   "updatedAt": "2026-10-19T03:54:56.586Z",
+   "updatedAt": "2026-10-21T06:37:39.102Z",
    "history": [
     {
      "ts": "2026-10-19T03:54:56.586Z",
      "action": "created",
      "actor": "client"
+    },
+    {
+     "ts": "2026-10-21T06:37:39.102Z",
+     "action": "accept",
+     "actor": "justinriverodiaz@gmail.com"
     }
    ]
   },
@@ -1506,6 +1511,39 @@
    "status": "sent",
    "relatedId": null,
    "error": null
+  },
+  {
+   "id": 21,
+   "ts": "2026-10-21T06:35:46.744Z",
+   "to": "justinriverodiaz@gmail.com",
+   "toName": "",
+   "template": "otp",
+   "subject": "Your Allanese login code",
+   "status": "sent",
+   "relatedId": null,
+   "error": null
+  },
+  {
+   "id": 22,
+   "ts": "2026-10-21T06:37:23.269Z",
+   "to": "justinriverodiaz@gmail.com",
+   "toName": "",
+   "template": "otp",
+   "subject": "Your Allanese login code",
+   "status": "sent",
+   "relatedId": null,
+   "error": null
+  },
+  {
+   "id": 23,
+   "ts": "2026-10-21T06:37:39.106Z",
+   "to": "nicole.garcia@gmail.com",
+   "toName": "Nicole Garcia",
+   "template": "booking_confirmed",
+   "subject": "Your appointment at Allanese Medical Aesthetics is confirmed",
+   "status": "sent",
+   "relatedId": "APT-1026",
+   "error": null
   }
  ],
  "audit": [
@@ -1607,12 +1645,84 @@
    "detail": "OTP login for justinriverodiaz@gmail.com (ju**************@gmail.com)",
    "targetType": "session",
    "targetId": null
+  },
+  {
+   "id": 12,
+   "ts": "2026-10-21T06:35:46.746Z",
+   "actor": "system",
+   "action": "email.sent",
+   "detail": "otp delivered to justinriverodiaz@gmail.com",
+   "targetType": "email",
+   "targetId": null
+  },
+  {
+   "id": 13,
+   "ts": "2026-10-21T06:35:52.951Z",
+   "actor": "auth",
+   "action": "login.success",
+   "detail": "OTP login for justinriverodiaz@gmail.com (ju**************@gmail.com)",
+   "targetType": "session",
+   "targetId": null
+  },
+  {
+   "id": 14,
+   "ts": "2026-10-21T06:36:24.060Z",
+   "actor": "auth",
+   "action": "logout",
+   "detail": "Session ended for justinriverodiaz@gmail.com",
+   "targetType": "session",
+   "targetId": null
+  },
+  {
+   "id": 15,
+   "ts": "2026-10-21T06:37:23.269Z",
+   "actor": "system",
+   "action": "email.sent",
+   "detail": "otp delivered to justinriverodiaz@gmail.com",
+   "targetType": "email",
+   "targetId": null
+  },
+  {
+   "id": 16,
+   "ts": "2026-10-21T06:37:27.951Z",
+   "actor": "auth",
+   "action": "login.success",
+   "detail": "OTP login for justinriverodiaz@gmail.com (ju**************@gmail.com)",
+   "targetType": "session",
+   "targetId": null
+  },
+  {
+   "id": 17,
+   "ts": "2026-10-21T06:37:39.102Z",
+   "actor": "justinriverodiaz@gmail.com",
+   "action": "appointment.accepted",
+   "detail": "APT-1026 confirmed — client notified",
+   "targetType": "appointment",
+   "targetId": "APT-1026"
+  },
+  {
+   "id": 18,
+   "ts": "2026-10-21T06:37:39.106Z",
+   "actor": "system",
+   "action": "email.sent",
+   "detail": "booking_confirmed delivered to nicole.garcia@gmail.com — APT-1026",
+   "targetType": "email",
+   "targetId": "APT-1026"
+  },
+  {
+   "id": 19,
+   "ts": "2026-10-21T06:38:22.259Z",
+   "actor": "auth",
+   "action": "logout",
+   "detail": "Session ended for justinriverodiaz@gmail.com",
+   "targetType": "session",
+   "targetId": null
   }
  ],
  "quota": {
-  "date": "2026-10-21",
-  "sent": 187,
-  "failed": 3,
+  "date": "2026-10-20",
+  "sent": 3,
+  "failed": 0,
   "limit": 300
  },
  "otps": {},
