@@ -1,0 +1,1633 @@
+{
+ "version": 3,
+ "counters": {
+  "clients": 14,
+  "services": 12,
+  "appointments": 42,
+  "emails": 20,
+  "audit": 11
+ },
+ "settings": {
+  "clinicName": "Allanese Medical Aesthetics",
+  "approvalMode": "manual",
+  "autoConfirmServices": [],
+  "businessHours": {
+   "0": {
+    "open": "09:00",
+    "close": "18:00",
+    "closed": true
+   },
+   "1": {
+    "open": "09:00",
+    "close": "18:00",
+    "closed": false
+   },
+   "2": {
+    "open": "09:00",
+    "close": "18:00",
+    "closed": false
+   },
+   "3": {
+    "open": "09:00",
+    "close": "18:00",
+    "closed": false
+   },
+   "4": {
+    "open": "09:00",
+    "close": "18:00",
+    "closed": false
+   },
+   "5": {
+    "open": "09:00",
+    "close": "18:00",
+    "closed": false
+   },
+   "6": {
+    "open": "09:00",
+    "close": "17:00",
+    "closed": false
+   }
+  },
+  "leadTimeHours": 2,
+  "cancellationWindowHours": 24,
+  "practitioners": [
+   "Dr. Elaine Allanese",
+   "Dra. Sofia Reyes",
+   "Camille Torres, RN",
+   "Joyce Andaya"
+  ]
+ },
+ "practitioners": [
+  "Dr. Elaine Allanese",
+  "Dra. Sofia Reyes",
+  "Camille Torres, RN",
+  "Joyce Andaya"
+ ],
+ "clients": [
+  {
+   "id": 1,
+   "code": "CL-001",
+   "name": "Maria Santos",
+   "email": "maria.santos@gmail.com",
+   "phone": "+63 917 555 0141",
+   "tags": [
+    "returning"
+   ],
+   "notes": "Prefers morning slots. Mild sensitivity to retinol — patch test advised.",
+   "lastVisit": "2026-10-09",
+   "createdAt": "2025-12-08T04:54:56.585Z"
+  },
+  {
+   "id": 2,
+   "code": "CL-002",
+   "name": "Angela Cruz",
+   "email": "angela.cruz@gmail.com",
+   "phone": "+63 917 555 0182",
+   "tags": [
+    "vip",
+    "returning"
+   ],
+   "notes": "VIP package — 10-session HydraFacial. Always books with Dra. Reyes.",
+   "lastVisit": "2026-10-14",
+   "createdAt": "2025-11-21T04:54:56.586Z"
+  },
+  {
+   "id": 3,
+   "code": "CL-003",
+   "name": "Patricia Reyes",
+   "email": "patricia.reyes@gmail.com",
+   "phone": "+63 918 555 0119",
+   "tags": [
+    "returning"
+   ],
+   "notes": "Latex sensitivity noted — use nitrile gloves.",
+   "lastVisit": "2026-09-30",
+   "createdAt": "2025-11-04T04:54:56.586Z"
+  },
+  {
+   "id": 4,
+   "code": "CL-004",
+   "name": "Camille Lim",
+   "email": "camille.lim@gmail.com",
+   "phone": "+63 917 555 0166",
+   "tags": [
+    "new"
+   ],
+   "notes": "First visit completed last month — interested in injectables.",
+   "lastVisit": "2026-10-12",
+   "createdAt": "2025-10-18T04:54:56.586Z"
+  },
+  {
+   "id": 5,
+   "code": "CL-005",
+   "name": "Joanna Dela Cruz",
+   "email": "joanna.dc@gmail.com",
+   "phone": "+63 919 555 0173",
+   "tags": [
+    "returning"
+   ],
+   "notes": "On isotretinoin — defer peels; cleared for LED and facials.",
+   "lastVisit": "2026-10-16",
+   "createdAt": "2025-10-01T04:54:56.586Z"
+  },
+  {
+   "id": 6,
+   "code": "CL-006",
+   "name": "Kristine Bautista",
+   "email": "kristine.b@gmail.com",
+   "phone": "+63 917 555 0128",
+   "tags": [
+    "returning"
+   ],
+   "notes": "",
+   "lastVisit": "2026-09-21",
+   "createdAt": "2025-09-14T04:54:56.586Z"
+  },
+  {
+   "id": 7,
+   "code": "CL-007",
+   "name": "Nicole Garcia",
+   "email": "nicole.garcia@gmail.com",
+   "phone": "+63 916 555 0155",
+   "tags": [
+    "new"
+   ],
+   "notes": "Referred by Angela Cruz.",
+   "lastVisit": "2026-10-18",
+   "createdAt": "2025-08-28T04:54:56.586Z"
+  },
+  {
+   "id": 8,
+   "code": "CL-008",
+   "name": "Sabrina Tan",
+   "email": "sabrina.tan@gmail.com",
+   "phone": "+63 921 555 0194",
+   "tags": [
+    "vip"
+   ],
+   "notes": "Comes quarterly for Ultherapy. Prefers Dr. Allanese.",
+   "lastVisit": "2026-08-18",
+   "createdAt": "2025-08-11T04:54:56.586Z"
+  },
+  {
+   "id": 9,
+   "code": "CL-009",
+   "name": "Michelle Aquino",
+   "email": "michelle.aquino@gmail.com",
+   "phone": "+63 917 555 0137",
+   "tags": [
+    "returning"
+   ],
+   "notes": "Pregnant — clear all treatments with physician first.",
+   "lastVisit": "2026-10-06",
+   "createdAt": "2025-07-25T04:54:56.586Z"
+  },
+  {
+   "id": 10,
+   "code": "CL-010",
+   "name": "Isabel Ramos",
+   "email": "isabel.ramos@gmail.com",
+   "phone": "+63 920 555 0148",
+   "tags": [
+    "new"
+   ],
+   "notes": "",
+   "lastVisit": "2026-10-19",
+   "createdAt": "2025-07-08T04:54:56.586Z"
+  },
+  {
+   "id": 11,
+   "code": "CL-011",
+   "name": "Daniela Mendoza",
+   "email": "daniela.m@gmail.com",
+   "phone": "+63 917 555 0111",
+   "tags": [
+    "returning"
+   ],
+   "notes": "Pigment-prone — strict SPF compliance discussed.",
+   "lastVisit": "2026-10-03",
+   "createdAt": "2025-06-21T04:54:56.586Z"
+  },
+  {
+   "id": 12,
+   "code": "CL-012",
+   "name": "Veronica Chua",
+   "email": "veronica.chua@gmail.com",
+   "phone": "+63 915 555 0162",
+   "tags": [
+    "returning"
+   ],
+   "notes": "",
+   "lastVisit": "2026-09-25",
+   "createdAt": "2025-06-04T04:54:56.586Z"
+  },
+  {
+   "id": 13,
+   "code": "CL-013",
+   "name": "Grace Villanueva",
+   "email": "grace.v@gmail.com",
+   "phone": "+63 917 555 0179",
+   "tags": [
+    "new"
+   ],
+   "notes": "Trial session for laser hair removal.",
+   "lastVisit": "2026-10-20",
+   "createdAt": "2025-05-18T04:54:56.586Z"
+  },
+  {
+   "id": 14,
+   "code": "CL-014",
+   "name": "Hannah Padilla",
+   "email": "hannah.padilla@gmail.com",
+   "phone": "+63 922 555 0186",
+   "tags": [
+    "vip",
+    "returning"
+   ],
+   "notes": "Bridesmaid package — timeline confirmed for December.",
+   "lastVisit": "2026-09-11",
+   "createdAt": "2025-05-01T04:54:56.586Z"
+  }
+ ],
+ "services": [
+  {
+   "id": 1,
+   "code": "SVC-01",
+   "name": "HydraFacial Signature",
+   "category": "Facials",
+   "duration": 60,
+   "price": 2500,
+   "description": "Deep cleansing, extraction and hydration with medical-grade serums.",
+   "active": true
+  },
+  {
+   "id": 2,
+   "code": "SVC-02",
+   "name": "Deep Cleanse Facial",
+   "category": "Facials",
+   "duration": 45,
+   "price": 1800,
+   "description": "Purifying facial for congested skin with gentle extractions.",
+   "active": true
+  },
+  {
+   "id": 3,
+   "code": "SVC-03",
+   "name": "Chemical Peel",
+   "category": "Resurfacing",
+   "duration": 30,
+   "price": 2200,
+   "description": "Physician-selected peel to improve tone, texture and clarity.",
+   "active": true
+  },
+  {
+   "id": 4,
+   "code": "SVC-04",
+   "name": "Microneedling",
+   "category": "Resurfacing",
+   "duration": 60,
+   "price": 3500,
+   "description": "Collagen-induction therapy for scars, pores and fine lines.",
+   "active": true
+  },
+  {
+   "id": 5,
+   "code": "SVC-05",
+   "name": "Anti-Wrinkle Injection",
+   "category": "Injectables",
+   "duration": 30,
+   "price": 8000,
+   "description": "Precision neuromodulator treatment for expression lines.",
+   "active": true
+  },
+  {
+   "id": 6,
+   "code": "SVC-06",
+   "name": "Dermal Filler",
+   "category": "Injectables",
+   "duration": 45,
+   "price": 15000,
+   "description": "Hyaluronic acid volumisation, per syringe, physician-administered.",
+   "active": true
+  },
+  {
+   "id": 7,
+   "code": "SVC-07",
+   "name": "Laser Hair Removal",
+   "category": "Laser",
+   "duration": 30,
+   "price": 1500,
+   "description": "Diode laser hair reduction — per area session.",
+   "active": true
+  },
+  {
+   "id": 8,
+   "code": "SVC-08",
+   "name": "IPL Skin Rejuvenation",
+   "category": "Laser",
+   "duration": 45,
+   "price": 3000,
+   "description": "Intense pulsed light for redness, pigment and sun damage.",
+   "active": true
+  },
+  {
+   "id": 9,
+   "code": "SVC-09",
+   "name": "PRP Hair Restoration",
+   "category": "Regenerative",
+   "duration": 60,
+   "price": 6500,
+   "description": "Autologous platelet-rich plasma therapy for hair density.",
+   "active": true
+  },
+  {
+   "id": 10,
+   "code": "SVC-10",
+   "name": "Ultherapy Face Lift",
+   "category": "Lifting",
+   "duration": 90,
+   "price": 25000,
+   "description": "Focused ultrasound lifting for brow, jawline and neck.",
+   "active": true
+  },
+  {
+   "id": 11,
+   "code": "SVC-11",
+   "name": "LED Light Therapy",
+   "category": "Add-on",
+   "duration": 30,
+   "price": 1200,
+   "description": "Calming red/blue light session to support healing.",
+   "active": true
+  },
+  {
+   "id": 12,
+   "code": "SVC-12",
+   "name": "Carbon Laser Peel",
+   "category": "Laser",
+   "duration": 45,
+   "price": 4000,
+   "description": "Laser-assisted carbon peel for instant radiance.",
+   "active": true
+  }
+ ],
+ "appointments": [
+  {
+   "id": 1,
+   "code": "APT-1001",
+   "clientId": 1,
+   "serviceId": 1,
+   "practitioner": "Dra. Sofia Reyes",
+   "date": "2026-10-14",
+   "start": "09:30",
+   "duration": 60,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-12T03:54:56.586Z",
+   "updatedAt": "2026-10-12T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-12T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "code": "APT-1002",
+   "clientId": 4,
+   "serviceId": 5,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-14",
+   "start": "11:00",
+   "duration": 30,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-12T03:54:56.586Z",
+   "updatedAt": "2026-10-12T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-12T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "code": "APT-1003",
+   "clientId": 7,
+   "serviceId": 2,
+   "practitioner": "Camille Torres, RN",
+   "date": "2026-10-14",
+   "start": "14:00",
+   "duration": 45,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-12T03:54:56.586Z",
+   "updatedAt": "2026-10-12T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-12T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "code": "APT-1004",
+   "clientId": 2,
+   "serviceId": 4,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-15",
+   "start": "10:00",
+   "duration": 60,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-13T03:54:56.586Z",
+   "updatedAt": "2026-10-13T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-13T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "code": "APT-1005",
+   "clientId": 10,
+   "serviceId": 8,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-15",
+   "start": "13:30",
+   "duration": 45,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-13T03:54:56.586Z",
+   "updatedAt": "2026-10-13T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-13T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "code": "APT-1006",
+   "clientId": 5,
+   "serviceId": 11,
+   "practitioner": "Joyce Andaya",
+   "date": "2026-10-16",
+   "start": "09:00",
+   "duration": 30,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-14T03:54:56.586Z",
+   "updatedAt": "2026-10-14T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-14T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "code": "APT-1007",
+   "clientId": 3,
+   "serviceId": 3,
+   "practitioner": "Dra. Sofia Reyes",
+   "date": "2026-10-16",
+   "start": "11:30",
+   "duration": 30,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-14T03:54:56.586Z",
+   "updatedAt": "2026-10-14T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-14T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "code": "APT-1008",
+   "clientId": 8,
+   "serviceId": 6,
+   "practitioner": "Camille Torres, RN",
+   "date": "2026-10-16",
+   "start": "15:00",
+   "duration": 45,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-14T03:54:56.586Z",
+   "updatedAt": "2026-10-14T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-14T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "code": "APT-1009",
+   "clientId": 6,
+   "serviceId": 7,
+   "practitioner": "Camille Torres, RN",
+   "date": "2026-10-17",
+   "start": "10:30",
+   "duration": 30,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-15T03:54:56.586Z",
+   "updatedAt": "2026-10-15T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-15T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "code": "APT-1010",
+   "clientId": 11,
+   "serviceId": 1,
+   "practitioner": "Dra. Sofia Reyes",
+   "date": "2026-10-17",
+   "start": "14:00",
+   "duration": 60,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-15T03:54:56.586Z",
+   "updatedAt": "2026-10-15T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-15T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "code": "APT-1011",
+   "clientId": 9,
+   "serviceId": 2,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-19",
+   "start": "09:30",
+   "duration": 45,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-16T03:54:56.586Z",
+   "updatedAt": "2026-10-16T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-16T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "code": "APT-1012",
+   "clientId": 12,
+   "serviceId": 12,
+   "practitioner": "Joyce Andaya",
+   "date": "2026-10-19",
+   "start": "12:00",
+   "duration": 45,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-16T03:54:56.586Z",
+   "updatedAt": "2026-10-16T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-16T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "code": "APT-1013",
+   "clientId": 13,
+   "serviceId": 7,
+   "practitioner": "Camille Torres, RN",
+   "date": "2026-10-19",
+   "start": "16:00",
+   "duration": 30,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-16T03:54:56.586Z",
+   "updatedAt": "2026-10-16T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-16T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "code": "APT-1014",
+   "clientId": 14,
+   "serviceId": 10,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-19",
+   "start": "10:00",
+   "duration": 90,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-17T03:54:56.586Z",
+   "updatedAt": "2026-10-17T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-17T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 15,
+   "code": "APT-1015",
+   "clientId": 1,
+   "serviceId": 4,
+   "practitioner": "Dra. Sofia Reyes",
+   "date": "2026-10-19",
+   "start": "13:00",
+   "duration": 60,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-17T03:54:56.586Z",
+   "updatedAt": "2026-10-17T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-17T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 16,
+   "code": "APT-1016",
+   "clientId": 2,
+   "serviceId": 1,
+   "practitioner": "Dra. Sofia Reyes",
+   "date": "2026-10-20",
+   "start": "09:30",
+   "duration": 60,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-18T03:54:56.586Z",
+   "updatedAt": "2026-10-18T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-18T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "code": "APT-1017",
+   "clientId": 6,
+   "serviceId": 11,
+   "practitioner": "Joyce Andaya",
+   "date": "2026-10-20",
+   "start": "11:00",
+   "duration": 30,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-18T03:54:56.586Z",
+   "updatedAt": "2026-10-18T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-18T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "code": "APT-1018",
+   "clientId": 4,
+   "serviceId": 9,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-20",
+   "start": "14:30",
+   "duration": 60,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-18T03:54:56.586Z",
+   "updatedAt": "2026-10-18T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-18T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "code": "APT-1019",
+   "clientId": 5,
+   "serviceId": 5,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-19",
+   "start": "15:30",
+   "duration": 30,
+   "status": "cancelled",
+   "source": "dashboard",
+   "note": "Client rescheduled — flight conflict.",
+   "createdAt": "2026-10-16T03:54:56.586Z",
+   "updatedAt": "2026-10-16T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-16T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "code": "APT-1020",
+   "clientId": 9,
+   "serviceId": 6,
+   "practitioner": "Camille Torres, RN",
+   "date": "2026-10-19",
+   "start": "15:30",
+   "duration": 45,
+   "status": "declined",
+   "source": "dashboard",
+   "note": "Slot no longer available — please choose another time. Happy to accommodate earlier that day.",
+   "createdAt": "2026-10-17T03:54:56.586Z",
+   "updatedAt": "2026-10-17T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-17T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "code": "APT-1021",
+   "clientId": 12,
+   "serviceId": 3,
+   "practitioner": "Dra. Sofia Reyes",
+   "date": "2026-10-16",
+   "start": "16:30",
+   "duration": 30,
+   "status": "declined",
+   "source": "website",
+   "note": "Unable to accommodate this time — please book an alternative slot.",
+   "createdAt": "2026-10-14T03:54:56.586Z",
+   "updatedAt": "2026-10-14T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-14T03:54:56.586Z",
+     "action": "created",
+     "actor": "client"
+    }
+   ]
+  },
+  {
+   "id": 22,
+   "code": "APT-1022",
+   "clientId": 8,
+   "serviceId": 6,
+   "practitioner": "Camille Torres, RN",
+   "date": "2026-10-21",
+   "start": "09:00",
+   "duration": 45,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-19T03:54:56.586Z",
+   "updatedAt": "2026-10-19T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-19T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 23,
+   "code": "APT-1023",
+   "clientId": 3,
+   "serviceId": 3,
+   "practitioner": "Dra. Sofia Reyes",
+   "date": "2026-10-21",
+   "start": "10:30",
+   "duration": 30,
+   "status": "completed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-19T03:54:56.586Z",
+   "updatedAt": "2026-10-19T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-19T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 24,
+   "code": "APT-1024",
+   "clientId": 2,
+   "serviceId": 1,
+   "practitioner": "Dra. Sofia Reyes",
+   "date": "2026-10-21",
+   "start": "11:30",
+   "duration": 60,
+   "status": "confirmed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-19T03:54:56.586Z",
+   "updatedAt": "2026-10-19T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-19T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 25,
+   "code": "APT-1025",
+   "clientId": 6,
+   "serviceId": 12,
+   "practitioner": "Joyce Andaya",
+   "date": "2026-10-21",
+   "start": "13:30",
+   "duration": 45,
+   "status": "confirmed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-19T03:54:56.586Z",
+   "updatedAt": "2026-10-19T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-19T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 26,
+   "code": "APT-1026",
+   "clientId": 7,
+   "serviceId": 2,
+   "practitioner": "Camille Torres, RN",
+   "date": "2026-10-21",
+   "start": "15:00",
+   "duration": 45,
+   "status": "pending",
+   "source": "website",
+   "note": "",
+   "createdAt": "2026-10-19T03:54:56.586Z",
+   "updatedAt": "2026-10-19T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-19T03:54:56.586Z",
+     "action": "created",
+     "actor": "client"
+    }
+   ]
+  },
+  {
+   "id": 27,
+   "code": "APT-1027",
+   "clientId": 10,
+   "serviceId": 7,
+   "practitioner": "Camille Torres, RN",
+   "date": "2026-10-21",
+   "start": "16:30",
+   "duration": 30,
+   "status": "pending",
+   "source": "website",
+   "note": "",
+   "createdAt": "2026-10-19T03:54:56.586Z",
+   "updatedAt": "2026-10-19T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-19T03:54:56.586Z",
+     "action": "created",
+     "actor": "client"
+    }
+   ]
+  },
+  {
+   "id": 28,
+   "code": "APT-1028",
+   "clientId": 4,
+   "serviceId": 11,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-21",
+   "start": "17:00",
+   "duration": 30,
+   "status": "confirmed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-19T03:54:56.586Z",
+   "updatedAt": "2026-10-19T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-19T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 29,
+   "code": "APT-1029",
+   "clientId": 1,
+   "serviceId": 4,
+   "practitioner": "Dra. Sofia Reyes",
+   "date": "2026-10-22",
+   "start": "09:30",
+   "duration": 60,
+   "status": "confirmed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-18T03:54:56.586Z",
+   "updatedAt": "2026-10-18T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-18T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 30,
+   "code": "APT-1030",
+   "clientId": 11,
+   "serviceId": 2,
+   "practitioner": "Joyce Andaya",
+   "date": "2026-10-22",
+   "start": "11:00",
+   "duration": 45,
+   "status": "pending",
+   "source": "website",
+   "note": "",
+   "createdAt": "2026-10-18T03:54:56.586Z",
+   "updatedAt": "2026-10-18T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-18T03:54:56.586Z",
+     "action": "created",
+     "actor": "client"
+    }
+   ]
+  },
+  {
+   "id": 31,
+   "code": "APT-1031",
+   "clientId": 14,
+   "serviceId": 12,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-22",
+   "start": "13:00",
+   "duration": 45,
+   "status": "confirmed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-18T03:54:56.586Z",
+   "updatedAt": "2026-10-18T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-18T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 32,
+   "code": "APT-1032",
+   "clientId": 13,
+   "serviceId": 7,
+   "practitioner": "Camille Torres, RN",
+   "date": "2026-10-22",
+   "start": "15:30",
+   "duration": 30,
+   "status": "pending",
+   "source": "website",
+   "note": "",
+   "createdAt": "2026-10-18T03:54:56.586Z",
+   "updatedAt": "2026-10-18T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-18T03:54:56.586Z",
+     "action": "created",
+     "actor": "client"
+    }
+   ]
+  },
+  {
+   "id": 33,
+   "code": "APT-1033",
+   "clientId": 5,
+   "serviceId": 8,
+   "practitioner": "Camille Torres, RN",
+   "date": "2026-10-23",
+   "start": "10:00",
+   "duration": 45,
+   "status": "confirmed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-17T03:54:56.586Z",
+   "updatedAt": "2026-10-17T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-17T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 34,
+   "code": "APT-1034",
+   "clientId": 12,
+   "serviceId": 1,
+   "practitioner": "Dra. Sofia Reyes",
+   "date": "2026-10-23",
+   "start": "14:00",
+   "duration": 60,
+   "status": "pending",
+   "source": "website",
+   "note": "",
+   "createdAt": "2026-10-17T03:54:56.586Z",
+   "updatedAt": "2026-10-17T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-17T03:54:56.586Z",
+     "action": "created",
+     "actor": "client"
+    }
+   ]
+  },
+  {
+   "id": 35,
+   "code": "APT-1035",
+   "clientId": 9,
+   "serviceId": 2,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-24",
+   "start": "09:00",
+   "duration": 45,
+   "status": "confirmed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-16T03:54:56.586Z",
+   "updatedAt": "2026-10-16T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-16T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 36,
+   "code": "APT-1036",
+   "clientId": 6,
+   "serviceId": 5,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-24",
+   "start": "16:00",
+   "duration": 30,
+   "status": "confirmed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-16T03:54:56.586Z",
+   "updatedAt": "2026-10-16T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-16T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 37,
+   "code": "APT-1037",
+   "clientId": 10,
+   "serviceId": 3,
+   "practitioner": "Dra. Sofia Reyes",
+   "date": "2026-10-26",
+   "start": "11:30",
+   "duration": 30,
+   "status": "pending",
+   "source": "website",
+   "note": "",
+   "createdAt": "2026-10-15T03:54:56.586Z",
+   "updatedAt": "2026-10-15T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-15T03:54:56.586Z",
+     "action": "created",
+     "actor": "client"
+    }
+   ]
+  },
+  {
+   "id": 38,
+   "code": "APT-1038",
+   "clientId": 2,
+   "serviceId": 4,
+   "practitioner": "Dra. Sofia Reyes",
+   "date": "2026-10-26",
+   "start": "09:30",
+   "duration": 60,
+   "status": "confirmed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-14T03:54:56.586Z",
+   "updatedAt": "2026-10-14T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-14T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 39,
+   "code": "APT-1039",
+   "clientId": 14,
+   "serviceId": 5,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-26",
+   "start": "14:30",
+   "duration": 30,
+   "status": "pending",
+   "source": "website",
+   "note": "",
+   "createdAt": "2026-10-14T03:54:56.586Z",
+   "updatedAt": "2026-10-14T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-14T03:54:56.586Z",
+     "action": "created",
+     "actor": "client"
+    }
+   ]
+  },
+  {
+   "id": 40,
+   "code": "APT-1040",
+   "clientId": 8,
+   "serviceId": 10,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-28",
+   "start": "10:00",
+   "duration": 90,
+   "status": "confirmed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-12T03:54:56.586Z",
+   "updatedAt": "2026-10-12T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-12T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  },
+  {
+   "id": 41,
+   "code": "APT-1041",
+   "clientId": 11,
+   "serviceId": 9,
+   "practitioner": "Dr. Elaine Allanese",
+   "date": "2026-10-29",
+   "start": "13:30",
+   "duration": 60,
+   "status": "pending",
+   "source": "website",
+   "note": "",
+   "createdAt": "2026-10-11T03:54:56.586Z",
+   "updatedAt": "2026-10-11T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-11T03:54:56.586Z",
+     "action": "created",
+     "actor": "client"
+    }
+   ]
+  },
+  {
+   "id": 42,
+   "code": "APT-1042",
+   "clientId": 1,
+   "serviceId": 1,
+   "practitioner": "Dra. Sofia Reyes",
+   "date": "2026-10-30",
+   "start": "09:30",
+   "duration": 60,
+   "status": "confirmed",
+   "source": "dashboard",
+   "note": "",
+   "createdAt": "2026-10-10T03:54:56.586Z",
+   "updatedAt": "2026-10-10T03:54:56.586Z",
+   "history": [
+    {
+     "ts": "2026-10-10T03:54:56.586Z",
+     "action": "created",
+     "actor": "admin"
+    }
+   ]
+  }
+ ],
+ "emails": [
+  {
+   "id": 1,
+   "ts": "2026-10-21T04:40:56.586Z",
+   "to": "grace.v@gmail.com",
+   "toName": "Grace Villanueva",
+   "template": "booking_confirmed",
+   "subject": "Your appointment at Allanese Medical Aesthetics is confirmed",
+   "status": "sent",
+   "relatedId": "APT-1042",
+   "error": null
+  },
+  {
+   "id": 2,
+   "ts": "2026-10-21T04:28:56.586Z",
+   "to": "isabel.ramos@gmail.com",
+   "toName": "Isabel Ramos",
+   "template": "booking_received",
+   "subject": "We received your appointment request",
+   "status": "sent",
+   "relatedId": "APT-1040",
+   "error": null
+  },
+  {
+   "id": 3,
+   "ts": "2026-10-21T03:56:56.586Z",
+   "to": "admin@allanese.clinic",
+   "toName": "Allanese Ops",
+   "template": "booking_received",
+   "subject": "New website booking request — APT-1040",
+   "status": "sent",
+   "relatedId": "APT-1040",
+   "error": null
+  },
+  {
+   "id": 4,
+   "ts": "2026-10-21T03:40:56.586Z",
+   "to": "michelle.aquino@gmail.com",
+   "toName": "Michelle Aquino",
+   "template": "appointment_reminder",
+   "subject": "Reminder: your appointment tomorrow",
+   "status": "sent",
+   "relatedId": "APT-1047",
+   "error": null
+  },
+  {
+   "id": 5,
+   "ts": "2026-10-21T03:18:56.586Z",
+   "to": "joanna.dc@gmail.com",
+   "toName": "Joanna Dela Cruz",
+   "template": "appointment_reminder",
+   "subject": "Reminder: your appointment at Allanese Medical Aesthetics",
+   "status": "sent",
+   "relatedId": "APT-1038",
+   "error": null
+  },
+  {
+   "id": 6,
+   "ts": "2026-10-21T02:34:56.586Z",
+   "to": "admin@allanese.clinic",
+   "toName": "Allanese Ops",
+   "template": "quota_alert",
+   "subject": "Brevo capacity alert — 70% of daily quota used",
+   "status": "sent",
+   "relatedId": null,
+   "error": null
+  },
+  {
+   "id": 7,
+   "ts": "2026-10-21T01:44:56.586Z",
+   "to": "daniela.m@gmail.com",
+   "toName": "Daniela Mendoza",
+   "template": "booking_confirmed",
+   "subject": "Your appointment at Allanese Medical Aesthetics is confirmed",
+   "status": "sent",
+   "relatedId": "APT-1044",
+   "error": null
+  },
+  {
+   "id": 8,
+   "ts": "2026-10-21T00:34:56.586Z",
+   "to": "unknown.mailbox@gmail.com",
+   "toName": "Unknown Mailbox",
+   "template": "appointment_reminder",
+   "subject": "Reminder: your appointment at Allanese Medical Aesthetics",
+   "status": "failed",
+   "relatedId": "APT-1035",
+   "error": "SMTP 550 — mailbox unavailable"
+  },
+  {
+   "id": 9,
+   "ts": "2026-10-20T23:34:56.586Z",
+   "to": "sabrina.tan@gmail.com",
+   "toName": "Sabrina Tan",
+   "template": "booking_rescheduled",
+   "subject": "Your appointment has been rescheduled",
+   "status": "sent",
+   "relatedId": "APT-1051",
+   "error": null
+  },
+  {
+   "id": 10,
+   "ts": "2026-10-20T21:44:56.586Z",
+   "to": "kristine.b@gmail.com",
+   "toName": "Kristine Bautista",
+   "template": "booking_confirmed",
+   "subject": "Your appointment at Allanese Medical Aesthetics is confirmed",
+   "status": "sent",
+   "relatedId": "APT-1036",
+   "error": null
+  },
+  {
+   "id": 11,
+   "ts": "2026-10-20T20:14:56.586Z",
+   "to": "hannah.padilla@gmail.com",
+   "toName": "Hannah Padilla",
+   "template": "booking_completed",
+   "subject": "Thank you for visiting Allanese Medical Aesthetics",
+   "status": "sent",
+   "relatedId": "APT-1049",
+   "error": null
+  },
+  {
+   "id": 12,
+   "ts": "2026-10-20T18:44:56.586Z",
+   "to": "bounce.test@invalid.local",
+   "toName": "Bounce Test",
+   "template": "booking_confirmed",
+   "subject": "Your appointment at Allanese Medical Aesthetics is confirmed",
+   "status": "failed",
+   "relatedId": "APT-1033",
+   "error": "SMTP 550 — mailbox unavailable"
+  },
+  {
+   "id": 13,
+   "ts": "2026-10-20T16:34:56.586Z",
+   "to": "patricia.reyes@gmail.com",
+   "toName": "Patricia Reyes",
+   "template": "otp",
+   "subject": "Your Allanese login code",
+   "status": "sent",
+   "relatedId": null,
+   "error": null
+  },
+  {
+   "id": 14,
+   "ts": "2026-10-20T15:14:56.586Z",
+   "to": "admin@allanese.clinic",
+   "toName": "Allanese Ops",
+   "template": "booking_declined",
+   "subject": "Booking declined — client notified",
+   "status": "sent",
+   "relatedId": "APT-1031",
+   "error": null
+  },
+  {
+   "id": 15,
+   "ts": "2026-10-20T12:54:56.586Z",
+   "to": "maria.santos@gmail.com",
+   "toName": "Maria Santos",
+   "template": "appointment_reminder",
+   "subject": "Reminder: your appointment at Allanese Medical Aesthetics",
+   "status": "sent",
+   "relatedId": "APT-1052",
+   "error": null
+  },
+  {
+   "id": 16,
+   "ts": "2026-10-20T10:34:56.586Z",
+   "to": "camille.lim@gmail.com",
+   "toName": "Camille Lim",
+   "template": "booking_confirmed",
+   "subject": "Your appointment at Allanese Medical Aesthetics is confirmed",
+   "status": "sent",
+   "relatedId": "APT-1050",
+   "error": null
+  },
+  {
+   "id": 17,
+   "ts": "2026-10-20T07:54:56.586Z",
+   "to": "legacy.contact@closed-mailer.net",
+   "toName": "Legacy Contact",
+   "template": "appointment_reminder",
+   "subject": "Reminder: your appointment at Allanese Medical Aesthetics",
+   "status": "failed",
+   "relatedId": "APT-1028",
+   "error": "SMTP 550 — mailbox unavailable"
+  },
+  {
+   "id": 18,
+   "ts": "2026-10-20T04:54:56.586Z",
+   "to": "nicole.garcia@gmail.com",
+   "toName": "Nicole Garcia",
+   "template": "booking_received",
+   "subject": "We received your appointment request",
+   "status": "sent",
+   "relatedId": "APT-1041",
+   "error": null
+  },
+  {
+   "id": 20,
+   "ts": "2026-10-21T05:20:51.664Z",
+   "to": "justinriverodiaz@gmail.com",
+   "toName": "",
+   "template": "otp",
+   "subject": "Your Allanese login code",
+   "status": "sent",
+   "relatedId": null,
+   "error": null
+  }
+ ],
+ "audit": [
+  {
+   "id": 1,
+   "ts": "2026-10-21T04:40:56.586Z",
+   "actor": "client",
+   "action": "booking.submitted",
+   "detail": "APT-1040 requested via website (Isabel Ramos — Deep Cleanse Facial)",
+   "targetType": "appointment",
+   "targetId": "APT-1040"
+  },
+  {
+   "id": 2,
+   "ts": "2026-10-21T04:39:56.586Z",
+   "actor": "client",
+   "action": "booking.submitted",
+   "detail": "APT-1041 requested via website (Nicole Garcia — Chemical Peel)",
+   "targetType": "appointment",
+   "targetId": "APT-1041"
+  },
+  {
+   "id": 3,
+   "ts": "2026-10-21T03:40:56.586Z",
+   "actor": "system",
+   "action": "email.sent",
+   "detail": "Reminder delivered — APT-1047",
+   "targetType": "email",
+   "targetId": null
+  },
+  {
+   "id": 4,
+   "ts": "2026-10-21T02:34:56.586Z",
+   "actor": "system",
+   "action": "quota.threshold",
+   "detail": "Brevo daily quota crossed 70% (210 / 300)",
+   "targetType": "quota",
+   "targetId": null
+  },
+  {
+   "id": 5,
+   "ts": "2026-10-21T00:34:56.586Z",
+   "actor": "system",
+   "action": "email.failed",
+   "detail": "Delivery failed — APT-1035 (SMTP 550)",
+   "targetType": "email",
+   "targetId": "APT-1035"
+  },
+  {
+   "id": 6,
+   "ts": "2026-10-20T09:54:56.586Z",
+   "actor": "admin",
+   "action": "appointment.completed",
+   "detail": "APT-1039 marked completed by Dr. Elaine Allanese",
+   "targetType": "appointment",
+   "targetId": "APT-1039"
+  },
+  {
+   "id": 7,
+   "ts": "2026-10-20T01:54:56.586Z",
+   "actor": "admin",
+   "action": "settings.updated",
+   "detail": "Cancellation window set to 24 hours",
+   "targetType": "settings",
+   "targetId": null
+  },
+  {
+   "id": 8,
+   "ts": "2026-10-19T09:54:56.586Z",
+   "actor": "admin",
+   "action": "appointment.declined",
+   "detail": "APT-1031 declined with client note",
+   "targetType": "appointment",
+   "targetId": "APT-1031"
+  },
+  {
+   "id": 9,
+   "ts": "2026-10-21T04:54:56.588Z",
+   "actor": "admin@allanese.clinic",
+   "action": "demo.reset",
+   "detail": "Demo dataset restored to seed state",
+   "targetType": "demo",
+   "targetId": null
+  },
+  {
+   "id": 10,
+   "ts": "2026-10-21T05:20:51.664Z",
+   "actor": "system",
+   "action": "email.sent",
+   "detail": "otp delivered to justinriverodiaz@gmail.com",
+   "targetType": "email",
+   "targetId": null
+  },
+  {
+   "id": 11,
+   "ts": "2026-10-21T05:20:52.689Z",
+   "actor": "auth",
+   "action": "login.success",
+   "detail": "OTP login for justinriverodiaz@gmail.com (ju**************@gmail.com)",
+   "targetType": "session",
+   "targetId": null
+  }
+ ],
+ "quota": {
+  "date": "2026-10-21",
+  "sent": 187,
+  "failed": 3,
+  "limit": 300
+ },
+ "otps": {},
+ "tokens": {
+  "6459d1e0c8d0847f6f783c23c5e8c6153989346e6287489e": {
+   "email": "admin@allanese.clinic",
+   "role": "owner",
+   "exp": 1792587296563,
+   "createdAt": "2026-10-21T04:54:56.563Z"
+  },
+  "18c65229d656ab4ed72da1a403373b57c648694f717e0001": {
+   "email": "justinriverodiaz@gmail.com",
+   "role": "admin",
+   "exp": 1792588852688,
+   "createdAt": "2026-10-21T05:20:52.688Z"
+  }
+ }
+}

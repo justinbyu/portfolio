@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Allanese Clinic Ops — Dashboard</title>
+  <meta name="description" content="Allanese Medical Aesthetics — appointment & client management dashboard" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%233F2A57'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='32' fill='%23C9A86A' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================ LOGIN ============================ -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-bg-orb orb-1"></div>
+    <div class="login-bg-orb orb-2"></div>
+    <div class="login-card anim-rise">
+      <div class="brand brand-login">
+        <span class="brand-seal" aria-hidden="true">A</span>
+        <span class="brand-text">
+          <span class="brand-name">Allanese</span>
+          <span class="brand-sub">Medical Aesthetics</span>
+        </span>
+      </div>
+
+      <p class="login-kicker">Clinic Operations Dashboard</p>
+      <h1 class="login-title">Welcome back</h1>
+      <p class="login-copy">Sign in with a one-time password — no passwords to remember, ever.</p>
+
+      <form id="otp-email-step" class="otp-step" novalidate>
+        <label class="field">
+          <span class="field-label">Email address</span>
+          <input type="email" id="otp-email" autocomplete="email" placeholder="admin@allanese.clinic" required />
+        </label>
+        <button type="submit" class="btn btn-primary btn-block" id="btn-send-code">Send me a code</button>
+        <button type="button" class="btn btn-ghost btn-block btn-small" id="btn-demo-fill">Use demo account</button>
+      </form>
+
+      <form id="otp-code-step" class="otp-step hidden" novalidate>
+        <p class="otp-sent" id="otp-sent-label"></p>
+        <label class="field">
+          <span class="field-label">6-digit code</span>
+          <input type="text" id="otp-code" inputmode="numeric" maxlength="6" placeholder="••••••" autocomplete="one-time-code" class="code-input" />
+        </label>
+        <div class="otp-error hidden" id="otp-error"></div>
+        <button type="submit" class="btn btn-primary btn-block" id="btn-verify">Verify &amp; sign in</button>
+        <div class="otp-row">
+          <button type="button" class="link-btn" id="btn-back-email">← Use a different email</button>
+          <button type="button" class="link-btn" id="btn-resend">Resend code</button>
+        </div>
+        <button type="button" class="btn btn-outline btn-block btn-small" id="btn-open-inbox-login">Open demo inbox</button>
+      </form>
+
+      <p class="login-foot">Prototype · emails are simulated in-app · GDPR-aware demo data</p>
+    </div>
+  </div>
+
+  <!-- ============================ APP ============================ -->
+  <div id="app" class="app hidden">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand brand-top" href="#/overview" aria-label="Allanese home">
+          <span class="brand-seal" aria-hidden="true">A</span>
+          <span class="brand-text">
+            <span class="brand-name">Allanese</span>
+            <span class="brand-sub">Medical Aesthetics</span>
+          </span>
+        </a>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav-pills" id="nav-pills" aria-label="Dashboard sections">
+          <a href="#/overview" data-route="overview">Overview</a>
+          <a href="#/calendar" data-route="calendar">Calendar</a>
+          <a href="#/appointments" data-route="appointments">Appointments</a>
+          <a href="#/clients" data-route="clients">Clients</a>
+          <a href="#/services" data-route="services">Services &amp; Email</a>
+        </nav>
+
+        <div class="topbar-right">
+          <button class="quota-chip" id="quota-chip" title="Brevo daily capacity">
+            <span class="quota-dot" id="quota-dot"></span>
+            <span id="quota-chip-text">Brevo · —</span>
+          </button>
+          <button class="icon-btn" id="inbox-btn" title="Demo inbox" aria-label="Demo inbox">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg>
+            <span class="badge-dot hidden" id="inbox-badge"></span>
+          </button>
+          <a class="icon-btn" href="#/settings" id="settings-btn" title="Settings" aria-label="Settings">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 00.34 1.87l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.7 1.7 0 00-1.87-.34 1.7 1.7 0 00-1 1.55V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1-1.55 1.7 1.7 0 00-1.87.34l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.7 1.7 0 004.6 15a1.7 1.7 0 00-1.55-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.55-1 1.7 1.7 0 00-.34-1.87l-.06-.06a2 2 0 112.83-2.83l.06.06A1.7 1.7 0 009 4.6a1.7 1.7 0 001-1.55V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.55 1.7 1.7 0 001.87-.34l.06-.06a2 2 0 112.83 2.83l-.06.06A1.7 1.7 0 0019.4 9v.05a1.7 1.7 0 001.55 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>
+          </a>
+          <div class="user-chip" id="user-chip" title="Signed in">
+            <span class="avatar" id="user-avatar">A</span>
+            <span class="user-email" id="user-email">admin@allanese.clinic</span>
+            <button class="link-btn tiny" id="logout-btn" title="Sign out">Sign out</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main" id="view" tabindex="-1"></main>
+
+    <footer class="app-foot">
+      Allanese Medical Aesthetics — Technical Architecture · Phase 1–4 prototype · server-validated demo
+    </footer>
+  </div>
+
+  <!-- demo inbox drawer -->
+  <div class="drawer-backdrop hidden" id="drawer-backdrop"></div>
+  <aside class="drawer hidden" id="drawer" aria-label="Demo inbox">
+    <div class="drawer-head">
+      <div>
+        <h3>Demo inbox</h3>
+        <p>Mock mail channel — OTP codes &amp; system emails appear here instantly.</p>
+      </div>
+      <button class="icon-btn" id="drawer-close" aria-label="Close inbox">✕</button>
+    </div>
+    <div class="drawer-list" id="drawer-list"></div>
+    <div class="drawer-foot">
+      <button class="btn btn-outline btn-small" id="drawer-refresh">Refresh</button>
+      <span class="muted tiny">No real emails leave this prototype.</span>
+    </div>
+  </aside>
+
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+  <div id="modal-root"></div>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
