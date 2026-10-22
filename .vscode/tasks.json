@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Allanese dashboard",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"Adashboard/server.js"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}
