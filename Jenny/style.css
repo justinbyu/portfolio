@@ -1258,16 +1258,3 @@ a:focus-visible,
   font-size: 11px;
   color: #6b7684;
 }
-
-/* ---------- ANDROID HINT BACKUP LINKS ---------- */
-
-.android-hint .hint-backup {
-  margin-top: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent);
-}
-
-.android-hint .hint-backup a {
-  text-decoration: underline;
-}

@@ -2,10 +2,15 @@
    ALR STEEL — SAVE CONTACT PAGE
    Contact details live in:
    1. contact.html (visible text + tel/mailto links)
-   2. CONTACT below (direct save + copy buttons)
-   3. The 3 static .vcf files (file downloads)
+   2. CONTACT below (copy buttons)
+   3. The 3 static .vcf files (the downloads)
    4. CONFIG in script.js (share text)
    Keep all four in sync.
+
+   NOTE: Android direct-save intents were tried and
+   removed — Messenger's browser errors on them
+   (ERR_UNKNOWN_URL_SCHEME). Plain .vcf downloads are
+   the proven path: Save File -> Open File -> Contacts.
 ===================================== */
 
 const CONTACT = {
@@ -20,9 +25,9 @@ const CONTACT = {
 const FORCE_INAPP_DEMO = false;
 
 /* ---------- Platform detection ----------
-   - Android: the steel save buttons fire a system intent
-     that opens the contact editor prefilled (no files).
-     File links stay as backup in the Android guide.
+   - Android: downloads work everywhere here; the only
+     wrinkle is the 2-tap Save File -> Open File flow,
+     so Android gets a short guide for it.
    - iPhone: .vcf links open the contact preview directly.
      But iOS in-app browsers block downloads entirely,
      so those get the "Open in Safari" guide. */
@@ -99,56 +104,19 @@ function activeGuide() {
   return null;
 }
 
-/* ---------- 1-tap direct save (Android) ----------
-   Fired as a top-level navigation — the documented path
-   Chrome and most app browsers forward to the system.
-   Includes a fallback to the .vcf file so capable
-   browsers never strand the user. */
-
-function contactIntent(includePhone, includeEmail, vcfFile) {
-  let fallback = "";
-  try {
-    fallback =
-      ";S.browser_fallback_url=" +
-      encodeURIComponent(new URL(vcfFile, window.location.href).href);
-  } catch (error) {
-    fallback = "";
-  }
-
-  let uri =
-    "intent:#Intent;action=android.intent.action.INSERT;" +
-    "type=vnd.android.cursor.dir/contact" +
-    ";S.name=" + encodeURIComponent(CONTACT.name) +
-    ";S.company=" + encodeURIComponent(CONTACT.organization);
-
-  if (includePhone) {
-    uri += ";S.phone=" + encodeURIComponent(CONTACT.phoneDisplay);
-  }
-  if (includeEmail) {
-    uri += ";S.email=" + encodeURIComponent(CONTACT.email);
-  }
-  return uri + fallback + ";end";
-}
-
-function fireDirectSave(includePhone, includeEmail, vcfFile) {
-  window.location.href = contactIntent(includePhone, includeEmail, vcfFile);
-  setStatus("Opening your Contacts app\u2026 if nothing opens, use the download links in the guide above.");
-}
-
 /* ---------- Save buttons ----------
-   Android: steel buttons save straight to Contacts.
-   Everywhere else: they download the contact file. */
+   Plain file links — the browser handles the download
+   natively on every platform. JS only adds guidance. */
 
-function bindSaveButton(id, includePhone, includeEmail, vcfFile) {
+function bindSaveButton(id) {
   const button = document.getElementById(id);
   if (!button) return;
 
-  button.addEventListener("click", (event) => {
+  button.addEventListener("click", () => {
     const guide = activeGuide();
 
     if (IS_ANDROID) {
-      event.preventDefault();
-      fireDirectSave(includePhone, includeEmail, vcfFile);
+      setStatus("File downloading — tap Save File, then Open File to import it into Contacts.");
     } else if (INAPP_NAME) {
       setStatus(
         "If nothing downloads, open this page in " + systemBrowser() +
@@ -164,9 +132,9 @@ function bindSaveButton(id, includePhone, includeEmail, vcfFile) {
   });
 }
 
-bindSaveButton("savePhone", true, false, "Jenny-Joven-Beria-Phone.vcf");
-bindSaveButton("saveEmail", false, true, "Jenny-Joven-Beria-Email.vcf");
-bindSaveButton("saveBoth", true, true, "Jenny-Joven-Beria-ALR.vcf");
+bindSaveButton("savePhone");
+bindSaveButton("saveEmail");
+bindSaveButton("saveBoth");
 
 /* ---------- Copy fallbacks (work inside every app) ---------- */
 
