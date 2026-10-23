@@ -41,6 +41,11 @@
           Choose what to save — the file downloads straight to your phone.
         </p>
 
+        <div class="inapp-banner" id="inappBanner" hidden>
+          <strong id="inappTitle">You&apos;re viewing this inside an app</strong>
+          <p id="inappText"></p>
+        </div>
+
         <div class="contact-options">
           <!-- PHONE -->
           <div class="contact-option">
@@ -54,9 +59,10 @@
               </span>
             </div>
             <div class="contact-btns">
-              <button type="button" class="payment-action" id="savePhone">Save to Phone</button>
+              <a class="payment-action" id="savePhone" href="Jenny-Joven-Beria-Phone.vcf" download="Jenny-Joven-Beria-Phone.vcf">Save to Phone</a>
               <a class="payment-action secondary" href="tel:+639771164273">Call Now</a>
             </div>
+            <button type="button" class="link-btn" id="copyPhone">Copy number</button>
           </div>
 
           <!-- EMAIL -->
@@ -71,17 +77,18 @@
               </span>
             </div>
             <div class="contact-btns">
-              <button type="button" class="payment-action" id="saveEmail">Save Email</button>
+              <a class="payment-action" id="saveEmail" href="Jenny-Joven-Beria-Email.vcf" download="Jenny-Joven-Beria-Email.vcf">Save Email</a>
               <a class="payment-action secondary" href="mailto:alr_kitssa@yahoo.com">Write Email</a>
             </div>
+            <button type="button" class="link-btn" id="copyEmail">Copy email</button>
           </div>
         </div>
 
         <div class="contact-or" aria-hidden="true">OR</div>
 
-        <button type="button" class="payment-action secondary" id="saveBoth">
+        <a class="payment-action secondary" id="saveBoth" href="Jenny-Joven-Beria-ALR.vcf" download="Jenny-Joven-Beria-ALR.vcf">
           Save Both as One Contact
-        </button>
+        </a>
 
         <p class="payment-status" id="contactStatus" role="status"></p>
 

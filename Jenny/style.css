@@ -1164,3 +1164,40 @@ a:focus-visible,
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------- IN-APP BROWSER BANNER + COPY LINKS ---------- */
+
+.inapp-banner {
+  margin: 16px 0 4px;
+  padding: 14px 15px;
+  border: 1px solid rgba(180, 120, 20, 0.45);
+  border-radius: 16px;
+  background: rgba(255, 193, 7, 0.14);
+  text-align: left;
+}
+
+.inapp-banner strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: #7a5410;
+}
+
+.inapp-banner p {
+  margin: 5px 0 0;
+  color: #5c4a1e;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.link-btn {
+  width: 100%;
+  padding: 9px 4px 2px;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
