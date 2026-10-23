@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GCash Payment | ALR Steel</title>
+  <meta name="theme-color" content="#dfe8f1">
+  <meta name="description" content="Pay Jenny Joven Beria with a GCash QR. No account number is shown.">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="payment.js" defer></script>
+</head>
+
+<body>
+  <div class="bg-fixed" aria-hidden="true"></div>
+  <div class="bg-tint" aria-hidden="true"></div>
+  <main class="payment-page">
+    <div class="payment-container">
+
+      <nav class="payment-topbar">
+        <a class="back-link" href="index.html">
+          <span aria-hidden="true">←</span> Back to card
+        </a>
+        <span class="payment-brand">ALR STEEL</span>
+      </nav>
+
+      <section class="payment-panel">
+        <div class="payment-provider-logo gcash">G</div>
+
+        <h1>Pay with GCash</h1>
+        <p class="payment-description">
+          Scan or upload the QR code using your payment app.
+        </p>
+
+        <div class="payment-qr">
+          <img
+            src="images/gcash-qr.png"
+            alt="ALR GCash payment QR code"
+            onerror="this.style.display='none'; this.nextElementSibling.hidden=false;"
+          >
+
+          <div class="qr-placeholder" hidden>
+            <strong>GCash QR not added yet</strong>
+            <br>
+            Add your real QR image at
+            <code>images/gcash-qr.png</code>
+          </div>
+        </div>
+
+        <div class="payment-instructions">
+          <strong>How to pay</strong>
+          <ol>
+            <li>Save the QR code below.</li>
+            <li>Open GCash from the button, or scan the QR in the app.</li>
+            <li>Upload the saved image if the app supports it.</li>
+            <li>Verify the recipient name and amount before confirming.</li>
+          </ol>
+        </div>
+
+        <a
+          class="payment-action"
+          id="saveQr"
+          href="images/gcash-qr.png"
+          download="ALR-GCash-QR.png"
+        >
+          Save the QR
+        </a>
+
+        <button
+          type="button"
+          class="payment-action secondary"
+          id="openApp"
+          data-name="GCash"
+          data-package="com.globe.gcash.android"
+          data-scheme="gcash://"
+          data-android-store="https://play.google.com/store/apps/details?id=com.globe.gcash.android"
+          data-ios-store="https://apps.apple.com/ph/app/gcash/id520020791"
+        >
+          Go to GCash app
+        </button>
+
+        <p class="payment-status" id="payStatus" role="status"></p>
+
+        <p class="payment-disclaimer">
+          Always verify the recipient details in your payment app.
+          A successful QR download does not mean payment has been made.
+        </p>
+      </section>
+
+      <p class="payment-disclaimer">
+        ALR Steel Fabrication and Services OPC
+      </p>
+
+    </div>
+  </main>
+</body>
+</html>
