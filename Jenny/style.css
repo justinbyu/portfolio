@@ -1259,13 +1259,15 @@ a:focus-visible,
   color: #6b7684;
 }
 
-/* ---------- DIRECT SAVE (Android primary buttons) ---------- */
+/* ---------- ANDROID HINT BACKUP LINKS ---------- */
 
-.direct-save[hidden] {
-  display: none;
+.android-hint .hint-backup {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
 }
 
-.direct-save {
-  width: 100%;
-  margin-bottom: 10px;
+.android-hint .hint-backup a {
+  text-decoration: underline;
 }

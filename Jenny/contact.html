@@ -13,8 +13,8 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
 
-  <link rel="stylesheet" href="style.css?v=3">
-  <script src="contact.js?v=3" defer></script>
+  <link rel="stylesheet" href="style.css?v=4">
+  <script src="contact.js?v=4" defer></script>
 </head>
 
 <body>
@@ -47,8 +47,9 @@
         </div>
 
         <div class="android-hint" id="androidHint" hidden>
-          <strong>On Android, saving takes two taps</strong>
-          <p>Use <b>Save to Contacts</b> under each option to add it straight to your Contacts app — no files needed. If a download starts instead, tap <b>Save File</b>, then <b>Open File</b>.</p>
+          <strong>Saved straight to your Contacts</strong>
+          <p>Tap <b>Save to Phone</b> or <b>Save Email</b> to add it directly — no files needed. If nothing opens, download the file instead:</p>
+          <p class="hint-backup"><a href="Jenny-Joven-Beria-Phone.vcf" download>Phone</a> &middot; <a href="Jenny-Joven-Beria-Email.vcf" download>Email</a> &middot; <a href="Jenny-Joven-Beria-ALR.vcf" download>Both</a></p>
         </div>
 
         <div class="contact-options">
@@ -63,7 +64,6 @@
                 <a class="contact-value" href="tel:+639771164273">0977 116 4273</a>
               </span>
             </div>
-            <button type="button" class="payment-action direct-save" id="directSavePhone" hidden>Save to Contacts</button>
             <div class="contact-btns">
               <a class="payment-action" id="savePhone" href="Jenny-Joven-Beria-Phone.vcf" download="Jenny-Joven-Beria-Phone.vcf">Save to Phone</a>
               <a class="payment-action secondary" href="tel:+639771164273">Call Now</a>
@@ -82,7 +82,6 @@
                 <a class="contact-value" href="mailto:alr_kitssa@yahoo.com">alr_kitssa@yahoo.com</a>
               </span>
             </div>
-            <button type="button" class="payment-action direct-save" id="directSaveEmail" hidden>Save to Contacts</button>
             <div class="contact-btns">
               <a class="payment-action" id="saveEmail" href="Jenny-Joven-Beria-Email.vcf" download="Jenny-Joven-Beria-Email.vcf">Save Email</a>
               <a class="payment-action secondary" href="mailto:alr_kitssa@yahoo.com">Write Email</a>

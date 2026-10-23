@@ -20,8 +20,9 @@ const CONTACT = {
 const FORCE_INAPP_DEMO = false;
 
 /* ---------- Platform detection ----------
-   - Android: "Save to Contacts" buttons open the contact
-     editor directly (no files). File links stay as backup.
+   - Android: the steel save buttons fire a system intent
+     that opens the contact editor prefilled (no files).
+     File links stay as backup in the Android guide.
    - iPhone: .vcf links open the contact preview directly.
      But iOS in-app browsers block downloads entirely,
      so those get the "Open in Safari" guide. */
@@ -56,7 +57,6 @@ function detectAndroid() {
 
 const IS_ANDROID = !FORCE_INAPP_DEMO && detectAndroid();
 const INAPP_NAME = FORCE_INAPP_DEMO ? "Messenger" : detectInApp();
-const SHOW_DIRECT = IS_ANDROID || FORCE_INAPP_DEMO;
 
 function systemBrowser() {
   const ua = navigator.userAgent || "";
@@ -100,12 +100,21 @@ function activeGuide() {
 }
 
 /* ---------- 1-tap direct save (Android) ----------
-   Opens the system's "Create contact" screen prefilled —
-   no download dialog, no files. Fired through a hidden
-   iframe so unsupported browsers fail silently and the
-   file links below still work. */
+   Fired as a top-level navigation — the documented path
+   Chrome and most app browsers forward to the system.
+   Includes a fallback to the .vcf file so capable
+   browsers never strand the user. */
 
-function contactIntent(includePhone, includeEmail) {
+function contactIntent(includePhone, includeEmail, vcfFile) {
+  let fallback = "";
+  try {
+    fallback =
+      ";S.browser_fallback_url=" +
+      encodeURIComponent(new URL(vcfFile, window.location.href).href);
+  } catch (error) {
+    fallback = "";
+  }
+
   let uri =
     "intent:#Intent;action=android.intent.action.INSERT;" +
     "type=vnd.android.cursor.dir/contact" +
@@ -118,52 +127,28 @@ function contactIntent(includePhone, includeEmail) {
   if (includeEmail) {
     uri += ";S.email=" + encodeURIComponent(CONTACT.email);
   }
-  return uri + ";end";
+  return uri + fallback + ";end";
 }
 
-function fireDirectSave(includePhone, includeEmail) {
-  const frame = document.createElement("iframe");
-  frame.style.display = "none";
-  frame.src = contactIntent(includePhone, includeEmail);
-  document.body.appendChild(frame);
-  setTimeout(() => frame.remove(), 3000);
-  setStatus("Opening your Contacts app\u2026 if nothing opens, use Download File below.");
+function fireDirectSave(includePhone, includeEmail, vcfFile) {
+  window.location.href = contactIntent(includePhone, includeEmail, vcfFile);
+  setStatus("Opening your Contacts app\u2026 if nothing opens, use the download links in the guide above.");
 }
 
-const directSavePhone = document.getElementById("directSavePhone");
-const directSaveEmail = document.getElementById("directSaveEmail");
+/* ---------- Save buttons ----------
+   Android: steel buttons save straight to Contacts.
+   Everywhere else: they download the contact file. */
 
-if (SHOW_DIRECT) {
-  // Promote direct save, demote file links to backup
-  document.querySelectorAll(".direct-save").forEach((button) => {
-    button.hidden = false;
-  });
-
-  const savePhoneLink = document.getElementById("savePhone");
-  const saveEmailLink = document.getElementById("saveEmail");
-  if (savePhoneLink) savePhoneLink.textContent = "Download File";
-  if (saveEmailLink) saveEmailLink.textContent = "Download File";
-}
-
-if (directSavePhone) {
-  directSavePhone.addEventListener("click", () => fireDirectSave(true, false));
-}
-
-if (directSaveEmail) {
-  directSaveEmail.addEventListener("click", () => fireDirectSave(false, true));
-}
-
-/* ---------- File links (backup on Android, primary elsewhere) ---------- */
-
-function bindSaveLink(id) {
+function bindSaveButton(id, includePhone, includeEmail, vcfFile) {
   const button = document.getElementById(id);
   if (!button) return;
 
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (event) => {
     const guide = activeGuide();
 
     if (IS_ANDROID) {
-      setStatus("File downloading — tap Save File, then Open File to add it to Contacts.");
+      event.preventDefault();
+      fireDirectSave(includePhone, includeEmail, vcfFile);
     } else if (INAPP_NAME) {
       setStatus(
         "If nothing downloads, open this page in " + systemBrowser() +
@@ -179,9 +164,9 @@ function bindSaveLink(id) {
   });
 }
 
-bindSaveLink("savePhone");
-bindSaveLink("saveEmail");
-bindSaveLink("saveBoth");
+bindSaveButton("savePhone", true, false, "Jenny-Joven-Beria-Phone.vcf");
+bindSaveButton("saveEmail", false, true, "Jenny-Joven-Beria-Email.vcf");
+bindSaveButton("saveBoth", true, true, "Jenny-Joven-Beria-ALR.vcf");
 
 /* ---------- Copy fallbacks (work inside every app) ---------- */
 

@@ -38,11 +38,12 @@ contact page auto-shows an 'Open in Safari/Chrome' guide banner there.
 Test it with: contact.html?inapp=1 (iOS in-app guide)
 contact.html?os=android (Android 2-tap guide)
 
-ANDROID NOTE: Android always downloads .vcf first (Save File -> Open File
--> Contacts). This is system behavior no website can skip — the page
-shows a 2-tap guide on Android automatically.
+ANDROID NOTE: primary save buttons fire a direct contact intent
+(Add to Contacts opens the editor prefilled, no files). If a browser
+ignores it, file links remain as backup (Save File -> Open File
+-> Contacts). The page shows a guide on Android automatically.
 
 PREVIEW: double-click index.html, or use VS Code + Live Server.
 PUT ONLINE: upload this whole folder to GitHub Pages / Netlify / Vercel.
-After re-uploading changes, bump ?v=3 to ?v=4 (etc.) on the CSS/JS links
+After re-uploading changes, bump ?v=4 to ?v=5 (etc.) on the CSS/JS links
 in the HTML files so phones fetch fresh files instead of cached ones.
