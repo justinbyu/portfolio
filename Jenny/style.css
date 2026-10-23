@@ -1071,3 +1071,96 @@ a:focus-visible,
     transform: none !important;
   }
 }
+
+/* ---------- CONTACT PAGE ---------- */
+
+.payment-provider-logo.contact {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.contact-options {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0 4px;
+  text-align: left;
+}
+
+.contact-option {
+  border: 1px solid var(--line-soft);
+  border-radius: 20px;
+  background: var(--tile);
+  padding: 16px;
+}
+
+.contact-option-top {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 14px;
+}
+
+.contact-icon {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 15px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.contact-option strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.contact-value {
+  display: block;
+  margin-top: 2px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+
+.contact-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.contact-btns .payment-action {
+  margin-top: 0;
+  min-height: 48px;
+  padding: 10px 8px;
+  font-size: 12.5px;
+}
+
+.contact-or {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 2px 6px;
+  color: var(--faint);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.contact-or::before,
+.contact-or::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: rgba(120, 135, 155, 0.35);
+}
+
+@media (max-width: 360px) {
+  .contact-btns {
+    grid-template-columns: 1fr;
+  }
+}

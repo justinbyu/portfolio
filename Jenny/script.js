@@ -7,8 +7,8 @@ const CONFIG = {
   name: "Jenny Joven Beria",
   title: "ALR Steel Fabrication and Services OPC",
   organization: "ALR Steel Fabrication and Services OPC",
-  phone: "", // Add your phone number
-  email: "", // Add your email
+  phone: "0977 116 4273", // Also update CONTACT in contact.js
+  email: "alr_kitssa@yahoo.com", // Also update CONTACT in contact.js
   website: "", // Add the business website, or leave blank
 
   // Paste the public https link of this page after you host the folder.
@@ -176,75 +176,18 @@ if ("IntersectionObserver" in window && !REDUCED_MOTION) {
 }
 
 /* =====================================
-   SAVE CONTACT AS VCARD
+   SAVE CONTACT — opens the contact page
 ===================================== */
 
 const saveButton = document.getElementById("saveContact");
 const quickSave = document.getElementById("quickSave");
-const saveMessage = document.getElementById("saveMessage");
 
-function escapeVCard(value) {
-  return String(value || "")
-    .replace(/\\/g, "\\\\")
-    .replace(/\r?\n/g, "\\n")
-    .replace(/,/g, "\\,")
-    .replace(/;/g, "\\;");
+function openContactPage() {
+  window.location.href = "contact.html";
 }
 
-function createVCard() {
-  const fields = [
-    "BEGIN:VCARD",
-    "VERSION:3.0",
-    `FN:${escapeVCard(CONFIG.name)}`,
-    `ORG:${escapeVCard(CONFIG.organization)}`,
-    `TITLE:${escapeVCard(CONFIG.title)}`
-  ];
-
-  if (CONFIG.phone.trim()) {
-    fields.push(`TEL;TYPE=CELL:${escapeVCard(CONFIG.phone)}`);
-  }
-
-  if (CONFIG.email.trim()) {
-    fields.push(`EMAIL:${escapeVCard(CONFIG.email)}`);
-  }
-
-  if (CONFIG.website.trim()) {
-    fields.push(`URL:${escapeVCard(CONFIG.website)}`);
-  }
-
-  fields.push("END:VCARD");
-
-  return fields.join("\r\n") + "\r\n";
-}
-
-function downloadContact() {
-  const vcard = createVCard();
-
-  const file = new Blob([vcard], {
-    type: "text/vcard;charset=utf-8"
-  });
-
-  const downloadURL = URL.createObjectURL(file);
-  const link = document.createElement("a");
-
-  link.href = downloadURL;
-  link.download = "Jenny-Joven-Beria-ALR.vcf";
-
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-
-  setTimeout(() => URL.revokeObjectURL(downloadURL), 1000);
-
-  if (saveMessage) {
-    saveMessage.textContent =
-      "Contact file downloaded. Open it to save the contact.";
-    saveMessage.setAttribute("role", "status");
-  }
-}
-
-if (saveButton) saveButton.addEventListener("click", downloadContact);
-if (quickSave) quickSave.addEventListener("click", downloadContact);
+if (saveButton) saveButton.addEventListener("click", openContactPage);
+if (quickSave) quickSave.addEventListener("click", openContactPage);
 
 /* =====================================
    SHARE CARD
