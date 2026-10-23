@@ -162,3 +162,31 @@ if (copyEmail) {
     copyText("alr_kitssa@yahoo.com", "Email copied — paste it into your contacts app.");
   });
 }
+
+/* ---------- 1-Tap Direct Save (Android only) ----------
+   Tries to open the system's "Create contact" screen with
+   everything prefilled — no download dialog at all.
+   Uses a hidden iframe so unsupported browsers fail
+   silently, and the download buttons below still work. */
+
+const DIRECT_SAVE_INTENT =
+  "intent:#Intent;action=android.intent.action.INSERT;" +
+  "type=vnd.android.cursor.dir/contact" +
+  ";S.name=" + encodeURIComponent("Jenny Joven Beria") +
+  ";S.company=" + encodeURIComponent("ALR Steel Fabrication and Services OPC") +
+  ";S.phone=" + encodeURIComponent("0977 116 4273") +
+  ";S.email=" + encodeURIComponent("alr_kitssa@yahoo.com") +
+  ";end";
+
+const directSave = document.getElementById("directSave");
+
+if (directSave) {
+  directSave.addEventListener("click", () => {
+    const frame = document.createElement("iframe");
+    frame.style.display = "none";
+    frame.src = DIRECT_SAVE_INTENT;
+    document.body.appendChild(frame);
+    setTimeout(() => frame.remove(), 3000);
+    setStatus("Opening your Contacts app\u2026 if nothing opens, use Save File below, then Open File.");
+  });
+}

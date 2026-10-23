@@ -43,3 +43,5 @@ shows a 2-tap guide on Android automatically.
 
 PREVIEW: double-click index.html, or use VS Code + Live Server.
 PUT ONLINE: upload this whole folder to GitHub Pages / Netlify / Vercel.
+After re-uploading changes, bump ?v=3 to ?v=4 (etc.) on the CSS/JS links
+in the HTML files so phones fetch fresh files instead of cached ones.

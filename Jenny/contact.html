@@ -13,8 +13,8 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
 
-  <link rel="stylesheet" href="style.css">
-  <script src="contact.js" defer></script>
+  <link rel="stylesheet" href="style.css?v=3">
+  <script src="contact.js?v=3" defer></script>
 </head>
 
 <body>
@@ -49,6 +49,8 @@
         <div class="android-hint" id="androidHint" hidden>
           <strong>On Android, saving takes two taps</strong>
           <p>Tap <b>Save File</b> on the download prompt, then tap <b>Open File</b> — your Contacts app will offer to save it. (On iPhone the contact opens directly.)</p>
+          <button type="button" class="payment-action" id="directSave">Try 1-Tap Direct Save</button>
+          <p class="hint-note">Opens your Contacts app with everything filled in. If nothing opens, use the download buttons below.</p>
         </div>
 
         <div class="contact-options">
