@@ -34,7 +34,12 @@ HOW TO EDIT:
 
 IN-APP BROWSERS (Messenger/Instagram/TikTok): these block downloads, so the
 contact page auto-shows an 'Open in Safari/Chrome' guide banner there.
-Test it with: contact.html?inapp=1
+Test it with: contact.html?inapp=1 (iOS in-app guide)
+contact.html?os=android (Android 2-tap guide)
+
+ANDROID NOTE: Android always downloads .vcf first (Save File -> Open File
+-> Contacts). This is system behavior no website can skip — the page
+shows a 2-tap guide on Android automatically.
 
 PREVIEW: double-click index.html, or use VS Code + Live Server.
 PUT ONLINE: upload this whole folder to GitHub Pages / Netlify / Vercel.

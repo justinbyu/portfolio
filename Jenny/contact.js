@@ -11,9 +11,12 @@
 // The real contact.js shipped in the zip keeps this false.
 const FORCE_INAPP_DEMO = false;
 
-/* ---------- In-app browser detection ----------
-   Messenger / Instagram / TikTok / Facebook open links
-   in a limited webview that blocks file downloads. */
+/* ---------- Platform detection ----------
+   - iOS in-app browsers (Messenger/IG/TikTok) BLOCK downloads
+     -> show the "Open in Safari" guide.
+   - Android downloads fine everywhere, but always asks
+     Save File -> Open File (system behavior, can't skip)
+     -> show the 2-tap guide instead. */
 
 function detectInApp() {
   const ua = navigator.userAgent || "";
@@ -37,6 +40,13 @@ function detectInApp() {
   return null; // real browser — downloads work fine
 }
 
+function detectAndroid() {
+  // Manual test: open contact.html?os=android in any browser
+  if (/[?&]os=android/i.test(window.location.search)) return true;
+  return /android/i.test(navigator.userAgent || "");
+}
+
+const IS_ANDROID = !FORCE_INAPP_DEMO && detectAndroid();
 const INAPP_NAME = FORCE_INAPP_DEMO ? "Messenger" : detectInApp();
 
 function systemBrowser() {
@@ -49,8 +59,13 @@ function systemBrowser() {
 const inappBanner = document.getElementById("inappBanner");
 const inappTitle = document.getElementById("inappTitle");
 const inappText = document.getElementById("inappText");
+const androidHint = document.getElementById("androidHint");
 
-if (INAPP_NAME && inappBanner) {
+if (IS_ANDROID && androidHint) {
+  // Android: downloads work, just needs the 2-tap flow
+  androidHint.hidden = false;
+} else if (INAPP_NAME && inappBanner) {
+  // iOS in-app browser: downloads blocked, must open in Safari
   inappBanner.hidden = false;
   if (inappTitle) {
     inappTitle.textContent = "You're viewing this inside " + INAPP_NAME;
@@ -64,7 +79,7 @@ if (INAPP_NAME && inappBanner) {
 }
 
 /* ---------- Save buttons ----------
-   These are plain file links, so real browsers download
+   These are plain file links, so capable browsers download
    them natively. JS only adds status messages. */
 
 const contactStatus = document.getElementById("contactStatus");
@@ -73,28 +88,39 @@ function setStatus(message) {
   if (contactStatus) contactStatus.textContent = message;
 }
 
-function bindSaveButton(id, okMessage) {
+function activeGuide() {
+  if (IS_ANDROID) return androidHint;
+  if (INAPP_NAME) return inappBanner;
+  return null;
+}
+
+function bindSaveButton(id) {
   const button = document.getElementById(id);
   if (!button) return;
 
   button.addEventListener("click", () => {
-    if (INAPP_NAME) {
+    const guide = activeGuide();
+
+    if (IS_ANDROID) {
+      setStatus("File downloading — tap Save File, then Open File to add it to Contacts.");
+    } else if (INAPP_NAME) {
       setStatus(
         "If nothing downloads, open this page in " + systemBrowser() +
         " (tap \u22EF above) and try again."
       );
-      if (inappBanner) {
-        inappBanner.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
     } else {
-      setStatus(okMessage);
+      setStatus("Contact file downloading. Open it to save the contact.");
+    }
+
+    if (guide) {
+      guide.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   });
 }
 
-bindSaveButton("savePhone", "Phone contact downloading. Open the file to save it.");
-bindSaveButton("saveEmail", "Email contact downloading. Open the file to save it.");
-bindSaveButton("saveBoth", "Full contact downloading. Open the file to save it.");
+bindSaveButton("savePhone");
+bindSaveButton("saveEmail");
+bindSaveButton("saveBoth");
 
 /* ---------- Copy fallbacks (work inside every app) ---------- */
 

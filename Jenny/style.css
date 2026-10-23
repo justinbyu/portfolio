@@ -1201,3 +1201,46 @@ a:focus-visible,
   font-weight: 700;
   text-align: center;
 }
+
+/* ---------- ANDROID SAVE HINT ---------- */
+
+.android-hint {
+  margin: 16px 0 4px;
+  padding: 14px 15px;
+  border: 1px solid rgba(31, 95, 196, 0.35);
+  border-radius: 16px;
+  background: rgba(31, 95, 196, 0.08);
+  text-align: left;
+}
+
+.android-hint strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.android-hint p {
+  margin: 5px 0 0;
+  color: #3d4a5a;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ---------- OUTLINE HEADLINE FIX ----------
+   Android renders thick text-stroke poorly (glyphs look
+   stuck together), so it gets a hairline + looser spacing.
+   Apple platforms keep the bold 2px outline. */
+
+.hero h1 .outline {
+  -webkit-text-stroke: 1px #0c1116;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0;
+}
+
+@supports (font: -apple-system-body) {
+  .hero h1 .outline {
+    -webkit-text-stroke-width: 2px;
+    letter-spacing: -1.8px;
+  }
+}
