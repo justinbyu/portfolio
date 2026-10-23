@@ -30,7 +30,8 @@ HOW TO EDIT:
 5. SOCIAL LINKS: in index.html, swap Instagram/Facebook/TikTok URLs + handles
 6. SERVICES: in index.html, edit the .service-row blocks
 7. SAVE CONTACT INFO: phone/email appear in 4 places — keep them matching:
-   script.js CONFIG, contact.html text+links, contact.js copy-text, and the 3 .vcf files
+   script.js CONFIG, contact.html text+links, contact.js CONTACT object,
+   and the 3 .vcf files
 
 IN-APP BROWSERS (Messenger/Instagram/TikTok): these block downloads, so the
 contact page auto-shows an 'Open in Safari/Chrome' guide banner there.

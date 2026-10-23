@@ -1258,3 +1258,14 @@ a:focus-visible,
   font-size: 11px;
   color: #6b7684;
 }
+
+/* ---------- DIRECT SAVE (Android primary buttons) ---------- */
+
+.direct-save[hidden] {
+  display: none;
+}
+
+.direct-save {
+  width: 100%;
+  margin-bottom: 10px;
+}

@@ -38,7 +38,7 @@
 
         <h1>Save Contact</h1>
         <p class="payment-description">
-          Choose what to save — the file downloads straight to your phone.
+          Choose what to save to your phone.
         </p>
 
         <div class="inapp-banner" id="inappBanner" hidden>
@@ -48,9 +48,7 @@
 
         <div class="android-hint" id="androidHint" hidden>
           <strong>On Android, saving takes two taps</strong>
-          <p>Tap <b>Save File</b> on the download prompt, then tap <b>Open File</b> — your Contacts app will offer to save it. (On iPhone the contact opens directly.)</p>
-          <button type="button" class="payment-action" id="directSave">Try 1-Tap Direct Save</button>
-          <p class="hint-note">Opens your Contacts app with everything filled in. If nothing opens, use the download buttons below.</p>
+          <p>Use <b>Save to Contacts</b> under each option to add it straight to your Contacts app — no files needed. If a download starts instead, tap <b>Save File</b>, then <b>Open File</b>.</p>
         </div>
 
         <div class="contact-options">
@@ -65,6 +63,7 @@
                 <a class="contact-value" href="tel:+639771164273">0977 116 4273</a>
               </span>
             </div>
+            <button type="button" class="payment-action direct-save" id="directSavePhone" hidden>Save to Contacts</button>
             <div class="contact-btns">
               <a class="payment-action" id="savePhone" href="Jenny-Joven-Beria-Phone.vcf" download="Jenny-Joven-Beria-Phone.vcf">Save to Phone</a>
               <a class="payment-action secondary" href="tel:+639771164273">Call Now</a>
@@ -83,6 +82,7 @@
                 <a class="contact-value" href="mailto:alr_kitssa@yahoo.com">alr_kitssa@yahoo.com</a>
               </span>
             </div>
+            <button type="button" class="payment-action direct-save" id="directSaveEmail" hidden>Save to Contacts</button>
             <div class="contact-btns">
               <a class="payment-action" id="saveEmail" href="Jenny-Joven-Beria-Email.vcf" download="Jenny-Joven-Beria-Email.vcf">Save Email</a>
               <a class="payment-action secondary" href="mailto:alr_kitssa@yahoo.com">Write Email</a>
