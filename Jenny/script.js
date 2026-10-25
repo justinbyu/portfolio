@@ -7,7 +7,7 @@ const CONFIG = {
   name: "Jenny Joven Beria",
   title: "ALR Steel Fabrication and Services OPC",
   organization: "ALR Steel Fabrication and Services OPC",
-  phone: "0977 116 4273", // Also update CONTACT in contact.js
+  phone: "09933234360", // Also update CONTACT in contact.js
   email: "alr_kitssa@yahoo.com", // Also update CONTACT in contact.js
   website: "", // Add the business website, or leave blank
 
