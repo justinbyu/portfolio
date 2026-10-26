@@ -1,0 +1,16 @@
+name = "tapasul-id-redirect"
+main = "worker/index.js"
+compatibility_date = "2026-10-25"
+workers_dev = true
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+# Send only API and redirect paths through Worker code; static pages/assets are served directly.
+run_worker_first = ["/api/*", "/r/*"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "tapasul-routes"
+# Replace this placeholder with the database_id returned by `npx wrangler d1 create`.
+database_id = "00000000-0000-0000-0000-000000000000"
