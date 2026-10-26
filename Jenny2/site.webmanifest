@@ -1,0 +1,33 @@
+{
+  "name": "Jenny Joven Beria | ALR Steel Fabrication",
+  "short_name": "ALR Steel",
+  "description": "Connect with Jenny Joven Beria of ALR Steel Fabrication and Services OPC.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#dfe8f1",
+  "theme_color": "#dfe8f1",
+  "icons": [
+    {
+      "src": "favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
