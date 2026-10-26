@@ -1,2 +1,0 @@
-# Copy this file to .dev.vars, then replace with a long random local-only token.
-ADMIN_TOKEN="replace-with-a-random-local-development-secret"

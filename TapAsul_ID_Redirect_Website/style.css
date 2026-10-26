@@ -1,0 +1,88 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: #090D18;
+  color: #F7F9FC;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  width: min(100%, 420px);
+  padding: 36px 24px;
+  text-align: center;
+  background: #111827;
+  border: 1px solid #2B3A52;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px #00000040;
+}
+
+h1 {
+  margin: 0 0 8px;
+  color: #61BDFF;
+  font-size: 36px;
+}
+
+.tagline {
+  margin-bottom: 32px;
+  color: #9BA9BE;
+}
+
+h2 {
+  font-size: 21px;
+  margin-bottom: 22px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  color: #9BA9BE;
+  font-size: 14px;
+}
+
+input,
+button {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 10px;
+  padding: 13px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+input {
+  color: #F7F9FC;
+  background: #090D18;
+  border: 1px solid #2B3A52;
+}
+
+input:focus {
+  outline: 2px solid #61BDFF;
+  outline-offset: 2px;
+}
+
+button {
+  border: none;
+  background: #1766A8;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2186D5;
+}
+
+#message {
+  min-height: 20px;
+  margin-bottom: 0;
+  color: #8BE6E9;
+  overflow-wrap: anywhere;
+}
