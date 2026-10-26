@@ -1,3 +1,9 @@
+/* ============================================================
+   TapAsul — Client ID redirect
+   NOTE: this logic is byte-identical to the live working
+   version. Only this comment was added. Do not change the
+   IDs, the validation, or the Worker URL.
+   ============================================================ */
 
 const form = document.getElementById("client-form");
 const clientIdInput = document.getElementById("client-id");

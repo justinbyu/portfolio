@@ -1,0 +1,223 @@
+/* ============================================================
+   TapAsul — light frosted theme (card-only page)
+   Pairs with: index.html + app.js + images/tapasul-logo.jpg
+   ============================================================ */
+
+:root {
+  --ink: #101828;
+  --soft: #344054;
+  --faint: #667085;
+  --accent: #1f5fc4;
+  --accent-soft: #2f7cf6;
+  --card: rgba(255, 255, 255, 0.78);
+  --stroke: rgba(16, 24, 40, 0.1);
+  --radius: 28px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--ink);
+  min-height: 100vh;
+  min-height: 100svh;
+  background: linear-gradient(160deg, #f3f6fb 0%, #dde5f0 55%, #ccd7e6 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 18px;
+}
+
+/* ---------- Blurred backdrop ---------- */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.75;
+}
+
+.b1 {
+  width: 340px;
+  height: 340px;
+  left: -120px;
+  top: -100px;
+  background: #a9c6f4;
+}
+
+.b2 {
+  width: 300px;
+  height: 300px;
+  right: -110px;
+  top: 30%;
+  background: #ffffff;
+}
+
+.b3 {
+  width: 360px;
+  height: 360px;
+  left: 20%;
+  bottom: -160px;
+  background: #8fb0e8;
+  opacity: 0.55;
+}
+
+/* ---------- Layout ---------- */
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* ---------- Glass ID card ---------- */
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  outline: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  box-shadow:
+    0 24px 60px rgba(16, 24, 40, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 28px 26px 24px;
+}
+
+.logo-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.logo-header img {
+  width: 62%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid var(--stroke);
+  box-shadow: 0 10px 24px rgba(16, 24, 40, 0.1);
+}
+
+.logo-header p {
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* ---------- Form (IDs must stay: client-form / client-id / message) ---------- */
+
+#client-form h2 {
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+#client-form label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 8px;
+}
+
+#client-id {
+  width: 100%;
+  font: inherit;
+  font-size: 16px; /* stops iOS auto-zoom on focus */
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(16, 24, 40, 0.16);
+  border-radius: 16px;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#client-id::placeholder {
+  color: #98a2b3;
+  font-weight: 500;
+}
+
+#client-id:focus {
+  border-color: var(--accent-soft);
+  box-shadow: 0 0 0 3px rgba(47, 124, 246, 0.22);
+}
+
+#client-form button[type="submit"] {
+  width: 100%;
+  margin-top: 14px;
+  font: inherit;
+  font-size: 15.5px;
+  font-weight: 800;
+  color: var(--ink);
+  background: linear-gradient(180deg, #ffffff, #d7dde6);
+  border: 1px solid rgba(16, 24, 40, 0.16);
+  border-radius: 999px;
+  padding: 15px 20px;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 12px 26px rgba(16, 24, 40, 0.16);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+#client-form button[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 16px 30px rgba(16, 24, 40, 0.2);
+}
+
+#client-form button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+#message {
+  min-height: 20px; /* reserves space so the card never jumps */
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--soft);
+  text-align: center;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 360px) {
+  body {
+    padding: 24px 14px;
+  }
+
+  .card {
+    padding: 24px 20px 20px;
+  }
+}

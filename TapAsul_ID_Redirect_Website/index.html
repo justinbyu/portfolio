@@ -1,36 +1,45 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090D18">
+  <meta name="theme-color" content="#dfe7f2">
+  <meta name="description" content="TapAsul — enter your Client ID to open your digital card. Tap. Connect. Grow.">
   <title>TapAsul | Client ID</title>
   <link rel="stylesheet" href="css/styles.css">
   <script src="app.js" defer></script>
 </head>
 <body>
-  <main class="card">
-    <h1>TapAsul</h1>
-    <p class="tagline">Tap. Connect. Grow.</p>
+  <div class="backdrop" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+  </div>
 
-    <h2>Enter your Client ID</h2>
+  <main class="wrap">
+    <section class="card" aria-label="Client ID entry">
+      <div class="logo-header">
+        <img src="images/tapasul-logo.jpg" alt="TapAsul logo">
+        <p>Client ID Redirect</p>
+      </div>
 
-    <form id="client-form">
-      <label for="client-id">Client ID</label>
-      <input
-        id="client-id"
-        name="client-id"
-        type="text"
-        placeholder="Enter Client ID"
-        maxlength="32"
-        pattern="[A-Za-z0-9_-]+"
-        autocomplete="off"
-        required
-      >
-      <button type="submit">Continue</button>
-      <p id="message" role="status" aria-live="polite"></p>
-    </form>
+      <form id="client-form">
+        <h2>Enter your Client ID</h2>
+        <label for="client-id">Client ID</label>
+        <input
+          id="client-id"
+          name="client-id"
+          type="text"
+          placeholder="Enter Client ID"
+          maxlength="32"
+          pattern="[A-Za-z0-9_-]+"
+          autocomplete="off"
+          required
+        >
+        <button type="submit">Continue</button>
+        <p id="message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
   </main>
 </body>
 </html>
