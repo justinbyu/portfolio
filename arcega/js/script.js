@@ -1,24 +1,45 @@
-// Generate vCard Contact File (.vcf)
-function downloadVCard() {
-    const vCardData = `BEGIN:VCARD
-VERSION:3.0
-FN:King Arcega
-ORG:theshop101.ph
-EMAIL;TYPE=INTERNET,WORK:theshop101.ph@gmail.com
-ADR;TYPE=WORK:;;55 G Marcelo Street Maysan;Valenzuela City;;;Philippines
-URL;TYPE=TikTok:https://www.tiktok.com/@theshop101ph
-URL;TYPE=Facebook:https://www.facebook.com/share/1Cko11JjHw/
-URL;TYPE=Instagram:https://www.facebook.com/share/1Cko11JjHw/
-END:VCARD`;
+// Cross-Platform vCard Generator Fix (iOS Safari + Android Chrome Compatible)
+function downloadVCard(e) {
+    if (e) e.preventDefault();
 
-    const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', 'King_Arcega.vcf');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const vCardData = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'N:Arcega;King;;;',
+        'FN:King Arcega',
+        'ORG:theshop101.ph',
+        'TITLE:Affiliate Marketing Creator',
+        'EMAIL;TYPE=INTERNET,WORK:theshop101.ph@gmail.com',
+        'ADR;TYPE=WORK;LABEL="Valenzuela City":;;55 G Marcelo Street Maysan;Valenzuela City;;;Philippines',
+        'URL;TYPE=TikTok:https://www.tiktok.com/@theshop101ph',
+        'URL;TYPE=Facebook:https://www.facebook.com/share/1Cko11JjHw/',
+        'URL;TYPE=Instagram:https://www.facebook.com/share/1Cko11JjHw/',
+        'REV:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
+        'END:VCARD'
+    ].join('\r\n');
+
+    // Method 1: Data URI with text/vcard MIME type (Triggers direct Contacts app preview on iOS Safari & Mobile Chrome)
+    const encodedVCard = encodeURIComponent(vCardData);
+    const dataUri = 'data:text/vcard;charset=utf-8,' + encodedVCard;
+
+    // Detect Mobile Environment
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        // Direct location navigation works seamlessly across iOS Safari & Android Mobile Chrome
+        window.location.href = dataUri;
+    } else {
+        // Blob Object Download for Desktop Web Browsers
+        const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'King_Arcega.vcf');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
 }
 
 // 3D Cover Flow / Cover Ring Controller

@@ -42,9 +42,10 @@
             </p>
 
             <div class="cta-grid">
-                <button class="btn-primary" onclick="downloadVCard()">
+                <!-- Direct Anchor Link with Data URI for Cross-Platform Mobile vCard Compatibility -->
+                <a id="vcardLink" class="btn-primary" href="javascript:void(0);" onclick="downloadVCard(event)">
                     <i class="fa-solid fa-address-card"></i> Save to Contacts
-                </button>
+                </a>
                 <a href="mailto:theshop101.ph@gmail.com" class="btn-secondary">
                     <i class="fa-solid fa-envelope"></i> Email
                 </a>
