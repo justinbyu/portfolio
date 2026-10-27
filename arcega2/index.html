@@ -19,7 +19,7 @@
 
     <!-- Main Mobile Frame Container -->
     <div class="app-container">
-        
+
         <!-- Header Controls -->
         <div class="glass-card nav-header">
             <span class="nav-tag"><i class="fa-solid fa-sparkles"></i> DIGITAL CARD</span>
@@ -29,33 +29,38 @@
         <!-- Profile Hero Card -->
         <div class="glass-card hero-card">
             <div class="profile-wrapper">
-                <img src="images/profile.jpg" alt="King Arcega Profile" class="profile-img">
+                <img src="images/profile.png" alt="King Arcega Profile" class="profile-img">
                 <div class="badge-verified"><i class="fa-solid fa-check"></i></div>
             </div>
-            
+
             <h1 class="user-name">King Arcega</h1>
             <span class="user-business">theshop101.ph</span>
-            
+
             <p class="user-location">
                 <i class="fa-solid fa-location-dot" style="color: #FF2D55;"></i>
                 55 G Marcelo Street Maysan Valenzuela City
             </p>
 
             <div class="cta-grid">
-                <button class="btn-primary" onclick="downloadVCard()">
+                <!--
+                    REAL link to a real .vcf file (no javascript:, no data: URI).
+                    iPhone Safari opens the contact preview; Android downloads the
+                    file and opens it in Contacts. Works even with JS disabled.
+                -->
+                <a id="saveContactBtn" class="btn-primary" href="King_Arcega.vcf">
                     <i class="fa-solid fa-address-card"></i> Save to Contacts
-                </button>
+                </a>
                 <a href="mailto:theshop101.ph@gmail.com" class="btn-secondary">
                     <i class="fa-solid fa-envelope"></i> Email
                 </a>
-                <a href="https://maps.google.com/?q=55+G+Marcelo+Street+Maysan+Valenzuela+City" target="_blank" class="btn-secondary">
+                <a href="https://maps.google.com/?q=55+G+Marcelo+Street+Maysan+Valenzuela+City" target="_blank" rel="noopener" class="btn-secondary">
                     <i class="fa-solid fa-map-pin"></i> Directions
                 </a>
             </div>
         </div>
 
         <!-- Highlights Section Title -->
-        <div class="section-title">Highlights & Showcase</div>
+        <div class="section-title">Highlights &amp; Showcase</div>
 
         <!-- 3D Cover Flow / Cover Ring Carousel -->
         <div class="glass-card coverflow-widget">
@@ -63,21 +68,21 @@
                 <div class="coverflow-track" id="coverflowTrack">
                     <!-- Slide 1 -->
                     <div class="coverflow-card" onclick="setCoverSlide(0)">
-                        <img src="images/carousel-1.jpg" alt="30K Facebook Followers">
+                        <img src="images/carousel-1.png" alt="30K Facebook Followers">
                         <div class="coverflow-badge">
                             <span><i class="fa-brands fa-facebook"></i> 30K Followers</span>
                         </div>
                     </div>
                     <!-- Slide 2 -->
                     <div class="coverflow-card" onclick="setCoverSlide(1)">
-                        <img src="images/carousel-2.jpg" alt="Family Beach Vacation">
+                        <img src="images/carousel-2.png" alt="Family Beach Vacation">
                         <div class="coverflow-badge">
                             <span><i class="fa-solid fa-heart"></i> Family Moments</span>
                         </div>
                     </div>
                     <!-- Slide 3 -->
                     <div class="coverflow-card" onclick="setCoverSlide(2)">
-                        <img src="images/carousel-3.jpg" alt="Water Sports & Outdoor Fun">
+                        <img src="images/carousel-3.png" alt="Water Sports & Outdoor Fun">
                         <div class="coverflow-badge">
                             <span><i class="fa-solid fa-water"></i> Water Sports</span>
                         </div>
@@ -102,13 +107,13 @@
         </div>
 
         <!-- Social Media Section Title -->
-        <div class="section-title">Connect & Socials</div>
+        <div class="section-title">Connect &amp; Socials</div>
 
         <!-- Social Links Widget -->
         <div class="widget-group">
-            
+
             <!-- TikTok -->
-            <a href="https://www.tiktok.com/@theshop101ph?_r=1&_t=ZS-9AtWSfJWu8q" target="_blank" class="social-link-item">
+            <a href="https://www.tiktok.com/@theshop101ph?_r=1&_t=ZS-9AtWSfJWu8q" target="_blank" rel="noopener" class="social-link-item">
                 <div class="link-left">
                     <div class="link-icon tiktok-bg">
                         <i class="fa-brands fa-tiktok"></i>
@@ -122,7 +127,7 @@
             </a>
 
             <!-- Facebook -->
-            <a href="https://www.facebook.com/share/1Cko11JjHw/?mibextid=wwXIfr" target="_blank" class="social-link-item">
+            <a href="https://www.facebook.com/share/1Cko11JjHw/?mibextid=wwXIfr" target="_blank" rel="noopener" class="social-link-item">
                 <div class="link-left">
                     <div class="link-icon fb-bg">
                         <i class="fa-brands fa-facebook-f"></i>
@@ -136,7 +141,7 @@
             </a>
 
             <!-- Instagram -->
-            <a href="https://www.facebook.com/share/1Cko11JjHw/?mibextid=wwXIfr" target="_blank" class="social-link-item">
+            <a href="https://www.instagram.com/theshop101.ph" target="_blank" rel="noopener" class="social-link-item">
                 <div class="link-left">
                     <div class="link-icon insta-bg">
                         <i class="fa-brands fa-instagram"></i>
@@ -165,7 +170,39 @@
 
         </div>
 
-        <div class="footer-tag">Powered by TAPIND • Digital Business Card</div>
+        <div class="footer-tag">Powered by TapAsul • Digital Business Card</div>
+    </div>
+
+    <!-- ============================================================
+         Toast (small message at the bottom of the screen)
+         ============================================================ -->
+    <div id="cardToast" class="card-toast" role="status" aria-live="polite"></div>
+
+    <!-- ============================================================
+         Helper sheet — only shown inside in-app browsers
+         (Instagram / Facebook / Messenger / TikTok …) that cannot
+         open .vcf files. Shown by js/script.js
+         ============================================================ -->
+    <div id="contactHelp" class="contact-help" aria-hidden="true">
+        <div class="contact-help-backdrop" data-close-sheet></div>
+        <div class="contact-help-card" role="dialog" aria-modal="true" aria-labelledby="contactHelpTitle">
+            <div class="contact-help-grip"></div>
+            <h3 id="contactHelpTitle">Save this contact</h3>
+            <p class="contact-help-text">
+                You are viewing this page inside an app, and apps like Instagram,
+                Facebook or Messenger cannot open contact files. Open the card in
+                your phone&rsquo;s browser instead:
+            </p>
+            <ol class="contact-help-steps">
+                <li>Tap the <strong>&#8943;</strong> menu (or <strong>Share</strong> icon) at the top of the screen.</li>
+                <li>Choose <strong>Open in browser</strong> &mdash; Safari or Chrome.</li>
+                <li>Tap <strong>Save to Contacts</strong> again.</li>
+            </ol>
+            <button type="button" class="btn-primary contact-help-btn" id="copyContactBtn">
+                <i class="fa-solid fa-copy"></i> Copy details instead
+            </button>
+            <button type="button" class="contact-help-close" data-close-sheet>Close</button>
+        </div>
     </div>
 
     <script src="js/script.js"></script>
