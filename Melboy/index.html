@@ -4,219 +4,499 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Melbert Pereda | Founder & CEO - Brother's Ramen</title>
+  <meta name="description" content="Connect with Melbert Pereda, Founder & CEO of Brother's Ramen. Bringing authentic Japanese ramen flavors to local convenience stores, dining spots, and business partners.">
+  <meta property="og:title" content="Melbert Pereda | Founder & CEO - Brother's Ramen">
+  <meta property="og:description" content="Founder & CEO — Brother's Ramen. Open for Supply & Partnerships.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/profile-lg.jpg">
+  <link rel="icon" type="image/png" href="images/brand-logo.png">
   
-  <!-- Tailwind CSS & FontAwesome -->
+  <!-- Tailwind CSS, Brand Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- PDF.js Engine -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=12">
 </head>
-<body class="min-h-screen py-8 px-4 flex flex-col items-center justify-start text-stone-800">
+<body class="min-h-screen py-7 px-4 flex flex-col items-center justify-start text-neutral-900">
 
-  <div class="w-full max-w-md space-y-6">
+  <!-- Full-Background Brother's Ramen Logo (Blurred Dynamically by Glass Cards Above) -->
+  <div class="bg-logo-backdrop" aria-hidden="true"></div>
+
+  <div class="w-full max-w-md space-y-5 relative z-10">
     
-    <!-- Profile Header Card -->
-    <div class="glass-card rounded-[36px] p-6 text-center relative overflow-hidden">
-      <div class="relative z-10 flex flex-col items-center">
-        <div class="relative mb-4">
-          <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-500 to-orange-300 p-1 shadow-md">
-            <div class="w-full h-full rounded-full bg-stone-900 flex items-center justify-center text-3xl font-bold text-amber-200 border-2 border-white">
-              MP
+    <!-- Hero Glass Card — Focused 60% Cutout Portrait (20% Left/Right) + Seamless Fade into Name & Title -->
+    <div class="glass-card rounded-[36px] pt-6 pb-7 px-0 text-center overflow-hidden">
+      <div class="flex flex-col items-center">
+        <!-- 60% Hero Portrait (Exact 20% Left & Right Space) + Small Japanese Label Top Right -->
+        <button
+          type="button"
+          id="profilePhotoTrigger"
+          aria-label="View Melbert Pereda full portrait"
+          class="hero-portrait-wrap focus:outline-none cursor-pointer group relative"
+        >
+          <span class="hero-jp-label">ラーメン</span>
+          <picture>
+            <source srcset="images/hero-cutout.webp" type="image/webp">
+            <img
+              src="images/hero-cutout.png"
+              alt="Melbert Pereda — Founder & CEO of Brother's Ramen"
+              width="600"
+              height="680"
+              decoding="async"
+              class="hero-portrait-fade transition-transform duration-300 group-hover:scale-[1.02]"
+            >
+          </picture>
+        </button>
+
+        <!-- Name & Title Label Directly Overlapping Faded Bottom Edge -->
+        <div class="-mt-6 relative z-10 px-6">
+          <h1 class="text-2xl sm:text-[26px] font-extrabold text-neutral-900 tracking-tight leading-tight">
+            Melbert Pereda
+          </h1>
+          <p class="text-[11px] font-bold tracking-wider text-red-600 uppercase mt-1">
+            Founder &amp; CEO — Brother's Ramen
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save Contact Glass Card (Android & iPhone) -->
+    <div class="glass-card rounded-[30px] p-3.5" id="saveContactSection">
+      <a
+        href="Melbert-Pereda.vcf"
+        download="Melbert-Pereda.vcf"
+        id="saveContactBtn"
+        class="glass-pill rounded-[22px] p-3 flex items-center justify-between gap-3 group cursor-pointer"
+      >
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="relative shrink-0">
+            <div class="w-[50px] h-[50px] rounded-full bg-red-600 flex items-center justify-center shadow-sm border border-white">
+              <i class="fa-solid fa-plus text-white text-[18px] leading-none"></i>
             </div>
           </div>
-          <span class="absolute bottom-0 right-0 bg-stone-900 text-amber-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-amber-400 shadow">
-            CEO
-          </span>
-        </div>
-        <h1 class="text-2xl font-bold text-stone-900">Melbert Pereda</h1>
-        <p class="text-xs font-semibold tracking-wider text-amber-800 uppercase mt-1">Founder & CEO — Brother's Ramen</p>
-        <p class="text-xs text-stone-600 mt-2 max-w-xs leading-relaxed">
-          Bringing authentic Japanese ramen flavors to local convenience stores, dining spots, and business partners.
-        </p>
-        <div class="flex items-center gap-2 mt-3">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-700 border border-emerald-500/20">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            Open for Supply & Partnerships
-          </span>
-        </div>
-      </div>
-    </div>
 
-    <!-- Quick Action Buttons -->
-    <div class="grid grid-cols-2 gap-3">
-      <a href="tel:09561391538" class="glass-pill rounded-2xl p-4 flex flex-col items-center justify-center hover:bg-white/80 transition group">
-        <div class="w-10 h-10 rounded-full bg-stone-900 text-amber-300 flex items-center justify-center mb-1.5 group-hover:scale-110 transition shadow">
-          <i class="fa-solid fa-phone text-sm"></i>
+          <div class="min-w-0 text-left">
+            <div class="text-sm font-bold text-neutral-900 group-hover:text-red-600 transition truncate">
+              Save Contact
+            </div>
+            <div class="text-[11px] text-neutral-500 truncate">
+              0956 139 1538 • Android &amp; iPhone
+            </div>
+          </div>
         </div>
-        <span class="text-xs font-bold text-stone-800">Call Now</span>
-        <span class="text-[10px] text-stone-500 font-mono">0956 139 1538</span>
+
+        <span class="shrink-0 px-3.5 py-2.5 rounded-2xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold flex items-center gap-1.5 group-hover:scale-[1.02] group-active:scale-95 transition shadow-sm">
+          <i class="fa-solid fa-address-book text-xs"></i>
+          <span>Save to Phone</span>
+        </span>
       </a>
-      <a href="mailto:peredamelbertc@gmail.com" class="glass-pill rounded-2xl p-4 flex flex-col items-center justify-center hover:bg-white/80 transition group">
-        <div class="w-10 h-10 rounded-full bg-stone-900 text-amber-300 flex items-center justify-center mb-1.5 group-hover:scale-110 transition shadow">
-          <i class="fa-solid fa-envelope text-sm"></i>
-        </div>
-        <span class="text-xs font-bold text-stone-800">Email Me</span>
-        <span class="text-[10px] text-stone-500 truncate max-w-[120px]">peredamelbertc@...</span>
-      </a>
-    </div>
 
-    <!-- 3D Orbit Bloom Product & Visual Showcase -->
-    <div class="glass-card rounded-[32px] p-6 relative">
-      <div class="flex items-center justify-between mb-2">
-        <div>
-          <h2 class="text-xs font-bold uppercase tracking-wider text-stone-500">Interactive Gallery</h2>
-          <h3 class="text-base font-bold text-stone-900">3D Orbit Bloom Showcase</h3>
-        </div>
-        <span class="text-[10px] bg-stone-900/10 text-stone-700 px-2 py-1 rounded-full font-medium">Auto Rotating</span>
-      </div>
-      <p class="text-[11px] text-stone-500 mb-3">Drag horizontally to rotate or click any product card below.</p>
-      
-      <div class="orbit-container my-2" id="orbitContainer">
-        <div class="orbit-stage" id="orbitStage">
-          <!-- Cards injected dynamically via JS -->
+      <!-- Smart Device Helper Drawer -->
+      <div id="saveContactHelper" class="hidden mt-3 pt-3 border-t border-neutral-200/70 text-left space-y-2.5 px-1">
+        <p id="saveContactStatus" class="text-[11px] text-neutral-700 leading-relaxed font-medium"></p>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <a
+            href="#"
+            id="androidDirectInsertBtn"
+            class="hidden px-3 py-1.5 rounded-xl bg-red-600 text-white text-[11px] font-bold items-center gap-1.5 hover:bg-red-700 transition shadow-sm"
+          >
+            <i class="fa-solid fa-user-check"></i>
+            <span>Open Contacts App Directly</span>
+          </a>
+
+          <a
+            href="#"
+            id="androidOpenChromeBtn"
+            class="hidden px-3 py-1.5 rounded-xl bg-red-600 text-white text-[11px] font-bold items-center gap-1.5 hover:bg-red-700 transition shadow-sm"
+          >
+            <i class="fa-brands fa-chrome"></i>
+            <span>Open in Chrome to Save</span>
+          </a>
+
+          <button
+            type="button"
+            id="copyPhoneBtn"
+            class="glass-pill px-3 py-1.5 rounded-xl text-[11px] font-semibold text-neutral-800 flex items-center gap-1.5"
+          >
+            <i class="fa-regular fa-copy text-red-600"></i>
+            <span>Copy 0956 139 1538</span>
+          </button>
+
+          <button
+            type="button"
+            id="copyEmailBtn"
+            class="glass-pill px-3 py-1.5 rounded-xl text-[11px] font-semibold text-neutral-800 flex items-center gap-1.5"
+          >
+            <i class="fa-regular fa-copy text-red-600"></i>
+            <span>Copy Email</span>
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- PORTFOLIO / REAL PDF DOCUMENT VIEWER SECTION -->
-    <div class="glass-card rounded-[32px] p-6 space-y-4" id="portfolio">
+  <!-- OUR MENU — UNCONTAINED OPEN SECTION (No Big Outer Card; Each Dish Photo Has Its Own Card!) -->
+  <section class="menu-runway w-full max-w-[540px] my-6 relative z-10" id="menu" aria-label="Our Menu">
+    <div class="menu-sticky-stage" id="menuStickyCard">
+
+      <!-- 1. Japanese Red Ramen Shop Noren Curtain (Open Hanging Wooden Pole) -->
+      <div class="noren-curtain-layer" id="norenCurtainLayer" aria-hidden="true">
+        <div class="noren-wood-rod" id="norenWoodRod">
+          <div class="noren-rod-loops">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="noren-panels-wrap">
+          <!-- Panel 1 (Outer Left) -->
+          <div class="noren-panel" id="norenPanel0">
+            <span class="noren-jp-vertical">ラーメン</span>
+            <span class="noren-hem-mark"></span>
+          </div>
+          <!-- Panel 2 (Inner Left) -->
+          <div class="noren-panel" id="norenPanel1">
+            <span class="noren-jp-stamp">本格<br>拉麺</span>
+            <span class="noren-hem-mark"></span>
+          </div>
+          <!-- Panel 3 (Inner Right) -->
+          <div class="noren-panel" id="norenPanel2">
+            <span class="noren-jp-stamp">一番<br>の味</span>
+            <span class="noren-hem-mark"></span>
+          </div>
+          <!-- Panel 4 (Outer Right) -->
+          <div class="noren-panel" id="norenPanel3">
+            <span class="noren-jp-vertical">営業中</span>
+            <span class="noren-hem-mark"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Large Light-Brown Hinoki Wooden Chopsticks (With Red & Black Theme Bands) Tapping Together -->
+      <div class="chopsticks-stage" id="chopsticksStage" aria-hidden="true">
+        <svg class="chopsticks-svg" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="woodStickLeft" x1="72" y1="32" x2="120" y2="188" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#ebd0a7"/>
+              <stop offset="48%" stop-color="#d5a670"/>
+              <stop offset="100%" stop-color="#b9854e"/>
+            </linearGradient>
+            <linearGradient id="woodStickRight" x1="168" y1="32" x2="120" y2="188" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#ebd0a7"/>
+              <stop offset="48%" stop-color="#d5a670"/>
+              <stop offset="100%" stop-color="#b9854e"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Crisp Red & Black Japanese Ink Tap Sparks at Tip Contact (120, 186) -->
+          <g id="chopstickTapSparks" opacity="0">
+            <line x1="120" y1="168" x2="120" y2="157" stroke="#dc2626" stroke-width="2.6" stroke-linecap="round"/>
+            <line x1="103" y1="181" x2="92" y2="176" stroke="#111111" stroke-width="2.4" stroke-linecap="round"/>
+            <line x1="137" y1="181" x2="148" y2="176" stroke="#111111" stroke-width="2.4" stroke-linecap="round"/>
+            <line x1="106" y1="195" x2="96" y2="202" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round"/>
+            <line x1="134" y1="195" x2="144" y2="202" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="120" cy="186" r="6.5" stroke="#dc2626" stroke-width="1.8" opacity="0.65"/>
+          </g>
+
+          <!-- LEFT CHOPSTICK -->
+          <g id="chopstickLeft">
+            <path d="M70.5 34.5 C70.2 32.5 78.8 30.5 79.4 32.5 L120.2 185.4 C120.5 186.8 117.7 187.4 117.3 186.0 Z" fill="url(#woodStickLeft)" stroke="#9a6b3b" stroke-width="0.9"/>
+            <line x1="74.2" y1="36" x2="118.4" y2="183" stroke="#f7e4c6" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
+            <path d="M70.5 34.5 C70.2 32.5 78.8 30.5 79.4 32.5 L87.0 61.5 L78.2 63.8 Z" fill="#171717"/>
+            <path d="M78.9 66.4 L87.7 64.1 L88.9 68.7 L80.1 71.0 Z" fill="#dc2626"/>
+            <path d="M80.8 73.6 L89.6 71.3 L90.4 74.4 L81.6 76.7 Z" fill="#dc2626"/>
+          </g>
+
+          <!-- RIGHT CHOPSTICK -->
+          <g id="chopstickRight">
+            <path d="M169.5 34.5 C169.8 32.5 161.2 30.5 160.6 32.5 L119.8 185.4 C119.5 186.8 122.3 187.4 122.7 186.0 Z" fill="url(#woodStickRight)" stroke="#9a6b3b" stroke-width="0.9"/>
+            <line x1="165.8" y1="36" x2="121.6" y2="183" stroke="#f7e4c6" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
+            <path d="M169.5 34.5 C169.8 32.5 161.2 30.5 160.6 32.5 L153.0 61.5 L161.8 63.8 Z" fill="#171717"/>
+            <path d="M161.1 66.4 L152.3 64.1 L151.1 68.7 L159.9 71.0 Z" fill="#dc2626"/>
+            <path d="M159.2 73.6 L150.4 71.3 L149.6 74.4 L158.4 76.7 Z" fill="#dc2626"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- 3. BIG BOLD "Our Menu" in Brother's Ramen Black Brush Theme Font -->
+      <svg width="0" height="0" class="absolute pointer-events-none" aria-hidden="true">
+        <defs>
+          <filter id="inkBrushFilter" x="-8%" y="-8%" width="116%" height="116%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="2" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+      </svg>
+      <div class="menu-intro-only" id="menuIntroTitle">
+        <h2 class="menu-theme-title" style="filter: url(#inkBrushFilter);">
+          Our Menu
+        </h2>
+      </div>
+
+      <!-- 4 & 5. Single Individual Dish Card -> Spreads into 3 Columns of Individual Cards -> Continuous Motion -->
+      <div class="menu-columns-viewport" id="menuColumnsViewport">
+        <div class="menu-columns-grid" id="menuColumnsGrid">
+          <div class="menu-col-slot">
+            <div class="menu-col-track" id="menuCol0"></div>
+          </div>
+          <div class="menu-col-slot">
+            <div class="menu-col-track" id="menuCol1"></div>
+          </div>
+          <div class="menu-col-slot">
+            <div class="menu-col-track" id="menuCol2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="w-full max-w-md space-y-5 relative z-10">
+    <!-- PORTFOLIO / PURE SWIPE PDF PRESENTATION DECK + DOWNLOAD -->
+    <div class="glass-card rounded-[32px] p-6 space-y-3" id="portfolio">
       <div class="flex items-center justify-between">
         <div>
-          <h2 class="text-xs font-bold uppercase tracking-wider text-stone-500">Portfolio & Presentation</h2>
-          <h3 class="text-base font-bold text-stone-900">Brother's Ramen Presentation</h3>
+          <h2 class="text-[11px] font-extrabold uppercase tracking-wider text-red-600">Portfolio &amp; Presentation</h2>
+          <h3 class="text-base font-extrabold text-neutral-900">Brother's Ramen Presentation</h3>
         </div>
-        <div class="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-900 flex items-center justify-center font-bold text-lg shadow-sm">
-          <i class="fa-solid fa-file-pdf"></i>
-        </div>
+        <span id="swipeCounterBadge" class="text-[10px] bg-red-50 text-red-600 border border-red-200 px-2.5 py-1 rounded-full font-extrabold">
+          1 / 15
+        </span>
       </div>
 
-      <p class="text-xs text-stone-600 leading-relaxed">
-        Click below to open and view the presentation deck in full screen or upload your local PDF file.
+      <p class="text-[11px] text-neutral-500">
+        Swipe left or right to flip through all 15 slides.
       </p>
 
-      <!-- Main Trigger Card for PDF View -->
-      <div id="portfolioTriggerCard" class="glass-pill rounded-2xl p-4 border border-amber-500/30 hover:bg-white/90 transition cursor-pointer group shadow-sm flex items-center justify-between">
+      <!-- Clean Light Frame Horizontal Swipe Stage (No heavy black box!) -->
+      <div class="relative rounded-2xl overflow-hidden bg-white border border-neutral-200/90 shadow-sm">
+        <!-- Loading State -->
+        <div id="pdfSwipeLoading" class="aspect-video w-full flex flex-col items-center justify-center gap-2 text-neutral-500 text-xs bg-neutral-50">
+          <i class="fa-solid fa-circle-notch animate-spin text-xl text-red-600"></i>
+          <span>Loading Presentation...</span>
+        </div>
+
+        <!-- Horizontal Swipe Track (All 15 slides side-by-side) -->
+        <div id="pdfSwipeTrack" class="pdf-swipe-track hidden">
+          <!-- 15 slide canvases injected lazily -->
+        </div>
+
+        <!-- Discrete Clean Fullscreen Toggle in Corner -->
+        <button
+          type="button"
+          id="openFullscreenSwipe"
+          aria-label="Full screen swipe view"
+          title="Full screen"
+          class="absolute top-2.5 right-2.5 z-10 w-7 h-7 rounded-full bg-white/85 backdrop-blur-sm text-neutral-800 hover:text-red-600 border border-neutral-200 shadow-sm flex items-center justify-center text-[11px] transition"
+        >
+          <i class="fa-solid fa-expand"></i>
+        </button>
+      </div>
+
+      <!-- Minimal Crimson Swipe Progress Bar -->
+      <div class="w-full h-1.5 rounded-full bg-neutral-200/70 overflow-hidden">
+        <div id="swipeProgressBar" class="h-full bg-gradient-to-r from-red-600 to-rose-500 rounded-full transition-all duration-200" style="width: 6.67%;"></div>
+      </div>
+
+      <!-- Download Presentation PDF Glass Pill -->
+      <a
+        href="BROTHERS-RAMEN.pdf"
+        download="BROTHERS-RAMEN.pdf"
+        target="_blank"
+        rel="noopener"
+        class="glass-pill rounded-2xl px-4 py-3 flex items-center justify-between group mt-1"
+      >
         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-xl bg-stone-900 text-amber-300 flex items-center justify-center text-xl group-hover:scale-105 transition shadow">
+          <div class="w-9 h-9 rounded-xl bg-red-50 text-red-600 border border-red-200/70 flex items-center justify-center text-sm group-hover:scale-105 transition">
             <i class="fa-solid fa-file-pdf"></i>
           </div>
-          <div>
-            <div class="text-xs font-bold text-stone-900 group-hover:text-amber-800 transition">BROTHERS-RAMEN.pdf</div>
-            <div class="text-[10px] text-stone-500">Click to Open Presentation Viewer</div>
+          <div class="text-left">
+            <div class="text-xs font-bold text-neutral-900 group-hover:text-red-600 transition">Download Presentation PDF</div>
+            <div class="text-[10px] text-neutral-500">BROTHERS-RAMEN.pdf • 15 Slides</div>
           </div>
         </div>
-        <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-900 flex items-center justify-center text-xs group-hover:translate-x-1 transition">
-          <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </div>
-      </div>
+        <span class="px-2.5 py-1 rounded-lg bg-red-600 text-white text-[10px] font-bold flex items-center gap-1 group-hover:bg-red-700 transition shadow-sm">
+          <i class="fa-solid fa-download text-[9px]"></i>
+          <span>Download</span>
+        </span>
+      </a>
     </div>
 
-    <!-- Let's Connect Social Media Section -->
-    <div class="glass-card rounded-[32px] p-6 space-y-4">
-      <h2 class="text-xs font-bold uppercase tracking-wider text-stone-500">Let's Connect</h2>
+    <!-- Let's Connect Social Media Glass Card -->
+    <div class="glass-card rounded-[32px] p-6 space-y-3.5">
+      <h2 class="text-[11px] font-extrabold uppercase tracking-wider text-red-600">Let's Connect</h2>
       <div class="space-y-2.5">
-        <a href="https://www.instagram.com/mellboy18" target="_blank" class="glass-pill rounded-xl p-3 flex items-center justify-between hover:bg-white/80 transition">
+        <a href="https://www.instagram.com/mellboy18" target="_blank" class="glass-pill rounded-2xl p-3 flex items-center justify-between">
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center text-lg shadow-sm">
+            <div class="w-9 h-9 rounded-xl bg-red-50 text-red-600 border border-red-200/70 flex items-center justify-center text-lg">
               <i class="fa-brands fa-instagram"></i>
             </div>
             <div>
-              <div class="text-xs font-bold text-stone-900">Instagram</div>
-              <div class="text-[10px] text-stone-500">@mellboy18</div>
+              <div class="text-xs font-bold text-neutral-900">Instagram</div>
+              <div class="text-[10px] text-neutral-500">@mellboy18</div>
             </div>
           </div>
-          <i class="fa-solid fa-chevron-right text-xs text-stone-400"></i>
+          <i class="fa-solid fa-chevron-right text-xs text-neutral-400"></i>
         </a>
 
-        <a href="https://www.facebook.com/brothersramen.mainbranch/" target="_blank" class="glass-pill rounded-xl p-3 flex items-center justify-between hover:bg-white/80 transition">
+        <a href="https://www.facebook.com/brothersramen.mainbranch/" target="_blank" class="glass-pill rounded-2xl p-3 flex items-center justify-between">
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg bg-blue-600 text-white flex items-center justify-center text-lg shadow-sm">
+            <div class="w-9 h-9 rounded-xl bg-red-50 text-red-600 border border-red-200/70 flex items-center justify-center text-lg">
               <i class="fa-brands fa-facebook-f"></i>
             </div>
             <div>
-              <div class="text-xs font-bold text-stone-900">Facebook</div>
-              <div class="text-[10px] text-stone-500">Brothers Ramen Main Branch</div>
+              <div class="text-xs font-bold text-neutral-900">Facebook</div>
+              <div class="text-[10px] text-neutral-500">Brothers Ramen Main Branch</div>
             </div>
           </div>
-          <i class="fa-solid fa-chevron-right text-xs text-stone-400"></i>
+          <i class="fa-solid fa-chevron-right text-xs text-neutral-400"></i>
         </a>
 
-        <a href="https://www.tiktok.com/@brothersramen.mainbranch" target="_blank" class="glass-pill rounded-xl p-3 flex items-center justify-between hover:bg-white/80 transition">
+        <a href="https://www.tiktok.com/@brothersramen.mainbranch" target="_blank" class="glass-pill rounded-2xl p-3 flex items-center justify-between">
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg bg-stone-900 text-white flex items-center justify-center text-lg shadow-sm">
+            <div class="w-9 h-9 rounded-xl bg-neutral-100 text-neutral-900 border border-neutral-200 flex items-center justify-center text-lg">
               <i class="fa-brands fa-tiktok"></i>
             </div>
             <div>
-              <div class="text-xs font-bold text-stone-900">TikTok</div>
-              <div class="text-[10px] text-stone-500">@brothersramen.mainbranch</div>
+              <div class="text-xs font-bold text-neutral-900">TikTok</div>
+              <div class="text-[10px] text-neutral-500">@brothersramen.mainbranch</div>
             </div>
           </div>
-          <i class="fa-solid fa-chevron-right text-xs text-stone-400"></i>
+          <i class="fa-solid fa-chevron-right text-xs text-neutral-400"></i>
         </a>
       </div>
     </div>
 
-    <footer class="text-center text-[11px] text-stone-500 py-2">
-      © 2026 Brother's Ramen. Valenzuela City, Philippines.
+    <!-- Clean Branded Footer -->
+    <footer class="flex flex-col items-center gap-1.5 text-center text-[11px] text-neutral-500 py-3">
+      <img
+        src="images/brand-logo.png"
+        alt="Brother's Ramen"
+        width="40"
+        height="40"
+        loading="lazy"
+        class="w-10 h-10 object-contain opacity-90"
+      >
+      <span>© 2026 <strong class="text-neutral-800">Brother's <span class="text-red-600">Ramen</span></strong> • Valenzuela City, Philippines</span>
     </footer>
   </div>
 
-  <!-- CANVAS-BASED RELIABLE PDF VIEWER MODAL CONTAINER -->
-  <div id="deckModal" class="fixed inset-0 bg-stone-900/80 backdrop-blur-md z-50 flex flex-col items-center justify-center p-2 sm:p-6 hidden">
-    <div class="bg-stone-900 rounded-[28px] max-w-4xl w-full h-[92vh] flex flex-col shadow-2xl relative border border-white/20 overflow-hidden">
-      
-      <!-- Modal Toolbar Header -->
-      <div class="flex flex-wrap items-center justify-between px-5 py-3 bg-stone-950 border-b border-stone-800 text-white z-10 gap-2">
-        <div class="flex items-center gap-2">
-          <i class="fa-solid fa-file-pdf text-amber-400 text-lg"></i>
-          <div>
-            <h3 class="text-xs font-bold text-white">BROTHERS-RAMEN.pdf</h3>
-            <p class="text-[10px] text-stone-400" id="pageCounter">Page 1 of ...</p>
-          </div>
+  <!-- PROFILE PHOTO CLEAN WHITE GLASS MODAL -->
+  <div id="photoModal" class="fixed inset-0 bg-neutral-900/35 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-modal rounded-[28px] max-w-sm w-full relative overflow-hidden">
+      <button
+        type="button"
+        id="closePhotoBtn"
+        aria-label="Close photo preview"
+        class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/90 text-neutral-800 border border-neutral-200 shadow-sm flex items-center justify-center hover:text-red-600 transition"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="w-full aspect-square bg-neutral-100 overflow-hidden">
+        <img
+          id="profileModalImg"
+          data-src="images/profile-lg.jpg"
+          src="images/profile-sm.jpg"
+          alt="Melbert Pereda — Founder & CEO of Brother's Ramen"
+          class="w-full h-full object-cover"
+        >
+      </div>
+      <div class="px-5 py-4 border-t border-neutral-200/80 bg-white/90 flex items-center justify-between">
+        <div>
+          <div class="text-sm font-extrabold text-neutral-900">Melbert Pereda</div>
+          <div class="text-[11px] text-red-600 font-semibold">Founder &amp; CEO — Brother's Ramen</div>
         </div>
-        
-        <!-- Controls & File Picker -->
+        <span class="bg-red-50 text-red-600 text-[10px] font-extrabold px-2.5 py-1 rounded-full border border-red-200">
+          CEO
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENU ITEM / FULL MENU BOARD CLEAN WHITE GLASS MODAL -->
+  <div id="menuModal" class="fixed inset-0 bg-neutral-900/35 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-modal rounded-[28px] max-w-md w-full relative overflow-hidden">
+      <button
+        type="button"
+        id="closeMenuModalBtn"
+        aria-label="Close menu preview"
+        class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/90 text-neutral-800 border border-neutral-200 shadow-sm flex items-center justify-center hover:text-red-600 transition"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="w-full bg-neutral-50 overflow-hidden flex items-center justify-center max-h-[70vh]">
+        <img
+          id="menuModalImg"
+          src=""
+          alt="Brother's Ramen Menu"
+          class="w-full h-auto max-h-[70vh] object-contain"
+        >
+      </div>
+      <div class="px-5 py-4 border-t border-neutral-200/80 bg-white/90 flex items-center justify-between gap-3">
+        <div>
+          <div id="menuModalTitle" class="text-sm font-extrabold text-neutral-900">Brother's Ramen Menu</div>
+          <div id="menuModalSub" class="text-[11px] text-red-600 font-semibold">Authentic Japanese Flavors</div>
+        </div>
+        <button
+          type="button"
+          id="switchToFullBoardBtn"
+          class="px-3 py-1.5 rounded-full bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold transition shrink-0 hidden shadow-sm"
+        >
+          View Full Menu
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTIONAL FULLSCREEN PURE-SWIPE MODAL (Clean Light Frosted Backdrop) -->
+  <div id="deckModal" class="fixed inset-0 bg-white/85 backdrop-blur-xl z-50 flex flex-col items-center justify-center p-3 sm:p-6 hidden">
+    <div class="w-full max-w-5xl flex flex-col gap-3">
+      <div class="flex items-center justify-between px-1">
+        <span id="modalSwipeBadge" class="text-xs font-extrabold bg-red-50 text-red-600 px-3 py-1 rounded-full border border-red-200">
+          1 / 15
+        </span>
+        <span class="text-[11px] text-neutral-500 font-medium">Swipe left or right</span>
         <div class="flex items-center gap-2">
-          <!-- Page Nav -->
-          <button id="prevPage" class="px-2.5 py-1 rounded-lg bg-stone-800 text-stone-200 text-xs font-bold hover:bg-stone-700">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <button id="nextPage" class="px-2.5 py-1 rounded-lg bg-stone-800 text-stone-200 text-xs font-bold hover:bg-stone-700">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-          
-          <!-- Upload Local File (Fallback) -->
-          <label class="px-3 py-1.5 rounded-xl bg-stone-800 text-amber-300 text-xs font-bold flex items-center gap-1.5 hover:bg-stone-700 cursor-pointer">
-            <i class="fa-solid fa-upload"></i> Open Local File
-            <input type="file" id="pdfFileInput" accept="application/pdf" class="hidden">
-          </label>
-
-          <a href="BROTHERS-RAMEN.pdf" download="BROTHERS-RAMEN.pdf" class="px-3 py-1.5 rounded-xl bg-amber-500 text-stone-950 text-xs font-bold flex items-center gap-1.5 hover:bg-amber-400 transition">
-            <i class="fa-solid fa-download"></i> Download
+          <a
+            href="BROTHERS-RAMEN.pdf"
+            download="BROTHERS-RAMEN.pdf"
+            target="_blank"
+            rel="noopener"
+            class="px-3 py-1.5 rounded-full bg-red-600 hover:bg-red-700 text-white text-xs font-bold flex items-center gap-1.5 transition shadow-sm"
+          >
+            <i class="fa-solid fa-download text-[11px]"></i>
+            <span>Download PDF</span>
           </a>
-
-          <button id="closeDeckBtn" class="w-8 h-8 rounded-full bg-stone-800 text-stone-300 flex items-center justify-center hover:bg-stone-700 transition">
+          <button
+            type="button"
+            id="closeDeckBtn"
+            aria-label="Close fullscreen"
+            class="w-9 h-9 rounded-full bg-white text-neutral-800 border border-neutral-200 shadow-sm flex items-center justify-center hover:text-red-600 transition"
+          >
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
       </div>
 
-      <!-- Canvas PDF Viewer Stage -->
-      <div class="flex-1 w-full h-full bg-stone-950 overflow-auto p-4 flex flex-col items-center justify-center relative">
-        <div id="pdfLoading" class="text-stone-400 text-xs flex flex-col items-center gap-2">
-          <i class="fa-solid fa-circle-notch animate-spin text-2xl text-amber-400"></i>
-          Loading Document...
+      <div class="glass-modal rounded-2xl overflow-hidden">
+        <div id="modalSwipeTrack" class="pdf-swipe-track">
+          <!-- 15 high-res widescreen slides injected dynamically -->
         </div>
-        <canvas id="pdfCanvas" class="shadow-2xl rounded-lg max-w-full hidden border border-stone-800"></canvas>
       </div>
-      
+
+      <div class="w-full h-1.5 rounded-full bg-neutral-200 overflow-hidden">
+        <div id="modalProgressBar" class="h-full bg-gradient-to-r from-red-600 to-rose-500 rounded-full transition-all duration-200" style="width: 6.67%;"></div>
+      </div>
     </div>
   </div>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=10" defer></script>
 </body>
 </html>

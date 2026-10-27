@@ -1,63 +1,518 @@
-/* Custom Styles for Glassmorphic Layout & 3D Orbit Carousel */
+/* Clean White Glassy UI — Brother's Ramen Full-Background Logo + Frosted Glass Blur */
+:root {
+  --brand-red: #dc2626;
+  --brand-red-deep: #991b1b;
+  --brand-black: #111111;
+}
+
 body {
-  background: linear-gradient(135deg, #fceade 0%, #f7e6d5 50%, #f9efe1 100%);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #ffffff;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
-}
-
-.glass-pill {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-}
-
-.orbit-container {
-  perspective: 1000px;
-  height: 320px;
+  color: #171717;
   position: relative;
-  overflow: hidden;
-  touch-action: pan-y;
+  /* clip preserves position: sticky across iOS Safari, Android Chrome & Desktop */
+  overflow-x: clip;
+}
+
+/* Fixed Full-Viewport Brother's Ramen Logo Behind All Sections */
+.bg-logo-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(at 15% 12%, rgba(220, 38, 38, 0.05) 0px, transparent 50%),
+    radial-gradient(at 85% 88%, rgba(220, 38, 38, 0.05) 0px, transparent 50%),
+    url('../images/bg-logo.jpg');
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: top left, bottom right, center center;
+  background-size: 100% 100%, 100% 100%, min(96vw, 720px) auto;
+  opacity: 0.42;
+  transform: translateZ(0);
+}
+
+/* Hero Cutout Portrait — Exact 60% Width (20% Left & Right) + Smooth Professional Bottom Fade */
+.hero-portrait-wrap {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: relative;
+}
+
+/* Small Japanese Label at Top Right of Hero Portrait (matches ramen red theme) */
+.hero-jp-label {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(220, 38, 38, 0.92);
+  color: #ffffff;
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.35);
+}
+
+.hero-portrait-fade {
+  width: 100%;
+  height: auto;
+  display: block;
+  -webkit-mask-image: linear-gradient(to bottom, #000000 0%, #000000 66%, rgba(0, 0, 0, 0.42) 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000000 0%, #000000 66%, rgba(0, 0, 0, 0.42) 85%, transparent 100%);
+  filter: drop-shadow(0 10px 22px rgba(17, 17, 17, 0.10));
+}
+
+/* Primary Frosted Glass Card — Blurs the Background Logo Cleanly */
+.glass-card {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.60) 0%,
+    rgba(255, 255, 255, 0.42) 52%,
+    rgba(255, 255, 255, 0.54) 100%
+  );
+  backdrop-filter: blur(22px) saturate(175%);
+  -webkit-backdrop-filter: blur(22px) saturate(175%);
+  border: 1px solid rgba(255, 255, 255, 0.90);
+  box-shadow:
+    0 20px 44px -14px rgba(17, 17, 17, 0.11),
+    0 2px 10px -2px rgba(220, 38, 38, 0.05),
+    0 0 0 1px rgba(17, 17, 17, 0.05),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.98),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.45);
+}
+
+/* Crisp White Interactive Glass Pill */
+.glass-pill {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.78) 0%,
+    rgba(255, 255, 255, 0.56) 100%
+  );
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 8px 20px -8px rgba(17, 17, 17, 0.08),
+    0 0 0 1px rgba(17, 17, 17, 0.045),
+    inset 0 1px 1px rgba(255, 255, 255, 0.98);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.glass-pill:hover {
+  background: rgba(255, 255, 255, 0.90);
+  border-color: rgba(220, 38, 38, 0.30);
+  transform: translateY(-1px);
+  box-shadow:
+    0 12px 24px -8px rgba(220, 38, 38, 0.14),
+    inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+
+/* Light Clean Frosted Modal */
+.glass-modal {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(26px) saturate(170%);
+  -webkit-backdrop-filter: blur(26px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.98);
+  box-shadow:
+    0 28px 60px -12px rgba(17, 17, 17, 0.22),
+    0 0 0 1px rgba(17, 17, 17, 0.06);
+}
+
+/* ================================================================
+   OUR MENU — UNCONTAINED OPEN STAGE (NO BIG OUTER CARD!)
+   1. Red Ramen Shop Noren Curtain on Open Wooden Pole
+   2. Large Light-Brown Chopsticks Tapping Together
+   3. HUGE Black Brush "Our Menu"
+   4. 1 Individual Dish Card -> Spreads into 3 Columns of Individual Cards
+   5. Col 1: Up->Down | Col 2: Down->Up | Col 3: Up->Down continuously
+   ================================================================ */
+.menu-runway {
+  position: relative;
+  height: 2140px;
+}
+
+.menu-sticky-stage {
+  position: sticky;
+  top: max(12px, calc(50vh - 260px));
+  top: max(12px, calc(50svh - 260px));
+  height: min(520px, 80vh);
+  height: min(520px, 80svh);
+  /* Completely open stage — NOT contained in a big card */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  overflow: visible;
   user-select: none;
 }
 
-.orbit-stage {
+/* 1. Japanese Crimson Ramen Shop Noren Curtain (Open Hanging Pole) */
+.noren-curtain-layer {
   position: absolute;
+  inset: 16px 0;
+  z-index: 50;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 16px;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000000 3%,
+    #000000 97%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000000 3%,
+    #000000 97%,
+    transparent 100%
+  );
+  will-change: opacity;
+}
+
+/* Warm Light-Brown Hinoki Wood Curtain Pole with Rounded Ends */
+.noren-wood-rod {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  right: 4px;
+  height: 15px;
+  z-index: 55;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ebd0a5 0%, #cfa06b 55%, #ad7944 100%);
+  border: 1px solid rgba(120, 74, 32, 0.35);
+  box-shadow: 0 6px 14px rgba(17, 17, 17, 0.18);
+  will-change: transform, opacity;
+}
+
+/* Traditional White Fabric Loops ("Chichi") Along the Rod */
+.noren-rod-loops {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  padding: 0 22px;
+}
+
+.noren-rod-loops span {
+  width: 8px;
+  background: linear-gradient(180deg, #ffffff 0%, #f3f4f6 75%, #d1d5db 100%);
+  border-left: 1px solid rgba(17, 17, 17, 0.14);
+  border-right: 1px solid rgba(17, 17, 17, 0.14);
+  border-radius: 1px;
+}
+
+/* 4 Split Crimson Linen Noren Panels */
+.noren-panels-wrap {
+  position: absolute;
+  top: 13px;
+  left: 14px;
+  right: 14px;
+  height: 86%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.noren-panel {
+  position: relative;
+  height: 100%;
+  border-radius: 2px 2px 12px 12px;
+  background-color: #dc2626;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.04) 0px,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(17, 17, 17, 0.04) 0px,
+      rgba(17, 17, 17, 0.04) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    linear-gradient(180deg, #b91c1c 0%, #dc2626 38%, #c81e1e 82%, #991b1b 100%);
+  box-shadow:
+    0 20px 32px -12px rgba(17, 17, 17, 0.34),
+    inset 0 2px 4px rgba(0, 0, 0, 0.20),
+    inset 0 -3px 0 rgba(255, 255, 255, 0.18);
+  transform-origin: top center;
+  will-change: transform, opacity;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 6px 24px;
+}
+
+.noren-panel::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Small Authentic White Japanese Labels on the Red Curtain */
+.noren-jp-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  color: rgba(255, 255, 255, 0.95);
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.noren-jp-stamp {
+  border: 1.5px solid rgba(255, 255, 255, 0.92);
+  border-radius: 5px;
+  padding: 5px 6px;
+  color: rgba(255, 255, 255, 0.96);
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: 0.08em;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.noren-hem-mark {
+  width: 65%;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.40);
+}
+
+/* 2. Large Light-Brown Wooden Chopsticks Tapping Stage */
+.chopsticks-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 44;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.chopsticks-svg {
+  width: 310px;
+  height: 310px;
+  overflow: visible;
+  filter: drop-shadow(0 16px 24px rgba(17, 17, 17, 0.16));
+}
+
+#chopstickLeft {
+  transform-origin: 86px 46px;
+  will-change: transform;
+}
+
+#chopstickRight {
+  transform-origin: 154px 46px;
+  will-change: transform;
+}
+
+#chopstickTapSparks {
+  transform-origin: 120px 186px;
+  will-change: transform, opacity;
+}
+
+/* 3. BIG BOLD "Our Menu" in Brother's Ramen Black Brush Theme Font */
+.menu-intro-only {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  padding: 0 8px;
+  will-change: transform, opacity;
+}
+
+.menu-theme-title {
+  font-family: 'Permanent Marker', 'Rock Salt', 'Segoe Print', 'Bradley Hand', cursive, sans-serif;
+  color: #111111;
+  font-size: clamp(3.75rem, 15.5vw, 5.5rem);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 0.98;
+  white-space: nowrap;
+  transform: rotate(-3.5deg);
+  /* Clean luminous white halo keeps ink-black brush strokes razor-sharp over background logo without a card */
+  text-shadow:
+    0 0 26px rgba(255, 255, 255, 0.98),
+    0 0 10px rgba(255, 255, 255, 0.95),
+    0 12px 28px rgba(17, 17, 17, 0.14);
+}
+
+/* 4 & 5. Open 3-Column Viewport — Each Dish Photo Has Its Own Individual Glassy Card! */
+.menu-columns-viewport {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  overflow: hidden;
+  opacity: 0;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000000 8%,
+    #000000 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000000 8%,
+    #000000 92%,
+    transparent 100%
+  );
+  will-change: opacity;
+}
+
+.menu-columns-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  padding: 0 10px;
+  height: 100%;
+  overflow: visible;
+}
+
+.menu-col-slot {
+  position: relative;
+  height: 100%;
+  overflow: visible;
+}
+
+.menu-col-track {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  overflow: visible;
+  will-change: transform;
+}
+
+/* Individual Standalone Glassy Card for Each Dish Photo */
+.menu-spread-tile {
+  position: relative;
+  width: 100%;
+  border-radius: 24px;
+  padding: 7px 7px 9px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.84) 0%,
+    rgba(255, 255, 255, 0.62) 100%
+  );
+  border: 1.5px solid rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 18px 34px -12px rgba(17, 17, 17, 0.17),
+    0 2px 8px -2px rgba(220, 38, 38, 0.06),
+    0 0 0 1px rgba(17, 17, 17, 0.06),
+    inset 0 1.5px 1px rgba(255, 255, 255, 1);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  cursor: pointer;
+}
+
+.menu-tile-photo {
+  width: 100%;
+  aspect-ratio: 1 / 0.96;
+  border-radius: 17px;
+  overflow: hidden;
+  background: #f5f5f5;
+  border: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.menu-tile-photo img {
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
-  top: 0;
-  left: 0;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
 }
 
-.orbit-card-item {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 130px;
-  height: 175px;
-  margin-left: -65px;
-  margin-top: -87px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-  transform-style: preserve-3d;
+.menu-tile-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 6px 3px 0;
+}
+
+.menu-tile-name {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #171717;
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-tile-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #dc2626;
+  flex-shrink: 0;
+}
+
+.menu-spread-tile.is-hero-tile {
+  z-index: 30;
+  box-shadow:
+    0 24px 48px -12px rgba(17, 17, 17, 0.24),
+    0 0 0 1px rgba(17, 17, 17, 0.07),
+    inset 0 1.5px 1px rgba(255, 255, 255, 1);
+}
+
+/* Horizontal Swipe PDF Carousel */
+.pdf-swipe-track {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   cursor: grab;
-  transition: box-shadow 0.3s ease;
+  user-select: none;
 }
 
-.orbit-card-item:active {
+.pdf-swipe-track::-webkit-scrollbar {
+  display: none;
+}
+
+.pdf-swipe-track.is-dragging {
   cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+.pdf-swipe-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
