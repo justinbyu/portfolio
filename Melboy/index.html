@@ -3,327 +3,220 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melbert Pereda | Founder & CEO - Brother's Ramen</title>
+  
+  <!-- Tailwind CSS & FontAwesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- PDF.js Engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
-  <title>Melbert Pereda | Brothers Ramen</title>
-  <meta name="description" content="Connect with Melbert Pereda, Founder &amp; CEO of Brothers Ramen. Authentic ramen crafted daily.">
-  <meta name="theme-color" content="#dfe8f1">
-  <meta name="application-name" content="Brothers Ramen">
-  <meta name="apple-mobile-web-app-title" content="Brothers Ramen">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest">
-
-  <meta property="og:title" content="Melbert Pereda | Brothers Ramen">
-  <meta property="og:description" content="Brothers Ramen — Authentic ramen crafted daily by Founder &amp; CEO Melbert Pereda.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="apple-touch-icon.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Melbert Pereda | Brothers Ramen">
-  <meta name="twitter:description" content="Brothers Ramen — Authentic ramen crafted daily by Founder &amp; CEO Melbert Pereda.">
-
-  <link rel="stylesheet" href="style.css?v=8">
-  <script src="script.js?v=6" defer></script>
-  <noscript><style>.reveal,.reveal .highlight,.reveal .service-row{opacity:1 !important;transform:none !important;}</style></noscript>
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
+<body class="min-h-screen py-8 px-4 flex flex-col items-center justify-start text-stone-800">
 
-<body>
-  <!-- Fixed blurred backdrop: work imagery stays behind everything -->
-  <div class="bg-fixed" aria-hidden="true"></div>
-  <div class="bg-tint" aria-hidden="true"></div>
+  <div class="w-full max-w-md space-y-6">
+    
+    <!-- Profile Header Card -->
+    <div class="glass-card rounded-[36px] p-6 text-center relative overflow-hidden">
+      <div class="relative z-10 flex flex-col items-center">
+        <div class="relative mb-4">
+          <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-500 to-orange-300 p-1 shadow-md">
+            <div class="w-full h-full rounded-full bg-stone-900 flex items-center justify-center text-3xl font-bold text-amber-200 border-2 border-white">
+              MP
+            </div>
+          </div>
+          <span class="absolute bottom-0 right-0 bg-stone-900 text-amber-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-amber-400 shadow">
+            CEO
+          </span>
+        </div>
+        <h1 class="text-2xl font-bold text-stone-900">Melbert Pereda</h1>
+        <p class="text-xs font-semibold tracking-wider text-amber-800 uppercase mt-1">Founder & CEO — Brother's Ramen</p>
+        <p class="text-xs text-stone-600 mt-2 max-w-xs leading-relaxed">
+          Bringing authentic Japanese ramen flavors to local convenience stores, dining spots, and business partners.
+        </p>
+        <div class="flex items-center gap-2 mt-3">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-700 border border-emerald-500/20">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            Open for Supply & Partnerships
+          </span>
+        </div>
+      </div>
+    </div>
 
-  <main class="digital-card">
+    <!-- Quick Action Buttons -->
+    <div class="grid grid-cols-2 gap-3">
+      <a href="tel:09561391538" class="glass-pill rounded-2xl p-4 flex flex-col items-center justify-center hover:bg-white/80 transition group">
+        <div class="w-10 h-10 rounded-full bg-stone-900 text-amber-300 flex items-center justify-center mb-1.5 group-hover:scale-110 transition shadow">
+          <i class="fa-solid fa-phone text-sm"></i>
+        </div>
+        <span class="text-xs font-bold text-stone-800">Call Now</span>
+        <span class="text-[10px] text-stone-500 font-mono">0956 139 1538</span>
+      </a>
+      <a href="mailto:peredamelbertc@gmail.com" class="glass-pill rounded-2xl p-4 flex flex-col items-center justify-center hover:bg-white/80 transition group">
+        <div class="w-10 h-10 rounded-full bg-stone-900 text-amber-300 flex items-center justify-center mb-1.5 group-hover:scale-110 transition shadow">
+          <i class="fa-solid fa-envelope text-sm"></i>
+        </div>
+        <span class="text-xs font-bold text-stone-800">Email Me</span>
+        <span class="text-[10px] text-stone-500 truncate max-w-[120px]">peredamelbertc@...</span>
+      </a>
+    </div>
 
-    <!-- HERO -->
-    <header class="hero">
-      <p class="hero-tag">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg>
-        Authentic Ramen Shop
+    <!-- 3D Orbit Bloom Product & Visual Showcase -->
+    <div class="glass-card rounded-[32px] p-6 relative">
+      <div class="flex items-center justify-between mb-2">
+        <div>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-stone-500">Interactive Gallery</h2>
+          <h3 class="text-base font-bold text-stone-900">3D Orbit Bloom Showcase</h3>
+        </div>
+        <span class="text-[10px] bg-stone-900/10 text-stone-700 px-2 py-1 rounded-full font-medium">Auto Rotating</span>
+      </div>
+      <p class="text-[11px] text-stone-500 mb-3">Drag horizontally to rotate or click any product card below.</p>
+      
+      <div class="orbit-container my-2" id="orbitContainer">
+        <div class="orbit-stage" id="orbitStage">
+          <!-- Cards injected dynamically via JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- PORTFOLIO / REAL PDF DOCUMENT VIEWER SECTION -->
+    <div class="glass-card rounded-[32px] p-6 space-y-4" id="portfolio">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-stone-500">Portfolio & Presentation</h2>
+          <h3 class="text-base font-bold text-stone-900">Brother's Ramen Presentation</h3>
+        </div>
+        <div class="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-900 flex items-center justify-center font-bold text-lg shadow-sm">
+          <i class="fa-solid fa-file-pdf"></i>
+        </div>
+      </div>
+
+      <p class="text-xs text-stone-600 leading-relaxed">
+        Click below to open and view the presentation deck in full screen or upload your local PDF file.
       </p>
 
-      <h1>
-        MADE WITH<br>
-        CARE.<br>
-        MADE TO <span class="outline">SERVE.</span>
-      </h1>
-
-      <p class="hero-sub">
-        Authentic Japanese ramen, crafted daily.
-        Brothers Ramen — real flavor in every bowl.
-      </p>
-
-      <div class="hero-proof">
-        <span>100% Ramen Shop</span>
-        <span>Authentic Taste</span>
-        <span>Fresh Daily</span>
-      </div>
-
-      <div class="hero-card">
-        <div class="hero-id">
-          <div class="profile-image-wrap">
-            <img
-              src="images/my-photo.png"
-              alt="Melbert Pereda profile photo"
-              class="profile-image"
-              onerror="this.style.display='none'"
-            >
-            <span class="profile-initials">MP</span>
+      <!-- Main Trigger Card for PDF View -->
+      <div id="portfolioTriggerCard" class="glass-pill rounded-2xl p-4 border border-amber-500/30 hover:bg-white/90 transition cursor-pointer group shadow-sm flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-stone-900 text-amber-300 flex items-center justify-center text-xl group-hover:scale-105 transition shadow">
+            <i class="fa-solid fa-file-pdf"></i>
           </div>
-          <div class="hero-name">
-            <strong>Melbert Pereda</strong>
-            <small>Founder &amp; CEO · Brothers Ramen</small>
+          <div>
+            <div class="text-xs font-bold text-stone-900 group-hover:text-amber-800 transition">BROTHERS-RAMEN.pdf</div>
+            <div class="text-[10px] text-stone-500">Click to Open Presentation Viewer</div>
           </div>
         </div>
+        <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-900 flex items-center justify-center text-xs group-hover:translate-x-1 transition">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </div>
+      </div>
+    </div>
 
-        <div class="quick-actions">
-          <button type="button" class="btn-primary" id="quickSave">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-            Save Contact
+    <!-- Let's Connect Social Media Section -->
+    <div class="glass-card rounded-[32px] p-6 space-y-4">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-stone-500">Let's Connect</h2>
+      <div class="space-y-2.5">
+        <a href="https://www.instagram.com/mellboy18" target="_blank" class="glass-pill rounded-xl p-3 flex items-center justify-between hover:bg-white/80 transition">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-stone-900">Instagram</div>
+              <div class="text-[10px] text-stone-500">@mellboy18</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-xs text-stone-400"></i>
+        </a>
+
+        <a href="https://www.facebook.com/brothersramen.mainbranch/" target="_blank" class="glass-pill rounded-xl p-3 flex items-center justify-between hover:bg-white/80 transition">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-blue-600 text-white flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-brands fa-facebook-f"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-stone-900">Facebook</div>
+              <div class="text-[10px] text-stone-500">Brothers Ramen Main Branch</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-xs text-stone-400"></i>
+        </a>
+
+        <a href="https://www.tiktok.com/@brothersramen.mainbranch" target="_blank" class="glass-pill rounded-xl p-3 flex items-center justify-between hover:bg-white/80 transition">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-stone-900 text-white flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-brands fa-tiktok"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-stone-900">TikTok</div>
+              <div class="text-[10px] text-stone-500">@brothersramen.mainbranch</div>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-xs text-stone-400"></i>
+        </a>
+      </div>
+    </div>
+
+    <footer class="text-center text-[11px] text-stone-500 py-2">
+      © 2026 Brother's Ramen. Valenzuela City, Philippines.
+    </footer>
+  </div>
+
+  <!-- CANVAS-BASED RELIABLE PDF VIEWER MODAL CONTAINER -->
+  <div id="deckModal" class="fixed inset-0 bg-stone-900/80 backdrop-blur-md z-50 flex flex-col items-center justify-center p-2 sm:p-6 hidden">
+    <div class="bg-stone-900 rounded-[28px] max-w-4xl w-full h-[92vh] flex flex-col shadow-2xl relative border border-white/20 overflow-hidden">
+      
+      <!-- Modal Toolbar Header -->
+      <div class="flex flex-wrap items-center justify-between px-5 py-3 bg-stone-950 border-b border-stone-800 text-white z-10 gap-2">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-file-pdf text-amber-400 text-lg"></i>
+          <div>
+            <h3 class="text-xs font-bold text-white">BROTHERS-RAMEN.pdf</h3>
+            <p class="text-[10px] text-stone-400" id="pageCounter">Page 1 of ...</p>
+          </div>
+        </div>
+        
+        <!-- Controls & File Picker -->
+        <div class="flex items-center gap-2">
+          <!-- Page Nav -->
+          <button id="prevPage" class="px-2.5 py-1 rounded-lg bg-stone-800 text-stone-200 text-xs font-bold hover:bg-stone-700">
+            <i class="fa-solid fa-chevron-left"></i>
           </button>
-          <button type="button" class="btn-ghost" id="shareCard">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
-            Share
+          <button id="nextPage" class="px-2.5 py-1 rounded-lg bg-stone-800 text-stone-200 text-xs font-bold hover:bg-stone-700">
+            <i class="fa-solid fa-chevron-right"></i>
           </button>
-        </div>
-        <p class="share-note" id="shareMessage" role="status"></p>
-      </div>
+          
+          <!-- Upload Local File (Fallback) -->
+          <label class="px-3 py-1.5 rounded-xl bg-stone-800 text-amber-300 text-xs font-bold flex items-center gap-1.5 hover:bg-stone-700 cursor-pointer">
+            <i class="fa-solid fa-upload"></i> Open Local File
+            <input type="file" id="pdfFileInput" accept="application/pdf" class="hidden">
+          </label>
 
-      <p class="scroll-cue">Scroll to explore ↓</p>
-    </header>
-
-    <!-- HIGHLIGHTS -->
-    <section class="section reveal" aria-label="Business highlights">
-      <div class="highlights">
-        <div class="highlight">
-          <span class="highlight-icon" aria-hidden="true">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-          </span>
-          <span class="stat-num" data-target="100" data-suffix="%">0%</span>
-          <strong>Ramen Shop</strong>
-          <small>Authentic ramen</small>
-        </div>
-        <div class="highlight">
-          <span class="highlight-icon" aria-hidden="true">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          </span>
-          <span class="stat-num" data-target="100" data-suffix="%">0%</span>
-          <strong>Fresh Ingredients</strong>
-          <small>Made daily</small>
-        </div>
-        <div class="highlight">
-          <span class="highlight-icon" aria-hidden="true">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
-          </span>
-          <span class="stat-num" data-target="100" data-suffix="%">0%</span>
-          <strong>Handcrafted</strong>
-          <small>Made with care</small>
-        </div>
-      </div>
-    </section>
-
-    <!-- WORK GALLERY : horizontal carousel -->
-    <section class="work reveal" aria-label="Brothers Ramen menu photos">
-      <div class="section-heading">
-        <h2>Our Menu</h2>
-        <p>Swipe to explore</p>
-      </div>
-
-      <div class="carousel" id="workCarousel" tabindex="0" aria-label="Brothers Ramen food photos">
-        <article class="slide">
-          <img src="images/image-1.png" alt="Signature ramen bowls">
-          <span class="slide-tag">Ramen</span>
-          <div class="slide-caption">
-            <span class="slide-num">01</span>
-            <span class="slide-text"><strong>Signature Ramen</strong><small>Chashu, soft egg &amp; fresh greens</small></span>
-            <button type="button" class="slide-next" aria-label="Next item">&#8594;</button>
-          </div>
-        </article>
-
-        <article class="slide">
-          <img src="images/image-2.png" alt="Chicken katsu rice meal" loading="lazy">
-          <span class="slide-tag">Rice Meals</span>
-          <div class="slide-caption">
-            <span class="slide-num">02</span>
-            <span class="slide-text"><strong>Chicken Katsu Rice</strong><small>Crispy katsu with steamed rice</small></span>
-            <button type="button" class="slide-next" aria-label="Next item">&#8594;</button>
-          </div>
-        </article>
-
-        <article class="slide">
-          <img src="images/image-3.png" alt="Brothers Ramen team" loading="lazy">
-          <span class="slide-tag">Team</span>
-          <div class="slide-caption">
-            <span class="slide-num">03</span>
-            <span class="slide-text"><strong>Brothers Ramen Team</strong><small>Family-run ramen shop</small></span>
-            <button type="button" class="slide-next" aria-label="Next item">&#8594;</button>
-          </div>
-        </article>
-      </div>
-
-      <div class="carousel-dots" id="carouselDots" aria-label="Choose a menu photo">
-        <button class="work-dot active" type="button" data-slide="0" aria-label="Photo 1" aria-current="true"></button>
-        <button class="work-dot" type="button" data-slide="1" aria-label="Photo 2"></button>
-        <button class="work-dot" type="button" data-slide="2" aria-label="Photo 3"></button>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section class="section reveal">
-      <div class="section-heading">
-        <h2>What We Do</h2>
-        <p>Ramen shop favorites</p>
-      </div>
-
-      <div class="service-list">
-        <div class="service-row">
-          <span class="service-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a4 4 0 0 0-4-8H8a4 4 0 0 0-4 4Z"/><path d="M10 12h4M10 8h4M12 14v2"/></svg>
-          </span>
-          <span><strong>Authentic Ramen Bowls</strong><small>Tonkotsu, shoyu &amp; miso ramen made daily</small></span>
-        </div>
-        <div class="service-row">
-          <span class="service-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a4 4 0 0 0-4-8H8a4 4 0 0 0-4 4Z"/><circle cx="7" cy="15" r="1"/><circle cx="11" cy="14" r="1"/><circle cx="15" cy="15" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="13" cy="11" r="1"/><circle cx="17" cy="13" r="1"/></svg>
-          </span>
-          <span><strong>Japanese Rice Meals</strong><small>Katsu don, chicken rice &amp; more</small></span>
-        </div>
-        <div class="service-row">
-          <span class="service-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18c2.5 0 4.5-2 6-2s3.5 2 6 2M8 14c1.5 0 2.5-1 3-1s1.5 1 3 1M10 10c1 0 1.5-.5 2-.5s1 .5 2 .5"/><path d="M5 14c0-2 2-4 5-4s5 2 5 4"/></svg>
-          </span>
-          <span><strong>Gyoza &amp; Sides</strong><small>Crispy dumplings and Japanese sides</small></span>
-        </div>
-        <div class="service-row">
-          <span class="service-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M17 17l-3-3M17 7l-3 3M21 12h-9"/></svg>
-          </span>
-          <span><strong>Catering &amp; Events</strong><small>Ramen catering for your occasions</small></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- PORTFOLIO -->
-    <section class="section reveal">
-      <div class="section-heading">
-        <h2>Portfolio</h2>
-        <p>See our work</p>
-      </div>
-
-      <div class="service-list">
-        <div class="service-row portfolio-row">
-          <span class="service-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </span>
-          <span>
-            <strong>Brother's Ramen Portfolio</strong>
-            <small>Full menu &amp; brand book (PDF)</small>
-          </span>
-          <a href="images/brothers-ramen-portfolio.pdf" download="Brother's-Ramen-Portfolio.pdf" target="_blank" rel="noopener noreferrer" class="portfolio-btn">
-            View Portfolio PDF
+          <a href="BROTHERS-RAMEN.pdf" download="BROTHERS-RAMEN.pdf" class="px-3 py-1.5 rounded-xl bg-amber-500 text-stone-950 text-xs font-bold flex items-center gap-1.5 hover:bg-amber-400 transition">
+            <i class="fa-solid fa-download"></i> Download
           </a>
+
+          <button id="closeDeckBtn" class="w-8 h-8 rounded-full bg-stone-800 text-stone-300 flex items-center justify-center hover:bg-stone-700 transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
       </div>
 
-    </section>
-
-    <!-- SOCIAL LINKS -->
-    <section class="section reveal">
-      <div class="section-heading">
-        <h2>Let&rsquo;s Connect</h2>
-        <p>Find us on social media</p>
+      <!-- Canvas PDF Viewer Stage -->
+      <div class="flex-1 w-full h-full bg-stone-950 overflow-auto p-4 flex flex-col items-center justify-center relative">
+        <div id="pdfLoading" class="text-stone-400 text-xs flex flex-col items-center gap-2">
+          <i class="fa-solid fa-circle-notch animate-spin text-2xl text-amber-400"></i>
+          Loading Document...
+        </div>
+        <canvas id="pdfCanvas" class="shadow-2xl rounded-lg max-w-full hidden border border-stone-800"></canvas>
       </div>
+      
+    </div>
+  </div>
 
-      <div class="social-grid">
-        <a
-          class="social-link"
-          href="https://www.instagram.com/mellboy18"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Visit Instagram"
-        >
-          <span class="social-icon" aria-hidden="true">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
-          </span>
-          <span>Instagram<span class="social-handle">@mellboy18</span></span>
-          <span class="chevron">›</span>
-        </a>
-
-        <a
-          class="social-link"
-          href="https://www.facebook.com/brothersramen.mainbranch/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Visit Facebook"
-        >
-          <span class="social-icon" aria-hidden="true">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5V11H7.5v3H10v7h3.5z"/></svg>
-          </span>
-          <span>Facebook<span class="social-handle">Brothers Ramen Main Branch</span></span>
-          <span class="chevron">›</span>
-        </a>
-
-        <a
-          class="social-link"
-          href="https://www.tiktok.com/@brothersramen.mainbranch"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Visit TikTok"
-        >
-          <span class="social-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.4 2.1 1.9 3.8 4.4 4v3c-1.6 0-3-.5-4.4-1.4v6.9c0 3.9-2.7 6.5-6.1 6.5-3.3 0-5.9-2.5-5.9-5.9 0-3.3 2.6-5.8 6-5.8.3 0 .7 0 1 .1v3.1c-.3-.1-.7-.2-1-.2-1.6 0-2.9 1.2-2.9 2.8 0 1.6 1.2 2.8 2.8 2.8 1.7 0 2.9-1.3 2.9-3.2V3h3.2z"/></svg>
-          </span>
-          <span>TikTok<span class="social-handle">@brothersramen.mainbranch</span></span>
-          <span class="chevron">›</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- PAYMENT METHODS -->
-    <section class="section reveal">
-      <div class="section-heading">
-        <h2>Payment Methods</h2>
-        <p>Pay your way</p>
-      </div>
-
-      <div class="bank-list">
-        <a href="gcash.html" class="bank-card">
-          <span class="bank-logo gcash-logo">G</span>
-          <span class="bank-summary">
-            <strong>GCash</strong>
-            <small>Pay using GCash QR</small>
-          </span>
-          <span class="chevron">›</span>
-        </a>
-
-        <a href="bdo.html" class="bank-card">
-          <span class="bank-logo bdo-logo">BDO</span>
-          <span class="bank-summary">
-            <strong>BDO</strong>
-            <small>Pay using bank QR</small>
-          </span>
-          <span class="chevron">›</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- SAVE CONTACT -->
-    <section class="contact-section reveal">
-      <h2>Save Contact</h2>
-      <p>Add this card to your phone.</p>
-      <button type="button" class="save-button" id="saveContact">Save contact</button>
-      <p class="save-message" id="saveMessage"></p>
-    </section>
-
-<footer class="footer reveal">
-  <img class="footer-logo" src="images/brothers-ramen-logo.png" alt="Brother's Ramen logo">
-  <p>BROTHERS RAMEN</p>
-  <span>Ramen Shop</span>
-  <small>© <span id="currentYear"></span> Brothers Ramen</small>
-</footer>
-
-  </main>
+  <script src="js/main.js"></script>
 </body>
 </html>
