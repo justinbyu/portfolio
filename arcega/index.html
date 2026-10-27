@@ -20,7 +20,7 @@
     <!-- Main Mobile Frame Container -->
     <div class="app-container">
         
-        <!-- Header Controls (Updated with Affiliate Marketing Tagline) -->
+        <!-- Header Controls -->
         <div class="glass-card nav-header">
             <span class="nav-tag"><i class="fa-solid fa-sparkles"></i> DIGITAL CARD</span>
             <span class="header-tagline"><i class="fa-solid fa-chart-line"></i> Affiliate Marketing Creator</span>
@@ -51,6 +51,53 @@
                 <a href="https://maps.google.com/?q=55+G+Marcelo+Street+Maysan+Valenzuela+City" target="_blank" class="btn-secondary">
                     <i class="fa-solid fa-map-pin"></i> Directions
                 </a>
+            </div>
+        </div>
+
+        <!-- Highlights Section Title -->
+        <div class="section-title">Highlights & Showcase</div>
+
+        <!-- 3D Cover Flow / Cover Ring Carousel -->
+        <div class="glass-card coverflow-widget">
+            <div class="coverflow-stage" id="coverflowStage">
+                <div class="coverflow-track" id="coverflowTrack">
+                    <!-- Slide 1 -->
+                    <div class="coverflow-card" onclick="setCoverSlide(0)">
+                        <img src="images/carousel-1.png" alt="30K Facebook Followers">
+                        <div class="coverflow-badge">
+                            <span><i class="fa-brands fa-facebook"></i> 30K Followers</span>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="coverflow-card" onclick="setCoverSlide(1)">
+                        <img src="images/carousel-2.png" alt="Family Beach Vacation">
+                        <div class="coverflow-badge">
+                            <span><i class="fa-solid fa-heart"></i> Family Moments</span>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="coverflow-card" onclick="setCoverSlide(2)">
+                        <img src="images/carousel-3.png" alt="Water Sports & Outdoor Fun">
+                        <div class="coverflow-badge">
+                            <span><i class="fa-solid fa-water"></i> Water Sports</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Navigation Controls -->
+                <button class="coverflow-btn prev" onclick="prevCoverSlide()">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="coverflow-btn next" onclick="nextCoverSlide()">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Dots Indicator -->
+            <div class="coverflow-dots">
+                <span class="cover-dot active" onclick="setCoverSlide(0)"></span>
+                <span class="cover-dot" onclick="setCoverSlide(1)"></span>
+                <span class="cover-dot" onclick="setCoverSlide(2)"></span>
             </div>
         </div>
 
@@ -118,7 +165,7 @@
 
         </div>
 
-        <div class="footer-tag">Powered by TapAsul • Digital Business Card</div>
+        <div class="footer-tag">Powered by TAPIND • Digital Business Card</div>
     </div>
 
     <script src="js/script.js"></script>
