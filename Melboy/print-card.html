@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Print NFC card — Melbert Pereda</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px 16px 48px;
+      background: #0a0b0e;
+      color: #f6f1e7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+    .tools { max-width: 440px; margin: 0 auto 24px; }
+    .tools p { color: #a9a49b; font-size: 12px; line-height: 1.7; }
+    .tools-actions { display: flex; gap: 10px; margin-top: 12px; }
+    .tools-actions button, .tools-actions a {
+      flex: 1; padding: 12px; border-radius: 12px; text-align: center;
+      font-size: 13px; font-weight: 800; cursor: pointer; text-decoration: none;
+    }
+    .tools-actions button {
+      border: 0; color: #221a08;
+      background: linear-gradient(135deg, #f4f7f9, #ccd4dc 45%, #a7b1bb 75%, #dde4ea);
+    }
+    .tools-actions a {
+      border: 1px solid rgba(255,255,255,.14); color: #f6f1e7; background: #1c1f26;
+    }
+    .sheet { display: grid; gap: 28px; justify-items: center; }
+    .face-label { margin: 0 0 10px; color: #a9a49b; font-size: 12px; font-weight: 700; text-align: center; }
+    .face {
+      width: 85.6mm; height: 54mm; max-width: 100%;
+      border-radius: 4mm; overflow: hidden; position: relative;
+      background:
+        radial-gradient(60mm 40mm at 15% 10%, rgba(93,127,224,.30), transparent 60%),
+        linear-gradient(135deg, #23262e, #14161b 60%, #0e0f12);
+      border: 0.4mm solid rgba(160,175,195,.55);
+      color: #f6f1e7;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .face-front { padding: 5mm 7mm; display: flex; flex-direction: row; align-items: center; gap: 5mm; }
+    .face-front .print-logo { height: 26mm; width: 26mm; object-fit: cover; border-radius: 3mm; border: 0.3mm solid rgba(255,255,255,.25); }
+    .face-front .print-id { display: flex; flex-direction: column; justify-content: center; }
+    .face-front .brand { margin: 0 0 2mm; color: #a4bdf5; font-size: 3.2mm; font-weight: 900; letter-spacing: 1.6mm; }
+    .face-front h1 { margin: 0; font-family: Georgia, serif; font-size: 6.4mm; }
+    .face-front .biz { margin: 1.2mm 0 0; color: #cfc9bc; font-size: 2.9mm; font-weight: 700; }
+    .face-front .tag { margin: 3mm 0 0; color: #a9a49b; font-size: 2.6mm; letter-spacing: .6mm; }
+    .face-back { display: grid; place-items: center; text-align: center; }
+    .chip {
+      width: 22mm; height: 22mm; border-radius: 50%;
+      border: 0.5mm dashed rgba(93,127,224,.8);
+      display: grid; place-items: center;
+      color: #a9a49b; font-size: 2.6mm; padding: 2mm;
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .tools { display: none; }
+      .sheet { gap: 12mm; }
+    }
+  </style>
+</head>
+<body>
+  <header class="tools">
+    <p>Print at 100% scale. Do not choose “fit to page”. Each face is bank-card size, 85.6 × 54 mm. Stick the NFC chip inside the dashed circle on the back.</p>
+    <div class="tools-actions">
+      <button type="button" onclick="window.print()">Print</button>
+      <a href="index.html">Back to digital card</a>
+    </div>
+  </header>
+  <main class="sheet">
+    <section>
+      <p class="face-label">Front</p>
+      <article class="face face-front">
+        <img class="print-logo" src="images/brothers-ramen-logo.png" alt="Brother's Ramen logo">
+        <div class="print-id">
+          <p class="brand">BROTHERS RAMEN</p>
+          <h1>Melbert Pereda</h1>
+          <p class="biz">Founder &amp; CEO · Brothers Ramen</p>
+          <p class="tag">MADE WITH CARE. MADE TO SERVE.</p>
+        </div>
+      </article>
+    </section>
+    <section>
+      <p class="face-label">Back — chip goes here</p>
+      <article class="face face-back">
+        <div class="chip">Stick NFC chip here</div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
